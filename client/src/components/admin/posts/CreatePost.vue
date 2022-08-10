@@ -15,6 +15,29 @@
             >
             </v-text-field>
 
+             <img 
+              height="100px"
+              width="100px" 
+              v-if="url" 
+              :src="url"
+            />
+
+            <v-file-input 
+              filled 
+              shaped 
+              chips
+              prepend-icon="" 
+              append-icon="mdi-camera" 
+              v-model="image" 
+              label="Slika" 
+              :rules="[v => !!v || 'Slika je obavezna']" 
+              accept="image/*" 
+              required 
+              @change="onFileChange"
+            >
+            </v-file-input>
+
+
             <vue-editor v-model="content" output-format="html" :editorToolbar="customToolbar"/>
 
              <v-text-field 
@@ -101,7 +124,7 @@ export default {
       [{ align: "" }, { align: "center" }, { align: "right"}, { align: "justify"}],
       ["blockquote"],
       ["link", "image"],
-      [{ color: ['#6dd5ed', '#FFFFFF', '#038cd0', '#0eacfb', '#000000'] }, { background: ['#6dd5ed', '#FFFFFF', '#038cd0', '#0eacfb', '#000000'] }], 
+      [{ color: [] }, { background: [] }], 
     ]
   }),
   watch: {
@@ -163,7 +186,7 @@ export default {
 }
 
 .row .fill-height {
-    height: 80vh !important;
+    /* height: 50vh !important; */
     align-items: center !important;
 }
 </style>

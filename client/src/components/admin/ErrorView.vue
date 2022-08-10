@@ -8,7 +8,7 @@
                     display="block"
                     margin="auto"
                     object-fit="fill"
-                    width="80%"
+                    width="55%"
                 />
 
                 <div>
