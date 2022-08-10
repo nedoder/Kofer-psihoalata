@@ -39,10 +39,10 @@ app.use(bodyParser.json());
 
 
 
-require("./routes/categories.routes")(app);
+require("./routes/category.routes")(app);
 require("./routes/posts.routes")(app);
 require("./routes/comments.routes")(app);
-require("./routes/questions.routes")(app);
+require("./routes/answers.routes")(app);
 require("./routes/users.routes")(app);
 
 
