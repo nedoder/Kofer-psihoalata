@@ -1,0 +1,76 @@
+<template>
+  <v-form v-model="isValid" class="row text-center justify-center align-center fill-height">
+      <v-col sm="6">
+        <v-card  tile >
+
+            <v-card-title>Kreiranje kategorije</v-card-title>
+          <v-card-text>
+
+            <v-text-field
+              filled 
+              shaped 
+              label="Naziv"
+              v-model="name"
+              :rules="[v => v.length > 1 || 'Morate unijeti naziv kategorije']"
+            ></v-text-field>
+
+           
+            <v-alert type="error" v-if="error">
+             {{error}}
+            </v-alert>
+            
+            <v-btn @click="onSubmit" :disabled="!isValid" color="primary">Kreiraj</v-btn>
+            
+          </v-card-text>
+        </v-card>
+      </v-col>
+  </v-form >
+</template>
+
+<script>
+// import requests from "../../services/services"
+export default {
+  data: () => ({
+    showPass: false,
+    errorPassword: '',
+    isValid:true,
+    name: '',
+    password: '',
+    isUpdating: false,
+    error: ''
+  }),
+  watch: {
+    isUpdating (val) {
+      if (val) {
+        setTimeout(() => (this.isUpdating = false), 3000)
+      }
+    },
+  },
+  methods: {
+    onSubmit() {
+    //   requests.newUser({
+    //       "email": this.username,
+    //       "password":  this.password
+    //   })
+    //   .then(response => {
+    //     console.log(response)
+    //     window.location.reload()
+    //   })
+    //   .catch(error => {
+    //     this.error = error.response.data.error
+    //     console.log(error.message)
+    //   })
+    },
+   
+   
+  },
+}
+</script>
+
+<style scoped>
+
+.row .fill-height {
+    height: 80vh !important;
+    align-items: center !important;
+}
+</style>

@@ -1,4 +1,4 @@
-# client
+# kofer_psihoalata
 
 ## Project setup
 ```
