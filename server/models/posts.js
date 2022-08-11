@@ -23,11 +23,10 @@ module.exports = (sequelize, Sequelize) => {
                 }
             }
         },
-        published: DataTypes.DATE,
-        updated: DataTypes.DATE,
-       
-    },
-    {
+        published: Sequelize.DATE,
+        updated: Sequelize.DATE,
+
+    }, {
         timestamps: false,
         tableName: 'Post',
     });

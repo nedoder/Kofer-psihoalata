@@ -1,6 +1,4 @@
-const fs = require("fs");
 const db = require("../models");
-// const Op = require("sequelize").Op;
 const Category = db.category;
 const Op = db.Sequelize.Op;
 // Create and Save a new category
@@ -9,28 +7,28 @@ exports.create = (req, res) => {
 
     // Create a drink
     const category = {
-        // name: req.body.name,
+        category: req.body.category,
     };
 
 
     // Save category in the database
     Category.create(category)
         .then(data => {
-            return res.send(`Drink is sucessfully created.`);
+            res.send(`Category is sucessfully created.`);
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the drink."
+                message: err.message || "Some error occurred while creating the category."
             });
         });
 
 };
 // Retrieve all categories from the database.
 exports.findAll = (req, res) => {
-    const name = req.query.name;
-    var condition = name ? {
-        name: {
-            [Op.like]: `%${name}%`
+    const query = req.query.category;
+    var condition = query ? {
+        category: {
+            [Op.like]: `%${query}%`
         }
     } : null;
     Category.findAll({ where: condition })
@@ -67,38 +65,23 @@ exports.findOne = (req, res) => {
 // Update a category by the id in the request
 exports.update = async(req, res) => {
     const id = req.params.id;
-    var imagePath = null
-        // Edit a drink
 
-    let image = { image: req.file ? req.file.filename : '' }
-    let category = {
-        name: req.body.name,
-        price: req.body.price,
-        quantity: req.body.quantity,
+    let newCategory = {
+        category: req.body.category,
     };
 
-    if (image.image !== '') {
-        Object.assign(drink, image);
-    }
 
     await Category.findByPk(id)
-        .then(response => {
-            if (response.image) {
-                imagePath = './uploads/' + response.image;
-            }
-        })
+        .then(response => {})
         .catch(err => {
             console.log(err)
         });
 
-    Category.update(drink, {
+    Category.update(newCategory, {
             where: { id: id }
         })
         .then(num => {
             if (num == 1) {
-                if (drink.image) {
-                    fs.unlinkSync(imagePath)
-                }
                 res.send({
                     message: "Category was updated successfully."
                 });
@@ -118,13 +101,8 @@ exports.update = async(req, res) => {
 // Delete a category with the specified id in the request
 exports.delete = async(req, res) => {
     const id = req.params.id;
-    var path = null
     await Category.findByPk(id)
-        .then(response => {
-            if (response.image) {
-                path = './uploads/' + response.image;
-            }
-        })
+        .then(response => {})
         .catch(err => {
             console.log(err)
         });
@@ -133,7 +111,6 @@ exports.delete = async(req, res) => {
         })
         .then(num => {
             if (num == 1) {
-                fs.unlinkSync(path)
                 res.send({
                     message: "Category was deleted successfully!"
                 });

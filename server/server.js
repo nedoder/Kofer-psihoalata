@@ -14,10 +14,10 @@ const app = express()
 
 app.use(history({
     // verbose: true
-  }));
-  
+}));
+
 app.use(express.static(__dirname + '/dist'));
-  
+
 
 global.__basedir = __dirname;
 
