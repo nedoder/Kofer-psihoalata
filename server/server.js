@@ -14,10 +14,10 @@ const app = express()
 
 app.use(history({
     // verbose: true
-}));
-
+  }));
+  
 app.use(express.static(__dirname + '/dist'));
-
+  
 
 global.__basedir = __dirname;
 
@@ -40,10 +40,10 @@ app.use(bodyParser.json());
 
 
 require("./routes/category.routes")(app);
-require("./routes/posts.routes")(app);
-require("./routes/comments.routes")(app);
-require("./routes/answers.routes")(app);
-require("./routes/users.routes")(app);
+// require("./routes/answers.routes")(app);
+// require("./routes/comments.routes")(app);
+// require("./routes/posts.routes")(app);
+// require("./routes/users.routes")(app);
 
 
 
@@ -70,10 +70,14 @@ app.listen(PORT, () => {
 });
 
 var connection = mysql.createConnection({
-    host: process.env.HOST,
-    user: process.env.USER,
-    port: process.env.PORTDB,
-    password: process.env.PASSWORD,
+    // host: process.env.HOST,
+    // user: process.env.USER,
+    // port: process.env.PORTDB,
+    // password: process.env.PASSWORD,
+    host: "127.0.0.1",
+    user: "root",
+    port: "3306",
+    password: "Django14159",
 });
 
 

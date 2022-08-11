@@ -1,5 +1,5 @@
 module.exports = app => {
-    const category = require("../controllers/category.controller.js");
+    const category = require("../controllers/category.controller");
     const upload = require("../middleware/upload");
     const authorize = require("../middleware/authorize.js")
     var router = require("express").Router();

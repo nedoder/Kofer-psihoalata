@@ -7,25 +7,26 @@ import LogInView from "../components/admin/LoginView"
 import AdminLayout from "../components/admin/AdminLayout"
 import ErrorView from "../components/admin/ErrorView"
 import PasswordChange from "../components/admin/PasswordChange"
+import ActivityLog from "../components/admin/ActivityLog"
 
 
 // import components for blogs
-// import ListUstanove from "../components/ustanove/ListUstanove"
-// import ShowUstanove from "../components/ustanove/ShowUstanove"
+import ListPosts from "../components/admin/posts/ListPosts"
+import ShowPost from "../components/admin/posts/ShowPost"
 import CreatePost from "../components/admin/posts/CreatePost"
-// import EditUstanove from "../components/ustanove/EditUstanove"
+import EditPost from "../components/admin/posts/EditPost"
 
 //import components for comments
-// import ListDoktori from "../components/doktori/ListDoktori"
-// import ShowDoktori from "../components/doktori/ShowDoktori"
-// import CreateDoktori from "../components/doktori/CreateDoktori"
-// import EditDoktori from "../components/doktori/EditDoktori"
+import ListComments from "../components/admin/comments/ListComments"
+import ShowComment from "../components/admin/comments/ShowComment"
+import CreateComment from "../components/admin/comments/CreateComment"
+import EditComment from "../components/admin/comments/EditComment"
 
 //import components for comment answers
-// import ListBaneri from "../components/baneri/ListBaneri"
-// import ShowBaneri from "../components/baneri/ShowBaneri"
-// import CreateBaneri from "../components/baneri/CreateBaneri"
-// import EditBaneri from "../components/baneri/EditBaneri"
+import ListAnswers from "../components/admin/answers/ListAnswers"
+import ShowAnswer from "../components/admin/answers/ShowAnswer"
+import CreateAnswer from "../components/admin/answers/CreateAnswer"
+import EditAnswer from "../components/admin/answers/EditAnswer"
 
 
 //import components for users
@@ -35,13 +36,10 @@ import EditUser from "../components/admin/users/EditUser"
 import AdminEdit from "../components/admin/users/AdminEdit"
 
 //import components for categories
-// import ListSponzorisano from "../components/sponzorisano/ListSponzorisano"
+import ListCategory  from "../components/admin/category/ListCategories"
 import CreateCategory from "../components/admin/category/CreateCategory"
-// import EditSponzorisano from "../components/sponzorisano/EditSponzorisano"
+import EditCategory from "../components/admin/category/EditCategory"
 
-
-//import component for activity log
-// import ActivityLog from "../components/activity/ActivityLog"
 
 
 Vue.use(VueRouter);
@@ -76,12 +74,68 @@ const routes = [
         component: HomeView,
       },
       {
+        path: "/activity",
+        component: ActivityLog,
+      },
+      {
         path: "/create/post",
         component: CreatePost,
       },
       {
+        path: "/post/:id",
+        component: ShowPost,
+      },
+      {
+        path: "/post/:id/edit",
+        component: EditPost,
+      },
+      {
+        path: "/posts",
+        component: ListPosts,
+      },
+      {
+        path: "/create/comment",
+        component: CreateComment,
+      },
+      {
+        path: "/comment/:id",
+        component: ShowComment,
+      },
+      {
+        path: "/comment/:id/edit",
+        component: EditComment,
+      },
+      {
+        path: "/comments",
+        component: ListComments,
+      },
+      {
+        path: "/create/answer",
+        component: CreateAnswer,
+      },
+      {
+        path: "/answer/:id",
+        component: ShowAnswer,
+      },
+      {
+        path: "/answer/:id/edit",
+        component: EditAnswer,
+      },
+      {
+        path: "/answers",
+        component: ListAnswers,
+      },
+      {
         path: "/create/category",
         component: CreateCategory,
+      },
+      {
+        path: "/category",
+        component: ListCategory,
+      },
+      {
+        path: "/category/:id/edit",
+        component: EditCategory,
       },
       {
         path: "/create/user",

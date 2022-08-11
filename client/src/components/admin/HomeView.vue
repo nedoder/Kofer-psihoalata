@@ -1,15 +1,10 @@
 <template>
   <v-app>
     <v-card fill-height>
-      <v-card-title>Sponzorisano</v-card-title>
       <v-container fluid>
-        <v-flex row>
-          <list-sponzorisano style='width:50%'/>
-          <list-oglas style='width:50%'/> 
-        </v-flex> 
-        </v-container>
-        <v-container>
-        <activity-log/> 
+          <list-posts/>
+          <list-comments/> 
+          <list-answers/> 
       </v-container>
     </v-card>
   </v-app>
@@ -17,11 +12,11 @@
 
 <script>
 // listing all items in dashboard route
-// import ListOglas from './sponzorisane_ustanove/ListOglas.vue'
-// import ListSponzorisano from './sponzorisano/ListSponzorisano.vue'
-// import ActivityLog from './activity/ActivityLog.vue'
+import ListPosts from './posts/ListPosts.vue'
+import ListComments from './comments/ListComments.vue'
+import ListAnswers from './answers/ListAnswers.vue'
 export default {
-  // components: { ListOglas, ListSponzorisano, ActivityLog },
+  components: { ListPosts, ListComments, ListAnswers },
 }
 </script>
 

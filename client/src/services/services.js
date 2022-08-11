@@ -37,129 +37,87 @@ apiClient.interceptors.response.use(response => {
   logIn(data) {
     return apiClient.post("login", data);
   },
-  getBaneriList() {
+  getPostsList() {
     return apiClient.get("api/post");
   },
-  getBaner(id) {
+  getPost(id) {
     return apiClient.get(`api/post/${id}`);
   },
-  newBaner(data) {
+  newPost(data) {
     return apiClient.post("api/post", data);
   },
-  editBaner(id, data) {
+  editPost(id, data) {
     return apiClient.patch(`api/post/${id}`, data);
   },
-  deleteBaner(id) {
+  deletePost(id) {
     return apiClient.delete(`api/post/${id}`);
   },
-  getUstanoveList(page, letter) {
-    return apiClient.get(`api/ordinacija?page=${page}&letter=${letter}`);
+  getCommentsList(page, letter) {
+    return apiClient.get(`api/comment?page=${page}&letter=${letter}`);
   },
-  getUstanova(id) {
-    return apiClient.get(`api/ordinacija/${id}`);
+  getComment(id) {
+    return apiClient.get(`api/comment/${id}`);
   },
-  newUstanova(data) {
-    return apiClient.post("api/ordinacija", data);
+  newComment(data) {
+    return apiClient.post("api/comment", data);
   },
-  editUstanova(id, data) {
-    return apiClient.patch(`api/ordinacija/${id}`, data);
+  editComment(id, data) {
+    return apiClient.patch(`api/comment/${id}`, data);
   },
-  deleteUstanova(id) {
-    return apiClient.delete(`api/ordinacija/${id}`);
+  deleteComment(id) {
+    return apiClient.delete(`api/comment/${id}`);
   },
-  getDoktoriList(page, letter) {
-    return apiClient.get(`api/doktor?page=${page}&letter=${letter}`);
+  getAnswersList(page, letter) {
+    return apiClient.get(`api/answer?page=${page}&letter=${letter}`);
   },
-  getDoktor(id) {
-    return apiClient.get(`api/doktor/${id}`);
+  getAnswer(id) {
+    return apiClient.get(`api/answer/${id}`);
   },
-  newDoktor(data) {
-    return apiClient.post("api/doktor", data);
+  newAnswer(data) {
+    return apiClient.post("api/answer", data);
   },
-  editDoktor(id, data) {
-    return apiClient.patch(`api/doktor/${id}`, data);
+  editAnswer(id, data) {
+    return apiClient.patch(`api/answer/${id}`, data);
   },
-  deleteDoktor(id) {
-    return apiClient.delete(`api/doktor/${id}`);
+  deleteAnswer(id) {
+    return apiClient.delete(`api/answer/${id}`);
   },
-  getSpecialsList() {
-    return apiClient.get("api/special");
+  getCategoryList() {
+    return apiClient.get("api/category");
   },
-  getSpecijalnost(id) {
-    return apiClient.get(`api/special/${id}`);
+  getCategory(id) {
+    return apiClient.get(`api/category/${id}`);
   },
-  newSpecijalnost(data) {
-    return apiClient.post("api/special", data);
+  newCategory(data) {
+    return apiClient.post("api/category", data);
   },
-  editSpecijalnost(id, data) {
-    return apiClient.patch(`api/special/${id}`, data);
+  editCategory(id, data) {
+    return apiClient.patch(`api/category/${id}`, data);
   },
-  deleteSpecijalnost(id) {
-    return apiClient.delete(`api/special/${id}`);
-  },
-  getSponsoredPosts() {
-    return apiClient.get("api/sponzorisaniPost");
-  },
-  getSponsored(id) {
-    return apiClient.get(`api/sponzorisaniPost/${id}`);
-  },
-  newSponsored(data) {
-    return apiClient.post("api/sponzorisaniPost", data);
-  },
-  editSponsored(id, data) {
-    return apiClient.patch(`api/sponzorisaniPost/${id}`, data);
-  },
-  deleteSponsored(id) {
-    return apiClient.delete(`api/sponzorisaniPost/${id}`);
-  },
-  getSponsoredUstanove() {
-    return apiClient.get("api/sponzorisanaUstanova");
-  },
-  getSponsoredUstanova(id) {
-    return apiClient.get(`api/sponzorisanaUstanova/${id}`);
-  },
-  newSponsoredUstanova(data) {
-    return apiClient.post("api/sponzorisanaUstanova", data);
-  },
-  editSponsoredUstanova(id, data) {
-    return apiClient.patch(`api/sponzorisanaUstanova/${id}`, data);
-  },
-  deleteSponsoredUstanova(id) {
-    return apiClient.delete(`api/sponzorisanaUstanova/${id}`);
-  },
-  getGradList() {
-    return apiClient.get("api/grad");
-  },
-  getResultsList(page) {
-    return apiClient.get(`api/result?page=${page}`);
-  },
-  getActivityList(page) {
-    return apiClient.get(`api/aktiviti?page=${page}`);
+  deleteCategory(id) {
+    return apiClient.delete(`api/category/${id}`);
   },
   getUserList() {
-    return apiClient.get("api/register");
+    return apiClient.get("api/user");
   },
   getUser(id) {
-    return apiClient.get(`api/register/${id}`);
+    return apiClient.get(`api/user/${id}`);
   },
   newUser(data) {
-    return apiClient.post("api/register", data);
+    return apiClient.post("api/user", data);
   },
   editUser(id, data) {
-    return apiClient.patch(`api/register/${id}`, data);
-  },
-  resetCode(data) {
-    return apiClient.patch("api/register",data);
-  },
-  editPassword(data) {
-    return apiClient.patch(`api/password/`, data);
-  },
-  googleLogin(data) {
-    return apiClient.post(`Gcode/`, data);
+    return apiClient.patch(`api/user/${id}`, data);
   },
   deleteUser(id) {
-    return apiClient.delete(`api/register/${id}`);
+    return apiClient.delete(`api/user/${id}`);
   },
+  // editPassword(data) {
+  //   return apiClient.patch(`api/password/`, data);
+  // },
+  // getActivityList(page) {
+  //   return apiClient.get(`api/aktiviti?page=${page}`);
+  // },
   
 };
 

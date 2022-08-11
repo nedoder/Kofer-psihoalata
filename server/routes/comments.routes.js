@@ -15,5 +15,5 @@ module.exports = app => {
     router.delete("/:id", authorize.verifyToken, comments.delete);
     // Delete all comments
     router.delete("/", authorize.verifyToken, comments.deleteAll);
-    app.use('/api/comments', router);
+    app.use('/api/comment', router);
 }

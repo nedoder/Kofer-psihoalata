@@ -6,41 +6,6 @@
         Useri
       </h3>
 
-      <v-spacer></v-spacer>
-
-       <v-spacer></v-spacer> 
-
-        <v-dialog
-          v-model="dialogCreate"
-          width="900"      
-        >
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              icon
-              v-bind="attrs"
-              v-on="on"
-            >
-              <v-icon color="info">mdi-plus</v-icon>
-            </v-btn>
-          </template>
-
-          <v-card>
-            <v-card-title>
-             Dodaj usera
-              <v-spacer></v-spacer>
-             <v-btn
-                icon
-                @click="dialogCreate=false"
-              >
-               <v-icon color="red">mdi-close</v-icon>
-              </v-btn>
-            </v-card-title>
-            <v-main>
-              <create-user/>
-            </v-main>
-          </v-card>
-        </v-dialog>
-
     </v-card-title>
     
     <v-card-text>
@@ -137,10 +102,9 @@
 
 <script>
 // import requests from "../../services/services"
-import CreateUser from './CreateUser.vue';
 import AdminEdit from './AdminEdit.vue';
 export default {
-  components: { CreateUser, AdminEdit },
+  components: {  AdminEdit },
   data: () => ({
     items: [],
     id: null,

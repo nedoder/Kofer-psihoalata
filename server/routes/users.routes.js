@@ -15,5 +15,5 @@ module.exports = app => {
     router.delete("/:id", authorize.verifyToken, users.delete);
     // Delete all users
     router.delete("/", authorize.verifyToken, users.deleteAll);
-    app.use('/api/users', router);
+    app.use('/api/user', router);
 }
