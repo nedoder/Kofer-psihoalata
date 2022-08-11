@@ -8,13 +8,13 @@ const jwt = require('jsonwebtoken')
 
 var path = require('path');
 var serveStatic = require('serve-static');
-var history = require('connect-history-api-fallback');
+// var history = require('connect-history-api-fallback');
 
 const app = express()
 
-app.use(history({
-    // verbose: true
-}));
+// app.use(history({
+//     // verbose: true
+// }));
 
 app.use(express.static(__dirname + '/dist'));
 
