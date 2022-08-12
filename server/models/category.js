@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
             validate: {
                 notEmpty: {
                     args: true,
-                    msg: "Title cannot be empty"
+                    msg: "Category cannot be empty"
                 }
             }
         },

@@ -40,6 +40,16 @@ module.exports = (sequelize, Sequelize) => {
                 }
             }
         },
+        role: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            validate: {
+                notEmpty: {
+                    args: true,
+                    msg: "Role cannot be empty"
+                }
+            }
+        },
        
     },
     {

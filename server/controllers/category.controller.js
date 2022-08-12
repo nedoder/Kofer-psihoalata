@@ -5,7 +5,7 @@ const Op = db.Sequelize.Op;
 exports.create = (req, res) => {
 
 
-    // Create a drink
+    // Create category
     const category = {
         category: req.body.category,
     };
@@ -87,7 +87,7 @@ exports.update = async(req, res) => {
                 });
             } else {
                 res.send({
-                    message: `Cannot update category with id=${id}. Maybe drink was not found or req.body is empty!`
+                    message: `Cannot update category with id=${id}. Maybe category was not found or req.body is empty!`
                 });
             }
         })

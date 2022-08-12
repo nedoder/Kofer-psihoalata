@@ -26,6 +26,12 @@ db.comments.belongsTo(db.posts, {
     as: "post",
 });
 
+// db.posts.hasOne(db.category, { as: "category" });
+// db.category.belongsTo(db.posts, {
+//     foreignKey: "categoryId",
+//     as: "category",
+// });
+
 db.users.hasMany(db.posts, { as: "posts" });
 db.posts.belongsTo(db.users, {
     foreignKey: "userId",

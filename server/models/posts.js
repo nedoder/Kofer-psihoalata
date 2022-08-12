@@ -27,7 +27,7 @@ module.exports = (sequelize, Sequelize) => {
         updated: Sequelize.DATE,
 
     }, {
-        timestamps: false,
+        timestamps: true,
         tableName: 'Post',
     });
     return Post;

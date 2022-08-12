@@ -2,7 +2,7 @@ import axios from "axios";
 
 const apiClient = axios.create({
   baseURL: `http://localhost:3000/`,
-  withCredentials: true, //true
+  withCredentials: false, //true
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
@@ -16,15 +16,7 @@ apiClient.interceptors.response.use(response => {
   }, 
   error => {
     if(error.response.status === 401) {
-      if(window.location.pathname ==='/scan/') {
-        window.location.reload()
-      }
-      else if(window.location.pathname ==='/google/') {
-        window.location.reload()
-      }
-      else {
         window.location.href = '/login'
-      }
     }
     return Promise.reject(error);
     
@@ -35,7 +27,7 @@ apiClient.interceptors.response.use(response => {
  const requests = {
   
   logIn(data) {
-    return apiClient.post("login", data);
+    return apiClient.post("api/user/login", data);
   },
   getPostsList() {
     return apiClient.get("api/post");

@@ -23,7 +23,8 @@ global.__basedir = __dirname;
 
 
 var corsOptions = {
-    origin: "https://koferpsihoalata.me"
+    // origin: "https://koferpsihoalata.me"
+    origin: "http://localhost:8080"
 };
 
 app.use(cors(corsOptions));
@@ -40,10 +41,10 @@ app.use(bodyParser.json());
 
 
 require("./routes/category.routes")(app);
-// require("./routes/answers.routes")(app);
-// require("./routes/comments.routes")(app);
-// require("./routes/posts.routes")(app);
-// require("./routes/users.routes")(app);
+require("./routes/answers.routes")(app);
+require("./routes/comments.routes")(app);
+require("./routes/posts.routes")(app);
+require("./routes/users.routes")(app);
 
 
 
@@ -67,17 +68,18 @@ const PORT = process.env.PORT;
 // port where app is served
 app.listen(PORT, () => {
     console.log('The web server has started on port 3000');
+    console.log(process.env.HOST)
 });
 
 var connection = mysql.createConnection({
-    // host: process.env.HOST,
-    // user: process.env.USER,
-    // port: process.env.PORTDB,
-    // password: process.env.PASSWORD,
-    host: "127.0.0.1",
-    user: "root",
-    port: "3306",
-    password: "Django14159",
+    host: process.env.HOST,
+    user: process.env.USER,
+    port: process.env.PORTDB,
+    password: process.env.PASSWORD,
+    // host: "127.0.0.1",
+    // user: "root",
+    // port: "3306",
+    // password: "root",
 });
 
 

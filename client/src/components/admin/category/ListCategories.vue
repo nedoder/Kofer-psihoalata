@@ -87,13 +87,13 @@
 </template>
 
 <script>
-// import requests from "../../services/services"
+import requests from "../../../services/services"
 export default {
   data: () => ({
     items: [],
     dialog: false,
     headers: [
-      { text: "Naziv", value: "name", sortable: true },
+      { text: "Naziv", value: "category", sortable: true },
       { text: "Izmijeni", value: "edit", sortable: false },
       { text: "Obriši", value: "delete", sortable: false },
     ],
@@ -120,12 +120,12 @@ export default {
   }, 
   
   mounted(){
-    // requests.getSpecialsList()
-    // .then(response => {
-    //   this.items = response.data;
-    // }).catch(error => {
-    //   console.log(error.response)
-    // });
+    requests.getCategoryList()
+    .then(response => {
+      this.items = response.data;
+    }).catch(error => {
+      console.log(error.response)
+    });
   },
 }
 </script>

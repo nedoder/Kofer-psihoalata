@@ -16,7 +16,7 @@
                                     <v-text-field
                                         label="Korisničko ime"
                                         append-icon="mdi-account"
-                                        v-model="form.email"
+                                        v-model="form.username"
                                         required
                                         autofocus
                                         :error-messages="errorUsername"
@@ -60,11 +60,11 @@
 </template>
 
 <script>
-// import requests from "../services/services"
+import requests from "../../services/services"
 export default {
     data: () => ({
         form: {
-            email: null,
+            username: null,
             password: null,
         },
         showPass: false,
@@ -74,31 +74,20 @@ export default {
     }),
     methods: {
         login() {
-            // requests.logIn(this.form)
-            // .then(response => {
-            //     window.localStorage.setItem("token", response.data.token);
-            //     let token  = JSON.parse(atob(localStorage.getItem('token').split('.')[1]));
-            //     this.loading = true
-            //     if(token.login === '0') {
-            //         this.$router.push({ path: "/password/" });
-            //         window.location.reload()
-            //     }
-            //     else if(token.Gcode === false) {
-            //         this.$router.push({ path: "/scan/" });
-            //         window.location.reload()
-            //     }
-            //     else {
-            //         this.$router.push({ path: "/google/" });
-            //         window.location.reload()
-            //     }
-            //     console.log(token)
-            // })
-            // .catch(error => {
-            //     console.log(error)
-            //     this.errorUsername = "Pogrešno korisničko ime"
-            //     this.errorPassword = "Pogrešna lozinka"
-            //     this.loading = false 
-            // })
+            requests.logIn(this.form)
+            .then(response => {
+                window.localStorage.setItem("token", response.data.token);
+                let token  = JSON.parse(atob(localStorage.getItem('token').split('.')[1]));
+                this.loading = true
+                this.$router.push({ path: "/dashboard/" });    window.location.reload()
+                console.log(token)
+            })
+            .catch(error => {
+                console.log(error)
+                this.errorUsername = "Pogrešno korisničko ime"
+                this.errorPassword = "Pogrešna lozinka"
+                this.loading = false 
+            })
         },
     }
 };

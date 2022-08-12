@@ -12,7 +12,7 @@ module.exports = app => {
     // Update a post with id
     router.put("/:id", authorize.verifyToken, upload.single("image"), posts.update);
     // Delete a posts with id
-    router.delete("/:id", authorize.verifyToken, comments.delete);
+    router.delete("/:id", authorize.verifyToken, posts.delete);
     // Delete all posts
     router.delete("/", authorize.verifyToken, posts.deleteAll);
     app.use('/api/post', router);

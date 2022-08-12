@@ -28,9 +28,14 @@
       dense
       class="elevation-1"
       >
-         
+          <template v-slot:[`item.image`]="{ item }">
+              <img :src="$imagePath + item.image" style="width: 50px; height: 50px; border-radius:50%" />
+          </template>
+          <template v-slot:[`item.show`]="{ item }" > 
+          <v-icon small color="green" class="mr-2" @click="showPost(item.id)">mdi-eye</v-icon>
+        </template>
         <template v-slot:[`item.edit`]="{ item }" > 
-          <v-icon small color="blue" class="mr-2" @click="editCategory(item._id)">mdi-pencil</v-icon>
+          <v-icon small color="blue" class="mr-2" @click="editPost(item.id)">mdi-pencil</v-icon>
         </template>
         <template v-slot:[`item.delete`]="{ item }" >  
           <template>
@@ -38,7 +43,7 @@
                 <template>
                   <v-btn
                     icon
-                    @click="deleteItem(item._id)"
+                    @click="deleteItem(item.id)"
                   >
                     <v-icon small color="red">mdi-delete</v-icon>
                   </v-btn>
@@ -54,11 +59,11 @@
       >
         <v-card>
           <v-card-title>
-            Brisanje kategorije
+            Brisanje posta
           </v-card-title>
 
           <v-card-text>
-            Da li ste sigurni da želite da obrišete ovu kategoriju?
+            Da li ste sigurni da želite da obrišete ovaj post?
           </v-card-text>
 
           <v-divider></v-divider>
@@ -75,7 +80,7 @@
             <v-btn
               color="primary"
               text
-              @click="deleteCategories(id)"
+              @click="deletePosts(id)"
             >
               Obriši
             </v-btn>
@@ -87,45 +92,72 @@
 </template>
 
 <script>
-// import requests from "../../services/services"
+import requests from "../../../services/services"
 export default {
   data: () => ({
     items: [],
     dialog: false,
     headers: [
-      { text: "Naziv", value: "name", sortable: true },
+      { text: "Slika", value: "image", type: "image", sortable: false },
+      { text: "Naslov", value: "title" , align: "title", sortable: true },
+      { text: "Autor", value: "userId", sortable: true },
+      { text: "Kategorija", value: "categoryId", sortable: true },
+      { text: "Detalji", value: "show", sortable: false },
       { text: "Izmijeni", value: "edit", sortable: false },
       { text: "Obriši", value: "delete", sortable: false },
     ],
     search: '',
   }),
   methods: {
-    editCategory(id) {
-      this.$router.push({ path: `/category/${id}/edit`, params: { id: id } });
+    showPost(id) {
+      this.$router.push({ path: `/post/${id}`, params: { id: id } });
     },
-    // deleteCategories(id) {
-    //   requests.deleteCategory(id)
-    //   .then(response => {
-    //     console.log(response)
-    //     window.location.reload()
-    //   })
-    //   .catch(error => {
-    //     console.log(error.message)
-    //   })
-    // },
-    //  deleteItem(id) {
-    //   this.id = id
-    //   this.dialog = true
-    // }
+    editPost(id) {
+      this.$router.push({ path: `/post/${id}/edit`, params: { id: id } });
+    },
+    deletePosts(id) {
+      requests.deletePost(id)
+      .then(response => {
+        console.log(response)
+        window.location.reload()
+      })
+      .catch(error => {
+        console.log(error.message)
+      })
+    },
+     deleteItem(id) {
+      this.id = id
+      this.dialog = true
+    }
   }, 
   
   mounted(){
-    // requests.getSpecialsList()
-    // .then(response => {
-    //   this.items = response.data;
-    // }).catch(error => {
-    //   console.log(error.response)
-    // });
+    requests.getPostsList()
+    .then(response => {
+      this.items = response.data;
+      this.items.forEach(item => {
+
+        if(item.userId !== null) {
+          requests.getUser(item.userId)
+          .then(response => {
+          item.userId = response.data.username;
+          }).catch(error => {
+            console.log(error.response)
+          })
+        }
+
+        if(item.categoryId !== null) {
+          requests.getCategory(item.categoryId)
+          .then(response => {
+          item.categoryId = response.data.category;
+          }).catch(error => {
+            console.log(error.response)
+          })
+        }
+      })
+    }).catch(error => {
+      console.log(error.response)
+    })    
   },
 }
 </script>

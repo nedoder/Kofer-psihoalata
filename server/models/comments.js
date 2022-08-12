@@ -10,9 +10,13 @@ module.exports = (sequelize, Sequelize) => {
                 }
             }
         },
+        approved: {
+            type: Sequelize.BOOLEAN,
+            default: false
+        }
     },
     {
-        timestamps: false,
+        timestamps: true,
         tableName: 'Comment',
     });
     return Comment;

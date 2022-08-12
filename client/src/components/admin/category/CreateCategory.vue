@@ -10,7 +10,7 @@
               filled 
               shaped 
               label="Naziv"
-              v-model="name"
+              v-model="category"
               :rules="[v => v.length > 1 || 'Morate unijeti naziv kategorije']"
             ></v-text-field>
 
@@ -28,14 +28,11 @@
 </template>
 
 <script>
-// import requests from "../../services/services"
+import requests from "../../../services/services"
 export default {
   data: () => ({
-    showPass: false,
-    errorPassword: '',
     isValid:true,
-    name: '',
-    password: '',
+    category: '',
     isUpdating: false,
     error: ''
   }),
@@ -48,18 +45,17 @@ export default {
   },
   methods: {
     onSubmit() {
-    //   requests.newUser({
-    //       "email": this.username,
-    //       "password":  this.password
-    //   })
-    //   .then(response => {
-    //     console.log(response)
-    //     window.location.reload()
-    //   })
-    //   .catch(error => {
-    //     this.error = error.response.data.error
-    //     console.log(error.message)
-    //   })
+      requests.newCategory({
+          "category": this.category,
+      })
+      .then(response => {
+        console.log(response)
+        window.location.reload()
+      })
+      .catch(error => {
+        this.error = error.response.data.error
+        console.log(error.message)
+      })
     },
    
    

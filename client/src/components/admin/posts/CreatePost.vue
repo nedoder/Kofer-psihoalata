@@ -40,54 +40,19 @@
 
             <vue-editor v-model="content" output-format="html" :editorToolbar="customToolbar"/>
 
-             <v-text-field 
-              filled 
-              shaped 
-              v-model="title" 
-              label="Kategorija" 
-            >
-            </v-text-field>
-
-            <v-autocomplete
+            <v-autocomplete 
               filled
               shaped
-              :items="ustanove"
+              v-bind:items = category
+              v-model="categories"
+              item-text = category
+              item-value = id
               :disabled="isUpdating"
-              item-text="title"
-              item-value="_id"
-              v-model="authors"
-              multiple
               chips
               deletable-chips
-              label="Autor"
+              label="Kategorija"
               :error-messages='matchError()'
             >
-            
-              <template v-slot:selection="data">
-                <v-chip
-                  v-bind="data.attrs"
-                  :input-value="data.selected"
-                  close
-                  @click="data.select"
-                  @click:close="remove(data.item)"
-                >
-                  <v-avatar left>
-                    <v-img :src="$imagePath + data.item.image"></v-img>
-                  </v-avatar>
-                      {{ data.item.title }}
-                </v-chip>
-              </template>
-              <template v-slot:item="data">
-                <template>
-                  <v-list-item-avatar>
-                    <v-img :src="$imagePath + data.item.image "/>
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <v-list-item-title v-html="data.item.title"></v-list-item-title>
-                  </v-list-item-content>
-                </template>
-              </template>
-              
             </v-autocomplete>
 
             <v-btn @click="onSubmit" :disabled="!isValid" color="primary">Kreiraj</v-btn>
@@ -100,22 +65,21 @@
 
 <script>
 import { VueEditor } from "vue2-editor";
-// import requests from "../../services/services"
+import requests from "../../../services/services"
 export default {
-  name: 'CreatBaneri',
+  name: 'CreatePost',
   components : {
     VueEditor
   },
   data: () => ({
     content: ``,
     title: '',
-    authors: [],
-    ustanove: [],
+    categories: [],
+    category: [],
     image: null,
-    link: '',
-    starter_page: false,
+    url: "",
+    author: null,
     isValid:true,
-    url: null,
     isUpdating: false,
     customToolbar: [
       [{ header: [false, 2, 3, 4, 5, 6] }],
@@ -138,44 +102,49 @@ export default {
     onSubmit() {
       let formData = new FormData();
       if(this.image) {
-        formData.append("image", this.image, this.imagename);
+        formData.append("image", this.image, this.image.name);
       }
-      if(this.authors) {
-        this.authors.forEach( author =>
-          formData.append("author", author)
-        )
+      if(this.categories) {
+        formData.append("categoryId", this.categories)
       }
       formData.append("title",  this.title);
       formData.append("content",  this.content);
-      formData.append("starter_page", this.starter_page)
-      formData.append("link", this.link)
-      
-    //   requests.newBaner(formData)
-    //   .then(response => {
-    //     console.log(response)
-    //     this.$router.push({ path: `/baneri/` });
-    //   })
-    //   .catch(error => {
-    //     console.log(error.message)
-    //   })
+      formData.append("userId",  this.author);
+      requests.newPost(formData)
+      .then(response => {
+        console.log(response)
+        this.$router.push({ path: `/posts/` });
+      })
+      .catch(error => {
+        console.log(error.message)
+      })
+    },
+
+    onFileChange(e) {
+      this.image = e
+      console.log(e)
     },
     
 
     remove (item) {
-      const index = this.authors.indexOf(item._id)
-      if (index >= 0) this.authors.splice(index, 1)
+      const index = this.categories.indexOf(item.id)
+      if (index >= 0) this.categories.splice(index, 1)
     },
+
     matchError() {  
       return (this.link === '' && this.authors.length === 0) ? "Greska" : ""
     },
   },
   mounted() {
-    // requests.getUstanoveList()
-    // .then(response => {
-    //   this.ustanove = response.data;
-    // }).catch(error => {
-    //   console.log(error.response)
-    // });
+    requests.getCategoryList()
+    .then(response => {
+      this.category = response.data;
+    }).catch(error => {
+      console.log(error.response)
+    });
+
+    let token  = JSON.parse(atob(localStorage.getItem('token').split('.')[1]));
+    this.author = token.id
   }   
 }
 </script>
