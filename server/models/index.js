@@ -19,35 +19,60 @@ db.answers = require("./answers")(sequelize, Sequelize);
 db.comments = require("./comments")(sequelize, Sequelize);
 db.posts = require("./posts")(sequelize, Sequelize);
 db.users = require("./users")(sequelize, Sequelize);
+db.activity = require("./activity")(sequelize, Sequelize);
 
-db.posts.hasMany(db.comments, { as: "comments" });
-db.comments.belongsTo(db.posts, {
-    foreignKey: "postId",
-    as: "post",
+
+db.category.hasMany(db.posts, {
+    foreignKey: "categoryId",
+    targetKey: "id"
+});
+db.posts.belongsTo(db.category, {
+    foreignKey: "categoryId",
+    targetKey: "id"
 });
 
-// db.posts.hasOne(db.category, { as: "category" });
-// db.category.belongsTo(db.posts, {
-//     foreignKey: "categoryId",
-//     as: "category",
-// });
 
-db.users.hasMany(db.posts, { as: "posts" });
+db.users.hasMany(db.posts, {
+    foreignKey: "userId",
+    targetKey: "id"
+});
 db.posts.belongsTo(db.users, {
     foreignKey: "userId",
-    as: "user",
+    targetKey: "id"
 });
 
-db.comments.hasMany(db.answers, { as: "answers" });
+
+db.posts.hasMany(db.comments, {
+    foreignKey: "postId",
+    targetKey: "id"
+});
+db.comments.belongsTo(db.posts, {
+    foreignKey: "postId",
+    targetKey: "id"
+});
+
+
+// db.comments.hasOne(db.posts, {
+//     foreignKey: "commentId",
+//     targetKey: "id"
+// });
+
+// db.posts.belongsTo(db.comments, {
+//     foreignKey: "commentId",
+//     targetKey: "id"
+// });
+
+
+db.comments.hasMany(db.answers, {
+    foreignKey: "commentId",
+    targetKey: "id"
+});
 db.answers.belongsTo(db.comments, {
     foreignKey: "commentId",
-    as: "comment",
+    targetKey: "id"
 });
 
-db.category.hasMany(db.posts, { as: "posts" });
-db.posts.belongsTo(db.category, {
-    foreignKey: "postId",
-    as: "post",
-});
+
+
 
 module.exports = db;

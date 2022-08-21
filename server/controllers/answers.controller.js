@@ -1,5 +1,8 @@
+const jwt = require("jsonwebtoken");
+const config = require("../config/auth.config.js");
 const db = require("../models");
-const Answer = db.answer;
+const Answer = db.answers;
+const Activity = db.activity;
 const Op = db.Sequelize.Op;
 // Create and Save a new answer
 exports.create = (req, res) => {
@@ -8,13 +11,24 @@ exports.create = (req, res) => {
     // Create an answer
     const answer = {
         answer: req.body.answer,
-        approved: req.body.approved
+        author: req.body.author,
+        approved: req.body.approved,
+        commentId: req.body.commentId
     };
 
 
     // Save answer in the database
     Answer.create(answer)
         .then(data => {
+            Activity.create({ "activity": `Korisnik ${req.body.author} je kreirao odgovor ${req.body.answer}` })
+                .then(data => {
+                    res.status(200);
+                })
+                .catch(err => {
+                    res.status(500).send({
+                        message: err.message || "Some error occurred while creating activity."
+                    });
+                });
             res.send(`Answer is sucessfully created.`);
         })
         .catch(err => {
@@ -32,7 +46,12 @@ exports.findAll = (req, res) => {
             [Op.like]: `%${query}%`
         }
     } : null;
-    Answer.findAll({ where: condition })
+    Answer.findAll({
+            include: [{ model: db.comments, as: 'comment', include: [{ model: db.posts, as: 'post' }] }],
+            order: [
+                ["updatedAt", "desc"]
+            ]
+        })
         .then(data => {
             res.send(data);
         })
@@ -72,6 +91,17 @@ exports.update = async(req, res) => {
         approved: req.body.approved
     };
 
+    let token = req.headers["authorization"];
+    let author = ''
+
+    jwt.verify(token, config.secret, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({
+                message: "Unauthorized!"
+            });
+        }
+        author = decoded.name + " " + decoded.lname;
+    });
 
     await Answer.findByPk(id)
         .then(response => {})
@@ -84,6 +114,15 @@ exports.update = async(req, res) => {
         })
         .then(num => {
             if (num == 1) {
+                Activity.create({ "activity": `Korisnik ${author} je izmijenio odgovor ${req.body.answer}` })
+                    .then(data => {
+                        res.status(200);
+                    })
+                    .catch(err => {
+                        res.status(500).send({
+                            message: err.message || "Some error occurred while creating activity."
+                        });
+                    });
                 res.send({
                     message: "Answer was updated successfully."
                 });
@@ -103,16 +142,46 @@ exports.update = async(req, res) => {
 // Delete an answer with the specified id in the request
 exports.delete = async(req, res) => {
     const id = req.params.id;
+
+    let answer = ''
+
     await Answer.findByPk(id)
-        .then(response => {})
+        .then(response => {
+            answer = response.answer
+
+        })
         .catch(err => {
             console.log(err)
         });
+
+    let token = req.headers["authorization"];
+    let author = ''
+
+    jwt.verify(token, config.secret, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({
+                message: "Unauthorized!"
+            });
+        }
+        author = decoded.name + " " + decoded.lname;
+    });
+
     Answer.destroy({
             where: { id: id }
         })
         .then(num => {
             if (num == 1) {
+
+                Activity.create({ "activity": `Korisnik ${author} je izbrisao odgovor ${answer}` })
+                    .then(data => {
+                        res.status(200);
+                    })
+                    .catch(err => {
+                        res.status(500).send({
+                            message: err.message || "Some error occurred while creating activity."
+                        });
+                    });
+
                 res.send({
                     message: "Answer was deleted successfully!"
                 });

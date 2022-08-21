@@ -3,7 +3,9 @@ const bcrypt = require('bcrypt')
 var jwt = require("jsonwebtoken");
 const config = require("../config/auth.config");
 const User = db.users;
+const Activity = db.activity;
 const Op = db.Sequelize.Op;
+
 // Create and Save a new user
 exports.create = (req, res) => {
 
@@ -28,10 +30,30 @@ exports.create = (req, res) => {
         role: req.body.role,
     };
 
+    let token = req.headers["authorization"];
+    let author = ''
+
+    jwt.verify(token, config.secret, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({
+                message: "Unauthorized!"
+            });
+        }
+        author = decoded.name + " " + decoded.lname;
+    });
 
     // Save user in the database
     User.create(user)
         .then(data => {
+            Activity.create({ "activity": `Korisnik ${author} je kreirao usera ${req.body.username}` })
+                .then(data => {
+                    res.status(200);
+                })
+                .catch(err => {
+                    res.status(500).send({
+                        message: err.message || "Some error occurred while creating activity."
+                    });
+                });
             res.send(data);
         })
         .catch(err => {
@@ -84,6 +106,18 @@ exports.findOne = (req, res) => {
 exports.update = async(req, res) => {
     const id = req.params.id;
 
+    let token = req.headers["authorization"];
+    let author = ''
+
+    jwt.verify(token, config.secret, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({
+                message: "Unauthorized!"
+            });
+        }
+        author = decoded.name + " " + decoded.lname;
+    });
+
     if (!req.body.password) {
         res.status(400).send({
             message: "Password cannot be empty!"
@@ -112,11 +146,22 @@ exports.update = async(req, res) => {
             console.log(err)
         });
 
-    User.update(newCategory, {
+    User.update(user, {
             where: { id: id }
         })
         .then(num => {
             if (num == 1) {
+
+                Activity.create({ "activity": `Korisnik ${author} je izmijenio usera ${req.body.username}` })
+                    .then(data => {
+                        res.status(200);
+                    })
+                    .catch(err => {
+                        res.status(500).send({
+                            message: err.message || "Some error occurred while creating activity."
+                        });
+                    });
+
                 res.send({
                     message: "User was updated successfully."
                 });
@@ -136,8 +181,25 @@ exports.update = async(req, res) => {
 // Delete user with the specified id in the request
 exports.delete = async(req, res) => {
     const id = req.params.id;
+
+    let token = req.headers["authorization"];
+    let author = ''
+
+    jwt.verify(token, config.secret, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({
+                message: "Unauthorized!"
+            });
+        }
+        author = decoded.name + " " + decoded.lname;
+    });
+
+    let username = ''
+
     await User.findByPk(id)
-        .then(response => {})
+        .then(response => {
+            username = response.username
+        })
         .catch(err => {
             console.log(err)
         });
@@ -146,6 +208,17 @@ exports.delete = async(req, res) => {
         })
         .then(num => {
             if (num == 1) {
+
+                Activity.create({ "activity": `Korisnik ${author} je izbrsao usera ${username}` })
+                    .then(data => {
+                        res.status(200);
+                    })
+                    .catch(err => {
+                        res.status(500).send({
+                            message: err.message || "Some error occurred while creating activity."
+                        });
+                    });
+
                 res.send({
                     message: "User was deleted successfully!"
                 });
@@ -198,7 +271,7 @@ exports.login = (req, res) => {
                     message: "Invalid Password!"
                 });
             }
-            var token = jwt.sign({ id: user.id }, config.secret, {
+            var token = jwt.sign({ id: user.id, role: user.role, name: user.firstName, lname: user.lastName }, config.secret, {
                 expiresIn: 86400 // 24 hours
             });
 
@@ -215,4 +288,3 @@ exports.login = (req, res) => {
             res.status(500).send({ message: err.message });
         });
 };
-

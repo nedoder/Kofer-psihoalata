@@ -50,7 +50,7 @@ export default {
       })
       .then(response => {
         console.log(response)
-        window.location.reload()
+        this.$router.push({ path: `/category/` });
       })
       .catch(error => {
         this.error = error.response.data.error

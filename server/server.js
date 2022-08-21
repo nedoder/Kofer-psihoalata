@@ -45,6 +45,7 @@ require("./routes/answers.routes")(app);
 require("./routes/comments.routes")(app);
 require("./routes/posts.routes")(app);
 require("./routes/users.routes")(app);
+require("./routes/activity.routes")(app);
 
 
 
@@ -53,9 +54,19 @@ app.use(express.static("uploads"))
 
 
 const db = require("./models");
-// db.sequelize.sync({
-//     force: true
-// });
+
+// db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
+//     .then(function() {
+//         return db.sequelize.sync({ force: true });
+//     })
+//     .then(function() {
+//         return db.sequelize.query('SET FOREIGN_KEY_CHECKS = 1')
+//     })
+//     .then(function() {
+//         console.log('Database synchronised.');
+//     }, function(err) {
+//         console.log(err);
+//     });
 
 db.sequelize.sync();
 
@@ -68,7 +79,6 @@ const PORT = process.env.PORT;
 // port where app is served
 app.listen(PORT, () => {
     console.log('The web server has started on port 3000');
-    console.log(process.env.HOST)
 });
 
 var connection = mysql.createConnection({

@@ -1,5 +1,8 @@
+const jwt = require("jsonwebtoken");
+const config = require("../config/auth.config.js");
 const db = require("../models");
 const Category = db.category;
+const Activity = db.activity;
 const Op = db.Sequelize.Op;
 // Create and Save a new category
 exports.create = (req, res) => {
@@ -10,10 +13,31 @@ exports.create = (req, res) => {
         category: req.body.category,
     };
 
+    let token = req.headers["authorization"];
+    let author = ''
+
+    jwt.verify(token, config.secret, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({
+                message: "Unauthorized!"
+            });
+        }
+        author = decoded.name + " " + decoded.lname;
+    });
+
 
     // Save category in the database
     Category.create(category)
         .then(data => {
+            Activity.create({ "activity": `Korisnik ${author} je kreirao kategoriju ${req.body.category}` })
+                .then(data => {
+                    res.status(200);
+                })
+                .catch(err => {
+                    res.status(500).send({
+                        message: err.message || "Some error occurred while creating activity."
+                    });
+                });
             res.send(`Category is sucessfully created.`);
         })
         .catch(err => {
@@ -71,8 +95,22 @@ exports.update = async(req, res) => {
     };
 
 
+    let token = req.headers["authorization"];
+    let author = ''
+
+    jwt.verify(token, config.secret, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({
+                message: "Unauthorized!"
+            });
+        }
+        author = decoded.name + " " + decoded.lname;
+    });
+
     await Category.findByPk(id)
-        .then(response => {})
+        .then(response => {
+            console.log(response)
+        })
         .catch(err => {
             console.log(err)
         });
@@ -82,6 +120,17 @@ exports.update = async(req, res) => {
         })
         .then(num => {
             if (num == 1) {
+
+                Activity.create({ "activity": `Korisnik ${author} je izmijenio kategoriju ${req.body.category}` })
+                    .then(data => {
+                        res.status(200);
+                    })
+                    .catch(err => {
+                        res.status(500).send({
+                            message: err.message || "Some error occurred while creating activity."
+                        });
+                    });
+
                 res.send({
                     message: "Category was updated successfully."
                 });
@@ -101,8 +150,25 @@ exports.update = async(req, res) => {
 // Delete a category with the specified id in the request
 exports.delete = async(req, res) => {
     const id = req.params.id;
+
+    let token = req.headers["authorization"];
+    let author = ''
+
+    jwt.verify(token, config.secret, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({
+                message: "Unauthorized!"
+            });
+        }
+        author = decoded.name + " " + decoded.lname;
+    });
+
+    let category = ''
+
     await Category.findByPk(id)
-        .then(response => {})
+        .then(response => {
+            category = response.category
+        })
         .catch(err => {
             console.log(err)
         });
@@ -111,6 +177,17 @@ exports.delete = async(req, res) => {
         })
         .then(num => {
             if (num == 1) {
+
+                Activity.create({ "activity": `Korisnik ${author} je izbrisao kategoriju ${category}` })
+                    .then(data => {
+                        res.status(200);
+                    })
+                    .catch(err => {
+                        res.status(500).send({
+                            message: err.message || "Some error occurred while creating activity."
+                        });
+                    });
+
                 res.send({
                     message: "Category was deleted successfully!"
                 });

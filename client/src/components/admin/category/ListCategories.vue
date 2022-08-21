@@ -30,7 +30,7 @@
       >
          
         <template v-slot:[`item.edit`]="{ item }" > 
-          <v-icon small color="blue" class="mr-2" @click="editCategory(item._id)">mdi-pencil</v-icon>
+          <v-icon small color="blue" class="mr-2" @click="editCategory(item.id)">mdi-pencil</v-icon>
         </template>
         <template v-slot:[`item.delete`]="{ item }" >  
           <template>
@@ -38,7 +38,7 @@
                 <template>
                   <v-btn
                     icon
-                    @click="deleteItem(item._id)"
+                    @click="deleteItem(item.id)"
                   >
                     <v-icon small color="red">mdi-delete</v-icon>
                   </v-btn>
@@ -103,20 +103,20 @@ export default {
     editCategory(id) {
       this.$router.push({ path: `/category/${id}/edit`, params: { id: id } });
     },
-    // deleteCategories(id) {
-    //   requests.deleteCategory(id)
-    //   .then(response => {
-    //     console.log(response)
-    //     window.location.reload()
-    //   })
-    //   .catch(error => {
-    //     console.log(error.message)
-    //   })
-    // },
-    //  deleteItem(id) {
-    //   this.id = id
-    //   this.dialog = true
-    // }
+    deleteCategories(id) {
+      requests.deleteCategory(id)
+      .then(response => {
+        console.log(response)
+        window.location.reload()
+      })
+      .catch(error => {
+        console.log(error.message)
+      })
+    },
+     deleteItem(id) {
+      this.id = id
+      this.dialog = true
+    }
   }, 
   
   mounted(){

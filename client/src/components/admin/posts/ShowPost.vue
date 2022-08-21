@@ -5,28 +5,49 @@
   shaped
   v-if="currentPost"
   >
-    <v-img :src="$imagePath + currentPost.image" style="height:400px" ></v-img>
+    <v-img :src="$imagePath + currentPost.image" style="height:400px" >
+    </v-img>
     <v-card-title v-model="currentPost.title">{{currentPost.title}}</v-card-title>
-    <!-- <v-card-text v-model="currentBaner.starter_page">
-      Sponzorisan: {{currentBaner.starter_page}}
+    
+     
+     <v-card-text v-model="currentPost">
+      Kreirao <span class="green--text">{{currentPost.userId}}</span>
+      <v-divider vertical class="mx-2"></v-divider>
+    
+      Izmijenjen {{new Date(currentPost.updatedAt).toLocaleString()}}
+
     </v-card-text>
-    <v-card-text v-model="currentBaner.link">
-      Link: {{currentBaner.link}}
-    </v-card-text> -->
-    <v-card-text v-model="currentPost.userId">
-      Autor: {{currentPost.userId}}
-    </v-card-text>
+
      <v-card-text v-model="currentPost.categoryId">
-      Kategorija: {{currentPost.categoryId}}
+      <v-chip
+      class="ma-2"
+      color="green"
+      text-color="white"
+    >
+      {{currentPost.categoryId}}
+    </v-chip>
     </v-card-text>
-     <v-card-text v-model="currentPost.createdAt">
-      Datum objave: {{new Date(currentPost.createdAt).toDateString()}}
-    </v-card-text>
-     <v-card-text v-model="currentPost.updatedAt">
-      Poslednje izmjene: {{new Date(currentPost.updatedAt).toDateString()}}
-    </v-card-text>
-    <v-card-text><div v-html="currentPost.content"></div></v-card-text>
+
+
+<v-card-text><div id="content" v-html="currentPost.content"></div></v-card-text>
    
+    
+    
+
+    <!-- <v-card-text>
+    <v-list v-model="currentPost.comments">
+    <v-list-item-title>Komentari</v-list-item-title>
+    <v-list-item-content v-for="item in currentPost.comments" :key="item._id+ Math.random().toString()">
+      <v-list-item-title> <v-list-item-icon>
+            <v-icon v-text="comment"></v-icon>
+          </v-list-item-icon>{{item.comment}}</v-list-item-title>
+      <v-list-item-subtitle v-for="items in item.answers" :key="items._id+ Math.random().toString()"> <v-list-item-icon>
+            <v-icon v-text="answer"></v-icon>
+          </v-list-item-icon> {{items.answer}}</v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list>
+    </v-card-text> -->
+    
     <v-btn @click="goBack" text>
       <v-icon small color="primary">mdi-keyboard-backspace</v-icon>
       Nazad na listu postova
@@ -40,6 +61,8 @@ export default {
   
   data: () => ({
     currentPost: null,
+    comment: "mdi-message-reply",
+     answer: "mdi-message-reply-text"
   }),
   methods: {
     getPosts(id) {
@@ -75,3 +98,16 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+
+hr {
+  height: 15px;
+}
+
+</style>
+<style>
+#content p > img{
+  width: 90% !important; 
+}
+</style>

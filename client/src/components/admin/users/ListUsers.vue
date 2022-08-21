@@ -2,9 +2,21 @@
   <v-card>
     <v-card-title>
 
-      <h3>
-        Useri
-      </h3>
+     <h1 class="display-1">
+        Lista usera
+      </h1>
+
+     <v-spacer></v-spacer>
+
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Pretraga"
+        single-line
+        hide-details
+      >
+      </v-text-field>
+
 
     </v-card-title>
     
@@ -12,6 +24,7 @@
       <v-data-table
       :headers="headers"
       :items="items"
+      :search="search"
       dense
       class="elevation-1"
       >
@@ -101,7 +114,7 @@
 </template>
 
 <script>
-// import requests from "../../services/services"
+import requests from "../../../services/services"
 import AdminEdit from './AdminEdit.vue';
 export default {
   components: {  AdminEdit },
@@ -111,8 +124,12 @@ export default {
     dialog: false,
     dialogCreate: false,
     dialogEdit: false,
+    search: '',
     headers: [
-      { text: "Korisničko ime", value: "email", sortable: true },
+      { text: "Korisničko ime", value: "username", sortable: true },
+       { text: "Ime", value: "firstName", sortable: true },
+        { text: "Prezime", value: "lastName", sortable: true },
+         { text: "Privilegija", value: "role", sortable: true },
       { text: "Izmijeni", value: "edit", sortable: false },
       { text: "Obriši", value: "delete", sortable: false },
     ],
@@ -129,24 +146,24 @@ export default {
         this.id = null
     },
     deleteUser(id) {
-    //   requests.deleteUser(id)
-    //   .then(response => {
-    //     console.log(response)
-    //     var base64Url = localStorage.getItem("token").split('.')[1];
-    //     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    //     var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-    //       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    //     }).join(''));
-    //     jsonPayload = JSON.parse(jsonPayload)
-    //     let user_id = jsonPayload.userId
-    //     if(id == user_id) {
-    //         this.$router.push({ path: "/login" });
-    //     }
-    //     window.location.reload()
-    //   })
-    //   .catch(error => {
-    //     console.log(error.message)
-    //   })
+      requests.deleteUser(id)
+      .then(response => {
+        console.log(response)
+        var base64Url = localStorage.getItem("token").split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        jsonPayload = JSON.parse(jsonPayload)
+        let user_id = jsonPayload.userId
+        if(id == user_id) {
+            this.$router.push({ path: "/login" });
+        }
+        window.location.reload()
+      })
+      .catch(error => {
+        console.log(error.message)
+      })
       console.log(id)
     },
     deleteItem(id) {
@@ -157,12 +174,20 @@ export default {
   }, 
   
   mounted(){
-    // requests.getUserList()
-    // .then(response => {
-    //   this.items = response.data;
-    // }).catch(error => {
-    //   console.log(error.response)
-    // });
+    requests.getUserList()
+    .then(response => {
+      this.items = response.data;
+      this.items.forEach(item => {
+        if (item.role === 1) {
+          item.role = "Administrator"
+        }
+        else {
+          item.role = "Moderator"
+        }
+      })
+    }).catch(error => {
+      console.log(error.response)
+    });
   },
 }
 </script>

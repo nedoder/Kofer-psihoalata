@@ -1,6 +1,9 @@
+const jwt = require("jsonwebtoken");
+const config = require("../config/auth.config.js");
 const fs = require("fs");
 const db = require("../models");
 const Post = db.posts;
+const Activity = db.activity;
 const Op = db.Sequelize.Op;
 // Create and Save a new category
 exports.create = (req, res) => {
@@ -15,10 +18,31 @@ exports.create = (req, res) => {
         userId: req.body.userId
     };
 
+    let token = req.headers["authorization"];
+    let author = ''
+
+    jwt.verify(token, config.secret, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({
+                message: "Unauthorized!"
+            });
+        }
+        author = decoded.name + " " + decoded.lname;
+    });
+
 
     // Save category in the database
     Post.create(post)
         .then(data => {
+            Activity.create({ "activity": `Korisnik ${author} je kreirao post ${req.body.title}` })
+                .then(data => {
+                    res.status(200);
+                })
+                .catch(err => {
+                    res.status(500).send({
+                        message: err.message || "Some error occurred while creating activity."
+                    });
+                });
             res.send(`Post is sucessfully created.`);
         })
         .catch(err => {
@@ -36,7 +60,12 @@ exports.findAll = (req, res) => {
             [Op.like]: `%${query}%`
         }
     } : null;
-    Post.findAll({ where: condition })
+    Post.findAll({
+            include: ['category', 'user', { model: db.comments, as: 'comments', include: [{ model: db.answers, as: 'answers' }] }],
+            order: [
+                ["updatedAt", "desc"]
+            ]
+        })
         .then(data => {
             res.send(data);
         })
@@ -50,7 +79,9 @@ exports.findAll = (req, res) => {
 // Find a single post with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
-    Post.findByPk(id)
+    Post.findByPk(id, {
+            include: ['category', 'user', { model: db.comments, as: 'comments', include: [{ model: db.answers, as: 'answers' }] }],
+        })
         .then(data => {
             if (data) {
                 res.send(data);
@@ -67,21 +98,44 @@ exports.findOne = (req, res) => {
         });
 
 };
-// Update a category by the id in the request
+// Update a post by the id in the request
 exports.update = async(req, res) => {
     const id = req.params.id;
 
+    var imagePath = null
+        // Edit a post
+    let image = { image: req.file ? req.file.filename : '' }
+
+    let token = req.headers["authorization"];
+    let author = ''
+
+    jwt.verify(token, config.secret, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({
+                message: "Unauthorized!"
+            });
+        }
+        author = decoded.name + " " + decoded.lname;
+    });
+
+
     let newPost = {
         title: req.body.title,
-        image: req.file.filename,
         content: req.body.content,
         categoryId: req.body.categoryId,
         userId: req.body.author
     };
 
+    if (image.image !== '') {
+        Object.assign(newPost, image);
+    }
 
     await Post.findByPk(id)
-        .then(response => {})
+        .then(response => {
+            if (response.image) {
+                imagePath = './uploads/' + response.image;
+            }
+        })
         .catch(err => {
             console.log(err)
         });
@@ -91,6 +145,20 @@ exports.update = async(req, res) => {
         })
         .then(num => {
             if (num == 1) {
+
+                Activity.create({ "activity": `Korisnik ${author} je izmijenio post ${req.body.title}` })
+                    .then(data => {
+                        res.status(200);
+                    })
+                    .catch(err => {
+                        res.status(500).send({
+                            message: err.message || "Some error occurred while creating activity."
+                        });
+                    });
+
+                if (newPost.image) {
+                    fs.unlinkSync(imagePath)
+                }
                 res.send({
                     message: "Post was updated successfully."
                 });
@@ -102,7 +170,7 @@ exports.update = async(req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: err.errors[0].message
+                message: err
             });
         });
 
@@ -110,8 +178,25 @@ exports.update = async(req, res) => {
 // Delete a post with the specified id in the request
 exports.delete = async(req, res) => {
     const id = req.params.id;
+
+    let post = ''
+
+    let token = req.headers["authorization"];
+    let author = ''
+
+    jwt.verify(token, config.secret, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({
+                message: "Unauthorized!"
+            });
+        }
+        author = decoded.name + " " + decoded.lname;
+    });
+
     await Post.findByPk(id)
-        .then(response => {})
+        .then(response => {
+            post = response.title
+        })
         .catch(err => {
             console.log(err)
         });
@@ -120,6 +205,17 @@ exports.delete = async(req, res) => {
         })
         .then(num => {
             if (num == 1) {
+
+                Activity.create({ "activity": `Korisnik ${author} je izbrisao post ${post}` })
+                    .then(data => {
+                        res.status(200);
+                    })
+                    .catch(err => {
+                        res.status(500).send({
+                            message: err.message || "Some error occurred while creating activity."
+                        });
+                    });
+
                 res.send({
                     message: "Post was deleted successfully!"
                 });

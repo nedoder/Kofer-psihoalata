@@ -11,7 +11,7 @@
       <v-text-field
         v-model="search"
         append-icon="mdi-magnify"
-        label="Search"
+        label="Pretraga"
         single-line
         hide-details
       >
@@ -102,6 +102,8 @@ export default {
       { text: "Naslov", value: "title" , align: "title", sortable: true },
       { text: "Autor", value: "userId", sortable: true },
       { text: "Kategorija", value: "categoryId", sortable: true },
+        {text: "Kreiran", value: "createdAt", sortable: true},
+        {text: "Poslednje izmjene", value: "updatedAt", sortable: true},
       { text: "Detalji", value: "show", sortable: false },
       { text: "Izmijeni", value: "edit", sortable: false },
       { text: "Obriši", value: "delete", sortable: false },
@@ -136,7 +138,8 @@ export default {
     .then(response => {
       this.items = response.data;
       this.items.forEach(item => {
-
+        item.createdAt = new Date(item.createdAt).toLocaleString()
+        item.updatedAt = new Date(item.updatedAt).toLocaleString()
         if(item.userId !== null) {
           requests.getUser(item.userId)
           .then(response => {

@@ -10,7 +10,7 @@ module.exports = app => {
     // Retrieve a single answer with id
     router.get("/:id", answers.findOne);
     // Update an answer with id
-    router.put("/:id", authorize.verifyToken, upload.single("image"), answers.update);
+    router.patch("/:id", authorize.verifyToken, upload.single("image"), answers.update);
     // Delete an answer with id
     router.delete("/:id", authorize.verifyToken, answers.delete);
     // Delete all answers

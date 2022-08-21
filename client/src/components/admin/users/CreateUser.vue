@@ -11,7 +11,7 @@
               shaped 
               label="Ime"
               v-model="name"
-              :rules="[v => v.length > 1 || 'Morate unijeti ime']"
+              :rules="[v => v.length > 0 || 'Morate unijeti ime']"
             ></v-text-field>
 
             <v-text-field
@@ -19,7 +19,7 @@
               shaped 
               label="Prezime"
               v-model="lastname"
-              :rules="[v => v.length > 1 || 'Morate unijeti prezime']"
+              :rules="[v => v.length > 0 || 'Morate unijeti prezime']"
             ></v-text-field>
 
             <v-text-field
@@ -27,7 +27,7 @@
               shaped 
               label="Korisničko ime"
               v-model="username"
-              :rules="[v => v.length > 1 || 'Morate unijeti username']"
+              :rules="[v => v.length > 0 || 'Morate unijeti username']"
             ></v-text-field>
 
             <v-text-field 
@@ -40,9 +40,39 @@
              :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
              @click:append="showPass = !showPass"
              :type="showPass ? 'text' : 'password'"
-             :rules="[v => v.length > 1 || 'Morate unijeti password']"
+             :rules="[v => v.length > 0 || 'Morate unijeti password']"
             >
             </v-text-field>
+
+             <v-text-field
+             filled 
+             shaped 
+                                        label="Potvrdite lozinku"
+                                        v-model="rePassword"
+                                        required
+                                        :rules="[passwordConfirmationRule]"
+                                        :error-messages="errorPassword"
+                                        :append-icon="showRePass ? 'mdi-eye' : 'mdi-eye-off'"
+                                        @click:append="showRePass = !showRePass"
+                                        :type="showRePass ? 'text' : 'password'"
+                                    >
+                                    </v-text-field>
+            
+          
+              <v-autocomplete 
+              filled
+              shaped
+              v-bind:items = roles
+              v-model="role"
+              item-text = role
+              item-value = id
+              :disabled="isUpdating"
+              chips
+              deletable-chips
+              label="Privilegije"
+              :error-messages='matchError()'
+            >
+            </v-autocomplete>
 
             <v-alert type="error" v-if="error">
              {{error}}
@@ -57,10 +87,11 @@
 </template>
 
 <script>
-// import requests from "../../services/services"
+import requests from "../../../services/services"
 export default {
   data: () => ({
     showPass: false,
+    showRePass: false,
     errorPassword: '',
     isValid:true,
     name: '',
@@ -68,8 +99,16 @@ export default {
     username: '',
     password: '',
     isUpdating: false,
-    error: ''
+     rePassword: null,
+    error: '',
+    roles: [{"role" : "Adinistrator", "id" : 1}, {"role" : "Moderator", "id" : 0}],
+    role: null
   }),
+  computed: {
+        passwordConfirmationRule() {
+          return () => (this.password === this.rePassword) || 'Lozinke nisu iste'
+        }
+    },
   watch: {
     isUpdating (val) {
       if (val) {
@@ -79,29 +118,32 @@ export default {
   },
   methods: {
     onSubmit() {
-    //   requests.newUser({
-    //       "email": this.username,
-    //       "password":  this.password
-    //   })
-    //   .then(response => {
-    //     console.log(response)
-    //     window.location.reload()
-    //   })
-    //   .catch(error => {
-    //     this.error = error.response.data.error
-    //     console.log(error.message)
-    //   })
+      requests.newUser({
+          "firstName": this.name,
+          "lastName":  this.lastname,
+          "username": this.username,
+          "password":  this.password,
+          "role":  this.role
+      })
+      .then(response => {
+        console.log(response)
+        this.$router.push({ path: `/users/` });
+      })
+      .catch(error => {
+        this.error = error.response.data.error
+        console.log(error.message)
+      })
     },
-   
+    remove (item) {
+      const index = this.role.indexOf(item.id)
+      if (index >= 0) this.role.splice(index, 1)
+    },
+
+    matchError() {  
+      return (this.role === null) ? "Morate unijeti privilegije" : ""
+    },
    
   },
 }
 </script>
 
-<style scoped>
-
-.row .fill-height {
-    height: 80vh !important;
-    align-items: center !important;
-}
-</style>

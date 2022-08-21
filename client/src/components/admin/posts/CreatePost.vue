@@ -132,7 +132,7 @@ export default {
     },
 
     matchError() {  
-      return (this.link === '' && this.authors.length === 0) ? "Greska" : ""
+      return (this.category.length === 0) ? "Greska" : ""
     },
   },
   mounted() {

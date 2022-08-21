@@ -10,12 +10,18 @@ module.exports = (sequelize, Sequelize) => {
                 }
             }
         },
+        author: {
+            type: Sequelize.STRING
+        },
         approved: {
             type: Sequelize.BOOLEAN,
             default: false
-        }
-    },
-    {
+        },
+        postId: {
+            type: Sequelize.INTEGER
+        },
+
+    }, {
         timestamps: true,
         tableName: 'Comment',
     });

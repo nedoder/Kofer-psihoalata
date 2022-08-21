@@ -14,7 +14,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         content: {
-            type: Sequelize.STRING,
+            type: Sequelize.TEXT('long'),
             allowNull: false,
             validate: {
                 notEmpty: {
@@ -23,8 +23,12 @@ module.exports = (sequelize, Sequelize) => {
                 }
             }
         },
-        published: Sequelize.DATE,
-        updated: Sequelize.DATE,
+        userId: {
+            type: Sequelize.INTEGER
+        },
+        categoryId: {
+            type: Sequelize.INTEGER
+        },
 
     }, {
         timestamps: true,

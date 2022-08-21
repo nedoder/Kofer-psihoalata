@@ -11,7 +11,7 @@
       <v-text-field
         v-model="search"
         append-icon="mdi-magnify"
-        label="Search"
+        label="Pretraga"
         single-line
         hide-details
       >
@@ -30,7 +30,7 @@
       >
          
         <template v-slot:[`item.edit`]="{ item }" > 
-          <v-icon small color="blue" class="mr-2" @click="editCategory(item._id)">mdi-pencil</v-icon>
+          <v-icon small color="blue" class="mr-2" @click="editComment(item.id)">mdi-pencil</v-icon>
         </template>
         <template v-slot:[`item.delete`]="{ item }" >  
           <template>
@@ -38,7 +38,7 @@
                 <template>
                   <v-btn
                     icon
-                    @click="deleteItem(item._id)"
+                    @click="deleteItem(item.id)"
                   >
                     <v-icon small color="red">mdi-delete</v-icon>
                   </v-btn>
@@ -54,11 +54,11 @@
       >
         <v-card>
           <v-card-title>
-            Brisanje kategorije
+            Brisanje komentara
           </v-card-title>
 
           <v-card-text>
-            Da li ste sigurni da želite da obrišete ovu kategoriju?
+            Da li ste sigurni da želite da obrišete ovaj komentar?
           </v-card-text>
 
           <v-divider></v-divider>
@@ -75,7 +75,7 @@
             <v-btn
               color="primary"
               text
-              @click="deleteCategories(id)"
+              @click="deleteComments(id)"
             >
               Obriši
             </v-btn>
@@ -87,45 +87,54 @@
 </template>
 
 <script>
-// import requests from "../../services/services"
+import requests from "../../../services/services"
 export default {
   data: () => ({
     items: [],
     dialog: false,
     headers: [
-      { text: "Naziv", value: "name", sortable: true },
+      { text: "Komentar", value: "comment", sortable: true },
+      { text: "Autor", value: "author", sortable: true },
+       { text: "Post", value: "post.title", sortable: true },
+       { text: "Odobren", value: "approved", sortable: true },
+       {text: "Kreiran", value: "createdAt", sortable: true},
+        {text: "Poslednje izmjene", value: "updatedAt", sortable: true},
       { text: "Izmijeni", value: "edit", sortable: false },
       { text: "Obriši", value: "delete", sortable: false },
     ],
     search: '',
   }),
   methods: {
-    editCategory(id) {
-      this.$router.push({ path: `/category/${id}/edit`, params: { id: id } });
+    editComment(id) {
+      this.$router.push({ path: `/comment/${id}/edit`, params: { id: id } });
     },
-    // deleteCategories(id) {
-    //   requests.deleteCategory(id)
-    //   .then(response => {
-    //     console.log(response)
-    //     window.location.reload()
-    //   })
-    //   .catch(error => {
-    //     console.log(error.message)
-    //   })
-    // },
-    //  deleteItem(id) {
-    //   this.id = id
-    //   this.dialog = true
-    // }
+    deleteComments(id) {
+      requests.deleteComment(id)
+      .then(response => {
+        console.log(response)
+        window.location.reload()
+      })
+      .catch(error => {
+        console.log(error.message)
+      })
+    },
+     deleteItem(id) {
+      this.id = id
+      this.dialog = true
+    }
   }, 
   
   mounted(){
-    // requests.getSpecialsList()
-    // .then(response => {
-    //   this.items = response.data;
-    // }).catch(error => {
-    //   console.log(error.response)
-    // });
+    requests.getCommentsList()
+    .then(response => {
+      this.items = response.data;
+      this.items.forEach(item => {
+        item.createdAt = new Date(item.createdAt).toLocaleString()
+        item.updatedAt = new Date(item.updatedAt).toLocaleString()
+      })
+    }).catch(error => {
+      console.log(error.response)
+    });
   },
 }
 </script>

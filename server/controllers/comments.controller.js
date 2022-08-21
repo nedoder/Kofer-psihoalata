@@ -1,20 +1,34 @@
+const jwt = require("jsonwebtoken");
+const config = require("../config/auth.config.js");
 const db = require("../models");
-const Comment = db.comment;
+const Comment = db.comments;
+const Activity = db.activity;
 const Op = db.Sequelize.Op;
 // Create and Save a new comment
 exports.create = (req, res) => {
 
 
-    // Create a drink
+    // Create a comment
     const comment = {
         comment: req.body.comment,
+        author: req.body.author,
         approved: req.body.approved,
+        postId: req.body.postId,
     };
 
 
-    // Save category in the database
+    // Save comment in the database
     Comment.create(comment)
         .then(data => {
+            Activity.create({ "activity": `Korisnik ${req.body.author} je kreirao komentar ${req.body.comment}` })
+                .then(data => {
+                    res.status(200);
+                })
+                .catch(err => {
+                    res.status(500).send({
+                        message: err.message || "Some error occurred while creating activity."
+                    });
+                });
             res.send(`Comment is sucessfully created.`);
         })
         .catch(err => {
@@ -24,6 +38,7 @@ exports.create = (req, res) => {
         });
 
 };
+
 // Retrieve all comments from the database.
 exports.findAll = (req, res) => {
     const query = req.query.comment;
@@ -32,7 +47,12 @@ exports.findAll = (req, res) => {
             [Op.like]: `%${query}%`
         }
     } : null;
-    Comment.findAll({ where: condition })
+    Comment.findAll({
+            include: ['post', 'answers'],
+            order: [
+                ["updatedAt", "desc"]
+            ]
+        })
         .then(data => {
             res.send(data);
         })
@@ -46,7 +66,7 @@ exports.findAll = (req, res) => {
 // Find a single comment with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
-    Comment.findByPk(id)
+    Comment.findByPk(id, { include: ['post', 'answers'] })
         .then(data => {
             if (data) {
                 res.send(data);
@@ -73,8 +93,24 @@ exports.update = async(req, res) => {
     };
 
 
+    let token = req.headers["authorization"];
+    let author = ''
+
+    jwt.verify(token, config.secret, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({
+                message: "Unauthorized!"
+            });
+        }
+        author = decoded.name + " " + decoded.lname;
+    });
+
+    let comment = ''
+
     await Comment.findByPk(id)
-        .then(response => {})
+        .then(response => {
+            comment = response.comment
+        })
         .catch(err => {
             console.log(err)
         });
@@ -84,6 +120,16 @@ exports.update = async(req, res) => {
         })
         .then(num => {
             if (num == 1) {
+
+                Activity.create({ "activity": `Korisnik ${author} je izmijenio komentar ${comment}` })
+                    .then(data => {
+                        res.status(200);
+                    })
+                    .catch(err => {
+                        res.status(500).send({
+                            message: err.message || "Some error occurred while creating activity."
+                        });
+                    });
                 res.send({
                     message: "Comment was updated successfully."
                 });
@@ -103,8 +149,25 @@ exports.update = async(req, res) => {
 // Delete a comment with the specified id in the request
 exports.delete = async(req, res) => {
     const id = req.params.id;
+
+    let token = req.headers["authorization"];
+    let author = ''
+
+    jwt.verify(token, config.secret, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({
+                message: "Unauthorized!"
+            });
+        }
+        author = decoded.name + " " + decoded.lname;
+    });
+
+    let comment = ''
+
     await Comment.findByPk(id)
-        .then(response => {})
+        .then(response => {
+            comment = response.comment
+        })
         .catch(err => {
             console.log(err)
         });
@@ -113,6 +176,17 @@ exports.delete = async(req, res) => {
         })
         .then(num => {
             if (num == 1) {
+
+                Activity.create({ "activity": `Korisnik ${author} je izbrisao komentar ${comment}` })
+                    .then(data => {
+                        res.status(200);
+                    })
+                    .catch(err => {
+                        res.status(500).send({
+                            message: err.message || "Some error occurred while creating activity."
+                        });
+                    });
+
                 res.send({
                     message: "Comment was deleted successfully!"
                 });

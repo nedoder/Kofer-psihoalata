@@ -10,7 +10,7 @@ module.exports = app => {
     // Retrieve a single post with id
     router.get("/:id", posts.findOne);
     // Update a post with id
-    router.put("/:id", authorize.verifyToken, upload.single("image"), posts.update);
+    router.patch("/:id", authorize.verifyToken, upload.single("image"), posts.update);
     // Delete a posts with id
     router.delete("/:id", authorize.verifyToken, posts.delete);
     // Delete all posts

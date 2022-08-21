@@ -177,7 +177,7 @@ export default {
       { title: 'Komentari', icon: 'mdi-comment-question', href: '/create/comment' },
       { title: 'Odgovori', icon: 'mdi-comment-processing', href: '/create/answer' },
       { title: 'Kategorije', icon: 'mdi-group', href: '/create/category' },
-      { title: 'Korisnici', icon: 'mdi-account-circle', href: '/create/user' },
+     
       
     ],
     logOut: [
@@ -214,6 +214,7 @@ export default {
       let role = jsonPayload.role
       if(role==1) {
         this.items.push( { title: 'Korisnici', icon: 'mdi-account-box', href: '/users' },)
+        this.createItems.push({ title: 'Korisnici', icon: 'mdi-account-circle', href: '/create/user' },)
       }
     }
 }

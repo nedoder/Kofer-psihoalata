@@ -3,10 +3,19 @@
     <v-card-title>
 
       <h1 class="display-1">
-        Aktivnosti
+        Lista aktivnosti
       </h1>
 
       <v-spacer></v-spacer>
+
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Pretraga"
+        single-line
+        hide-details
+      >
+      </v-text-field>
 
     </v-card-title>
     
@@ -14,67 +23,43 @@
       <v-data-table
       :headers="headers"
       :items="items"
-      :footer-props="{
-        'items-per-page-options': [20,]
-      }"
-      :options.sync="options"
-      :server-items-length="totalNumberOfItems"
+      :search="search"
+      :items-per-page="20"
       dense
       class="elevation-1"
       >
+    
       </v-data-table>
-
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-// import requests from "../../services/services"
+import requests from "../../services/services"
 export default {
   data: () => ({
     items: [],
-    totalNumberOfItems: 0,
-    options: {
-      page: 1,
-      itemsPerPage: 20
-    },
+    dialog: false,
     headers: [
-      { text: "Aktivnost", value: "results", sortable: true }, 
-      { text: "Datum izmjene", value: "createdAt", sortable: true }
+      { text: "Aktivnost", value: "activity" ,  sortable: true },
+      {text: "Kreiran", value: "createdAt", sortable: true},
     ],
+    search: '',
   }),
-  watch: {
-    options: {
-      handler () {
-        this.getDataFromApi()
-      },
-      deep: true,
-    },
-  },
-  methods: {
-    getDataFromApi () {
-    //   requests.getActivityList(this.options.page)
-    //   .then(response => {
-    //     this.items = response.data.slice(0,-1)
-    //     this.totalNumberOfItems = response.data[response.data.length-1].count
-    //     this.items.forEach(item => {
-    //       item.createdAt = new Date(item.createdAt).toString().slice(4,24)
-    //     });
-    //   })
-    },
-     
-  },
+ 
+  
   mounted(){
-    // requests.getActivityList(this.options.page)
-    // .then(response => {
-    //   this.items = response.data.slice(0,-1);
-    //   this.totalNumberOfItems = response.data[response.data.length-1].count
-    //   this.items.forEach(item => {
-    //     item.createdAt = new Date(item.createdAt).toString().slice(4,24)
-    //   });
-    // }).catch(error => {
-    //   console.log(error)
-    // });
+    requests.getActivityList()
+    .then(response => {
+      this.items = response.data;
+      this.items.forEach(item => {
+        item.createdAt = new Date(item.createdAt).toLocaleString()
+        item.updatedAt = new Date(item.updatedAt).toLocaleString()
+      })
+    }).catch(error => {
+      console.log(error.response)
+    })    
   },
 }
 </script>
+

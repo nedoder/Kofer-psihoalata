@@ -31,8 +31,8 @@
                                         required
                                         :rules="[passwordConfirmationRule]"
                                         :error-messages="errorPassword"
-                                        :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-                                        @click:append="showPass = !showPass"
+                                        :append-icon="showRePass ? 'mdi-eye' : 'mdi-eye-off'"
+                                        @click:append="showRePass = !showRePass"
                                         :type="showPass ? 'text' : 'password'"
                                     >
                                     </v-text-field>
@@ -71,6 +71,7 @@ export default {
         email: null,
         rePassword: null,
         showPass: false,
+        showRePass: false,
         errorUsername: '',
         errorPassword: '',
         errorCode: '',
