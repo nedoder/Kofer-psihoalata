@@ -6,7 +6,7 @@ module.exports = app => {
     // Create a new answer
     router.post("/", authorize.verifyToken, upload.single("image"), answers.create);
     // Retrieve all answers
-    router.get("/", answers.findAll);
+    router.get("/?", answers.findAll);
     // Retrieve a single answer with id
     router.get("/:id", answers.findOne);
     // Update an answer with id

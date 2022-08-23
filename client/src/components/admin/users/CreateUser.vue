@@ -27,7 +27,7 @@
               shaped 
               label="Korisničko ime"
               v-model="username"
-              :rules="[v => v.length > 0 || 'Morate unijeti username']"
+              :rules="[v => v.length > 0 || 'Morate unijeti korisničko ime']"
             ></v-text-field>
 
             <v-text-field 
@@ -40,7 +40,7 @@
              :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
              @click:append="showPass = !showPass"
              :type="showPass ? 'text' : 'password'"
-             :rules="[v => v.length > 0 || 'Morate unijeti password']"
+             :rules="[v => v.length > 0 || 'Morate unijeti lozinku']"
             >
             </v-text-field>
 
@@ -106,7 +106,7 @@ export default {
   }),
   computed: {
         passwordConfirmationRule() {
-          return () => (this.password === this.rePassword) || 'Lozinke nisu iste'
+          return () => (this.password === this.rePassword) || 'Lozinke se ne poklapaju'
         }
     },
   watch: {
@@ -130,7 +130,7 @@ export default {
         this.$router.push({ path: `/users/` });
       })
       .catch(error => {
-        this.error = error.response.data.error
+        this.error = error.response.data.message
         console.log(error.message)
       })
     },

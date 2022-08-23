@@ -8,14 +8,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Pretraga"
-        single-line
-        hide-details
-      >
-      </v-text-field>
+     
 
     </v-card-title>
     
@@ -23,8 +16,11 @@
       <v-data-table
       :headers="headers"
       :items="items"
-      :search="search"
-      :items-per-page="20"
+      :footer-props="{
+        'items-per-page-options': [20,]
+      }"
+      :options.sync="options"
+      :server-items-length="totalNumberOfItems"
       dense
       class="elevation-1"
       >
@@ -40,18 +36,46 @@ export default {
   data: () => ({
     items: [],
     dialog: false,
+    totalNumberOfItems: 0,
+    options: {
+      page: 1,
+      itemsPerPage: 20
+    },
     headers: [
       { text: "Aktivnost", value: "activity" ,  sortable: true },
       {text: "Kreiran", value: "createdAt", sortable: true},
     ],
-    search: '',
   }),
  
+  watch: {
+    options: {
+      handler () {
+        this.getDataFromApi()
+      },
+      deep: true,
+    },
+  },
+  methods: {
+    getDataFromApi () {
+      requests.getActivityList(this.options.page)
+    .then(response => {
+      this.items = response.data.rows;
+      this.totalNumberOfItems = response.data.count
+      this.items.forEach(item => {
+        item.createdAt = new Date(item.createdAt).toLocaleString()
+        item.updatedAt = new Date(item.updatedAt).toLocaleString()
+      })
+    }).catch(error => {
+      console.log(error.response)
+    })    
+    }
+  },
   
   mounted(){
-    requests.getActivityList()
+    requests.getActivityList(this.options.page)
     .then(response => {
-      this.items = response.data;
+      this.items = response.data.rows;
+      this.totalNumberOfItems = response.data.count
       this.items.forEach(item => {
         item.createdAt = new Date(item.createdAt).toLocaleString()
         item.updatedAt = new Date(item.updatedAt).toLocaleString()
@@ -63,3 +87,10 @@ export default {
 }
 </script>
 
+
+<style>
+
+.v-data-footer {
+  justify-content: end;
+}
+</style>

@@ -14,6 +14,49 @@
               :rules="[v => v.length > 1 || 'Morate unijeti odgovor']"
             ></v-textarea>
 
+    <v-autocomplete
+              filled
+              shaped
+              :items="post"
+              :disabled="isUpdating"
+              item-text="title"
+              item-value="id"
+              v-model="posts"
+              chips
+              deletable-chips
+              label="Post"
+               @change="displayComment"
+              :error-messages='matchPostError()'
+            >
+            
+              <template v-slot:selection="data">
+                <v-chip
+                class="short"
+                  v-bind="data.attrs"
+                  :input-value="data.selected"
+                  close
+                  @click="data.select"
+                  @click:close="[removePost(), displayComments()]"
+                >
+                  <v-avatar left>
+                    <v-img :src="$imagePath + data.item.image"></v-img>
+                  </v-avatar>
+                    <span> {{ data.item.title }} </span> 
+                </v-chip>
+              </template>
+              <template v-slot:item="data">
+                <template>
+                  <v-list-item-avatar>
+                    <v-img :src="$imagePath + data.item.image "/>
+                  </v-list-item-avatar>
+                  <v-list-item-content>
+                    <v-list-item-title v-html="data.item.title"></v-list-item-title>
+                  </v-list-item-content>
+                </template>
+              </template>
+              
+            </v-autocomplete>
+
             <v-autocomplete 
               filled
               shaped
@@ -36,7 +79,7 @@
                   :input-value="data.selected"
                   close
                   @click="data.select"
-                  @click:close="removeComment()"
+                  @click:close="[removeComment(), displayPosts()]"
                 >
                      <span> {{ data.item.comment }} </span>
                 </v-chip>
@@ -52,49 +95,7 @@
 
             </v-autocomplete>
 
-            <v-autocomplete
-              filled
-              shaped
-              :items="post"
-              :disabled="isUpdating"
-              item-text="title"
-              item-value="id"
-              v-model="posts"
-              chips
-              deletable-chips
-              label="Post"
-               @change="displayComment"
-              :error-messages='matchPostError()'
-            >
-            
-              <template v-slot:selection="data">
-                <v-chip
-                class="short"
-                  v-bind="data.attrs"
-                  :input-value="data.selected"
-                  close
-                  @click="data.select"
-                  @click:close="removePost()"
-                >
-                  <v-avatar left>
-                    <v-img :src="$imagePath + data.item.image"></v-img>
-                  </v-avatar>
-                    <span> {{ data.item.title }} </span> 
-                </v-chip>
-              </template>
-              <template v-slot:item="data">
-                <template>
-                  <v-list-item-avatar>
-                    <v-img :src="$imagePath + data.item.image "/>
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <v-list-item-title v-html="data.item.title"></v-list-item-title>
-                  </v-list-item-content>
-                </template>
-              </template>
-              
-            </v-autocomplete>
-
+          
             <v-alert type="error" v-if="error">
              {{error}}
             </v-alert>
@@ -159,11 +160,31 @@ export default {
       });
     },
 
+     displayComments() {
+      this.comment = []
+      requests.getCommentsList()
+      .then(response => { 
+          this.comment = response.data
+      }).catch(error => {
+        console.log(error.response)
+      });
+    },
+
      displayPost() {
       this.post = []
       requests.getComment(this.comments)
       .then(response => {  
             this.post.push(response.data.post)
+      }).catch(error => {
+        console.log(error.response)
+      });
+    },
+
+     displayPosts() {
+      this.post = []
+      requests.getPostsList()
+      .then(response => {  
+            this.post = response.data
       }).catch(error => {
         console.log(error.response)
       });

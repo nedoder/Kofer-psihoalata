@@ -28,10 +28,15 @@ exports.create = (req, res) => {
 // Retrieve all activities from the database.
 exports.findAll = (req, res) => {
 
-    Activity.findAll({
+    let page = parseInt(req.query.page) - 1
+    let limit = 20
+
+    Activity.findAndCountAll({
             order: [
                 ["createdAt", "desc"]
-            ]
+            ],
+            limit: limit,
+            offset: parseInt(page * limit),
         })
         .then(data => {
             res.send(data);

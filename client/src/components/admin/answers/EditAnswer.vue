@@ -11,7 +11,7 @@
               shaped 
               v-model="currentAnswer.answer" 
               :rules="[v => v.length > 1 || 'Morate unijeti odgovor']"
-              label="Komentar" 
+              label="Odgovor" 
             >
             </v-textarea>
 

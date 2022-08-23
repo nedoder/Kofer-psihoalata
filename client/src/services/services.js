@@ -44,8 +44,8 @@ const requests = {
     deletePost(id) {
         return apiClient.delete(`api/post/${id}`);
     },
-    getCommentsList(page, letter) {
-        return apiClient.get(`api/comment?page=${page}&letter=${letter}`);
+    getCommentsList() {
+        return apiClient.get("api/comment");
     },
     getComment(id) {
         return apiClient.get(`api/comment/${id}`);
@@ -59,8 +59,8 @@ const requests = {
     deleteComment(id) {
         return apiClient.delete(`api/comment/${id}`);
     },
-    getAnswersList(page, letter) {
-        return apiClient.get(`api/answer?page=${page}&letter=${letter}`);
+    getAnswersList() {
+        return apiClient.get("api/answer");
     },
     getAnswer(id) {
         return apiClient.get(`api/answer/${id}`);
@@ -107,8 +107,8 @@ const requests = {
     editPassword(data) {
         return apiClient.patch(`api/password/`, data);
     },
-    getActivityList() {
-        return apiClient.get("api/activity");
+    getActivityList(page) {
+        return apiClient.get(`api/activity?page=${page}`);
     },
 
 };

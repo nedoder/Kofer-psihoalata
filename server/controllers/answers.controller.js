@@ -46,11 +46,15 @@ exports.findAll = (req, res) => {
             [Op.like]: `%${query}%`
         }
     } : null;
+
+
+
     Answer.findAll({
             include: [{ model: db.comments, as: 'comment', include: [{ model: db.posts, as: 'post' }] }],
             order: [
                 ["updatedAt", "desc"]
-            ]
+            ],
+
         })
         .then(data => {
             res.send(data);
@@ -60,6 +64,8 @@ exports.findAll = (req, res) => {
                 message: err.message || "Some error occurred while retrieving answers."
             });
         });
+
+
 
 };
 // Find a single answer with an id

@@ -34,11 +34,19 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false,
             validate: {
-                notEmpty: {
-                    args: true,
-                    msg: "Username cannot be empty"
-                }
-            }
+                isUnique: (value, next) => {
+                    User.findAll({
+                            where: { username: value },
+                            attributes: ['id'],
+                        })
+                        .then((user) => {
+                            if (user.length != 0)
+                                next(new Error('Korisničko ime već postoji!'));
+                            next();
+                        })
+                        .catch((onError) => console.log(onError));
+                },
+            },
         },
         role: {
             type: Sequelize.INTEGER,
@@ -50,9 +58,8 @@ module.exports = (sequelize, Sequelize) => {
                 }
             }
         },
-       
-    },
-    {
+
+    }, {
         timestamps: false,
         tableName: 'Users',
     });

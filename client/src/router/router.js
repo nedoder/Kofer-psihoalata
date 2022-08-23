@@ -6,7 +6,7 @@ import HomeView from "../components/admin/HomeView"
 import LogInView from "../components/admin/LoginView"
 import AdminLayout from "../components/admin/AdminLayout"
 import ErrorView from "../components/admin/ErrorView"
-import PasswordChange from "../components/admin/PasswordChange"
+import HomePage from "../components/home/HomePage"
 import ActivityLog from "../components/admin/ActivityLog"
 
 
@@ -36,7 +36,7 @@ import EditUser from "../components/admin/users/EditUser"
 import AdminEdit from "../components/admin/users/AdminEdit"
 
 //import components for categories
-import ListCategory  from "../components/admin/category/ListCategories"
+import ListCategory from "../components/admin/category/ListCategories"
 import CreateCategory from "../components/admin/category/CreateCategory"
 import EditCategory from "../components/admin/category/EditCategory"
 
@@ -47,129 +47,124 @@ Vue.use(VueRouter);
 
 // adding routes, every route as a child of admin layout
 
-const routes = [
-  {
-    path: "/login",
-    name: "login",
-    component: LogInView,
-    meta: {
-      title: "Login"
-    },
-  },
-  {
-    path: "/password",
-    name: "password",
-    component: PasswordChange,
-    meta: {
-      title: "Password"
-    },
-  },
-  {
-    path: "/",
-    component: AdminLayout,
-    children: [
-      {
-        path: "/dashboard",
-        name: "dashboard",
-        component: HomeView,
-      },
-      {
-        path: "/activity",
-        component: ActivityLog,
-      },
-      {
-        path: "/create/post",
-        component: CreatePost,
-      },
-      {
-        path: "/post/:id",
-        component: ShowPost,
-      },
-      {
-        path: "/post/:id/edit",
-        component: EditPost,
-      },
-      {
-        path: "/posts",
-        component: ListPosts,
-      },
-      {
-        path: "/create/comment",
-        component: CreateComment,
-      },
-      {
-        path: "/comment/:id",
-        component: ShowComment,
-      },
-      {
-        path: "/comment/:id/edit",
-        component: EditComment,
-      },
-      {
-        path: "/comments",
-        component: ListComments,
-      },
-      {
-        path: "/create/answer",
-        component: CreateAnswer,
-      },
-      {
-        path: "/answer/:id",
-        component: ShowAnswer,
-      },
-      {
-        path: "/answer/:id/edit",
-        component: EditAnswer,
-      },
-      {
-        path: "/answers",
-        component: ListAnswers,
-      },
-      {
-        path: "/create/category",
-        component: CreateCategory,
-      },
-      {
-        path: "/category",
-        component: ListCategory,
-      },
-      {
-        path: "/category/:id/edit",
-        component: EditCategory,
-      },
-      {
-        path: "/create/user",
-        component: CreateUser,
-      },
-      {
-        path: "/users",
-        component: ListUsers,
-      },
-      {
-        path: "/user/:id/edit",
-        component: EditUser,
-      },
-      {
-        path: "/users/:id/edit",
-        component: AdminEdit,
-      },
-      {
-        path: "*",
-        component: ErrorView,
+const routes = [{
+        path: "/login",
+        name: "login",
+        component: LogInView,
         meta: {
-          title: "Not_found"
+            title: "Login"
         },
-      }
-    ],
-  },  
+    },
+    {
+        path: "/",
+        name: "HomePage",
+        component: HomePage,
+    },
+    {
+        path: "/admin",
+        component: AdminLayout,
+        children: [{
+                path: "/dashboard",
+                name: "dashboard",
+                component: HomeView,
+            },
+            {
+                path: "/activity",
+                component: ActivityLog,
+            },
+            {
+                path: "/create/post",
+                component: CreatePost,
+            },
+            {
+                path: "/post/:id",
+                component: ShowPost,
+            },
+            {
+                path: "/post/:id/edit",
+                component: EditPost,
+            },
+            {
+                path: "/posts",
+                component: ListPosts,
+            },
+            {
+                path: "/create/comment",
+                component: CreateComment,
+            },
+            {
+                path: "/comment/:id",
+                component: ShowComment,
+            },
+            {
+                path: "/comment/:id/edit",
+                component: EditComment,
+            },
+            {
+                path: "/comments",
+                component: ListComments,
+            },
+            {
+                path: "/create/answer",
+                component: CreateAnswer,
+            },
+            {
+                path: "/answer/:id",
+                component: ShowAnswer,
+            },
+            {
+                path: "/answer/:id/edit",
+                component: EditAnswer,
+            },
+            {
+                path: "/answers",
+                component: ListAnswers,
+            },
+            {
+                path: "/create/category",
+                component: CreateCategory,
+            },
+            {
+                path: "/category",
+                component: ListCategory,
+            },
+            {
+                path: "/category/:id/edit",
+                component: EditCategory,
+            },
+            {
+                path: "/create/user",
+                component: CreateUser,
+            },
+            {
+                path: "/users",
+                component: ListUsers,
+            },
+            {
+                path: "/user/:id/edit",
+                component: EditUser,
+            },
+            {
+                path: "/users/:id/edit",
+                component: AdminEdit,
+            },
+            {
+                path: "*",
+                component: ErrorView,
+                meta: {
+                    title: "Not_found"
+                },
+            }
+        ],
+    },
 ];
 
 
 
 const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes,
+    mode: "history",
+    base: process.env.BASE_URL,
+    routes,
 });
 
 export default router
@@ -188,7 +183,7 @@ export default router
 //         next({name: 'login'})
 //       }
 //       // Continue to page.
-      
+
 //     } else {
 //       // Not logged in, redirect to login.
 //       next({name: 'login'})

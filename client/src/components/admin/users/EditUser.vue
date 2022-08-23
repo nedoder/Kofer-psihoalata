@@ -1,30 +1,34 @@
 <template>
-  <v-form v-model="isValid">
+  <v-form v-if="currentUser" v-model="isValid">
     <v-row justify="center">
       <v-col sm="10">
-        <v-card  tile>
+        <v-card tile>
           <v-card-text>
 
-            <v-text-field
-            readonly
-             filled 
+            <v-text-field 
+              filled 
               shaped 
-              label="Korisničko ime"
-              v-model="username"
-              :rules="[v => v.length > 1 || 'Morate unijeti korisničko ime']" 
-            ></v-text-field>
+              v-model="currentUser.firstName" 
+              :rules="[v => v.length > 1 || 'Morate unijeti ime']"
+              label="Ime" 
+            >
+            </v-text-field>
 
             <v-text-field 
-             filled 
-             shaped 
-             v-model="password" 
-             label="Lozinka" 
-             required
-             :error-messages="errorPassword"
-             :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-             @click:append="showPass = !showPass"
-             :type="showPass ? 'text' : 'password'"
-             :rules="[v => v.length > 1 || 'Morate unijeti lozinku']" 
+              filled 
+              shaped 
+              v-model="currentUser.lastName" 
+              :rules="[v => v.length > 1 || 'Morate unijeti prezime']"
+              label="Prezime" 
+            >
+            </v-text-field>
+
+            <v-text-field 
+              filled 
+              shaped 
+              v-model="currentUser.username" 
+              :rules="[v => v.length > 1 || 'Morate unijeti korisničko ime']"
+              label="Korisničko ime" 
             >
             </v-text-field>
 
@@ -35,6 +39,7 @@
               v-model="newpassword"
               required
               :error-messages="errorPassword"
+              :rules="[v => v.length > 0 || 'Morate unijeti lozinku']"
               :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="showPass = !showPass"
               :type="showPass ? 'text' : 'password'"
@@ -44,56 +49,55 @@
             <v-text-field
             filled 
              shaped 
-                label="Potvrdi novu lozinku"
+                label="Potvrdite novu lozinku"
                 v-model="rePassword"
                 required
-                :rules="[passwordConfirmationRule]"
+                :rules="[passwordConfirmationRule, cannotEmpty]"
                 :error-messages="errorPassword"
-                :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-                @click:append="showPass = !showPass"
-                :type="showPass ? 'text' : 'password'"
+                :append-icon="showRePass ? 'mdi-eye' : 'mdi-eye-off'"
+                @click:append="showRePass = !showRePass"
+                :type="showRePass ? 'text' : 'password'"
             >
             </v-text-field>
 
-            <v-alert type="error" v-if="error">
+<v-alert type="error" v-if="error">
              {{error}}
             </v-alert>
-            
             <v-btn @click="onSubmit" :disabled="!isValid" color="primary">Izmijeni</v-btn>
             
           </v-card-text>
         </v-card>
       </v-col>
-
-     
-            
     </v-row>
   </v-form >
 </template>
 
 <script>
-// import requests from "../../services/services"
+import requests from "../../../services/services"
 export default {
-  props: ['id' ],
+ 
   data: () => ({
-    showPass: false,
-    errorPassword: '',
+    currentUser: null,
     isValid:true,
-    username: '',
-    password: '',
-    newpassword: null,
-    rePassword: null,
     isUpdating: false,
-    error: '',
-    user_id: null,
-    logged: null,
-    image: ''
+     showPass: false,
+     showRePass: false,
+    errorPassword: '',
+    newpassword: '',
+    rePassword: '',
+    error: ''
   }),
+
   computed: {
         passwordConfirmationRule() {
-          return () => (this.newpassword === this.rePassword) || 'Password must match'
+          return () => (this.newpassword === this.rePassword) || 'Lozinke se ne poklapaju'
+        },
+
+        cannotEmpty() {
+          return () => (this.newpassword !== '' || this.rePassword !== '') || 'Morate unijeti lozinku'
         }
     },
+
   watch: {
     isUpdating (val) {
       if (val) {
@@ -103,53 +107,38 @@ export default {
   },
   methods: {
     onSubmit() {
-      
-    //   requests.editPassword( {
-    //     "password" : this.password,
-    //     "newpassword" : this.newpassword
-    //   })
-    //   .then(response => {
-    //     console.log(response)
-    //     if(this.user_id === this.logged) {
-    //        localStorage.removeItem("token")
-    //        this.$router.push({ path: "/login" });
-    //     }
-    //     window.location.reload()
-    //   })
-    //   .catch(error => {
-    //     if(error.response) {
-    //       this.error = error.response.data.message
-    //       console.log(error.response.data.message)
-    //     }
-        
-    //   })
+      requests.editUser(this.$route.params.id, {"firstName": this.currentUser.firstName, "lastName": this.currentUser.lastName, "username": this.currentUser.username, "password": this.newpassword })
+      .then((response) => {
+        console.log(response.data);
+        let token  = decodeURIComponent(escape(atob(localStorage.getItem('token').split('.')[1])));
+        let tokenObject = JSON.parse(token)
+          let id = tokenObject.id 
+          if(parseInt(this.$route.params.id) === id) {
+           localStorage.removeItem("token")
+           this.$router.push({ path: "/login" });
+          }
+      })
+      .catch((e) => {
+        this.error = e.response.data.message
+        console.log(e);
+      });
     },
-   
+    getUsers(id) {
+      requests.getUser(id)
+      .then((response) => {
+        this.currentUser = response.data;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    },
+    
    
   },
   mounted() {
-    if(this.$route.params.id) {
-      this.user_id = this.$route.params.id
-    }
-    else {
-     this.user_id = this.id
-    }
-    var base64Url = localStorage.getItem("token").split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-    jsonPayload = JSON.parse(jsonPayload)
-    this.logged = jsonPayload.userId
-    // requests.getUser(this.user_id)
-    // .then((response) => {
-    //    this.username = response.data.email;
-    //    this.image = response.data.qrcod
-        
-    // })
-    // .catch((e) => {
-    //   console.log(e);
-    // });
-  }
+    this.getUsers(this.$route.params.id)
+  },
 }
 </script>
+
+

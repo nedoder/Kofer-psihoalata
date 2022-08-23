@@ -60,11 +60,26 @@ exports.findAll = (req, res) => {
             [Op.like]: `%${query}%`
         }
     } : null;
+
+    // let page = ''
+    // let limit = 20
+    // let offset = parseInt(page * limit)
+    // if (req.query.page === undefined) {
+    //     page = 1000000000000000
+    // } else {
+    //     page = parseInt(req.query.page) - 1
+    // }
+
+
+
     Post.findAll({
             include: ['category', 'user', { model: db.comments, as: 'comments', include: [{ model: db.answers, as: 'answers' }] }],
             order: [
                 ["updatedAt", "desc"]
-            ]
+            ],
+
+            // limit: limit,
+            // offset: offset
         })
         .then(data => {
             res.send(data);

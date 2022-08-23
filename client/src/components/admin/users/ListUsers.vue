@@ -28,57 +28,28 @@
       dense
       class="elevation-1"
       >
-          
-        <template v-slot:[`item.edit`]="{ item }" > 
-          <template>
-            <v-btn 
-              icon
-              @click="editItem(item._id)"    
-            >
-              <v-icon small color="green">mdi-pencil</v-icon>
-            </v-btn>
-          </template>
+
+       <template v-slot:[`item.edit`]="{ item }" > 
+          <v-icon small color="blue" class="mr-2" @click="editUser(item.id)">mdi-pencil</v-icon>
         </template>
         <template v-slot:[`item.delete`]="{ item }" >  
           <template>
             <div class="text-center">
-              <template>
-                <v-btn
-                  icon
-                  @click="deleteItem(item._id)"
-                >
-                  <v-icon small color="red">mdi-delete</v-icon>
-                </v-btn>
-              </template>
+                <template>
+                  <v-btn
+                    icon
+                    @click="deleteItem(item.id)"
+                  >
+                    <v-icon small color="red">mdi-delete</v-icon>
+                  </v-btn>
+                </template>
             </div>
           </template>
         </template>
+      
       </v-data-table>
 
-      <v-dialog
-        v-model="dialogEdit"
-        persistent
-        max-width="900px"                    
-      >     
-        <v-card>
-          <v-card-title>
-           Izmijeni
-            <v-spacer></v-spacer>
-           <v-btn
-              icon
-              @click="closeDialog"
-            >
-             <v-icon color="red">mdi-close</v-icon>
-            </v-btn>
-          </v-card-title>
-          <v-main>
-           <admin-edit :id="id"/>
-          </v-main>
-        </v-card>
-               
-      </v-dialog>
-
-      <v-dialog
+   <v-dialog
         v-model="dialog"
         width="500"
       >
@@ -86,10 +57,13 @@
           <v-card-title>
             Brisanje usera
           </v-card-title>
+
           <v-card-text>
-            Da li ste sigurni da želite da obrišete usera?
+            Da li ste sigurni da želite da obrišete ovog usera?
           </v-card-text>
+
           <v-divider></v-divider>
+
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
@@ -102,7 +76,7 @@
             <v-btn
               color="primary"
               text
-              @click="deleteUser(id)"
+              @click="deleteUsers(id)"
             >
               Obriši
             </v-btn>
@@ -115,15 +89,10 @@
 
 <script>
 import requests from "../../../services/services"
-import AdminEdit from './AdminEdit.vue';
 export default {
-  components: {  AdminEdit },
   data: () => ({
     items: [],
-    id: null,
     dialog: false,
-    dialogCreate: false,
-    dialogEdit: false,
     search: '',
     headers: [
       { text: "Korisničko ime", value: "username", sortable: true },
@@ -135,15 +104,8 @@ export default {
     ],
   }),
   methods: {
-   
-   editItem(id) {
-        this.id = id;
-        console.log(id)
-        this.dialogEdit = true
-    },
-    closeDialog() {
-        window.location.reload()
-        this.id = null
+    editUser(id) {
+      this.$router.push({ path: `/users/${id}/edit`, params: { id: id } });
     },
     deleteUser(id) {
       requests.deleteUser(id)
@@ -193,7 +155,7 @@ export default {
 </script>
 
 <style scoped>
-  >>> .v-dialog {
+   .v-dialog {
     overflow-x: hidden;
   }
 </style>

@@ -5,7 +5,7 @@ module.exports = app => {
     // Create a new activity
     router.post("/", authorize.verifyToken, activity.create);
     // Retrieve all activities
-    router.get("/", activity.findAll);
+    router.get("/:page?", activity.findAll);
 
-    app.use('/api/activity', router);
+    app.use('/api/activity/', router);
 };

@@ -47,11 +47,16 @@ exports.findAll = (req, res) => {
             [Op.like]: `%${query}%`
         }
     } : null;
+
+
+
     Comment.findAll({
             include: ['post', 'answers'],
             order: [
                 ["updatedAt", "desc"]
-            ]
+            ],
+
+
         })
         .then(data => {
             res.send(data);

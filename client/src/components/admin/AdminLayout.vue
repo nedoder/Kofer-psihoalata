@@ -192,26 +192,19 @@ export default {
       this.$router.push({ path: "/login" });
     },
     password() {
-      var base64Url = localStorage.getItem("token").split('.')[1];
-      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
-      jsonPayload = JSON.parse(jsonPayload)
-      let id = jsonPayload.userId
+      let token  = decodeURIComponent(escape(atob(localStorage.getItem('token').split('.')[1])));
+      let tokenObject = JSON.parse(token)
+      let id = tokenObject.id
       if(this.$route.path!=`/user/${id}/edit`) {
         this.$router.push({ path: `/user/${id}/edit`, params: { id: id } });
       }
     },
   },
   mounted() {
-      var base64Url = localStorage.getItem("token").split('.')[1];
-      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
-      jsonPayload = JSON.parse(jsonPayload)
-      let role = jsonPayload.role
+
+      let token  = decodeURIComponent(escape(atob(localStorage.getItem('token').split('.')[1])));
+      let tokenObject = JSON.parse(token)
+      let role = tokenObject.role
       if(role==1) {
         this.items.push( { title: 'Korisnici', icon: 'mdi-account-box', href: '/users' },)
         this.createItems.push({ title: 'Korisnici', icon: 'mdi-account-circle', href: '/create/user' },)
@@ -219,3 +212,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+.theme--dark.v-divider {
+  border-color: black;
+}
+</style>
