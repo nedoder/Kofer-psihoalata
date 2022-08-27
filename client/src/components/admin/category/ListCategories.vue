@@ -28,7 +28,10 @@
       dense
       class="elevation-1"
       >
-         
+
+       <template v-slot:[`item.image`]="{ item }">
+              <img :src="$imagePath + item.image" style="width: 50px; height: 50px; border-radius:50%" />
+          </template>   
         <template v-slot:[`item.edit`]="{ item }" > 
           <v-icon small color="blue" class="mr-2" @click="editCategory(item.id)">mdi-pencil</v-icon>
         </template>
@@ -93,7 +96,8 @@ export default {
     items: [],
     dialog: false,
     headers: [
-      { text: "Naziv", value: "category", sortable: true },
+       { text: "Slika", value: "image", type: "image", sortable: false },
+      { text: "Kategorija", value: "category", sortable: true },
       { text: "Izmijeni", value: "edit", sortable: false },
       { text: "Obriši", value: "delete", sortable: false },
     ],

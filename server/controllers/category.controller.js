@@ -4,6 +4,7 @@ const db = require("../models");
 const Category = db.category;
 const Activity = db.activity;
 const Op = db.Sequelize.Op;
+const fs = require("fs");
 // Create and Save a new category
 exports.create = (req, res) => {
 
@@ -11,6 +12,7 @@ exports.create = (req, res) => {
     // Create category
     const category = {
         category: req.body.category,
+        image: req.file.filename,
     };
 
     let token = req.headers["authorization"];
@@ -90,10 +92,17 @@ exports.findOne = (req, res) => {
 exports.update = async(req, res) => {
     const id = req.params.id;
 
+    var imagePath = null
+        // Edit a category
+    let image = { image: req.file ? req.file.filename : '' }
+
     let newCategory = {
         category: req.body.category,
     };
 
+    if (image.image !== '') {
+        Object.assign(newCategory, image);
+    }
 
     let token = req.headers["authorization"];
     let author = ''
@@ -109,6 +118,9 @@ exports.update = async(req, res) => {
 
     await Category.findByPk(id)
         .then(response => {
+            if (response.image) {
+                imagePath = './uploads/' + response.image;
+            }
             console.log(response)
         })
         .catch(err => {
@@ -130,6 +142,10 @@ exports.update = async(req, res) => {
                             message: err.message || "Some error occurred while creating activity."
                         });
                     });
+
+                if (newCategory.image) {
+                    fs.unlinkSync(imagePath)
+                }
 
                 res.send({
                     message: "Category was updated successfully."

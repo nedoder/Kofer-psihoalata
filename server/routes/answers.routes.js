@@ -4,13 +4,13 @@ module.exports = app => {
     const authorize = require("../middleware/authorize.js")
     var router = require("express").Router();
     // Create a new answer
-    router.post("/", authorize.verifyToken, upload.single("image"), answers.create);
+    router.post("/", answers.create);
     // Retrieve all answers
     router.get("/?", answers.findAll);
     // Retrieve a single answer with id
     router.get("/:id", answers.findOne);
     // Update an answer with id
-    router.patch("/:id", authorize.verifyToken, upload.single("image"), answers.update);
+    router.patch("/:id", authorize.verifyToken, answers.update);
     // Delete an answer with id
     router.delete("/:id", authorize.verifyToken, answers.delete);
     // Delete all answers

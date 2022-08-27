@@ -6,6 +6,29 @@
             <v-card-title>Kreiranje kategorije</v-card-title>
           <v-card-text>
 
+          
+             <img 
+              height="100px"
+              width="100px" 
+              v-if="url" 
+              :src="url"
+            />
+
+            <v-file-input 
+              filled 
+              shaped 
+              chips
+              prepend-icon="" 
+              append-icon="mdi-camera" 
+              v-model="image" 
+              label="Slika" 
+              :rules="[v => !!v || 'Slika je obavezna']" 
+              accept="image/*" 
+              required 
+              @change="onFileChange"
+            >
+            </v-file-input>
+
             <v-text-field
               filled 
               shaped 
@@ -32,9 +55,11 @@ import requests from "../../../services/services"
 export default {
   data: () => ({
     isValid:true,
+    image: null,
     category: '',
     isUpdating: false,
-    error: ''
+    error: '',
+     url: "",
   }),
   watch: {
     isUpdating (val) {
@@ -45,9 +70,14 @@ export default {
   },
   methods: {
     onSubmit() {
-      requests.newCategory({
-          "category": this.category,
-      })
+       let formData = new FormData();
+      if(this.image) {
+        formData.append("image", this.image, this.image.name);
+      }
+      
+      formData.append("category", this.category)
+      
+       requests.newCategory(formData)
       .then(response => {
         console.log(response)
         this.$router.push({ path: `/category/` });
@@ -58,6 +88,10 @@ export default {
       })
     },
    
+   onFileChange(e) {
+      this.image = e
+      console.log(e)
+    },
    
   },
 }

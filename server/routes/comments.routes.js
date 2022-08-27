@@ -3,7 +3,7 @@ module.exports = app => {
     const authorize = require("../middleware/authorize.js")
     var router = require("express").Router();
     // Create a new comment
-    router.post("/", authorize.verifyToken, comments.create);
+    router.post("/", comments.create);
     // Retrieve all comments
     router.get("/", comments.findAll);
     // Retrieve a single comment with id

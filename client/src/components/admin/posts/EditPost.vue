@@ -10,6 +10,7 @@
               shaped 
               v-model="currentPost.title" 
               label="Naziv" 
+              :rules="[v => v.length > 1 || 'Morate unijeti naziv']"
             >
             </v-text-field>
 
@@ -162,7 +163,7 @@ export default {
     //     if (index >= 0) this.currentBaner.categoryId.splice(index, 1)
     // },
     matchError() {  
-     return ( this.category.length === 0) ? "Greska" : ""
+     return ( this.currentPost.categoryId === null) ? "Morate odabrati kategoriju" : ""
     },
   },
   mounted() {

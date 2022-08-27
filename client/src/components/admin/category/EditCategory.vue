@@ -5,6 +5,34 @@
         <v-card tile>
           <v-card-text>
 
+             <img 
+              height="100px"
+              width="100px" 
+              v-if="url" 
+              :src="url"
+            />
+
+            <img 
+              height="100px"
+              width="100px" 
+              right
+              v-if="!url" 
+              :src="$imagePath + currentCategory.image"
+            />
+
+            <v-file-input 
+              chips 
+              filled 
+              shaped 
+              append-icon="mdi-camera" 
+              prepend-icon="" 
+              v-model="image" 
+              label="Slika" 
+              accept="image/*" 
+              @change="onFileChange"
+            >
+            </v-file-input>
+
             <v-text-field 
               filled 
               shaped 
@@ -31,6 +59,8 @@ export default {
     currentCategory: null,
     isValid:true,
     isUpdating: false,
+     url: null,
+     image: null
   }),
   watch: {
     isUpdating (val) {
@@ -41,7 +71,13 @@ export default {
   },
   methods: {
     onSubmit() {
-      requests.editCategory(this.$route.params.id, {"category": this.currentCategory.category })
+      let formData = new FormData();
+      if(this.image) {
+        formData.append("image", this.image);
+      }
+      formData.append("category", this.currentCategory.category)
+          
+      requests.editCategory(this.$route.params.id, formData)
       .then((response) => {
         console.log(response.data);
         this.$router.push({ path: `/category/` });   
@@ -58,6 +94,16 @@ export default {
       .catch((e) => {
         console.log(e);
       });
+    },
+
+    onFileChange(e) {
+      const file = e;
+      if(file) {
+        this.url = URL.createObjectURL(file);
+      }
+      else {
+        this.url = null
+      }
     },
     
    

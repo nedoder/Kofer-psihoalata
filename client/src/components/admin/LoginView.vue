@@ -92,3 +92,9 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+.container.fill-height > .layout {
+    height: 100vh;
+}
+</style>

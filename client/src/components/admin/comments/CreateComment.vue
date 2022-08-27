@@ -45,6 +45,7 @@
             
               <template v-slot:selection="data">
                 <v-chip
+                 class="short"
                   v-bind="data.attrs"
                   :input-value="data.selected"
                   close
@@ -54,7 +55,8 @@
                   <v-avatar left>
                     <v-img :src="$imagePath + data.item.image"></v-img>
                   </v-avatar>
-                      {{ data.item.title }}
+                   <span> {{ data.item.title }} </span>
+                     
                 </v-chip>
               </template>
               <template v-slot:item="data">
@@ -152,4 +154,15 @@ export default {
     height: 80vh !important;
     align-items: center !important;
 }
+
+.short {
+    width: 100px;
+}
+
+.short span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 </style>

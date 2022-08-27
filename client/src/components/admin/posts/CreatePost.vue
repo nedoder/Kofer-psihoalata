@@ -12,6 +12,7 @@
               shaped 
               v-model="title" 
               label="Naslov" 
+               :rules="[v => v.length > 1 || 'Morate unijeti naziv']"
             >
             </v-text-field>
 
@@ -131,8 +132,8 @@ export default {
       if (index >= 0) this.categories.splice(index, 1)
     },
 
-    matchError() {  
-      return (this.category.length === 0) ? "Greska" : ""
+    matchError() { 
+      return (this.categories === null) ? "Morate odabrati kategoriju" : ""
     },
   },
   mounted() {
