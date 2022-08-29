@@ -1,5 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
     const Category = sequelize.define("category", {
+        image: {
+            type: Sequelize.STRING
+        },
         category: {
             type: Sequelize.STRING,
             allowNull: false,
