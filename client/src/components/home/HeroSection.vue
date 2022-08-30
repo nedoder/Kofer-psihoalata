@@ -1,6 +1,13 @@
 <template>
 <div>
 <div class="hero" id="home">
+  <div class="shape-blob"></div>
+	<div class="shape-blob one"></div>
+	<div class="shape-blob two"></div>
+	<div class="shape-blob three"></div>
+	<div class="shape-blob four"></div>
+  <div class="shape-blob five"></div>
+  <div class="shape-blob six"></div>
     <div class="hero-left">
       <h2>Lorem ipsum dolor sit amet.</h2>
       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus, at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos eius necessitatibus at perferendis magnam eligendi temporibus quod exercitationem quibusdam voluptas?</p>
@@ -10,12 +17,10 @@
       </div>
     </div>
     <div class="hero-right">
-      <img src="../../assets/herodesno1.png" alt="">
+      <img src="../../assets/5.png" alt="">
     </div>
 </div>
-<div class="icon">
-  <font-awesome-icon icon="chevron-down" />
-</div>
+
 </div>
 </template>
 
@@ -29,7 +34,7 @@ export default {
 
 <style>
 .hero {
-  position: relative;
+  /* position: relative;
   width: 100%;
   height: 90vh;
   display: flex;
@@ -41,14 +46,120 @@ export default {
   border-bottom-left-radius: 1.5rem;
   padding-top: 4rem;
   background: linear-gradient(to right, #C4CBC5, #A497A6);
-  /* background: url(../../assets/hero9.png); */
-  /* background: linear-gradient(to right, #C4CBC5, #D6B7CF); */
-  z-index: 1;
+  z-index: 1; */
+
+  background: #fff;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	position: relative;
+  padding: 0 calc(5% + 1rem);
 }
+
+
+.shape-blob {
+	background: linear-gradient(to right, #C4CBC5, #A497A6);;
+	height: 150px;
+	width: 150px;
+	border-radius: 30% 50% 20% 40%;
+  animation: transform 20s ease-in-out infinite both alternate, movement_one 40s ease-in-out infinite both;
+	opacity:.5;
+	position: absolute;
+	right: 0%;
+	bottom: 10%;
+}
+.shape-blob.one{
+	height: 150px;
+	width: 150px;
+	left: -5%;
+	top: 50%;
+	transform: rotate(-180deg);
+	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
+}
+
+.shape-blob.two{
+	height: 150px;
+	width: 150px;
+	left: 15%;
+	top: -50px;
+	transform: rotate(-180deg);
+	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
+}
+
+.shape-blob.three{
+	height: 150px;
+	width: 150px;
+	right: 10%;
+	top: -50px;
+	transform: rotate(-180deg);
+	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
+}
+
+.shape-blob.four{
+	height: 150px;
+	width: 150px;
+	left: 20%;
+	bottom: -5%;
+	transform: rotate(-180deg);
+	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
+}
+
+.shape-blob.five{
+	height: 150px;
+	width: 150px;
+	left: 30%;
+	bottom: 30%;
+	transform: rotate(-180deg);
+	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
+}
+
+.shape-blob.six{
+	height: 150px;
+	width: 150px;
+	left: 60%;
+	bottom: 60%;
+	transform: rotate(-180deg);
+	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
+}
+
+@keyframes transform
+{
+    0%,
+  100% { border-radius: 33% 67% 70% 30% / 30% 30% 70% 70%; } 
+   20% { border-radius: 37% 63% 51% 49% / 37% 65% 35% 63%; } 
+   40% { border-radius: 36% 64% 64% 36% / 64% 48% 52% 36%; } 
+   60% { border-radius: 37% 63% 51% 49% / 30% 30% 70% 70%; } 
+   80% { border-radius: 40% 60% 42% 58% / 41% 51% 49% 59%; } 
+}
+
+
+@keyframes movement_one
+{
+    0%,
+  100% { transform: none; }
+   50% { transform: translate(50%, 20%) rotateY(10deg) scale(1.2); }
+}
+
+@keyframes movement_two
+{
+    0%,
+  500% { transform: none; }
+   50% { transform: translate(50%, 20%) rotate(-200deg) scale(1.2);}
+}
+
 
 .hero h2 {
   font-family: 'Londrina Outline', cursive;
-  font-size: 80px;
+  font-size: 5em;
+	letter-spacing: 2px;
+	font-weight: 900;
+	color: black;
+	line-height: .9em;
+	position: relative;
+	text-shadow: 2px 3px 15px rgba(0,0,0,.15);
 }
 /* .hero-left {
   width: 50%;
@@ -56,7 +167,8 @@ export default {
 .hero-buttons {
   padding-top: 10px;
   display: flex;
-  column-gap: 20px;
+  row-gap: 1rem;
+  column-gap: 1rem;
   text-align: center;
  
 }
@@ -66,59 +178,40 @@ export default {
   border: 1px solid #fff;
   border-radius: 10px; */
 
-  color: #fff;
+  color: black;
   width: 170px;
   position: relative;
   border-radius: 18px;
   padding: 10px 20px;
-   box-shadow: 6px 5px 16px #c4cbc5, -3px -2px 16px #7e7e92;
+ box-shadow:  1px 1px 9px #c4cbc5, 2px -2px 4px #7e7e92;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  backdrop-filter: blur(10px);
+  
 }
 
 
 .hero-left a:first-child {
+  color: #fff;
   background: var(--color-teal-800);
 }
 .hero-left p {
   padding: 20px 0;
-  color: #fff;
+  color: black;
 }
-.hero-right {
+/* .hero-right { */
   /* width: 50%; */
   /* filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5)); */
-   filter: drop-shadow(-2px 10px 7px #7E7E92);
+   /* filter: drop-shadow(1px 5px 5px #7E7E92);  */
+/* } */
+
+
+
+.hero-left, .hero-right {
+  z-index: 200;
 }
 
-.icon {
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  
-}
 
-.icon svg {
-  font-size: 48px;
-  color: #A497A6;
-  padding: 5px;
-   animation: scrollDown1 1.5s ease infinite;
-  
-}
-
-@keyframes scrollDown1{
-    0%{
-        transform: translateY(-15px);
-        opacity: 0;
-    }
-    50%{
-        transform: translateY(0px);
-        opacity: 1;
-    }
-    100%{
-        transform: translateY(15px);
-        opacity: 0;
-    }
-}
 
 /* .hero-right img{
   width: 120%;
@@ -165,11 +258,23 @@ export default {
     width: 60%;
   } */
 
+  .hero-right {
+    position: absolute;
+    z-index: 10;
+    opacity: 0.6;
+  }
+
   .hero h2 {
   font-size: 40px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 450px) {
+  .hero-buttons {
+    flex-direction: column;
+  }
+}
+
+/* @media (max-width: 600px) {
   .hero {
      background: url(../../assets/hero10.jpg);
      background-size: cover;
@@ -179,7 +284,7 @@ export default {
   .hero-right {
     display: none;
   }
-}
+} */
 }
 
 

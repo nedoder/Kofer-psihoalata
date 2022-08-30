@@ -44,6 +44,9 @@
 <script>
 export default {
   name: 'HeaderComponent',
+  created: function() {
+  window.addEventListener('scroll',this.scrollFunction);
+ },
   methods: {
     toggleMenu() {
  const menuLinks = document.querySelectorAll(".menu-link");
@@ -56,7 +59,21 @@ menuLinks.forEach((link) => {
 		link.classList.add("is-active");
 	});
 });
-    }
+    },
+
+	scrollFunction() {
+		const header = document.getElementById("header");
+		if(window.top.scrollY !== 0) {
+header.style.background = "var(--color-white)";
+		header.style.boxShadow = "var(--shadow-medium)";
+		header.style.transition = "all 0.35s ease-in-out";
+		header.style.zIndex = "1000"
+		} else {
+			header.style.background = "transparent"
+			header.style.boxShadow = "none"
+		}
+		
+	}
  
 
   }
@@ -122,13 +139,13 @@ button {
 	text-decoration: none;
 }
 
-img,
+/* img,
 video {
 	display: block;
 	max-width: 100%;
 	height: auto;
 	object-fit: cover;
-}
+} */
 
 
 
@@ -158,6 +175,7 @@ video {
 	width: 100%;
 	height: auto;
 	z-index: 100;
+	padding: 1rem 0;
 }
 
 .navbar {
@@ -245,11 +263,11 @@ video {
 }
 
 @media (min-width: 768px) {
-	.header {
+	/* .header {
 		background: var(--color-white);
 		box-shadow: var(--shadow-medium);
 		transition: all 0.35s ease-in-out;
-	}
+	} */
 
 	.menu {
 		position: relative;
