@@ -1,14 +1,13 @@
 <template>
-<div>
+<div class="contact">
+<div class=contact-us>
     <form class="form" @submit="onSubmit">
-		<input required name="name" v-model='contact.name' placeholder="Ime" type="text" autocomplete="off">
-		<input required name="email" v-model="contact.email" placeholder="E-mail" type="email" autocomplete="off">
-		<textarea name="message" v-model="contact.message" rows="4" placeholder="Poruka"></textarea>
+		<input required name="name" v-model='contact.name' placeholder="Ime" type="text" autocomplete="off" class="contact-name">
+		<input required name="email" v-model="contact.email" placeholder="E-mail" type="email" autocomplete="off" class="contact-email">
+		<textarea name="message" v-model="contact.message" rows="4" placeholder="Poruka" class="contact-message"></textarea>
 		<button class="button">Send</button>
 	</form>
-   <div class="wrapper">
-  <div class="wave"></div>
-</div>
+  </div>
 </div>
 </template>
 
@@ -31,33 +30,46 @@ export default {
 	
 <style scoped>
 
-
-
-.wrapper {
+.contact {
+  background: linear-gradient(to right, #C4CBC5, #A497A6);
+  border-bottom-right-radius: 45%;
+  z-index: 0;
+}
+.contact-us {
+  display: flex;
+  flex-direction: row;
+  row-gap: 20px;
+  column-gap: 20px;
   width: 100%;
-  height: 100px;
-  position: absolute;
-  border-radius: 5px;
-  background: linear-gradient(to top, #fff 0%, #A497A6 100%);
-  overflow: hidden;
+  height: 300px;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 100;
 }
 
-.wave {
-  width: 1000px;
-  height: 1025px;
-  position: absolute;
-  top: -25%;
-  left: 50%;
-  margin-left: -500px;
-  margin-top: -500px;
-  border-radius: 35%;
-  background: rgba(255, 255, 255, .75);
-  animation: wave 15s infinite linear;
+.contact-name, .contact-email, .contact-message {
+  display: block;
+  border-radius: 18px;
+   border:0; outline:0;
+   padding: 1em;
+  resize: none;
+  margin: 20px 0;
+  box-shadow: 1px 1px 9px #c4cbc5, 2px -2px 4px #7e7e92;
 }
 
-@keyframes wave {
-  from { transform: rotate(0deg);}
-  from { transform: rotate(360deg);}
+.button {
+  width: 100%;
+   background: linear-gradient(to right, #C4CBC5, #A497A6);
+  border-radius: 18px;
+  outline: none;
+  border: none;
+  padding: 10px 0;
+  box-shadow: 1px 1px 9px #c4cbc5, 2px -2px 4px #7e7e92;
 }
+
+.button:hover {
+  cursor: pointer;
+}
+
 
 </style>

@@ -61,8 +61,8 @@ export default {
   box-shadow:  1px 2px 4px #7E7E92;
   display: flex;
   flex-direction: row;
-  height: 18rem;
-
+  height: 10rem;
+  width: 10rem;
   
 }
 
@@ -94,11 +94,10 @@ export default {
 
 .category-card img {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
- filter: drop-shadow(-2px 5px 7px #7E7E92);
+  
+  right: -25%;
+  top: -25%;
+ /* filter: drop-shadow(-2px 5px 7px #7E7E92); */
   object-fit: cover;
   padding: .5rem 0;
   width: 100%;
@@ -106,7 +105,7 @@ export default {
 }
 .card-footer {
   width: 100%;
-   height: 20%;
+   height: 50%;
   padding: 1rem 0;
  
 }
