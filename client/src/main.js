@@ -4,10 +4,20 @@ import router from "./router/router";
 import vuetify from './plugins/vuetify'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faBook, faHouseChimneyWindow, faHeadset, faSquareEnvelope, faEnvelope, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faFacebookSquare, faInstagram, faTiktok } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(fas)
+library.add(faUser)
+library.add(faBook)
+library.add(faHouseChimneyWindow)
+library.add(faHeadset)
+library.add(faSquareEnvelope)
+library.add(faFacebookSquare)
+library.add(faInstagram)
+library.add(faTiktok)
+library.add(faEnvelope)
+library.add(faChevronDown)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.prototype.$imagePath = 'https://koferpsihoalata.me/'

@@ -20,6 +20,9 @@
       <img src="../../assets/5.png" alt="">
     </div>
 </div>
+<div class="icon" id="icon">
+  <font-awesome-icon icon="chevron-down" />
+</div>
 
 </div>
 </template>
@@ -181,19 +184,26 @@ export default {
   color: black;
   width: 170px;
   position: relative;
-  border-radius: 18px;
+  border-radius: 1rem;
   padding: 10px 20px;
  box-shadow:  1px 1px 9px #c4cbc5, 2px -2px 4px #7e7e92;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   backdrop-filter: blur(10px);
+  transition: all .5s ease;
   
 }
 
+.hero-buttons a:hover {
+  box-shadow:  4px 7px 12px #c4cbc5, 2px 4px 7px #7e7e92;
+  transform: scale(0.97);
+}
 
 .hero-left a:first-child {
   color: #fff;
   background: var(--color-teal-800);
+  background: #F4CB82;
+  background: #D499AE;
 }
 .hero-left p {
   padding: 20px 0;
@@ -212,6 +222,94 @@ export default {
 }
 
 
+.icon {
+  width: 100%;
+  clip-path: circle();
+  /* box-shadow: var(--shadow-small) */
+  margin: 0 auto;
+  text-align: center;
+  background: transparent;
+  position: absolute;
+  bottom: 5%;
+  
+}
+.icon svg {
+  font-size: 48px;
+  color: #A497A6;
+  padding: 5px;
+  cursor: pointer;
+   animation: scrollDown 1.2s ease infinite;
+  
+}
+
+@-webkit-keyframes scrollDown {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateX(0);
+  }
+  40% {
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+  60% {
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+}
+
+@-moz-keyframes scrollDown {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes scrollDown {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -ms-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+  60% {
+    -ms-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+}
+
+/* @keyframes scrollDown1{
+    0%{
+        transform: translateY(-15px);
+        opacity: 0;
+    }
+    50%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+    100%{
+        transform: translateY(15px);
+        opacity: 0;
+    }
+} */
 
 /* .hero-right img{
   width: 120%;

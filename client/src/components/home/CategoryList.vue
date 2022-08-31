@@ -57,8 +57,8 @@ export default {
   text-align: center;
   padding: 1rem;
     width: calc(25% - 1.5rem);
-  border-radius: 1.5rem;
-  box-shadow:  1px 2px 4px #7E7E92;
+  border-radius: 1rem;
+  box-shadow: 0.2rem 0.2rem 0.5rem #c8d0e7, -0.2rem -0.2rem 0.5rem #fff;
   display: flex;
   flex-direction: row;
   height: 10rem;
@@ -67,16 +67,16 @@ export default {
 }
 
 .category-card:nth-child(2n) {
-     box-shadow: inset 1px 2px 4px #7E7E92;
+     box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.4rem #fff;
 }
 
 .category-card:hover {
-     box-shadow: inset 1px 2px 4px #7E7E92;
+     box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.4rem #fff;
      cursor: pointer;
 }
 
 .category-card:nth-child(2n):hover {
-    box-shadow:  1px 2px 4px #7E7E92;
+    box-shadow:  0.2rem 0.2rem 0.5rem #c8d0e7, -0.2rem -0.2rem 0.5rem #fff;
 }
 
 .image-wrap {

@@ -9,6 +9,7 @@
 <hero-section/>
 <category-list/>
 <contact-form/>
+<footer-component/>
         <!-- <under-construction/> -->
     </div>
 </template>
@@ -20,11 +21,12 @@ import HeaderComponent from './HeaderComponent.vue';
 import HeroSection from './HeroSection.vue';
 import CategoryList from './CategoryList.vue';
 import ContactForm from './ContactForm.vue';
+import FooterComponent from './FooterComponent.vue';
 
 export default {
   name: 'HomePage',
   components: {
-      HeaderComponent, HeroSection, CategoryList, ContactForm
+      HeaderComponent, HeroSection, CategoryList, ContactForm, FooterComponent
       // UnderConstruction
   },
  mounted() {

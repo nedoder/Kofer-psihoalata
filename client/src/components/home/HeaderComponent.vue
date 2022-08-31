@@ -63,14 +63,17 @@ menuLinks.forEach((link) => {
 
 	scrollFunction() {
 		const header = document.getElementById("header");
+		const icon = document.getElementById("icon");
 		if(window.top.scrollY !== 0) {
-header.style.background = "var(--color-white)";
+		header.style.background = "var(--color-white)";
 		header.style.boxShadow = "var(--shadow-medium)";
 		header.style.transition = "all 0.35s ease-in-out";
 		header.style.zIndex = "1000"
+		icon.style.display = "none"
 		} else {
 			header.style.background = "transparent"
 			header.style.boxShadow = "none"
+			icon.style.display = "block"
 		}
 		
 	}
@@ -85,7 +88,7 @@ header.style.background = "var(--color-white)";
 	--color-black: hsl(0, 0%, 10%);
 	--color-white: hsl(0, 0%, 100%);
 	--color-darken: hsl(0, 0%, 20%);
-    --color-teal-800: #0C7C59; 
+    --color-teal-800: #D499AE; 
 	/* --color-teal-800: #3D2645; */
 	/* --color-teal-800: #A30015; */
 	--shadow-small: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
