@@ -1,6 +1,8 @@
 <template>
   <div class="category-container">
     <div class="category-list">
+      <h4>Kategorije</h4>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, vel.</p>
       <div class="category">
         <div v-for="item in items" :key="item.id"  class="category-card">
           <category-card :items="item" />
@@ -37,20 +39,35 @@ export default {
   display: flex;
   flex-direction: row;
   width: 100%;
-  row-gap: 2rem;
+  row-gap: 3rem;
   column-gap: 2rem;
   justify-content: start;
   align-items: center;
   flex-wrap: wrap;
+  margin: 3rem auto;
+  
 }
 .category-container {
   width: 100%;
   position: relative;
+ 
+}
+
+.category-list h4 {
+    font-family: 'Londrina Outline', cursive;
+    font-size: 3rem;
+    margin: 2rem 0;
+}
+
+.category-list p {
+  margin: 1rem 0;
 }
 .category-list {
   width: 90%;
+  padding: 2rem 1rem;
+  background: #D499AE;
+  border-radius: 3rem;
   margin: 0 auto;
-  padding: 4rem 1rem;
 }
 .category-card {
   position: relative;
@@ -58,25 +75,25 @@ export default {
   padding: 1rem;
     width: calc(25% - 1.5rem);
   border-radius: 1rem;
-  box-shadow: 0.2rem 0.2rem 0.5rem #c8d0e7, -0.2rem -0.2rem 0.5rem #fff;
+  box-shadow: 0.2rem 0.2rem 0.5rem #c57d96, -0.2rem -0.2rem 0.5rem #dab2c0;
   display: flex;
   flex-direction: row;
-  height: 10rem;
-  width: 10rem;
+  height: 11rem;
+  width: 11rem;
   
 }
 
 .category-card:nth-child(2n) {
-     box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.4rem #fff;
+     box-shadow: inset 0.2rem 0.2rem 0.5rem #c57d96, inset -0.2rem -0.2rem 0.4rem #dab2c0;
 }
 
 .category-card:hover {
-     box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.4rem #fff;
+     box-shadow: inset 0.2rem 0.2rem 0.5rem #c57d96, inset -0.2rem -0.2rem 0.4rem #dab2c0;
      cursor: pointer;
 }
 
 .category-card:nth-child(2n):hover {
-    box-shadow:  0.2rem 0.2rem 0.5rem #c8d0e7, -0.2rem -0.2rem 0.5rem #fff;
+    box-shadow:  0.2rem 0.2rem 0.5rem #c57d96, -0.2rem -0.2rem 0.5rem #dab2c0;
 }
 
 .image-wrap {
@@ -111,30 +128,40 @@ export default {
 }
 
 .card-footer p {
-color: #7E7E92;
- font-weight: 800;
+color: #000;
+ font-weight: 500;
  font-size: 1rem;
 }
 
 
-@media (max-width: 992px) {
+/* @media (max-width: 992px) {
   .category-card {
      width: calc(33% - 1.5rem);
   }
-}
+} */
 @media (max-width: 768px) {
+
+  /* .category {
+    justify-content: space-between;
+  } */
   .category-card {
-     width: calc(50% - 1.5rem);
-     height: 13rem;
+     width: 10rem;
+     height: 10rem;
   }
 
   .card-footer {
     padding: 0;
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   .category-card {
-     width: 100%;
+     width: 80%;
+     height: 13rem;
+  }
+
+  .category-card img {
+    height: 90%;
+    width: auto;
   }
 }
 </style>

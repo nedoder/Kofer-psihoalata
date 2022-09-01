@@ -12,7 +12,7 @@
       <h2>Lorem ipsum dolor sit amet.</h2>
       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus, at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos eius necessitatibus at perferendis magnam eligendi temporibus quod exercitationem quibusdam voluptas?</p>
       <div class="hero-buttons">
-        <a href="#">Postani volonter</a>
+        <a href="/join-us">Postani volonter</a>
          <a href="#">Podrži nas</a>
       </div>
     </div>
@@ -208,6 +208,7 @@ export default {
 .hero-left p {
   padding: 20px 0;
   color: black;
+  text-align: justify;
 }
 /* .hero-right { */
   /* width: 50%; */

@@ -4,25 +4,34 @@
 		<a href="/" class="brand"><img src="../../assets/logo.png"/></a>
 		<div class="menu" id="menu">
 			<ul class="menu-list">
-				<li class="menu-item">
+				<!-- <li class="menu-item">
 					<a href="/" class="menu-link is-active">
 						<font-awesome-icon icon="house-chimney-window" />
 						<span class="menu-name">Početna</span>
 					</a>
-				</li>
-				<li class="menu-item">
+				</li> -->
+				<router-link tag="li" class="menu-link" class-active="is-active" to="/" exact><font-awesome-icon icon="house-chimney-window" /><span class="menu-name">Početna</span></router-link>
+				<router-link tag="li" class="menu-link" class-active="is-active" to="/#about-us" exact><font-awesome-icon icon="user" /><span class="menu-name">O nama</span></router-link>
+				<router-link tag="li" class="menu-link" class-active="is-active" to="/education" exact><font-awesome-icon icon="book" /><span class="menu-name">Edukacija</span></router-link>
+				<router-link tag="li" class="menu-link" class-active="is-active" to="/support" exact><font-awesome-icon icon="headset" /><span class="menu-name">Podrška</span></router-link>
+				<router-link tag="li" class="menu-link" class-active="is-active" to="/#contact" exact><font-awesome-icon icon="square-envelope" /><span class="menu-name">Kontakt</span></router-link>
+				
+				
+				
+				
+				<!-- <li class="menu-item">
 					<a href="/about-us" class="menu-link">
 						<font-awesome-icon icon="user" />
 						<span class="menu-name">O nama</span>
 					</a>
-				</li>
-				<li class="menu-item">
+				</li> -->
+				<!-- <li class="menu-item">
 					<a href="/education" class="menu-link">
 						<font-awesome-icon icon="book" />
 						<span class="menu-name">Edukacija</span>
 					</a>
-				</li>
-				<li class="menu-item">
+				</li> -->
+				<!-- <li class="menu-item">
 					<a href="/support" class="menu-link">
 						<font-awesome-icon icon="headset" />
 						<span class="menu-name">Podrška</span>
@@ -33,7 +42,7 @@
 						<font-awesome-icon icon="square-envelope" />
 						<span class="menu-name">Kontakt</span>
 					</a>
-				</li>
+				</li> -->
 			</ul>
 		</div>
 	</nav>
@@ -48,19 +57,7 @@ export default {
   window.addEventListener('scroll',this.scrollFunction);
  },
   methods: {
-    toggleMenu() {
- const menuLinks = document.querySelectorAll(".menu-link");
-
-menuLinks.forEach((link) => {
-	link.addEventListener("click", () => {
-		menuLinks.forEach((link) => {
-			link.classList.remove("is-active");
-		});
-		link.classList.add("is-active");
-	});
-});
-    },
-
+   
 	scrollFunction() {
 		const header = document.getElementById("header");
 		const icon = document.getElementById("icon");
@@ -79,7 +76,8 @@ menuLinks.forEach((link) => {
 	}
  
 
-  }
+  }, 
+
 }
 </script>
 
@@ -219,10 +217,11 @@ video {
 		outline: none;
 		color: var(--color-black);
     }
-		.menu .is-active {
+		.menu-link:hover {
 			position: relative;
 			color: var(--color-teal-800);
 			transition: all 0.35s ease;
+			cursor: pointer;
 		}
 	
 
@@ -245,7 +244,11 @@ video {
 
 
 
-
+	.exact-active {
+		position: relative;
+			color: var(--color-teal-800);
+			transition: all 0.35s ease;
+	}
 
 @media  (min-width: 360px) {
 	.menu-name {

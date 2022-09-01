@@ -41,19 +41,20 @@
     width: 100%;
     /* background: rgba(164, 151, 166, 0.5); */
     background: #F4CB82;
-    padding: 5rem 0;
+    width: 100%;
+    padding: 0 calc(5% + 1rem);
+    padding-top: 4rem;
 }
 
 .footer-container {
-    width: 90%;
-    margin: 0 auto;
+    margin: 0;
     display: flex;
     flex-direction: row;
     justify-content: start;
     align-items: flex-start;
     row-gap: 1rem;
     column-gap: 1.5rem;
-    padding: 2rem 1rem;
+    padding: 2rem 0;
 }
 
 .gmail svg {
@@ -71,7 +72,7 @@
 }
 .social-icons svg {
     padding: 0 1rem;
-    height: 30px;
+    height: 2rem;
 }
 
 .facebook svg {
@@ -91,4 +92,11 @@
     text-decoration: none;
     color: #000000;
 }
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 3rem 0;
+    }
+}
+
 </style>

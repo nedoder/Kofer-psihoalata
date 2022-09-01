@@ -10,6 +10,11 @@ import HomePage from "../components/home/HomePage"
 import ActivityLog from "../components/admin/ActivityLog"
 
 
+
+import SupportPage from "../components/home/SupportPage"
+import EducationPage from "../components/home/EducationPage"
+import JoinUs from "../components/home/JoinUs"
+
 // import components for blogs
 import ListPosts from "../components/admin/posts/ListPosts"
 import ShowPost from "../components/admin/posts/ShowPost"
@@ -59,6 +64,21 @@ const routes = [{
         path: "/",
         name: "HomePage",
         component: HomePage,
+    },
+    {
+        path: "/support",
+        name: "SupportPage",
+        component: SupportPage,
+    },
+    {
+        path: "/education",
+        name: "EducationPage",
+        component: EducationPage,
+    },
+    {
+        path: "/join-us",
+        name: "JoinUs",
+        component: JoinUs,
     },
     {
         path: "/admin",
@@ -165,6 +185,16 @@ const router = new VueRouter({
     mode: "history",
     base: process.env.BASE_URL,
     routes,
+    linkExactActiveClass: "exact-active",
+    scrollBehavior (to) {
+        if (to.hash) {
+          return {
+            selector: to.hash,
+            behavior: 'smooth'
+          };
+        }
+        return { x: 0, y: 0 };  // Go to the top of the page if no hash
+      },
 });
 
 export default router
