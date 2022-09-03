@@ -363,6 +363,10 @@ export default {
     opacity: 0.6;
   }
 
+  .shape-blob.three, .shape-blob.five, .shape-blob.six {
+    display: none;
+  }
+  
   .hero h2 {
   font-size: 40px;
 }

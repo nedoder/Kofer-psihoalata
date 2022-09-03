@@ -2,12 +2,11 @@
   <div class="post-container">
     <div class="post-list">
       <h4>Postovi</h4>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, vel.</p>
-     
-        <div v-for="item in items" :key="item.id"  class="category-card">
-          <category-card :items="item" />
-         
+      <div class="post-flex">
+        <div v-for="item in items" :key="item.id" class="posts">
+          <post-card :items="item" />
         </div>
+      </div>
      
     </div>
   </div>
@@ -31,6 +30,7 @@ export default {
     requests.getPostsList()
     .then(response => {
       this.items = response.data;
+      console.log(response.data)
     }).catch(error => {
       console.log(error.response)
     });
@@ -38,138 +38,132 @@ export default {
 }
 </script>
 
-<style scoped>
-.cards {
-    width: 100%;
+<style >
+
+.post-container {
+  width: 100%;
+  position: relative;
+  
+ 
+}
+
+.post-list h4 {
+    font-family: 'Londrina Outline', cursive;
+    font-size: 3rem;
+    margin: 2rem 0;
+}
+
+.post-list p {
+  margin: 1rem 0;
+}
+
+.post-list {
+  width: 90%;
+  padding: 5rem 1rem;
+  margin: 0 auto;
+  overflow: hidden;
+  
+}
+
+.post-flex {
+  display: flex;
+    display: -webkit-flex;
+    justify-content: start;
+    -webkit-justify-content: start;
+    flex-wrap: wrap;
+    row-gap: 2rem;
+    column-gap: 2rem;
+}
+.posts {
+    width: calc(25% - 1.5rem);
     display: flex;
     display: -webkit-flex;
-    justify-content: center;
-    -webkit-justify-content: center;
-    max-width: 820px;
-}
-
-.card--1 .card__img, .card--1 .card__img--hover {
-    background-image: url('https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');
-}
-
-.card--2 .card__img, .card--2 .card__img--hover {
-    background-image: url('https://images.pexels.com/photos/307008/pexels-photo-307008.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');
-}
-
-.card__like {
-    width: 18px;
-}
-
-.card__clock {
-    width: 15px;
-  vertical-align: middle;
-    fill: #AD7D52;
-}
-.card__time {
-    font-size: 12px;
-    color: #AD7D52;
-    vertical-align: middle;
-    margin-left: 5px;
-}
-
-.card__clock-info {
-    float: right;
-}
-
-.card__img {
-  visibility: hidden;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 235px;
-  border-top-left-radius: 12px;
-border-top-right-radius: 12px;
+    justify-content: start;
+    -webkit-justify-content: start;
   
 }
 
-.card__info-hover {
-    position: absolute;
-    padding: 16px;
+.post {
   width: 100%;
-  opacity: 0;
-  top: 0;
-}
-
-.card__img--hover {
-  transition: 0.2s all ease-out;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-  position: absolute;
-    height: 235px;
-  border-top-left-radius: 12px;
-border-top-right-radius: 12px;
-top: 0;
-  
-}
-.card {
-  margin-right: 25px;
   transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
   background-color: #fff;
-    width: 33.3%;
   position: relative;
-  border-radius: 12px;
+  border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
-}
-.card:hover {
-  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
-    transform: scale(1.10, 1.10);
-}
-
-.card__info {
-z-index: 2;
-  background-color: #fff;
-  border-bottom-left-radius: 12px;
-border-bottom-right-radius: 12px;
-   padding: 16px 24px 24px 24px;
+  box-shadow: 5px 5px 8px rgb(185, 184, 184), -5px -5px 8px rgb(250, 246, 246);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 3px solid #fff;
+ 
 }
 
-.card__category {
-    font-family: 'Raleway', sans-serif;
-    text-transform: uppercase;
-    font-size: 13px;
-    letter-spacing: 2px;
-    font-weight: 500;
-  color: #868686;
+.post-category {
+  text-transform: uppercase;
+  color: rgb(108, 110, 103)
 }
 
-.card__title {
-    margin-top: 5px;
-    margin-bottom: 10px;
-    font-family: 'Roboto Slab', serif;
+.post-by {
+  color: rgb(108, 110, 103)
+}
+.post-info, .post-img {
+  height: 50%;
+}
+.post-img img {
+  width: 70%;
+  height: 100%;
+  border-radius: 1rem;
+  
+}
+.post-date-info {
+  color: #F4CB82;
+  text-align: right;
+  padding-bottom: .5rem;
+}
+.post-author {
+  color: #F4CB82;
 }
 
-.card__by {
-    font-size: 12px;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 500;
+.post-img {
+  z-index: 1;
+}
+.post-info {
+  padding: 1rem 0;
 }
 
-.card__author {
-    font-weight: 600;
-    text-decoration: none;
-    color: #AD7D52;
+.post .shape {
+  width: 200px;
+    height: 200px;
+    background: #F4CB82;
+    opacity: 0.2;
+    position: absolute;
+    top: 0;
+    right: -100px;
+    transform: rotate(45deg);
+    
 }
 
-.card:hover .card__img--hover {
-    height: 100%;
-    opacity: 0.3;
+/* .post .shape:nth-child(2) {
+     background:  #c57d96;
+} */
+
+
+@media (max-width: 992px) {
+  .posts {
+    width: calc(33.3% - 1.5rem);
+  }
 }
 
-.card:hover .card__info {
-    background-color: transparent;
-    position: relative;
+@media (max-width: 768px) {
+  .posts {
+    width: calc(33.3% - 1.5rem);
+  }
 }
 
-.card:hover .card__info-hover {
-    opacity: 1;
+@media (max-width: 600px) {
+  .posts {
+    width: 100%;
+  }
 }
+
 </style>

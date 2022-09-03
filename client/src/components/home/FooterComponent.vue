@@ -93,10 +93,22 @@
     color: #000000;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
     .footer {
-        padding: 3rem 0;
+        padding: 3rem calc(5% + 1rem);
     }
 }
+
+@media (max-width: 768px) {
+    .footer-container  {
+        flex-direction: column;
+        text-align: end;
+    }
+
+    .footer-brand, .footer-contact, .social-icons {
+        width: 100%;
+    }
+}
+
 
 </style>

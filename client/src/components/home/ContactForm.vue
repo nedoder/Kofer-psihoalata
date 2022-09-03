@@ -152,7 +152,11 @@ export default {
   pointer-events: none;
   z-index: -1;
 }
-
+@media (max-width: 820px) {
+  .contact-info h4 {
+    font-size: 2.5rem;
+  }
+}
 @media (max-width: 768px) {
 
   .contact {

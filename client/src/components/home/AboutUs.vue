@@ -43,4 +43,12 @@
     align-items: center;
    
 }
+
+@media (max-width: 768px) {
+    .about-image {
+    position: absolute;
+    z-index: -1;
+    opacity: 0.6;
+  }
+}
 </style>
