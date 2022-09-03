@@ -5,7 +5,7 @@
     
       <div class="post-date-info">
         <font-awesome-icon icon="calendar"/>
-        <span class="post-ime">{{new Date(items.createdAt).toDateString()}}</span>
+        <span class="post-date">{{new Date(items.createdAt).toISOString().slice(0,10)}}</span>
       </div>
 
      </div>
@@ -16,7 +16,7 @@
   
   <div class="post-info">
     <span class="post-category"> {{items.category.category}}</span>
-    <h3 class="post-title">{{items.title}}</h3>
+    <h5 class="post-title">{{items.title}}</h5>
     <span class="post-by">kreirao/la <a href="#" class="post-author" title="author">{{items.user.username}}</a></span>
   </div>
 </article>

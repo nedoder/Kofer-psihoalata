@@ -65,6 +65,7 @@ export default {
   
 }
 
+
 .post-flex {
   display: flex;
     display: -webkit-flex;
@@ -86,7 +87,7 @@ export default {
 .post {
   width: 100%;
   transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
-  background-color: #fff;
+  background: #f5f5f5;
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
@@ -94,7 +95,7 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  border: 3px solid #fff;
+  /* border: 3px solid #fff; */
  
 }
 
@@ -104,7 +105,7 @@ export default {
 }
 
 .post-by {
-  color: rgb(108, 110, 103)
+  color: rgb(108, 110, 103);
 }
 .post-info, .post-img {
   height: 50%;
@@ -113,6 +114,9 @@ export default {
   width: 70%;
   height: 100%;
   border-radius: 1rem;
+  border: 3px solid #fff;
+  box-shadow: 3px 4px 5px rgb(185 184 184), -7px -2px 4px rgb(250 246 246);
+  transition: all .5s ease;
   
 }
 .post-date-info {
@@ -131,6 +135,19 @@ export default {
   padding: 1rem 0;
 }
 
+.post-date {
+    font-size: .8rem;
+    padding-left: .2rem;
+}
+
+.post-title {
+     display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 1.2rem;
+}
+
 .post .shape {
   width: 200px;
     height: 200px;
@@ -143,10 +160,23 @@ export default {
     
 }
 
-/* .post .shape:nth-child(2) {
+.posts:nth-child(2n) .shape  {
      background:  #c57d96;
-} */
+}
 
+.post:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.post-title:hover {
+    text-decoration: underline;
+    }
+
+.post-img img:hover {
+    opacity: 0.6;
+    width: 75%;
+}
 
 @media (max-width: 992px) {
   .posts {
@@ -156,7 +186,7 @@ export default {
 
 @media (max-width: 768px) {
   .posts {
-    width: calc(33.3% - 1.5rem);
+    width: calc(50% - 1.5rem);
   }
 }
 
