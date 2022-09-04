@@ -1,9 +1,9 @@
 <template>
-<div class="hero" id="home">
+  <div class="hero" id="home">
     <div class="hero-middle">
       <img src="../../assets/underconstruction1.png" alt="Under construction">
     </div>
-</div>
+  </div>
 </template>
 
 <style scoped>
@@ -30,18 +30,14 @@
 }
 
 @media (min-width: 120px) {
-  
- .hero-middle img{
-  width: 60%;
-}
+  .hero-middle img{
+    width: 60%;
+  }
 }
 
 @media (max-width: 768px) {
-  
- .hero-middle img{
-  width: 100%;
+  .hero-middle img{
+    width: 100%;
+  }
 }
-
-}
-
 </style> 

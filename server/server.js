@@ -8,13 +8,13 @@ const jwt = require('jsonwebtoken')
 
 var path = require('path');
 var serveStatic = require('serve-static');
-// var history = require('connect-history-api-fallback');
+var history = require('connect-history-api-fallback');
 
 const app = express()
 
-// app.use(history({
-//     // verbose: true
-// }));
+app.use(history({
+    // verbose: true
+}));
 
 app.use(express.static(__dirname + '/dist'));
 
@@ -24,7 +24,7 @@ global.__basedir = __dirname;
 
 var corsOptions = {
     // origin: "https://koferpsihoalata.me"
-    origin: "http://localhost:8080"
+    origin: "*"
 };
 
 app.use(cors(corsOptions));
@@ -86,10 +86,6 @@ var connection = mysql.createConnection({
     user: process.env.USER,
     port: process.env.PORTDB,
     password: process.env.PASSWORD,
-    // host: "127.0.0.1",
-    // user: "root",
-    // port: "3306",
-    // password: "root",
 });
 
 

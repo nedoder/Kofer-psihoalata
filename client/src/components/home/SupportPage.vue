@@ -1,10 +1,8 @@
 <template>
     <div>
-       
-<header-component/>
-<contact-form/>
-<footer-component/>
-      
+        <header-component/>
+        <contact-form/>
+        <footer-component/>
     </div>
 </template>
 
@@ -18,7 +16,6 @@ export default {
   name: 'SupportPage',
   components: {
       HeaderComponent, ContactForm, FooterComponent
-      
   },
  
 }

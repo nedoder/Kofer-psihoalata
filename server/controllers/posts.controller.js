@@ -54,9 +54,9 @@ exports.create = (req, res) => {
 };
 // Retrieve all posts from the database.
 exports.findAll = (req, res) => {
-    const query = req.query.title;
+    const query = req.query.category;
     var condition = query ? {
-        title: {
+        categoryId: {
             [Op.like]: `%${query}%`
         }
     } : null;
@@ -73,7 +73,9 @@ exports.findAll = (req, res) => {
 
 
     Post.findAll({
+        
             include: ['category', 'user', { model: db.comments, as: 'comments', include: [{ model: db.answers, as: 'answers' }] }],
+            where: condition,
             order: [
                 ["updatedAt", "desc"]
             ],

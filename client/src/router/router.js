@@ -14,6 +14,7 @@ import ActivityLog from "../components/admin/ActivityLog"
 import SupportPage from "../components/home/SupportPage"
 import EducationPage from "../components/home/EducationPage"
 import JoinUs from "../components/home/JoinUs"
+import PostDetails from "../components/home/PostDetails"
 
 // import components for blogs
 import ListPosts from "../components/admin/posts/ListPosts"
@@ -79,6 +80,11 @@ const routes = [{
         path: "/join-us",
         name: "JoinUs",
         component: JoinUs,
+    },
+    {
+        path: "/post/:id",
+        name: "PostDetails",
+        component: PostDetails,
     },
     {
         path: "/admin",

@@ -1,12 +1,14 @@
 <template>
-  <div class="single-category">
-    <div class="image-wrap">
-       <img :src="$imagePath + items.image"/>
+  <router-link tag="a"  :to="{path: 'education?category=' + items.id}" exact>
+    <div class="single-category">
+      <div class="image-wrap">
+        <img :src="$imagePath + items.image"/>
+      </div>
+      <div class="card-footer">
+        <p>{{items.category}}</p>
+      </div>
     </div>
- <div class="card-footer">
-    <p>{{items.category}}</p>
-    </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -15,7 +17,3 @@ export default {
   props: ["items"],
 }
 </script>
-
-<style>
-  
-</style>

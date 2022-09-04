@@ -1,172 +1,67 @@
 <template>
-<header class="header" id="header">
-	<nav class="navbar header-container">
-		<a href="/" class="brand"><img src="../../assets/logo.png"/></a>
-		<div class="menu" id="menu">
-			<ul class="menu-list">
-				<!-- <li class="menu-item">
-					<a href="/" class="menu-link is-active">
+	<header class="header" id="header">
+		<nav class="navbar header-container">
+			<a href="/" class="brand"><img src="../../assets/logo.png"/></a>
+			<div class="menu" id="menu">
+				<ul class="menu-list">
+					<router-link tag="li" class="menu-link" class-active="is-active" to="/" exact>
 						<font-awesome-icon icon="house-chimney-window" />
 						<span class="menu-name">Početna</span>
-					</a>
-				</li> -->
-				<router-link tag="li" class="menu-link" class-active="is-active" to="/" exact><font-awesome-icon icon="house-chimney-window" /><span class="menu-name">Početna</span></router-link>
-				<router-link tag="li" class="menu-link" class-active="is-active" to="/#about-us" exact><font-awesome-icon icon="user" /><span class="menu-name">O nama</span></router-link>
-				<router-link tag="li" class="menu-link" class-active="is-active" to="/education" exact><font-awesome-icon icon="book" /><span class="menu-name">Edukacija</span></router-link>
-				<router-link tag="li" class="menu-link" class-active="is-active" to="/support" exact><font-awesome-icon icon="headset" /><span class="menu-name">Podrška</span></router-link>
-				<router-link tag="li" class="menu-link" class-active="is-active" to="/#contact" exact><font-awesome-icon icon="square-envelope" /><span class="menu-name">Kontakt</span></router-link>
-				
-				
-				
-				
-				<!-- <li class="menu-item">
-					<a href="/about-us" class="menu-link">
+					</router-link>
+					<router-link tag="li" class="menu-link" class-active="is-active" to="/#about-us" exact>
 						<font-awesome-icon icon="user" />
 						<span class="menu-name">O nama</span>
-					</a>
-				</li> -->
-				<!-- <li class="menu-item">
-					<a href="/education" class="menu-link">
+					</router-link>
+					<router-link tag="li" class="menu-link" class-active="is-active" to="/education" exact>
 						<font-awesome-icon icon="book" />
 						<span class="menu-name">Edukacija</span>
-					</a>
-				</li> -->
-				<!-- <li class="menu-item">
-					<a href="/support" class="menu-link">
+					</router-link>
+					<router-link tag="li" class="menu-link" class-active="is-active" to="/support" exact>
 						<font-awesome-icon icon="headset" />
 						<span class="menu-name">Podrška</span>
-					</a>
-				</li>
-				<li class="menu-item">
-					<a href="#contact" class="menu-link">
+					</router-link>
+					<router-link tag="li" class="menu-link" class-active="is-active" to="/#contact" exact>
 						<font-awesome-icon icon="square-envelope" />
 						<span class="menu-name">Kontakt</span>
-					</a>
-				</li> -->
-			</ul>
-		</div>
-	</nav>
-</header>
-
+					</router-link>
+				</ul>
+			</div>
+		</nav>
+	</header>
 </template>
 
 <script>
 export default {
-  name: 'HeaderComponent',
-  created: function() {
-  window.addEventListener('scroll',this.scrollFunction);
- },
-  methods: {
-   
-	scrollFunction() {
-		const header = document.getElementById("header");
-		const icon = document.getElementById("icon");
-		if(window.top.scrollY !== 0) {
-		header.style.background = "var(--color-white)";
-		header.style.boxShadow = "var(--shadow-medium)";
-		header.style.transition = "all 0.35s ease-in-out";
-		header.style.zIndex = "1000"
-		icon.style.display = "none"
-		} else {
-			header.style.background = "transparent"
-			header.style.boxShadow = "none"
-			icon.style.display = "block"
+	name: 'HeaderComponent',
+	created: function() {
+		window.addEventListener('scroll',this.scrollFunction);
+	},
+	methods: {
+		scrollFunction() {
+			const header = document.getElementById("header");
+			if(window.top.scrollY !== 0) {
+				header.style.background = "var(--white)";
+				header.style.boxShadow = "var(--shadow-medium)";
+				header.style.transition = "all 0.35s ease-in-out";
+				header.style.zIndex = "1000"
+			} else {
+				header.style.background = "transparent"
+				header.style.boxShadow = "none"
+			}
 		}
-		
-	}
- 
-
-  }, 
-
+	}, 
 }
 </script>
 
 <style>
-:root {
-	--color-black: hsl(0, 0%, 10%);
-	--color-white: hsl(0, 0%, 100%);
-	--color-darken: hsl(0, 0%, 20%);
-    --color-teal-800: #D499AE; 
-	/* --color-teal-800: #3D2645; */
-	/* --color-teal-800: #A30015; */
-	--shadow-small: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-	--shadow-medium: 0 -4px 6px -1px rgba(0, 0, 0, 0.1),
-		0 2px 4px -1px rgba(0, 0, 0, 0.06);
-	--shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-		0 4px 6px -2px rgba(0, 0, 0, 0.05);
-	
-}
-
-*,
-*::before,
-*::after {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-	list-style: none;
-	list-style-type: none;
-	text-decoration: none;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-rendering: optimizeLegibility;
-	font-family: 'Poppins', sans-serif;
-}
-
-html {
-	font-size: 100%;
-	box-sizing: inherit;
-	scroll-behavior: smooth;
-}
-
-body {
-	font-family: 'Poppins', sans-serif;
-	font-size: 1rem;
-	font-weight: 400;
-	line-height: 1.5;
-	color: var(--color-black);
-	background: var(--color-white);
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-a,
-button {
-	font-family: inherit;
-	font-size: inherit;
-	line-height: inherit;
-	cursor: pointer;
-	border: none;
-	outline: none;
-	background: none;
-	text-decoration: none;
-}
-
-/* img,
-video {
-	display: block;
-	max-width: 100%;
-	height: auto;
-	object-fit: cover;
-} */
-
-
-
 
 .header-container {
 	height: auto;
 	margin: 0 auto;
 }
 
-.brand {
-	font-family: inherit;
-	font-size: 1.35rem;
-	font-weight: 700;
-	line-height: 1.15;
-	color: var(--color-teal-800);
-	text-transform: uppercase;
-}
-
 .brand img {
-    height: 120px;
+    height: 8rem;
 }
 
 .header {
@@ -199,82 +94,72 @@ video {
 	padding: 0 1rem;
 	border-top-left-radius: 1.5rem;
 	border-top-right-radius: 1.5rem;
-	background: var(--color-white);
-		box-shadow: var(--shadow-medium);
+	background: var(--white);
+	box-shadow: var(--shadow-medium);
 }
-	.menu-list {
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
-	}
 
-	.menu-link {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		border: none;
-		outline: none;
-		color: var(--color-black);
-    }
-		.menu-link:hover {
-			position: relative;
-			color: var(--color-teal-800);
-			transition: all 0.35s ease;
-			cursor: pointer;
-		}
+.menu-list {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.menu-link {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	outline: none;
+	color: var(--black);
+}
+
+.menu-link:hover {
+	position: relative;
+	color: var(--pink);
+	transition: all 0.35s ease;
+	cursor: pointer;
+}
 	
 
-	.menu-icon {
-		font-size: 1.35rem;
-		line-height: 1;
-		color: inherit;
-	}
+.menu-icon {
+	font-size: 1.35rem;
+	line-height: 1;
+	color: inherit;
+}
 
-	.menu-name {
-        white-space: nowrap;
-		display: none;
-		font-family: inherit;
-		font-size: 0.75rem;
-		font-weight: 500;
-		line-height: 1.25;
-		visibility: hidden;
-		text-transform: capitalize;
-	}
+.menu-name {
+    white-space: nowrap;
+	display: none;
+	font-family: inherit;
+	font-size: 0.75rem;
+	font-weight: 500;
+	line-height: 1.25;
+	visibility: hidden;
+	text-transform: capitalize;
+}
 
-
-
-	.exact-active {
-		position: relative;
-			color: var(--color-teal-800);
-			transition: all 0.35s ease;
-	}
+.exact-active {
+	position: relative;
+	color: var(--pink);
+	transition: all 0.35s ease;
+}
 
 @media  (min-width: 360px) {
 	.menu-name {
-		
-			display: block;
-			visibility: visible;
-		
+		display: block;
+		visibility: visible;
 	}
 }
 
 @media (min-width: 576px) {
 	.menu-list {
-	
-			justify-content: center;
+		justify-content: center;
 		column-gap: 3rem;
-		
 	}
 }
 
 @media (min-width: 768px) {
-	/* .header {
-		background: var(--color-white);
-		box-shadow: var(--shadow-medium);
-		transition: all 0.35s ease-in-out;
-	} */
-
 	.menu {
 		position: relative;
 		top: 0;
@@ -285,37 +170,36 @@ video {
 		box-shadow: none;
     }
 
-		.menu-link .is-active::before {
-			
-				position: absolute;
-				content: "";
-				left: 0;
-				bottom: 0;
-				width: 2rem;
-				height: 2px;
-				border: none;
-				outline: none;
-				background: var(--color-teal-800);
-			}
-
-			.menu-link:hover {
-				color: var(--color-teal-800);
-				transition: all 0.35s ease;
-			}
-		
-
-		.menu-icon {
-			display: none;
-			visibility: hidden;
-		}
-
-		.menu-name {
-			font-size: 1rem;
-			font-weight: 500;
-			line-height: 1.5;
-			margin-bottom: 0.2rem;
-		}
+	.menu-link .is-active::before {
+		position: absolute;
+		content: "";
+		left: 0;
+		bottom: 0;
+		width: 2rem;
+		height: 2px;
+		border: none;
+		outline: none;
+		background: var(--pink);
 	}
 
+	.menu-link:hover {
+		color: var(--pink);
+		transition: all 0.35s ease;
+	}
+		
+
+	.menu-icon {
+		display: none;
+		visibility: hidden;
+	}
+
+	.menu-name {
+		font-size: 1rem;
+		font-weight: 500;
+		line-height: 1.5;
+		margin-bottom: 0.2rem;
+	}
+
+}
 
 </style>

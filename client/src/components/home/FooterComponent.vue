@@ -7,19 +7,19 @@
             </div>
             <div class="footer-contact">
                 <p>Kontakt informacije</p>
-                <a href="#" class="gmail">
+                <a href="mailto: koferpsihoalata@gmail.me" class="gmail">
                     <font-awesome-icon  icon = 'envelope'/>
                     <span class="footer-email">koferpsihoalata@gmail.me</span>
                 </a>
             </div>
             <div class="social-icons">
-                <a href="#" class="facebook">
+                <a href="https://www.facebook.com/" class="facebook">
                     <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'facebook-square' }" />
                 </a>
-                <a href="#" class="instagram" >
+                <a href="https://www.instagram.com/" class="instagram" >
                     <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'instagram' }"/>
                 </a>
-                <a href="#" class="tiktok">
+                <a href="https://www.tiktok.com/" class="tiktok">
                     <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'tiktok' }" />
                 </a>
                 <p>Pratite novosti i na društvenim mrežama</p>
@@ -35,12 +35,10 @@
     }
 </script>
 
-<style scoped>
-        
+<style scoped>   
 .footer {
     width: 100%;
-    /* background: rgba(164, 151, 166, 0.5); */
-    background: #F4CB82;
+    background: var(--yellow);
     width: 100%;
     padding: 0 calc(5% + 1rem);
     padding-top: 4rem;
@@ -60,7 +58,7 @@
 .gmail svg {
     padding: 0 .5rem 0 0;
     height: 1.5rem;
-    color: #000000;
+    color: var(--black);
 }
 
 .footer-brand, .footer-contact, .social-icons {
@@ -79,8 +77,6 @@
     color: #4267B2;
 }
 .instagram svg {
-    /* background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-    background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); */
     color: #d6249f ;
 }
 .tiktok svg {
@@ -90,7 +86,7 @@
 
 .footer-brand a, .footer-contact a {
     text-decoration: none;
-    color: #000000;
+    color: var(--black);
 }
 
 @media (max-width: 820px) {

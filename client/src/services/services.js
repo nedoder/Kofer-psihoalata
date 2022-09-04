@@ -8,6 +8,7 @@ const apiClient = axios.create({
         "Content-Type": "application/json",
         Authorization: localStorage.getItem('token')
     },
+    
     timeout: 10000,
 });
 
@@ -29,7 +30,10 @@ const requests = {
     logIn(data) {
         return apiClient.post("api/user/login", data);
     },
-    getPostsList() {
+    getPostsList(cat) {
+        return apiClient.get(`api/post?category=${cat}`);
+    },
+    getPostList() {
         return apiClient.get("api/post");
     },
     getPost(id) {

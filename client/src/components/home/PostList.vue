@@ -1,25 +1,28 @@
 <template>
-  <div class="post-container">
+  <div>
+  <div class="post-container" v-if="items.length!==0">
     <div class="post-list">
       <h4>Postovi</h4>
       <div class="post-flex">
         <div v-for="item in items" :key="item.id" class="posts">
-          <post-card :items="item" />
+          <post-card :items="item"/>
         </div>
       </div>
-     
     </div>
   </div>
+  <no-results v-if="items.length===0"></no-results>
+</div>
 </template>
 
 <script>
 import requests from '../../services/services'
+import NoResults from './NoResults.vue'
 import PostCard from './PostCard.vue'
 
  
 export default {
   name: 'PostList',
-  components: {PostCard},
+  components: {PostCard, NoResults},
 
   
   data: () => ({
@@ -27,18 +30,29 @@ export default {
   }),
  
   mounted(){
-    requests.getPostsList()
-    .then(response => {
-      this.items = response.data;
-      console.log(response.data)
-    }).catch(error => {
-      console.log(error.response)
-    });
+    if(this.$route.query.category) {
+      requests.getPostsList(this.$route.query.category)
+      .then(response => {
+        this.items = response.data;
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error.response)
+      })
+    } else {
+      requests.getPostList()
+      .then(response => {
+        this.items = response.data;
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error.response)
+      });
+    }
+    
   },
 }
 </script>
 
-<style >
+<style>
 
 .post-container {
   width: 100%;
@@ -48,9 +62,10 @@ export default {
 }
 
 .post-list h4 {
-    font-family: 'Londrina Outline', cursive;
+    font-family: 'Ribeye Marrow', cursive;
     font-size: 3rem;
     margin: 2rem 0;
+    color: #444;
 }
 
 .post-list p {
@@ -95,6 +110,7 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  /* height: 25rem; */
   /* border: 3px solid #fff; */
  
 }
@@ -120,12 +136,13 @@ export default {
   
 }
 .post-date-info {
-  color: #F4CB82;
+  color: rgb(108, 110, 103);
   text-align: right;
   padding-bottom: .5rem;
+  /* color: #C57D96; */
 }
 .post-author {
-  color: #F4CB82;
+  color: #C57D96 !important;
 }
 
 .post-img {
@@ -150,13 +167,14 @@ export default {
 
 .post .shape {
   width: 200px;
-    height: 200px;
-    background: #F4CB82;
-    opacity: 0.2;
-    position: absolute;
-    top: 0;
-    right: -100px;
-    transform: rotate(45deg);
+  height: 200px;
+  background: #F4CB82;
+  opacity: 0.2;
+  position: absolute;
+  top: 0;
+  right: -100px;
+  transform: rotate(45deg);
+  transition: all 1s ease;
     
 }
 
@@ -169,9 +187,16 @@ export default {
     transform: scale(1.05);
 }
 
+.post:hover .shape {
+  height: 100%;
+  width: 100%;
+  transform: rotate(0);
+  right: -40%;
+}
+
 .post-title:hover {
-    text-decoration: underline;
-    }
+  text-decoration: underline;
+}
 
 .post-img img:hover {
     opacity: 0.6;
