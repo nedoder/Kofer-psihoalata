@@ -5,7 +5,6 @@
     <about-us/>
     <category-list/>
     <partner-list/>
-    <contact-form/>
     <footer-component/>
     <!-- <under-construction/> -->
   </div>
@@ -19,14 +18,13 @@ import HeroSection from './HeroSection.vue';
 import AboutUs from './AboutUs.vue';
 import CategoryList from './CategoryList.vue';
 import PartnerList from './PartnerList.vue'
-import ContactForm from './ContactForm.vue';
 import FooterComponent from './FooterComponent.vue';
 
 
 export default {
   name: 'HomePage',
   components: {
-      HeaderComponent, HeroSection, AboutUs, CategoryList, PartnerList, ContactForm, FooterComponent
+      HeaderComponent, HeroSection, AboutUs, CategoryList, PartnerList, FooterComponent
       // UnderConstruction
   },
 //  mounted() {

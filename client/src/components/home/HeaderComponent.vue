@@ -39,14 +39,17 @@ export default {
 	methods: {
 		scrollFunction() {
 			const header = document.getElementById("header");
+			const icon = document.getElementById("icon");
 			if(window.top.scrollY !== 0) {
 				header.style.background = "var(--white)";
 				header.style.boxShadow = "var(--shadow-medium)";
 				header.style.transition = "all 0.35s ease-in-out";
 				header.style.zIndex = "1000"
+				icon.style.display = "none"
 			} else {
 				header.style.background = "transparent"
 				header.style.boxShadow = "none"
+				icon.style.display = "block"
 			}
 		}
 	}, 

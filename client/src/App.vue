@@ -1,10 +1,6 @@
 <template>
- <router-view>
-
-
-
-        
- </router-view>
+  <router-view>  
+  </router-view>
 </template>
 
 <script>
@@ -59,6 +55,8 @@ html {
 	font-size: 100%;
 	box-sizing: inherit;
 	scroll-behavior: smooth;
+  position: relative;
+  
 }
 
 body {
@@ -69,6 +67,14 @@ body {
 	color: var(--black);
 	background: var(--white);
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: end;
+}
+
+footer {
+  margin: auto 0;
 }
 
 a,

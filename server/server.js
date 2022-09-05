@@ -95,7 +95,7 @@ connection.connect(function(err) {
     console.log("Connected to the database!");
 });
 
-connection.query('CREATE DATABASE IF NOT EXISTS kofer', function(err, result) {
+connection.query('CREATE DATABASE IF NOT EXISTS senadbul_kofer', function(err, result) {
     if (err) throw err;
     console.log("Database created!");
 })

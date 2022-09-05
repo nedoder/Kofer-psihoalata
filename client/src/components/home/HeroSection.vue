@@ -194,7 +194,7 @@ export default {
   text-align: center;
   background: transparent;
   position: absolute;
-  bottom: 5%;
+  top: 85vh;
   
 }
 
@@ -284,9 +284,7 @@ export default {
   }
   
   .hero-right {
-    position: absolute;
-    z-index: 10;
-    opacity: 0.6;
+    display: none;
   }
 
   .shape-blob.three, .shape-blob.five, .shape-blob.six {
@@ -300,6 +298,11 @@ export default {
 }
 
 @media (max-width: 400px) {
+
+  .hero {
+    padding-top: 0;
+  }
+  
   .hero-buttons {
     flex-direction: column;
   }

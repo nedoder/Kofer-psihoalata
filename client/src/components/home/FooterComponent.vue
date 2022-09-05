@@ -5,13 +5,6 @@
                 <a href="/" class="brand-image"><img src="../../assets/footerlogo.png"/></a>
                 <p>&copy; Kofer psihoalata. All rights reserved. Powered by <a href="https://www.linkedin.com/in/tanjadoderovic/">nedoder</a></p>
             </div>
-            <div class="footer-contact">
-                <p>Kontakt informacije</p>
-                <a href="mailto: koferpsihoalata@gmail.me" class="gmail">
-                    <font-awesome-icon  icon = 'envelope'/>
-                    <span class="footer-email">koferpsihoalata@gmail.me</span>
-                </a>
-            </div>
             <div class="social-icons">
                 <a href="https://www.facebook.com/" class="facebook">
                     <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'facebook-square' }" />
@@ -22,7 +15,10 @@
                 <a href="https://www.tiktok.com/" class="tiktok">
                     <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'tiktok' }" />
                 </a>
-                <p>Pratite novosti i na društvenim mrežama</p>
+                <a href="mailto: koferpsihoalata@gmail.me" class="gmail">
+                    <font-awesome-icon  icon = 'envelope'/>
+                </a>
+                <p>Pišite nam</p>
             </div>
         </div>
     </footer>  
@@ -39,9 +35,10 @@
 .footer {
     width: 100%;
     background: var(--yellow);
-    width: 100%;
     padding: 0 calc(5% + 1rem);
     padding-top: 4rem;
+    border-top-left-radius: 3rem;
+    border-top-right-radius: 3rem;
 }
 
 .footer-container {
@@ -61,8 +58,8 @@
     color: var(--black);
 }
 
-.footer-brand, .footer-contact, .social-icons {
-    width: 33%;
+.footer-brand, .social-icons {
+    width: 50%;
 }
 
 .footer-brand img {
@@ -83,8 +80,12 @@
     color: #000000;
 }
 
+.gmail svg {
+    color: var(--pink);
+}
 
-.footer-brand a, .footer-contact a {
+
+.footer-brand a, .social-icons a {
     text-decoration: none;
     color: var(--black);
 }
@@ -98,10 +99,10 @@
 @media (max-width: 768px) {
     .footer-container  {
         flex-direction: column;
-        text-align: end;
+        text-align: center;
     }
 
-    .footer-brand, .footer-contact, .social-icons {
+    .footer-brand, .social-icons {
         width: 100%;
     }
 }
