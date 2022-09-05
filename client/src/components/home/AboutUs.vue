@@ -24,7 +24,7 @@
 #about-us {
     width: 100%;
     padding: 0 calc(5% + 1rem);
-    padding-top: 8rem;
+    padding-top: 5rem;
 }
 #about-us h4 {
     font-family: 'Ribeye Marrow', cursive;

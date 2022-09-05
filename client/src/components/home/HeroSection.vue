@@ -1,21 +1,21 @@
 <template>
   <div>
     <div class="hero" id="home">
-    <div class="shape-blob"></div>
-    <div class="shape-blob one"></div>
-    <div class="shape-blob two"></div>
-    <div class="shape-blob three"></div>
-    <div class="shape-blob four"></div>
-    <div class="shape-blob five"></div>
-    <div class="shape-blob six"></div>
-    <div class="hero-left">
-      <h2>Lorem ipsum dolor sit amet.</h2>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus, at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos eius necessitatibus at perferendis magnam eligendi temporibus quod exercitationem quibusdam voluptas?</p>
-      <div class="hero-buttons">
-        <a href="/join-us">Postani volonter</a>
-         <a href="https://www.patreon.com/">Podrži nas</a>
-    </div>
-    </div>
+      <div class="shape-blob"></div>
+      <div class="shape-blob one"></div>
+      <div class="shape-blob two"></div>
+      <div class="shape-blob three"></div>
+      <div class="shape-blob four"></div>
+      <div class="shape-blob five"></div>
+      <div class="shape-blob six"></div>
+      <div class="hero-left">
+        <h2>Lorem ipsum dolor sit amet.</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus, at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos eius necessitatibus at perferendis magnam eligendi temporibus quod exercitationem quibusdam voluptas?</p>
+        <div class="hero-buttons">
+          <a href="/join-us">Postani volonter</a>
+           <a href="https://www.patreon.com/">Podrži nas</a>
+        </div>
+      </div>
       <div class="hero-right">
         <img src="../../assets/5.png" alt="Hero image">
       </div>
@@ -47,7 +47,6 @@ export default {
   overflow: hidden;
   position: relative;
   padding: 0 calc(5% + 1rem);
-  padding-top: 5rem;
 }
 
 /* BACKGROUND SHAPES */
@@ -61,6 +60,7 @@ export default {
 	position: absolute;
 	right: 0%;
 	bottom: 10%;
+  z-index: 0;
 }
 
 .shape-blob.one{
@@ -278,11 +278,7 @@ export default {
 }
 
 @media (max-width: 768px) {
-
-  .hero {
-    margin-top: 0;
-  }
-  
+ 
   .hero-right {
     display: none;
   }
@@ -299,10 +295,6 @@ export default {
 
 @media (max-width: 400px) {
 
-  .hero {
-    padding-top: 0;
-  }
-  
   .hero-buttons {
     flex-direction: column;
   }

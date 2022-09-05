@@ -90,6 +90,10 @@
     color: var(--black);
 }
 
+.social-icons {
+    text-align: end;
+}
+
 @media (max-width: 820px) {
     .footer {
         padding: 3rem calc(5% + 1rem);
@@ -104,6 +108,7 @@
 
     .footer-brand, .social-icons {
         width: 100%;
+        text-align: center;
     }
 }
 

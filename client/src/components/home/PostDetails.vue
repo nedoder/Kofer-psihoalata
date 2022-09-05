@@ -9,11 +9,9 @@
             </div>
             <p class="single-post-category">{{item.category.category}}</p>
             <p class="single-post-author">Kreirao/la <span class="post-username">{{item.user.username}}</span> <span>|</span> Datum objave: {{new Date(item.createdAt).toLocaleString('en-us',{month:'long', day: 'numeric', year:'numeric'})}}</p>
-            <div  class="single-post-content">
-                <p v-html=item.content></p>
+            <div  class="single-post-content" id="fuck" v-html=item.content>
             </div>
         </div>
-        <contact-form/>
         <footer-component/>
     </div>
 </template>
@@ -23,11 +21,10 @@
 import requests from '../../services/services';    
 
 import HeaderComponent from './HeaderComponent.vue';
-import ContactForm from './ContactForm.vue'
 import FooterComponent from './FooterComponent.vue'; 
 export default {
    name: 'PostDetails',
-   components: {HeaderComponent, ContactForm, FooterComponent},
+   components: {HeaderComponent, FooterComponent},
     data: () => ({
      item: {
         date: '',
@@ -53,7 +50,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+
 .single-post {
     width: 100%;
 }
@@ -61,7 +59,8 @@ export default {
 .post-details {
     width: 90%;
     margin: 0 auto;
-    margin-top: 10rem;
+    margin-top: 8rem;
+    padding: 0 1rem;
 }
 
 .post-details h4  {
@@ -73,7 +72,7 @@ export default {
 .single-post-image img {
     border-radius: 1rem;
     margin: 2rem 0;
-    width: 100%;
+    max-width: 50%;
 }
 
 
@@ -105,17 +104,19 @@ export default {
     white-space:pre;
 }
 
-.single-post-content img {
-    border-radius: 1rem !important;
+.single-post-content p > img {
+    border-radius: 1rem;
     margin: 2rem 0;
-    max-width: 100%;
+    max-width: 50%;
 } 
 
-img  {
-    border-radius: 1rem !important;
-    margin: 2rem 0;
-    max-width: 100%;
+@media (max-width: 992px) {
+    .single-post-content p > img, .single-post-image img {
+        max-width: 100%;
+} 
+
 }
+
 </style>
     
         

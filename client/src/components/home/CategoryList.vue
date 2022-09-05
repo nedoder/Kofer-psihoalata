@@ -153,7 +153,7 @@ export default {
 .slick-prev:before, .slick-next:before {
   opacity: 1;
   position: relative;
-  z-index: 100;
+  z-index: 1000;
   color: var(--black);
   opacity: 0.75;
 }
