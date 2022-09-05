@@ -111,7 +111,8 @@ export default {
 }
 
 .join-img {
-  width: 50%;
+  position: absolute;
+  width: 100%;
   margin: auto;
   text-align: center;
   transform: translateY(50%) rotate(-23deg);
@@ -162,10 +163,6 @@ export default {
   color: var(--white);
 }
 
-.join-img {
-    position: absolute;
-    width: 100%;
-}
 
 @media (max-width: 768px) {
 
@@ -178,5 +175,15 @@ export default {
   }
 
 
+}
+
+@media (max-width: 400px) {
+  .join-img {
+    transform: translateY(0%) rotate(0deg);
+  }
+
+  .join-img img {
+    width: 70%;
+  }
 }
 </style>
