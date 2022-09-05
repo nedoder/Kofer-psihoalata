@@ -44,10 +44,9 @@ export default {
         requests.getPost(this.$route.params.id)
         .then(response => {
             this.item = response.data
-            console.log(this.item)
         })
         .catch(error => {
-        console.log(error.response)
+            console.log(error.response)
         }) 
     }
      
@@ -55,7 +54,6 @@ export default {
 </script>
 
 <style scoped>
-
 .single-post {
     width: 100%;
 }
@@ -68,8 +66,8 @@ export default {
 
 .post-details h4  {
     font-family: 'Ribeye Marrow', cursive;
-  font-size: 2rem;
-  color: #444;
+    font-size: 2rem;
+    color: var(--light-black);
 }
 
 .single-post-image img {
@@ -90,7 +88,7 @@ export default {
 }
 
 .post-username {
-    color: #D499AE;
+    color: var(--pink);
 }
 
 .single-post-content {

@@ -29,11 +29,11 @@ export default {
       HeaderComponent, HeroSection, AboutUs, CategoryList, PartnerList, ContactForm, FooterComponent
       // UnderConstruction
   },
- mounted() {
-    window.addEventListener("load", function() {
-      document.getElementsByClassName("loader-wrapper")[0].style.display = 'none';
-    })
-  }
+//  mounted() {
+//     window.addEventListener("load", function() {
+//       document.getElementsByClassName("loader-wrapper")[0].style.display = 'none';
+//     })
+//   }
 }
 </script>
 

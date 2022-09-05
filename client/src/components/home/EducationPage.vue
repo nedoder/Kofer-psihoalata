@@ -1,11 +1,9 @@
 <template>
     <div>
-       
-<header-component/>
-<post-list/>
-<contact-form/>
-<footer-component/>
-      
+        <header-component/>
+        <post-list/>
+        <contact-form/>
+        <footer-component/>
     </div>
 </template>
 
@@ -17,11 +15,9 @@ import FooterComponent from './FooterComponent.vue';
 import PostList from './PostList.vue';
 
 export default {
-  name: 'EducationPage',
-  components: {
+    name: 'EducationPage',
+    components: {
       HeaderComponent, PostList, ContactForm, FooterComponent
-      
-  },
- 
+    },
 }
 </script>

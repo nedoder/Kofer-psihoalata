@@ -191,7 +191,7 @@ export default {
 .single-category {
   display: flex;
   flex-direction: column;
-  height: 15rem;
+  height: 14rem;
   justify-content: center;
 }
 
@@ -223,12 +223,27 @@ export default {
     padding: 0;
   }
 
+  .single-category {
+    height: 13rem;
+  }
+
 }
 
- @media (max-width: 600px) {
+@media (max-width: 600px) {
 
   .slick-track {
     height: 150px;
+  }
+
+  .single-category {
+    height: 14rem;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .single-category {
+    height: 13rem;
   }
 
 }

@@ -42,13 +42,15 @@
 
 @media (max-width: 768px) {
     .about-image {
-        position: absolute;
-        z-index: -1;
-        opacity: 0.4;
+        display: none;
     }
 
     #about-us h4 {
         font-size: 2.5rem;
+    }
+
+    .about-text {
+        text-align: justify;
     }
 }
 </style>

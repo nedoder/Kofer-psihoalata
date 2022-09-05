@@ -1,17 +1,17 @@
 <template>
   <div>
-  <div class="post-container" v-if="items.length!==0">
-    <div class="post-list">
-      <h4>Postovi</h4>
-      <div class="post-flex">
-        <div v-for="item in items" :key="item.id" class="posts">
-          <post-card :items="item"/>
+    <div class="post-container" v-if="items.length!==0">
+      <div class="post-list">
+        <h4>Postovi</h4>
+        <div class="post-flex">
+          <div v-for="item in items" :key="item.id" class="posts">
+            <post-card :items="item"/>
+          </div>
         </div>
       </div>
     </div>
+    <no-results v-if="items.length===0"></no-results>
   </div>
-  <no-results v-if="items.length===0"></no-results>
-</div>
 </template>
 
 <script>
@@ -24,7 +24,6 @@ export default {
   name: 'PostList',
   components: {PostCard, NoResults},
 
-  
   data: () => ({
     items: [],
   }),
@@ -34,7 +33,6 @@ export default {
       requests.getPostsList(this.$route.query.category)
       .then(response => {
         this.items = response.data;
-        console.log(response.data)
       }).catch(error => {
         console.log(error.response)
       })
@@ -42,12 +40,10 @@ export default {
       requests.getPostList()
       .then(response => {
         this.items = response.data;
-        console.log(response.data)
       }).catch(error => {
         console.log(error.response)
       });
     }
-    
   },
 }
 </script>
@@ -57,15 +53,13 @@ export default {
 .post-container {
   width: 100%;
   position: relative;
-  
- 
 }
 
 .post-list h4 {
-    font-family: 'Ribeye Marrow', cursive;
-    font-size: 3rem;
-    margin: 2rem 0;
-    color: #444;
+  font-family: 'Ribeye Marrow', cursive;
+  font-size: 3rem;
+  margin: 2rem 0;
+  color: var(--light-black);
 }
 
 .post-list p {
@@ -80,23 +74,22 @@ export default {
   
 }
 
-
 .post-flex {
   display: flex;
-    display: -webkit-flex;
-    justify-content: start;
-    -webkit-justify-content: start;
-    flex-wrap: wrap;
-    row-gap: 2rem;
-    column-gap: 2rem;
+  display: -webkit-flex;
+  justify-content: start;
+  -webkit-justify-content: start;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+  column-gap: 2rem;
 }
+
 .posts {
-    width: calc(25% - 1.5rem);
-    display: flex;
-    display: -webkit-flex;
-    justify-content: start;
-    -webkit-justify-content: start;
-  
+  width: calc(25% - 1.5rem);
+  display: flex;
+  display: -webkit-flex;
+  justify-content: start;
+  -webkit-justify-content: start;
 }
 
 .post {
@@ -110,9 +103,6 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  /* height: 25rem; */
-  /* border: 3px solid #fff; */
- 
 }
 
 .post-category {
@@ -123,9 +113,11 @@ export default {
 .post-by {
   color: rgb(108, 110, 103);
 }
+
 .post-info, .post-img {
   height: 50%;
 }
+
 .post-img img {
   width: 70%;
   height: 100%;
@@ -139,15 +131,15 @@ export default {
   color: rgb(108, 110, 103);
   text-align: right;
   padding-bottom: .5rem;
-  /* color: #C57D96; */
 }
 .post-author {
-  color: #C57D96 !important;
+  color: var(--light-pink) !important;
 }
 
 .post-img {
   z-index: 1;
 }
+
 .post-info {
   padding: 1rem 0;
 }
@@ -158,7 +150,7 @@ export default {
 }
 
 .post-title {
-     display: -webkit-box;
+    display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -168,23 +160,23 @@ export default {
 .post .shape {
   width: 200px;
   height: 200px;
-  background: #F4CB82;
+  background: var(--yellow);
   opacity: 0.2;
   position: absolute;
   top: 0;
-  right: -100px;
+  right: -8rem;
   transform: rotate(45deg);
   transition: all 1s ease;
     
 }
 
 .posts:nth-child(2n) .shape  {
-     background:  #c57d96;
+  background:  var(--light-pink);
 }
 
 .post:hover {
-    cursor: pointer;
-    transform: scale(1.05);
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 .post:hover .shape {
@@ -199,8 +191,8 @@ export default {
 }
 
 .post-img img:hover {
-    opacity: 0.6;
-    width: 75%;
+  opacity: 0.6;
+  width: 75%;
 }
 
 @media (max-width: 992px) {
@@ -212,6 +204,10 @@ export default {
 @media (max-width: 768px) {
   .posts {
     width: calc(50% - 1.5rem);
+  }
+
+  .post-list h4 {
+    font-size: 2rem;
   }
 }
 

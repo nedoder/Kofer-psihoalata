@@ -40,6 +40,7 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    text-align: justify;
 }
 
 .partner-text, .partner-logo {

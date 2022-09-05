@@ -14,6 +14,7 @@ export default {
 </script>
 
 <style>
+
 * {
   padding: 0;
   margin: 0;
@@ -21,26 +22,22 @@ export default {
   scroll-behavior: smooth;
 }
 
-:root{
-
---white: #fff;
---black: #000;
---gradient: linear-gradient(to right, #C4CBC5, #A497A6);
---light-grey: #c4cbc5;
---violet: #7e7e92;
---pink: #D499AE;
---dark-violet: #A497A6;
---light-black: #444;
---yellow: #f4cb82;
---category-shadow: 0.2rem 0.2rem 0.5rem #c57d96, -0.2rem -0.2rem 0.5rem #dab2c0;;
---category-shadow-inset: inset 0.2rem 0.2rem 0.5rem #c57d96, inset -0.2rem -0.2rem 0.4rem #dab2c0;
-
-	--shadow-small: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-	--shadow-medium: 0 -4px 6px -1px rgba(0, 0, 0, 0.1),
-		0 2px 4px -1px rgba(0, 0, 0, 0.06);
-	--shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-		0 4px 6px -2px rgba(0, 0, 0, 0.05);
-	
+:root {
+  --white: #fff;
+  --black: #000;
+  --gradient: linear-gradient(to right, #C4CBC5, #A497A6);
+  --light-grey: #c4cbc5;
+  --violet: #7e7e92;
+  --pink: #D499AE;
+  --light-pink: #c57d96;
+  --dark-violet: #A497A6;
+  --light-black: #444;
+  --yellow: #f4cb82;
+  --category-shadow: 0.2rem 0.2rem 0.5rem #c57d96, -0.2rem -0.2rem 0.5rem #dab2c0;;
+  --category-shadow-inset: inset 0.2rem 0.2rem 0.5rem #c57d96, inset -0.2rem -0.2rem 0.4rem #dab2c0;
+  --shadow-small: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-medium: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 *,

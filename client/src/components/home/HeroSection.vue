@@ -309,7 +309,14 @@ export default {
   }
 }
 
+@media (max-width: 300px) {
+  .hero p {
+    font-size: .7rem;
+  }
 
-
+  .hero h2 {
+    line-height: 2.5rem;
+  }
+}
 
 </style>

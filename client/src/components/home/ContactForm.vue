@@ -101,6 +101,8 @@ export default {
   font-family: 'Ribeye Marrow', cursive;
   font-size: 3rem;
   color: var(--light-black);
+  line-height: 3rem;
+  padding: 1rem 0;
 }
 
 .contact-info {
