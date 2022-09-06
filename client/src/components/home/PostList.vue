@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="post-container" v-if="items.length!==0">
+    <div class="post-container" v-if="items.length!==0 && loading===false">
       <div class="post-list">
         <h4>Postovi</h4>
         <div class="post-flex">
@@ -10,7 +10,10 @@
         </div>
       </div>
     </div>
-    <no-results v-if="items.length===0"></no-results>
+    <no-results v-if="items.length===0 && loading===false"></no-results>
+    <div class="loader-wrapper" v-if="loading===true">
+     <img src="../../assets/117913-3d-ui-laptop-unscreen.gif"/>
+    </div>
   </div>
 </template>
 
@@ -26,9 +29,11 @@ export default {
 
   data: () => ({
     items: [],
+    loading: false,
   }),
  
   mounted(){
+    this.loading = true
     if(this.$route.query.category) {
       requests.getPostsList(this.$route.query.category)
       .then(response => {
@@ -36,19 +41,28 @@ export default {
       }).catch(error => {
         console.log(error.response)
       })
+      .finally(() => (this.loading = false))
     } else {
       requests.getPostList()
       .then(response => {
         this.items = response.data;
       }).catch(error => {
         console.log(error.response)
-      });
+      })
+      .finally(() => (this.loading = true))
     }
   },
 }
 </script>
 
 <style>
+
+.loader-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .post-container {
   width: 100%;
@@ -120,11 +134,12 @@ export default {
 
 .post-img img {
   width: 70%;
-  height: 100%;
+  height: 9vw;
   border-radius: 1rem;
   border: 3px solid #fff;
   box-shadow: 3px 4px 5px rgb(185 184 184), -7px -2px 4px rgb(250 246 246);
   transition: all .5s ease;
+  object-fit: cover;
   
 }
 .post-date-info {
@@ -192,12 +207,16 @@ export default {
 
 .post-img img:hover {
   opacity: 0.6;
-  width: 75%;
+  width: 80%;
 }
 
 @media (max-width: 992px) {
   .posts {
     width: calc(33.3% - 1.5rem);
+  }
+
+  .post-img img {
+    height: 12vw;
   }
 }
 
@@ -209,11 +228,25 @@ export default {
   .post-list h4 {
     font-size: 2rem;
   }
+
+  .post-img img {
+    height: 18vw;
+  }
 }
 
 @media (max-width: 600px) {
   .posts {
     width: 100%;
+  }
+
+  .post-img img {
+    height: 35vw;
+  }
+}
+
+@media (max-width: 300px) {
+  .post-img img {
+    height: 40vw;
   }
 }
 

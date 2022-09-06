@@ -151,11 +151,14 @@ export default {
 }
 
 .slick-prev:before, .slick-next:before {
-  opacity: 1;
   position: relative;
-  z-index: 1000;
+  z-index: 100 !important;
   color: var(--black);
-  opacity: 0.75;
+  opacity: 1;
+}
+
+.slick-arrow {
+  z-index: 100 !important;
 }
 
 .slick-prev:before {

@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="hero-right">
-        <img src="../../assets/5.png" alt="Hero image">
+        <img src="../../assets/hero.png" alt="Hero image">
       </div>
     </div>
     <div class="icon" id="icon">
@@ -29,8 +29,19 @@
 <script>
 export default {
   name: 'HeroSection',
-
-  
+  created: function() {
+		window.addEventListener('scroll',this.scrollFunction);
+	},
+  methods: {
+		scrollFunction() {
+			const icon = document.getElementById("icon");
+			if(window.top.scrollY !== 0) {
+          icon.style.display = "none"
+			} else {
+          icon.style.display = "none"
+			}
+		}
+	}, 
 }
 </script>
 
