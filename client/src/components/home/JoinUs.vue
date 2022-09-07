@@ -13,7 +13,7 @@
 
     <header-component/>
      
-    <div class=join-us>
+    <div class=join-us  v-if="loading===false && success===false"> 
       <div class="join-info">
         <h4>Postani volonter</h4>
         <div class="join-img">
@@ -44,18 +44,27 @@
           <textarea required name="join-questionseven" v-model="contact.questionseven" rows="4" placeholder="Šta očekuješ da ćeš dobiti od ovog projekta?" class="join-message"></textarea>
           <textarea required name="join-questioneight" v-model="contact.questioneight" rows="4" placeholder="Na koje načine možeš/želiš doprinijeti razvoju Kluba mladih volontera?" class="join-message"></textarea>
           
-          <button class="join-submit"  @submit="onSubmit">Pošalji</button>
+          <button class="join-submit"  @click="onSubmit">Pošalji</button>
         </div>
       </div>
     </div>
 
+    <div class="loading-mail" v-if="loading===true">
+     <img src="../../assets/mail.gif"/>
+    </div>
+    <div class="success-message" v-if="success===true">
+      <h4>Uspješna prijava</h4>
+      <img src="../../assets/success.png"/>
+    </div>
+
     <footer-component/>
-    
   </div>
 </template>
     
     
 <script>
+  
+import requests from '../../services/services'
 import HeaderComponent from './HeaderComponent.vue';
 import FooterComponent from './FooterComponent.vue';
 
@@ -64,7 +73,7 @@ export default {
   components: { HeaderComponent, FooterComponent },
   data: () => ({
     contact: {
-      name: '',
+      name: 'bbb',
       place: '',
       date: '',
       school: '',
@@ -79,10 +88,44 @@ export default {
       questionseven: '',
       questioneight: '',
     },
+    loading: false,
+    success: false,
   }),
+
+  computed: {
+    newMessage() {
+        return `
+                1. Mjesto i datum: ${this.contact.place}\n
+                2. Ime i prezime : ${this.contact.name}\n
+                3. Datum i godina rođenja: ${this.contact.date}\n
+                4. Škola i razred: ${this.contact.school}\n
+                5. Broj telefona: ${this.contact.phone}\n
+                6. Kako si saznao/la za klub mladih volontera 'Klupko'?: ${this.contact.questionone}\n
+                7. Koji su razlozi zbog kojih si odlučio-la da se prijaviš za volontiranje: ${this.contact.questiontwo}\n
+                8. Da li si nekad bio/bila angažovan/a kao volonter?: ${this.contact.questionthree}\n
+                9. Ako je tvoj odgovor DA, u kojoj organizacji je bio tvoj angažman?: ${this.contact.questionfour}\n
+                10. Pokušaj da opišeš sebe kroz ono što voliš kod sebe: ${this.contact.questionfive}\n
+                11. Šta bi kod sebe voljeo/la da unaprijediš?: ${this.contact.questionsix}\n
+                12. Šta očekuješ da ćeš dobiti od ovog projekta?: ${this.contact.questionseven}\n
+                13. Na koje načine možeš/želiš doprinijeti razvoju Kluba mladih volontera?: ${this.contact.questioneight}\n
+        `
+    }
+  },
     
   methods: {
     onSubmit() {
+      this.loading = true
+      requests.sendMail({"message": this.newMessage,})
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+      .finally(() => {
+        this.loading = false
+        this.success = true
+      })
     },
 
   }
@@ -96,6 +139,28 @@ export default {
 body, html {
   overflow: hidden;
 }
+
+.loading-mail, .success-message {
+  top: 50%;
+  left: 50%;
+  transform: translate(0%, 50%);
+  text-align: center;
+  height: 78vh;
+}
+
+.success-message {
+  transform: translate(0%, 25%);
+}
+.success-message h4 {
+  font-family: 'Ribeye Marrow', cursive;
+  font-size: 3rem;
+  margin: 1rem 0;
+  color: var(--light-black);
+}
+
+.success-message img {
+  width: 70%;
+}
 .join {
   width: 100%;
   display: flex;
@@ -105,6 +170,7 @@ body, html {
   overflow: hidden;
   position: relative;
 }
+
 
 .shape-blob{
   z-index: -1;
@@ -243,6 +309,10 @@ body, html {
     margin: 6rem auto;
   }
 
+  .join-info h4, .success-message h4 {
+    font-size: 2rem;
+  }
+
 
 }
 
@@ -254,5 +324,7 @@ body, html {
   .join-img img {
     width: 70%;
   }
+
 }
+
 </style>

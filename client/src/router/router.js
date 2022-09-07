@@ -8,7 +8,7 @@ import AdminLayout from "../components/admin/AdminLayout"
 import ErrorView from "../components/admin/ErrorView"
 import HomePage from "../components/home/HomePage"
 import ActivityLog from "../components/admin/ActivityLog"
-
+import NotFound from "../components/home/NotFound"
 
 
 import SupportPage from "../components/home/SupportPage"
@@ -85,6 +85,13 @@ const routes = [{
         path: "/post/:id",
         name: "PostDetails",
         component: PostDetails,
+    },
+    {
+        path: "*",
+        component: NotFound,
+        meta: {
+            title: "NotFound"
+        },
     },
     {
         path: "/admin",

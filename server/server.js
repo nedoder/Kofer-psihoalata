@@ -46,7 +46,7 @@ require("./routes/comments.routes")(app);
 require("./routes/posts.routes")(app);
 require("./routes/users.routes")(app);
 require("./routes/activity.routes")(app);
-
+require("./routes/email.routes")(app);
 
 
 app.use(express.static("uploads"))

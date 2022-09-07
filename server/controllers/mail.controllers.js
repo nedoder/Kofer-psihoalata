@@ -14,64 +14,22 @@ let transporter = nodemailer.createTransport({
     },
 });
 
-exports.sendMail = (req, res) => {
+exports.send = (req, res) => {
     
     var mailOptions = {
-        from: req.body.email ,
+        from: process.env.GMAIL,
         to: process.env.GMAIL,
-        subject: req.body.name,
+        subject: "Prijava za volontere",
         text: req.body.message,
     };
-
-      // send mail with defined transport object
-    let info = await transporter.sendMail({
-      from: process.env.GMAIL, // sender address
-      to: req.body.email, // list of receivers
-      subject: 'Translation Suggestion', // Subject line
-      text: "Hello world?", // plain text body
-      html: "<p>Traditional: <br> Simplified: <br> Pinyin: <br> English: "
-            
-    });
 
      
     transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
-            console.log(error);
+            console.log('Email error: ' + error);
         } else {
             console.log('Email poslat: ' + info.response);
         }
     });
 
-    next();
-}
-
-exports.joinUs = (req, res) => {
-    
-    var mailOptions = {
-        from: req.body.email ,
-        to: process.env.GMAIL,
-        subject: req.body.name,
-        text: req.body.message,
-    };
-
-      // send mail with defined transport object
-    let info = await transporter.sendMail({
-      from: process.env.GMAIL, // sender address
-      to: req.body.email, // list of receivers
-      subject: 'Translation Suggestion', // Subject line
-      text: "Hello world?", // plain text body
-      html: "<p>Traditional: <br> Simplified: <br> Pinyin: <br> English: "
-            
-    });
-
-     
-    transporter.sendMail(mailOptions, function(error, info) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email poslat: ' + info.response);
-        }
-    });
-    
-    next();
 }

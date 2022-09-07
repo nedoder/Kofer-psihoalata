@@ -12,7 +12,7 @@
     </div>
     <no-results v-if="items.length===0 && loading===false"></no-results>
     <div class="loader-wrapper" v-if="loading===true">
-     <img src="../../assets/117913-3d-ui-laptop-unscreen.gif"/>
+     <img src="../../assets/2.gif"/>
     </div>
   </div>
 </template>
@@ -49,7 +49,7 @@ export default {
       }).catch(error => {
         console.log(error.response)
       })
-      .finally(() => (this.loading = true))
+      .finally(() => (this.loading = false))
     }
   },
 }
@@ -219,6 +219,8 @@ export default {
     height: 12vw;
   }
 }
+
+
 
 @media (max-width: 768px) {
   .posts {

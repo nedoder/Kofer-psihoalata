@@ -114,6 +114,9 @@ const requests = {
     getActivityList(page) {
         return apiClient.get(`api/activity?page=${page}`);
     },
+    sendMail(data) {
+        return apiClient.post("api/mail", data);
+    },
 
 };
 
