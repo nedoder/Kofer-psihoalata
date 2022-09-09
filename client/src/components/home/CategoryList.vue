@@ -1,7 +1,7 @@
 <template>
   <div class="category-container">
     <div class="category-list">
-      <h4>Kategorije</h4>
+      <h3>Kategorije</h3>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, vel.</p>
       <VueSlickCarousel ref="carousel" v-bind="slickOptions" v-if="items.length > 0">
         <div v-for="item in items" :key="item.id"  class="category-card">
@@ -96,7 +96,7 @@ export default {
   width: 100%;
   row-gap: 3rem;
   column-gap: 2rem;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   margin: 3rem auto;
@@ -107,7 +107,7 @@ export default {
   position: relative;
 }
 
-.category-list h4 {
+.category-list h3 {
   font-family: 'Ribeye Marrow', cursive;
   font-size: 3rem;
   margin: 2rem 0;
@@ -143,11 +143,16 @@ export default {
 }
 
 .slick-track {
-  height: 200px;
+  height: 12.5rem;
 }
 
 .slick-dots {
-  bottom: -200px;
+  bottom: -12.5rem;
+}
+
+.slick-prev, .slick-next, .slick-arrow {
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .slick-prev:before, .slick-next:before {
@@ -219,7 +224,7 @@ export default {
 
 @media (max-width: 768px) {
 
-  .category-list h4 {
+  .category-list h3 {
     font-size: 2rem;
   }
   .card-footer {

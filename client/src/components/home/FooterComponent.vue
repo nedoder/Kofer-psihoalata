@@ -2,20 +2,20 @@
     <footer class="footer" id="contact">
         <div class="footer-container">
             <div class="footer-brand">
-                <a href="/" class="brand-image"><img src="../../assets/footerlogo.png"/></a>
+                <a href="/" class="brand-image" aria-label="Logo"><img src="../../assets/footerlogo.png" alt="Logo"/></a>
                 <p>&copy; Kofer psihoalata. All rights reserved. Powered by <a href="https://www.linkedin.com/in/tanjadoderovic/">nedoder</a></p>
             </div>
             <div class="social-icons">
-                <a href="https://www.facebook.com/" class="facebook">
+                <a href="https://www.facebook.com/" class="facebook" aria-label="Facebook">
                     <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'facebook-square' }" />
                 </a>
-                <a href="https://www.instagram.com/" class="instagram" >
+                <a href="https://www.instagram.com/" class="instagram" aria-label="Instagram">
                     <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'instagram' }"/>
                 </a>
-                <a href="https://www.tiktok.com/" class="tiktok">
+                <a href="https://www.tiktok.com/" class="tiktok" aria-label="TikTok">
                     <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'tiktok' }" />
                 </a>
-                <a href="mailto: koferpsihoalata@gmail.me" class="gmail">
+                <a href="mailto: koferpsihoalata@gmail.me" class="gmail" aria-label="Gmail">
                     <font-awesome-icon  icon = 'envelope'/>
                 </a>
                 <p>Pišite nam</p>
@@ -45,7 +45,7 @@
     margin: 0;
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: flex-start;
     row-gap: 1rem;
     column-gap: 1.5rem;

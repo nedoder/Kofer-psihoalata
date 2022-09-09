@@ -2,11 +2,11 @@
     <div id="about-us">  
         <div class="about-us">
             <div class="about-text">
-                <h4>O nama</h4>
+                <h3>O nama</h3>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis numquam, praesentium quia eius consequatur magnam. Itaque possimus non quae odit ut, optio veniam pariatur assumenda deleniti maxime dolores nisi, commodi iste officia sint qui architecto minima enim accusantium quidem quo dignissimos animi? Quo itaque nam dolorem necessitatibus non eveniet ipsum iste hic temporibus, laboriosam voluptatem sunt odio quisquam numquam, fugiat in, amet mollitia quod dolores harum sequi sed? Dolor vero architecto facilis ipsum, iste voluptate. Omnis error eum unde excepturi voluptatem facilis, ut accusamus impedit quia vero dignissimos quibusdam quidem nemo sapiente corporis tempora velit sed voluptatibus! Dignissimos, optio corrupti?</p>
             </div>
             <div class="about-image">
-               <img src="../../assets/about.png"/>
+               <img src="../../assets/about.png" alt="About us"/>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
     padding: 0 calc(5% + 1rem);
     padding-top: 5rem;
 }
-#about-us h4 {
+#about-us h3 {
     font-family: 'Ribeye Marrow', cursive;
     font-size: 3rem;
     color: var(--light-black);
@@ -36,7 +36,7 @@
     margin: 4rem 0;
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -46,7 +46,7 @@
         display: none;
     }
 
-    #about-us h4 {
+    #about-us h3 {
         font-size: 2.5rem;
     }
 

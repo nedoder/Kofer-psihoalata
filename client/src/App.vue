@@ -70,7 +70,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 footer {
@@ -87,6 +87,16 @@ button {
 	outline: none;
 	background: none;
 	text-decoration: none;
+}
+
+@media (min-width: 3000px) {
+  html {
+    font-size: 40px !important;
+  }
+
+  .category-list {
+    padding: 10rem 1rem;
+  }
 }
 
 </style>

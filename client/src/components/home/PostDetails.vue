@@ -3,13 +3,13 @@
         <header-component/>
        
         <div class="post-details">
-            <h4>{{item.title}}</h4>
+            <h3>{{item.title}}</h3>
             <div class="single-post-image">
-                <img :src="$imagePath + item.image"/>
+                <img :src="$imagePath + item.image" alt="Post image"/>
             </div>
             <p class="single-post-category">{{item.category.category}}</p>
             <p class="single-post-author">Kreirao/la <span class="post-username">{{item.user.username}}</span> <span>|</span> Datum objave: {{new Date(item.createdAt).toLocaleString('en-us',{month:'long', day: 'numeric', year:'numeric'})}}</p>
-            <div  class="single-post-content" id="fuck" v-html=item.content>
+            <div  class="single-post-content" id="post-content" v-html=item.content>
             </div>
         </div>
         <footer-component/>
@@ -63,7 +63,7 @@ export default {
     padding: 0 1rem;
 }
 
-.post-details h4  {
+.post-details h3  {
     font-family: 'Ribeye Marrow', cursive;
     font-size: 2rem;
     color: var(--light-black);

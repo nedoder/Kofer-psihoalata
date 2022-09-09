@@ -1,8 +1,8 @@
 <template>
     <div class="no-results">
-        <h4>Nema rezultata za ovu kategoriju...</h4>
+        <h3>Nema rezultata za ovu kategoriju...</h3>
         <div class="no-results-img">
-            <img src="../../assets/noposts.png"/>
+            <img src="../../assets/noposts.png" alt="No results"/>
         </div>
     </div>   
 </template>
@@ -24,7 +24,7 @@
   margin-bottom: 5rem;
 }
 
-.no-results h4 {
+.no-results h3 {
     font-family: 'Ribeye Marrow', cursive;
     font-size: 1.5rem;
     margin: 2rem 0;

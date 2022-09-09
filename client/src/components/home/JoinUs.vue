@@ -15,9 +15,9 @@
      
     <div class=join-us  v-if="loading===false && success===false"> 
       <div class="join-info">
-        <h4>Postani volonter</h4>
+        <h3>Postani volonter</h3>
         <div class="join-img">
-          <img src="../../assets/message.png"/>
+          <img src="../../assets/message.png" alt="Mail envelope"/>
         </div>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio saepe error alias, odit ullam consectetur harum excepturi aperiam a ipsa soluta est esse atque repellendus recusandae exercitationem autem necessitatibus fugit earum! Harum molestias ipsam voluptatibus eos sit sunt incidunt deleniti delectus consequatur, minus id laborum mollitia facere porro rem minima! Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus est vitae dolorem sint cumque, quibusdam aut repellendus adipisci animi aliquam.</p>
         <p>Ugovor o volontiranju možete preuzeti <a href="#">ovdje</a>.</p>
@@ -50,11 +50,11 @@
     </div>
 
     <div class="loading-mail" v-if="loading===true">
-     <img src="../../assets/mail.gif"/>
+     <img src="../../assets/mail.gif" alt="Loading"/>
     </div>
     <div class="success-message" v-if="success===true">
-      <h4>Uspješna prijava</h4>
-      <img src="../../assets/success.png"/>
+      <h3>Uspješna prijava</h3>
+      <img src="../../assets/success.png" alt="Success message"/>
     </div>
 
     <footer-component/>
@@ -73,7 +73,7 @@ export default {
   components: { HeaderComponent, FooterComponent },
   data: () => ({
     contact: {
-      name: 'bbb',
+      name: '',
       place: '',
       date: '',
       school: '',
@@ -151,7 +151,7 @@ body, html {
 .success-message {
   transform: translate(0%, 25%);
 }
-.success-message h4 {
+.success-message h3 {
   font-family: 'Ribeye Marrow', cursive;
   font-size: 3rem;
   margin: 1rem 0;
@@ -213,7 +213,7 @@ body, html {
   overflow: hidden;
 }
 
-.join-info h4  {
+.join-info h3  {
   font-family: 'Ribeye Marrow', cursive;
   font-size: 2rem;
   color: var(--light-black);
@@ -309,7 +309,7 @@ body, html {
     margin: 6rem auto;
   }
 
-  .join-info h4, .success-message h4 {
+  .join-info h3, .success-message h3 {
     font-size: 2rem;
   }
 

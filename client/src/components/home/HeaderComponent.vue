@@ -1,7 +1,7 @@
 <template>
 	<header class="header" id="header">
 		<nav class="navbar header-container">
-			<a href="/" class="brand"><img src="../../assets/logo.png"/></a>
+			<a href="/" class="brand" aria-label="Logo"><img src="../../assets/logo.png" alt="Logo"/></a>
 			<div class="menu" id="menu">
 				<ul class="menu-list">
 					<router-link tag="li" class="menu-link" class-active="is-active" to="/" exact>

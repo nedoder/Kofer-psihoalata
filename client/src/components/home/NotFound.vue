@@ -2,9 +2,9 @@
     <div>
         <header-component/>
         <div class="not-found">
-            <h4>Stranica nije pronađena...</h4>
+            <h3>Stranica nije pronađena...</h3>
             <div class="notfound-img">
-                <img src="../../assets/notfound.png"/>
+                <img src="../../assets/notfound.png" alt="Page not found"/>
             </div>
         </div>   
         <footer-component/>
@@ -38,7 +38,7 @@ export default {
     max-height: 75vh;
 }
 
-.not-found  h4 {
+.not-found  h3 {
   font-family: 'Ribeye Marrow', cursive;
   font-size: 3rem;
   margin: 1rem 0;
@@ -46,7 +46,7 @@ export default {
 }
 
 @media (max-width: 768px) {
-    .not-found  h4 {
+    .not-found  h3 {
         font-size: 2rem;
     }
 }

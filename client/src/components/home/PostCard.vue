@@ -9,7 +9,7 @@
     </div>
     <span class="shape"></span>
     <div class="post-img">
-     <img :src="$imagePath + items.image"/>
+     <img :src="$imagePath + items.image" alt="Post image"/>
     </div>
   
     <div class="post-info">

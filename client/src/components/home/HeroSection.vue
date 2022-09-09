@@ -13,7 +13,7 @@
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus, at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos eius necessitatibus at perferendis magnam eligendi temporibus quod exercitationem quibusdam voluptas?</p>
         <div class="hero-buttons">
           <a href="/join-us">Postani volonter</a>
-           <a href="https://www.patreon.com/">Podrži nas</a>
+           <a href="https://www.patreon.com/" aria-label="Patreon">Podrži nas</a>
         </div>
       </div>
       <div class="hero-right">
@@ -165,10 +165,10 @@ export default {
 
 .hero-buttons a {
   color: black;
-  width: 170px;
+  width: 11rem;
   position: relative;
   border-radius: 1rem;
-  padding: 10px 20px;
+  padding: .8rem 1.2rem;
   box-shadow:  .1rem .1rem .6rem var(--light-grey), .1rem -.1rem .3rem var(--violet);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -323,6 +323,19 @@ export default {
   .hero h2 {
     line-height: 2.5rem;
   }
+}
+
+
+@media (max-height: 600px) {
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero-left p {
+    padding: 10px 0;
+    font-size: .8rem;
+  }
+
 }
 
 </style>

@@ -5,11 +5,11 @@
     </div>
     <div class=contact-us>
       <div class="contact-info">
-        <h4>Lorem ipsum dolor sit amet consectetur.</h4>
+        <h3>Lorem ipsum dolor sit amet consectetur.</h3>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus est vitae dolorem sint cumque, quibusdam aut repellendus adipisci animi aliquam.</p>
       </div>
       <div class="contact-image">
-        <img src="../../assets/message.png"/>
+        <img src="../../assets/message.png" alt="Envelope"/>
       </div>
       <div class="form">
         <input required name="name" v-model='contact.name' placeholder="Ime" type="text" autocomplete="off" class="contact-name">
@@ -97,7 +97,7 @@ export default {
   letter-spacing: .5rem;
 }
 
-.contact-info h4 {
+.contact-info h3 {
   font-family: 'Ribeye Marrow', cursive;
   font-size: 3rem;
   color: var(--light-black);
@@ -132,7 +132,7 @@ export default {
 }
 
 @media (max-width: 820px) {
-  .contact-info h4 {
+  .contact-info h3 {
     font-size: 2.5rem;
   }
 
@@ -162,7 +162,7 @@ export default {
     transform: rotate(-23deg);
   }
 
-  .contact-info h4 {
+  .contact-info h3 {
     font-size: 2rem;
   }
 }

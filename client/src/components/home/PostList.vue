@@ -2,7 +2,7 @@
   <div>
     <div class="post-container" v-if="items.length!==0 && loading===false">
       <div class="post-list">
-        <h4>Postovi</h4>
+        <h3>Postovi</h3>
         <div class="post-flex">
           <div v-for="item in items" :key="item.id" class="posts">
             <post-card :items="item"/>
@@ -12,7 +12,7 @@
     </div>
     <no-results v-if="items.length===0 && loading===false"></no-results>
     <div class="loader-wrapper" v-if="loading===true">
-     <img src="../../assets/2.gif"/>
+     <img src="../../assets/2.gif" alt="Loading posts"/>
     </div>
   </div>
 </template>
@@ -61,7 +61,12 @@ export default {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -75%);
+}
+
+.loader-wrapper img {
+  opacity: 0.5;
+  width: 100%
 }
 
 .post-container {
@@ -69,7 +74,7 @@ export default {
   position: relative;
 }
 
-.post-list h4 {
+.post-list h3 {
   font-family: 'Ribeye Marrow', cursive;
   font-size: 3rem;
   margin: 2rem 0;
@@ -91,8 +96,8 @@ export default {
 .post-flex {
   display: flex;
   display: -webkit-flex;
-  justify-content: start;
-  -webkit-justify-content: start;
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
   flex-wrap: wrap;
   row-gap: 2rem;
   column-gap: 2rem;
@@ -102,8 +107,8 @@ export default {
   width: calc(25% - 1.5rem);
   display: flex;
   display: -webkit-flex;
-  justify-content: start;
-  -webkit-justify-content: start;
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
 }
 
 .post {
@@ -227,7 +232,7 @@ export default {
     width: calc(50% - 1.5rem);
   }
 
-  .post-list h4 {
+  .post-list h3 {
     font-size: 2rem;
   }
 
@@ -249,6 +254,12 @@ export default {
 @media (max-width: 300px) {
   .post-img img {
     height: 40vw;
+  }
+}
+
+@media (max-height: 400px) {
+  .loader-wrapper {
+    transform: translate(-50%, -150%);
   }
 }
 
