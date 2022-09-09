@@ -116,7 +116,7 @@ export default {
 
 .menu-link:hover {
 	position: relative;
-	color: var(--pink);
+	color: var(--green);
 	transition: all 0.35s ease;
 	cursor: pointer;
 }
@@ -141,7 +141,7 @@ export default {
 
 .exact-active {
 	position: relative;
-	color: var(--pink);
+	color: var(--green);
 	transition: all 0.35s ease;
 }
 
@@ -179,11 +179,11 @@ export default {
 		height: 2px;
 		border: none;
 		outline: none;
-		background: var(--pink);
+		background: var(--green);
 	}
 
 	.menu-link:hover {
-		color: var(--pink);
+		color: var(--green);
 		transition: all 0.35s ease;
 	}
 		

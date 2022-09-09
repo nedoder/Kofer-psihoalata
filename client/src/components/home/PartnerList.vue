@@ -6,10 +6,14 @@
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis numquam, praesentium quia eius consequatur magnam. Itaque possimus non quae odit ut, optio veniam pariatur assumenda deleniti maxime dolores nisi, commodi iste officia sint qui architecto minima enim accusantium quidem quo dignissimos animi? Quo itaque nam dolorem necessitatibus non eveniet ipsum iste hic temporibus, laboriosam voluptatem sunt odio quisquam numquam, fugiat in, amet mollitia quod dolores harum sequi sed? Dolor vero architecto facilis ipsum, iste voluptate. Omnis error eum unde excepturi voluptatem facilis, ut accusamus impedit quia vero dignissimos quibusdam quidem nemo sapiente corporis tempora velit sed voluptatibus! Dignissimos, optio corrupti?</p>
             </div>
             <div class="partner-logo">
-               <img src="../../assets/about.png" alt="Partner logo"/>
-               <img src="../../assets/about.png" alt="Partner logo"/>
-               <img src="../../assets/about.png" alt="Partner logo"/>
-               <img src="../../assets/about.png" alt="Partner logo"/>
+               <img src="../../assets/portret logo.png" alt="Portret logo"/>
+               <img src="../../assets/odgovorno solidarno logo.png" alt="Odgovorno solidarno logo"/>
+               <img src="../../assets/fakt logo.png" alt="Fakt logo"/>
+               <img src="../../assets/aktivna zona logo.png" alt="NVO Aktivna zona logo"/>
+               <img src="../../assets/eu logo.png" alt="EU logo"/>
+               <img src="../../assets/klupko logo.png" alt="Klupko logo"/>
+               <img src="../../assets/NVO zracak nade logo.png" alt="NVO zračak nade logo"/>
+               <img src="../../assets/MJU logo.png" alt="Ministarstvo javne uprave logo"/>
             </div>
         </div>
     </div>
@@ -55,10 +59,11 @@
     align-items: center;
     row-gap: 1rem;
     column-gap: 1rem;
+    padding: 2rem 0;
 }
 
 .partner-logo img {
-    width: 5rem;
+    width: 8rem;
 }
 
 @media (max-width: 768px) {

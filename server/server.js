@@ -16,7 +16,7 @@ app.use(history({
     // verbose: true
 }));
 
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + '/dist', { maxAge: 31536000 }));
 
 
 global.__basedir = __dirname;

@@ -3,23 +3,43 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <a href="/" class="brand-image" aria-label="Logo"><img src="../../assets/footerlogo.png" alt="Logo"/></a>
-                <p>&copy; Kofer psihoalata. All rights reserved. Powered by <a href="https://www.linkedin.com/in/tanjadoderovic/">nedoder</a></p>
+            </div>
+            <div class="quick-links">
+                <a>Početna</a>
+                <a>O name</a>
+                <a>Edukacija</a>
+                <a>Podrška</a>
+                <a>Postani volonter</a>
+                <a>Podrži nas</a>
+            </div>
+            <div class="partner-logo first-partner">
+                <img src="../../assets/portret logo.png" alt="NVO Portret logo"/>
+                <img src="../../assets/klupko logo.png" alt="Klupko logo"/>
+                <img src="../../assets/odgovorno solidarno logo.png" alt="Odgovorno solidarno logo"/>
+                <img src="../../assets/aktivna zona logo.png" alt="NVO Aktivna zona logo"/>
+            </div>
+            <div class="partner-logo">
+                
+                <img src="../../assets/eu logo.png" alt="EU logo"/>
+                <img src="../../assets/fakt logo.png" alt="Fakt logo"/>
+                <img src="../../assets/NVO zracak nade logo.png" alt="NVO zračak nade logo"/>
+                <img src="../../assets/MJU logo.png" alt="Ministarstvo javne uprave logo"/>
             </div>
             <div class="social-icons">
-                <a href="https://www.facebook.com/" class="facebook" aria-label="Facebook">
-                    <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'facebook-square' }" />
-                </a>
-                <a href="https://www.instagram.com/" class="instagram" aria-label="Instagram">
-                    <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'instagram' }"/>
-                </a>
-                <a href="https://www.tiktok.com/" class="tiktok" aria-label="TikTok">
-                    <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'tiktok' }" />
-                </a>
-                <a href="mailto: koferpsihoalata@gmail.me" class="gmail" aria-label="Gmail">
-                    <font-awesome-icon  icon = 'envelope'/>
-                </a>
-                <p>Pišite nam</p>
+                    <a href="https://www.facebook.com/" class="facebook" aria-label="Facebook">
+                        <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'facebook-square' }" />
+                    </a>
+                    <a href="https://www.instagram.com/" class="instagram" aria-label="Instagram">
+                        <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'instagram' }"/>
+                    </a>
+                    <a href="https://www.tiktok.com/" class="tiktok" aria-label="TikTok">
+                        <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'tiktok' }" />
+                    </a>
+                    <a href="mailto: koferpsihoalata@gmail.me" class="gmail" aria-label="Gmail">
+                        <font-awesome-icon  icon = 'envelope'/>
+                    </a>
             </div>
+            <p class="copyrights">&copy; Kofer psihoalata. All rights reserved. Powered by <a href="https://www.linkedin.com/in/tanjadoderovic/">nedoder</a></p>
         </div>
     </footer>  
 </template>
@@ -45,7 +65,8 @@
     margin: 0;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: flex-start;
     row-gap: 1rem;
     column-gap: 1.5rem;
@@ -58,15 +79,41 @@
     color: var(--black);
 }
 
-.footer-brand, .social-icons {
-    width: 50%;
+.footer-brand {
+    width: 100%;
+}
+
+.partner-logo, .quick-links {
+    width: calc(33% - 1rem);
+}
+
+.partner-logo, .quick-links {
+    display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
+}
+
+.partner-logo {
+    align-items: flex-end;
+}
+
+.first-partner {
+    align-items: center;
+}
+
+.quick-links a {
+    padding: .5rem 0;
 }
 
 .footer-brand img {
-    height: 3rem;
+    height: 4rem;
+}
+
+.partner-logo img {
+    width: 8rem;
 }
 .social-icons svg {
-    padding: 0 1rem;
+    padding: 0 1em 0 0;
     height: 2rem;
 }
 
@@ -81,17 +128,22 @@
 }
 
 .gmail svg {
-    color: var(--pink);
+    color: var(--green);
 }
 
 
-.footer-brand a, .social-icons a {
+.footer-brand a, .social-icons a, .copyrights a {
     text-decoration: none;
     color: var(--black);
 }
 
 .social-icons {
-    text-align: end;
+    text-align: left;
+}
+
+.copyrights, .social-icons {
+    width: 100%;
+    text-align: center;
 }
 
 @media (max-width: 820px) {
@@ -106,9 +158,13 @@
         text-align: center;
     }
 
-    .footer-brand, .social-icons {
+    .footer-brand, .social-icons, .partner-logo, .quick-links {
         width: 100%;
         text-align: center;
+    }
+
+    .partner-logo img {
+        margin: 0 auto;
     }
 }
 

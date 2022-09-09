@@ -185,11 +185,12 @@ export default {
 .hero-left a:first-child {
   color: var(--white);
   background: var(--pink);
+  text-shadow: 0 1.5px 3px var(--black)
 }
 
 .hero-left p {
   padding: 20px 0;
-  color: black;
+  color: var(--black);
   text-align: justify;
 }
 

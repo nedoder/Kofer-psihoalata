@@ -29,6 +29,8 @@ export default {
   --dark-violet: #A497A6;
   --light-black: #444;
   --yellow: #f4cb82;
+  --green: #789C91;
+  --light-green: hsl(162, 88%, 30%);
   --category-shadow: 0.2rem 0.2rem 0.5rem #c57d96, -0.2rem -0.2rem 0.5rem #dab2c0;;
   --category-shadow-inset: inset 0.2rem 0.2rem 0.5rem #c57d96, inset -0.2rem -0.2rem 0.4rem #dab2c0;
   --shadow-small: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
