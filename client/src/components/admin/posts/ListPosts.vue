@@ -134,7 +134,7 @@ export default {
   }, 
   
   mounted(){
-    requests.getPostsList()
+    requests.getPostList()
     .then(response => {
       this.items = response.data;
       this.items.forEach(item => {

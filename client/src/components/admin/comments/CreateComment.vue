@@ -133,7 +133,7 @@ export default {
   },
 
    mounted() {
-    requests.getPostsList()
+    requests.getPostList()
     .then(response => {
       this.post = response.data;
     }).catch(error => {

@@ -12,7 +12,7 @@
         <h2>Lorem ipsum dolor sit amet.</h2>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus, at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos eius necessitatibus at perferendis magnam eligendi temporibus quod exercitationem quibusdam voluptas?</p>
         <div class="hero-buttons">
-          <a href="/join-us">Postani volonter</a>
+          <a href="/join-us" aria-label="Join us">Postani volonter</a>
            <a href="https://www.patreon.com/" aria-label="Patreon">Podrži nas</a>
         </div>
       </div>

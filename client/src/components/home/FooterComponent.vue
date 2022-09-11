@@ -5,25 +5,40 @@
                 <a href="/" class="brand-image" aria-label="Logo"><img src="../../assets/footerlogo.png" alt="Logo"/></a>
             </div>
             <div class="quick-links">
-                <a>Početna</a>
-                <a>O name</a>
-                <a>Edukacija</a>
-                <a>Podrška</a>
-                <a>Postani volonter</a>
-                <a>Podrži nas</a>
+                <a href="/" aria-label="Home">Početna</a>
+                <a href="/#about-us" aria-label="About us">O nama</a>
+                <a href="/education" aria-label="Blog">Edukacija</a>
+                <a href="/support" aria-label="Support">Podrška</a>
+                <a href="/join-us" aria-label="Join ua">Postani volonter</a>
+                <a href="https://www.patreon.com/" aria-label="Patreon">Podrži nas</a>
             </div>
             <div class="partner-logo first-partner">
-                <img src="../../assets/portret logo.png" alt="NVO Portret logo"/>
-                <img src="../../assets/klupko logo.png" alt="Klupko logo"/>
-                <img src="../../assets/odgovorno solidarno logo.png" alt="Odgovorno solidarno logo"/>
-                <img src="../../assets/aktivna zona logo.png" alt="NVO Aktivna zona logo"/>
+                <a href="https://facebook.com/nvoportret" aria-label="NVO Portret">
+                    <img src="../../assets/portret logo.png" alt="NVO Portret logo"/>
+                </a>
+                <a href="https://www.instagram.com/klupko.volonteri/" aria-label="Klupko">
+                    <img src="../../assets/klupko logo.png" alt="Klupko logo"/>
+                </a>
+                <a href="https://www.faktcg.org/odgovorno-i-solidarno-gradjani-preuzimaju-inicijativu-konkurs-za-podrsku-projektima/" aria-label="Odgovorno solidarno">
+                    <img src="../../assets/odgovorno solidarno logo.png" alt="Odgovorno solidarno logo"/>
+                </a>
+                <a href="https://www.aktivnazona.me/" aria-label="NVO Aktivna zona">
+                    <img src="../../assets/aktivna zona logo.png" alt="NVO Aktivna zona logo"/>
+                </a>  
             </div>
             <div class="partner-logo">
-                
-                <img src="../../assets/eu logo.png" alt="EU logo"/>
-                <img src="../../assets/fakt logo.png" alt="Fakt logo"/>
-                <img src="../../assets/NVO zracak nade logo.png" alt="NVO zračak nade logo"/>
-                <img src="../../assets/MJU logo.png" alt="Ministarstvo javne uprave logo"/>
+                <a href="https://www.eeas.europa.eu/" aria-label="EU">
+                    <img src="../../assets/eu logo.png" alt="EU logo"/>
+                </a>
+                <a href="https://www.faktcg.org/" aria-label="Fakt">
+                    <img src="../../assets/fakt logo.png" alt="Fakt logo"/>
+                </a>
+                <a href="http://www.zracaknade.co.me/" aria-label="NVO zračak nade">
+                    <img src="../../assets/NVO zracak nade logo.png" alt="NVO zračak nade logo"/>
+                </a>
+                <a href="https://www.gov.me/mju" aria-label="Ministarstvo javne uprave">
+                    <img src="../../assets/MJU logo.png" alt="Ministarstvo javne uprave logo"/>
+                </a>
             </div>
             <div class="social-icons">
                     <a href="https://www.facebook.com/" class="facebook" aria-label="Facebook">
@@ -91,6 +106,11 @@
     display: flex;
     flex-direction: column;
     row-gap: .5rem;
+}
+
+.quick-links a {
+    text-decoration: none;
+    color: var(--black);
 }
 
 .partner-logo {
