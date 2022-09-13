@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
     const Activity = sequelize.define("activity", {
         activity: {
-            type: Sequelize.STRING,
+            type: Sequelize.TEXT('long'),
             allowNull: false,
             validate: {
                 notEmpty: {

@@ -117,6 +117,9 @@ const requests = {
     sendMail(data) {
         return apiClient.post("api/mail", data);
     },
+    sendMessage(data) {
+        return apiClient.post("api/mail/message", data);
+    },
 
 };
 

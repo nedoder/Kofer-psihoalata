@@ -1,9 +1,9 @@
 <template>
   <div class="contact">
-    <div>
+    <!-- <div>
       <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width: 100%;" viewBox="0 0 1440 320"><path fill="#F4CB82" fill-opacity="1" d="M0,192L720,32L1440,64L1440,320L720,320L0,320Z"></path></svg>
-    </div>
-    <div class=contact-us>
+    </div> -->
+    <div class=contact-us v-if="loading===false && success===false && failed===false">
       <div class="contact-info">
         <h3>Lorem ipsum dolor sit amet consectetur.</h3>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus est vitae dolorem sint cumque, quibusdam aut repellendus adipisci animi aliquam.</p>
@@ -14,15 +14,29 @@
       <div class="form">
         <input required name="name" v-model='contact.name' placeholder="Ime" type="text" autocomplete="off" class="contact-name">
         <input required name="email" v-model="contact.email" placeholder="E-mail" type="email" autocomplete="off" class="contact-email">
+        <span class="email-validate" v-if="email">{{email}}</span>
         <textarea name="message" v-model="contact.message" rows="4" placeholder="Poruka" class="contact-message"></textarea>
-        <button class="button"  @submit="onSubmit">Pošalji</button>
+        <p v-if="errorMsg===true" class="comment-failed">Morate unijeti ispravnu email adresu.</p>
+        <button class="button"  @click="onSubmit">Pošalji</button>
       </div>
+    </div>
+    <div class="loading-mail" v-if="loading===true">
+     <img src="../../assets/mail.gif" alt="Loading"/>
+    </div>
+    <div class="success-message" v-if="success===true">
+      <h3>Poruka poslata</h3>
+      <img src="../../assets/success.png" alt="Success message"/>
+    </div>
+    <div class="success-message" v-if="failed===true">
+      <h3>Došlo je do greške. Molimo pokušajte ponovo.</h3>
+      <img src="../../assets/success.png" alt="Error message"/>
     </div>
   </div>
 </template>
 
 
 <script>
+import requests from "../../services/services"
 export default {
    name: 'ContactForm',
    data: () => ({
@@ -31,12 +45,49 @@ export default {
 			email: '',
 			message: '',
 		},
+    email: '',
+    loading: false,
+    success: false,
+    failed: false,
+    errorMsg: false
   }),
-
-  methods: {
-    onSubmit() {
-
+  watch: {
+    contact : {
+      // binding this to the data value in the email input
+      deep: true,
+      handler() {
+        this.validateEmail(this.contact.email);
+      }
     }
+  },
+  methods: {
+    validateEmail(value){
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) { // eslint-disable-line
+        this.email = '';
+      } else{
+        this.email = 'Nesipravna email adresa';
+      } 
+    },
+    onSubmit() {
+      if(this.email !== '' || this.contact.email === '') {
+          this.errorMsg = true
+      } else {
+        this.loading = true
+        requests.sendMessage({"message": this.contact.message, "mail": this.contact.email, "name": this.contact.name === "" ? "Poruka sa sajta" : this.contact.name})
+        .then(response => {
+          console.log(response)
+          this.success = true
+        })
+        .catch(error => {
+          console.log(error)
+          this.failed = true
+        })
+        .finally(() => {
+          this.loading = false
+        })
+      }
+    },
+
   }
  
 }
@@ -45,21 +96,44 @@ export default {
 	
 <style scoped>
 
-.contact {
-  margin-top: -1rem;
+.email-validate {
+  color: red;
+  font-size: .9rem;
+}
+.loading-mail, .success-message {
+  top: 50%;
+  left: 50%;
+  transform: translate(0%, 50%);
+  text-align: center;
+  height: 78vh;
+}
+
+.success-message {
+  transform: translate(0%, 25%);
+}
+.success-message h3 {
+  font-family: 'Ribeye Marrow', cursive;
+  font-size: 3rem;
+  margin: 1rem 0;
+  color: var(--light-black);
+  width: 90%;
+  margin: 0 auto
+}
+
+.success-message img {
+  max-width: 20rem;
 }
 .contact-us {
   display: flex;
   flex-direction: row;
   row-gap: 1rem;
   column-gap: 1rem;
-  height: 25rem;
   justify-content: center;
   align-items: flex-start;
   z-index: 100;
   margin: 0 auto;
   padding: 1rem calc(5% + 1rem);
-  padding-top: 5rem;
+  margin-top: 7rem;
 }
 
 .contact-name, .contact-email, .contact-message {
@@ -71,12 +145,12 @@ export default {
   resize: none;
   margin: 1.5rem 0;
   width: 100%;
-  box-shadow: inset 0.1rem 0.1rem 0.4rem #f7e6c6, inset -0.2rem -0.1rem 0.3rem #f4cb82;
+  box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1), inset 0px -2px 5px rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(1rem);
 }
 
 .contact-name:focus, .contact-email:focus, .contact-message:focus {
-  box-shadow:  0.1rem 0.1rem 0.4rem #ddb267,  -0.1rem -0.1rem 0.2rem #f7e6c6;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
 }
 
 .button {
@@ -116,6 +190,7 @@ export default {
 .contact-image {
   width: 9%;
   padding: 1rem;
+  z-index: -1;
 }
 
 .contact-image img {
@@ -139,10 +214,6 @@ export default {
 }
 
 @media (max-width: 768px) {
-
-  .contact {
-    background: var(--yellow);
-  }
   .contact-us {
     flex-direction: column;
     height: auto;
@@ -153,7 +224,6 @@ export default {
 
   .contact-image {
     position:absolute;
-    z-index: 0;
   }
 
   .contact-image img {
@@ -162,8 +232,12 @@ export default {
     transform: rotate(-23deg);
   }
 
-  .contact-info h3 {
+  .contact-info h3, .success-message h3 {
     font-size: 2rem;
+  }
+
+  .success-message img {
+    width: 50%;
   }
 }
 

@@ -17,7 +17,10 @@
             <div class="comment-form">
                 <input required name="name" v-model="comment" placeholder="Ime (opciono)" type="text" autocomplete="off" class="name">
                 <textarea name="message" v-model="message" rows="4" placeholder="Poruka" class="message"></textarea>
-                <button class="button"  @submit="onSubmit">Pošalji</button>
+                <p v-if="success===true" class="comment-success">Vaš komentar se prvo šalje timu na odobrenje. Kofer psihoalata zadržava pravo da obriše neprimjereni dio ili cijeli komentar, bez najave i objašnjenja.</p>
+                <p v-if="failed===true" class="comment-failed">Došlo je do greške. Molimo pokušajte ponovo.</p>
+                <p v-if="errorMsg===true" class="comment-failed">Morate unijeti komentar.</p>
+                <button class="button"  @click="submitComment">Pošalji</button>
             </div>
             <div class="comment-list" v-for="comment in item.comments" :key="comment.id">
                 <comment-component :items="comment"/>
@@ -47,15 +50,45 @@ export default {
         user: '',
         title: '',
         image: '',
+        id: ''
      },
      comment: '',
-    message: ''
+     message: '',
+     success: false,
+     failed: false,
+     errorMsg: false
     }),
 
     methods: {
 
-        onSubmit() {
-            // 
+        submitComment(e) {
+            if(this.message === '') {
+                this.errorMsg = true
+            } else {
+                e.target.classList.add('btn-fill');
+                e.target.classList.add('btn-load');
+                requests.newComment({
+                    "comment" : this.comment,
+                    "author" : this.message,
+                    "postId" : this.item.id,
+                    "approved" : false
+                })
+                .then(response => {
+                    e.target.classList.remove('btn-load');
+                    e.target.classList.remove('btn-fill');
+                    this.success = true
+                    this.failed = false
+                    console.log(response)
+                })
+                .catch(error => {
+                    e.target.classList.remove('btn-load');
+                    e.target.classList.remove('btn-fill');
+                    this.failed = true
+                    console.log(error)
+                })
+            }
+            
+           
         }
     },
     
@@ -63,6 +96,14 @@ export default {
         requests.getPost(this.$route.params.id)
         .then(response => {
             this.item = response.data
+            this.item.comments = this.item.comments.filter(item => {
+                return item.approved === true
+            })
+            this.item.comments.forEach(comment => {
+                comment.answers = comment.answers.filter(item => {
+                    return item.approved === true
+                })
+            })
             console.log(response.data)
         })
         .catch(error => {
@@ -74,6 +115,9 @@ export default {
 </script>
 
 <style>
+
+
+
 
 .single-post {
     width: 100%;
@@ -94,7 +138,9 @@ export default {
 
 .comment-form, .reply-form {
     text-align: center;
+    margin: 1rem 0;
 }
+
 .name, .reply-name, .message, .reply-message {
   display: block;
   border-radius: 1rem;
@@ -113,7 +159,7 @@ export default {
 }
 
 .button, .reply-button {
-  width: 9rem;
+  width: 6rem;
   background: var(--black);
   border-radius: 1rem;
   outline: none;
@@ -127,14 +173,14 @@ export default {
 
 .button:hover, .reply-button:hover {
   cursor: pointer;
-  letter-spacing: .5rem;
+  letter-spacing: .1rem;
 }
 
-.reply-form {
+/* .reply-form {
     height: 0;
     display: none;
     transition: all .5s ease;
-}
+} */
 
 .single-comment, .single-answer {
     display: flex;
@@ -151,13 +197,13 @@ export default {
     margin-left: 4rem;
 }
 
-.image-wrap {
+.comment-wrap {
     width: 4rem;
     height: 4rem;
     padding-right: 1rem;
 }
 
-.image-wrap img {
+.comment-wrap img {
     width: 3rem;
 }
 
@@ -177,6 +223,7 @@ export default {
 
 .comment-reply svg {
     font-size: 1.2rem;
+    cursor: pointer;
 }
 
 .comment-message, .answer-message {
@@ -226,13 +273,59 @@ export default {
     max-width: 50%;
 } 
 
+
+.comment-success {
+  color: green;
+  text-align: left;
+  font-size: .9rem;
+  padding: 1rem 0;
+}
+
+.comment-failed {
+  color: red;
+  text-align: left;
+  font-size: .9rem;
+  padding: 1rem 0;
+}
+
+  
+.btn-fill{
+  font-size: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: #fff;
+  border-right: 4px solid var(--black);
+}
+
+.btn-load{
+    animation: loader .7s linear infinite;
+}
+
+@keyframes loader{
+  0%{transform: rotateZ(0);}
+  25%{transform: rotateZ(0);}
+  100%{transform: rotateZ(360deg);}
+}
+
+
 @media (max-width: 992px) {
     .single-post-content p > img, .single-post-image img {
         max-width: 100%;
 } 
 
+@media (max-width: 450px) {
+    .single-comment, .single-answer, .comment-reply {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .comment-reply svg {
+        padding: .5rem 0;
+    }
 }
 
+}
 </style>
     
         

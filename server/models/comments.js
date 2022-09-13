@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
     const Comment = sequelize.define("comment", {
         comment: {
-            type: Sequelize.STRING,
+            type: Sequelize.TEXT('long'),
             allowNull: false,
             validate: {
                 notEmpty: {

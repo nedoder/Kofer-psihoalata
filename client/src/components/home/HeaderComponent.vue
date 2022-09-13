@@ -20,7 +20,7 @@
 						<font-awesome-icon icon="headset" />
 						<span class="menu-name">Podrška</span>
 					</router-link>
-					<router-link tag="li" class="menu-link" class-active="is-active" to="/#contact" exact>
+					<router-link tag="li" class="menu-link" class-active="is-active" to="/contact" exact>
 						<font-awesome-icon icon="square-envelope" />
 						<span class="menu-name">Kontakt</span>
 					</router-link>

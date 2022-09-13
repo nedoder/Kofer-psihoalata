@@ -13,6 +13,7 @@ import NotFound from "../components/home/NotFound"
 
 import SupportPage from "../components/home/SupportPage"
 import EducationPage from "../components/home/EducationPage"
+import ContactPage from "../components/home/ContactPage"
 import JoinUs from "../components/home/JoinUs"
 import PostDetails from "../components/home/PostDetails"
 
@@ -80,6 +81,11 @@ const routes = [{
         path: "/join-us",
         name: "JoinUs",
         component: JoinUs,
+    },
+    {
+        path: "/contact",
+        name: "ContactPage",
+        component: ContactPage,
     },
     {
         path: "/post/:id",

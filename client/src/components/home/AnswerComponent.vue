@@ -1,6 +1,6 @@
 <template>
     <div class="single-answer">
-      <div class="image-wrap">
+      <div class="comment-wrap">
         <img src="../../assets/answer.png" alt="Answer image"/>
       </div>
       <div class="answer-footer">

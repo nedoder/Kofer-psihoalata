@@ -13,12 +13,13 @@
 
     <header-component/>
      
-    <div class=join-us  v-if="loading===false && success===false"> 
+    <div class=join-us  v-if="loading===false && success===false && failed===false"> 
       <div class="join-info">
         <h3>Postani volonter</h3>
         <div class="join-img">
-          <img src="../../assets/message.png" alt="Mail envelope"/>
+          <img src="../../assets/message.png" alt="Mail envelope" />
         </div>
+        <img src="../../assets/klupko logo.png" class="join-klupko" alt="Logo klupko"/>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio saepe error alias, odit ullam consectetur harum excepturi aperiam a ipsa soluta est esse atque repellendus recusandae exercitationem autem necessitatibus fugit earum! Harum molestias ipsam voluptatibus eos sit sunt incidunt deleniti delectus consequatur, minus id laborum mollitia facere porro rem minima! Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus est vitae dolorem sint cumque, quibusdam aut repellendus adipisci animi aliquam.</p>
         <p>Ugovor o volontiranju možete preuzeti <a href="#">ovdje</a>.</p>
       </div>
@@ -56,7 +57,10 @@
       <h3>Uspješna prijava</h3>
       <img src="../../assets/success.png" alt="Success message"/>
     </div>
-
+    <div class="success-message" v-if="failed===true">
+      <h3>Došlo je do greške. Molimo pokušajte ponovo.</h3>
+      <img src="../../assets/success.png" alt="Error message"/>
+    </div>
     <footer-component/>
   </div>
 </template>
@@ -90,6 +94,7 @@ export default {
     },
     loading: false,
     success: false,
+    failed: false
   }),
 
   computed: {
@@ -118,13 +123,14 @@ export default {
       requests.sendMail({"message": this.newMessage,})
       .then(response => {
         console.log(response)
+        this.success = true
       })
       .catch(error => {
         console.log(error)
+        this.failed = true
       })
       .finally(() => {
         this.loading = false
-        this.success = true
       })
     },
 
@@ -156,10 +162,12 @@ body, html {
   font-size: 3rem;
   margin: 1rem 0;
   color: var(--light-black);
+  width: 90%;
+  margin: 0 auto;
 }
 
 .success-message img {
-  width: 70%;
+  max-width: 20rem;
 }
 .join {
   width: 100%;
@@ -171,7 +179,10 @@ body, html {
   position: relative;
 }
 
-
+.join-klupko {
+  float: left;
+  height: 7rem;
+}
 .shape-blob{
   z-index: -1;
 }

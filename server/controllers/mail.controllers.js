@@ -27,8 +27,32 @@ exports.send = (req, res) => {
     transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
             console.log('Email error: ' + error);
+            res.status(500).send({err : error})
         } else {
             console.log('Email poslat: ' + info.response);
+            res.status(200).send({success : info.response})
+        }
+    });
+
+}
+
+exports.message = (req, res) => {
+    
+    var mailOptions = {
+        from: req.body.mail,
+        to: process.env.GMAIL,
+        subject: req.body.name,
+        text: req.body.message,
+    };
+
+     
+    transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+            console.log('Email error: ' + error);
+            res.status(500).send({err : error})
+        } else {
+            console.log('Email poslat: ' + info.response);
+            res.status(200).send({success : info.response})
         }
     });
 
