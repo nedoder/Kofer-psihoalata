@@ -181,6 +181,7 @@
     .footer-brand, .social-icons, .partner-logo, .quick-links {
         width: 100%;
         text-align: center;
+        align-items: center;
     }
 
     .partner-logo img {

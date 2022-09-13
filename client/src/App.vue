@@ -70,7 +70,7 @@ body {
 	background: var(--white);
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   display: flex;
-  min-height: 150vh;
+  min-height: 100vh;
   flex-direction: column;
   justify-content: flex-end;
 }
