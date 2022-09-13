@@ -143,7 +143,7 @@ export default {
 	position: relative;
 	color: var(--pink);
 	transition: all 0.35s ease;
-	text-shadow: 0 .5px 1.5px var(--black)
+	-webkit-text-stroke: .2px var(--black);
 }
 
 @media  (min-width: 360px) {
