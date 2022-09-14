@@ -72,8 +72,12 @@ export default {
       if(this.email !== '' || this.contact.email === '') {
           this.errorMsg = true
       } else {
+        window.scrollTo(0,0);
         this.loading = true
-        requests.sendMessage({"message": this.contact.message, "mail": this.contact.email, "name": this.contact.name === "" ? "Poruka sa sajta" : this.contact.name})
+        requests.sendMessage({
+          "message": "Email: " + this.contact.email + "\n\n" + "Poruka: " +  this.contact.message, 
+          "name": this.contact.name === "" ? "Poruka sa sajta" : this.contact.name
+        })
         .then(response => {
           console.log(response)
           this.success = true
@@ -101,27 +105,22 @@ export default {
   font-size: .9rem;
 }
 .loading-mail, .success-message {
-  top: 50%;
-  left: 50%;
-  transform: translate(0%, 50%);
+  width: 90%;
+  margin: 0 auto;
   text-align: center;
-  height: 78vh;
+  padding: 1rem;
+  padding-top: 6rem;
 }
 
-.success-message {
-  transform: translate(0%, 25%);
-}
 .success-message h3 {
   font-family: 'Ribeye Marrow', cursive;
   font-size: 3rem;
   margin: 1rem 0;
   color: var(--light-black);
-  width: 90%;
-  margin: 0 auto
 }
 
 .success-message img {
-  max-width: 20rem;
+  max-height: 75vh;
 }
 .contact-us {
   display: flex;

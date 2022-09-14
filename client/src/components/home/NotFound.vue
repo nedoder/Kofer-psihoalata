@@ -28,9 +28,10 @@ export default {
 <style scoped>
 
 .not-found {
-    width: 100%;
+    width: 90%;
     margin: 0 auto;
     text-align: center;
+    padding: 1rem;
     padding-top: 6rem;
 }
 

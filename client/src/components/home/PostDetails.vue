@@ -19,7 +19,7 @@
                 <textarea name="message" v-model="message" rows="4" placeholder="Poruka" class="message"></textarea>
                 <p v-if="success===true" class="comment-success">Vaš komentar se prvo šalje timu na odobrenje. Kofer psihoalata zadržava pravo da obriše neprimjereni dio ili cijeli komentar, bez najave i objašnjenja.</p>
                 <p v-if="failed===true" class="comment-failed">Došlo je do greške. Molimo pokušajte ponovo.</p>
-                <p v-if="errorMsg===true" class="comment-failed">Morate unijeti komentar.</p>
+                <p v-if="errorMsg===true" class="comment-failed">Morate unijeti poruku.</p>
                 <button class="button"  @click="submitComment">Pošalji</button>
             </div>
             <div class="comment-list" v-for="comment in item.comments" :key="comment.id">
@@ -116,9 +116,6 @@ export default {
 
 <style>
 
-
-
-
 .single-post {
     width: 100%;
 }
@@ -176,12 +173,6 @@ export default {
   letter-spacing: .1rem;
 }
 
-/* .reply-form {
-    height: 0;
-    display: none;
-    transition: all .5s ease;
-} */
-
 .single-comment, .single-answer {
     display: flex;
     flex-direction: row;
@@ -195,6 +186,30 @@ export default {
 
 .single-answer {
     margin-left: 4rem;
+}
+
+.answer-length {
+    width: 100%;
+    font-size: .9rem;
+    padding-top: .5rem;
+}
+
+.answer-box {
+    display: none;
+}
+
+.answer-visible {
+    display: block;
+}
+
+.answer-length svg {
+    padding-top: .5rem;
+    font-size: .7rem !important;
+}
+
+.answer-length:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .comment-wrap {
@@ -322,6 +337,10 @@ export default {
 
     .comment-reply svg {
         padding: .5rem 0;
+    }
+
+    .answer-length svg {
+        padding: 0;
     }
 }
 

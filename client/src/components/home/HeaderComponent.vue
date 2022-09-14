@@ -4,23 +4,23 @@
 			<a href="/" class="brand" aria-label="Logo"><img src="../../assets/logo.png" alt="Logo"/></a>
 			<div class="menu" id="menu">
 				<ul class="menu-list">
-					<router-link tag="li" class="menu-link" class-active="is-active" to="/" exact>
+					<router-link tag="li" class="menu-link" class-active="is-active" @click.native="toTop" to="/" exact>
 						<font-awesome-icon icon="house-chimney-window" />
 						<span class="menu-name">Početna</span>
 					</router-link>
-					<router-link tag="li" class="menu-link" class-active="is-active" to="/#about-us" exact>
+					<router-link tag="li" class="menu-link" class-active="is-active" @click.native="toTop" to="/#about-us" exact>
 						<font-awesome-icon icon="user" />
 						<span class="menu-name">O nama</span>
 					</router-link>
-					<router-link tag="li" class="menu-link" class-active="is-active" to="/education" exact>
+					<router-link tag="li" class="menu-link" class-active="is-active" @click.native="toTop" to="/education" exact>
 						<font-awesome-icon icon="book" />
 						<span class="menu-name">Edukacija</span>
 					</router-link>
-					<router-link tag="li" class="menu-link" class-active="is-active" to="/support" exact>
+					<router-link tag="li" class="menu-link" class-active="is-active" @click.native="toTop" to="/support" exact>
 						<font-awesome-icon icon="headset" />
 						<span class="menu-name">Podrška</span>
 					</router-link>
-					<router-link tag="li" class="menu-link" class-active="is-active" to="/contact" exact>
+					<router-link tag="li" class="menu-link" class-active="is-active" @click.native="toTop" to="/contact" exact>
 						<font-awesome-icon icon="square-envelope" />
 						<span class="menu-name">Kontakt</span>
 					</router-link>
@@ -48,6 +48,9 @@ export default {
 				header.style.background = "transparent"
 				header.style.boxShadow = "none"
 			}
+		},
+		toTop() {
+			window.location.reload()
 		}
 	}, 
 }
@@ -116,7 +119,7 @@ export default {
 
 .menu-link:hover {
 	position: relative;
-	color: var(--pink);
+	color: var(--light-pink);
 	transition: all 0.35s ease;
 	cursor: pointer;
 }
@@ -141,9 +144,12 @@ export default {
 
 .exact-active {
 	position: relative;
-	color: var(--pink);
+	color: var(--light-pink);
 	transition: all 0.35s ease;
-	-webkit-text-stroke: .2px var(--black);
+}
+
+.exact-active  span {
+	font-weight: 600 !important;
 }
 
 @media  (min-width: 360px) {
@@ -180,11 +186,11 @@ export default {
 		height: 2px;
 		border: none;
 		outline: none;
-		background: var(--pink);
+		background: var(--light-pink);
 	}
 
 	.menu-link:hover {
-		color: var(--pink);
+		color: var(--light-pink);
 		transition: all 0.35s ease;
 	}
 		

@@ -39,7 +39,7 @@ exports.send = (req, res) => {
 exports.message = (req, res) => {
     
     var mailOptions = {
-        from: req.body.mail,
+        from: process.env.GMAIL,
         to: process.env.GMAIL,
         subject: req.body.name,
         text: req.body.message,

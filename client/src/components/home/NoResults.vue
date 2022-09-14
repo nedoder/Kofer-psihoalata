@@ -16,12 +16,12 @@
 <style>
   
 .no-results {
-  width: 100%;
+  width: 90%;
   text-align: center;
   position: relative;
-  top: 6rem;
   margin: 0 auto;
-  margin-bottom: 5rem;
+  top: -7rem;
+  padding: 1rem;
 }
 
 .no-results h3 {

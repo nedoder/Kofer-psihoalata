@@ -9,7 +9,7 @@
                 <a href="/#about-us" aria-label="About us">O nama</a>
                 <a href="/education" aria-label="Blog">Edukacija</a>
                 <a href="/support" aria-label="Support">Podrška</a>
-                <a href="/join-us" aria-label="Join ua">Postani volonter</a>
+                <a href="/join-us" aria-label="Join us">Postani volonter</a>
                 <a href="https://www.patreon.com/" aria-label="Patreon">Podrži nas</a>
             </div>
             <div class="partner-logo first-partner">

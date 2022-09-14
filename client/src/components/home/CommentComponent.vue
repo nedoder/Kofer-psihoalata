@@ -9,6 +9,7 @@
           <div class="comment-reply">
            <p class="comment-author"><span>Autor: </span>{{items.author}} <span> &comma; </span> {{new Date(items.createdAt).toUTCString().slice(5,-4)}}</p>
            <font-awesome-icon icon="reply" @click="replyComment"/>
+           <p v-if="items.answers.length !==0" class="answer-length" @click="showAnswer">Prikaži {{items.answers.length}} odgovora  <font-awesome-icon icon="chevron-down"/></p>
         </div>
         </div>
       </div>
@@ -17,7 +18,7 @@
         <textarea name="reply-message" v-model="replymessage" rows="4" placeholder="Poruka" class="reply-message"></textarea>
         <p v-if="success===true" class="comment-success">Vaš komentar se prvo šalje timu na odobrenje. Kofer psihoalata zadržava pravo da obriše neprimjereni dio ili cijeli komentar, bez najave i objašnjenja.</p>
         <p v-if="failed===true" class="comment-failed">Došlo je do greške. Molimo pokušajte ponovo.</p>
-        <p v-if="errorMsg===true" class="comment-failed">Morate unijeti komentar.</p>
+        <p v-if="errorMsg===true" class="comment-failed">Morate unijeti poruku.</p>
         <button class="reply-button comment-btn"  @click="onSubmit">Pošalji</button>
       </div>
       <div class="answer-box" v-for="item in items.answers" :key="item.id">
@@ -44,6 +45,13 @@
     methods: {
       replyComment() {
         this.reply = !this.reply
+      },
+
+      showAnswer() {
+        const reply = Array.from(document.getElementsByClassName("answer-box"));
+        reply.forEach(answer => {
+          answer.classList.toggle("answer-visible")
+        })
       },
 
       onSubmit(e) {

@@ -1,16 +1,42 @@
 <template>
   <div>
-    <div class="post-container" v-if="items.length!==0 && loading===false">
-      <div class="post-list">
+    <div class="post-container">
+      <div class="post-list"  v-if="loading===false">
         <h3>Postovi</h3>
+        <!-- <input name="search" v-model='search' placeholder="Pretraga" type="text" autocomplete="off" class="search-field"> -->
+        <div class="category-flex">
+          <a href="#" class="category-wrap" aria-label="All posts" @click="filterCategory">
+            <img src="../../assets/thinking.png" class="category-link-image active-category"/>
+            <p id="category-name">Sve kategorije</p>
+          </a>
+          <a v-for="item in category" :key="item.id" href="#" class="category-wrap" aria-label="Category" @click="filterCategory">
+            <img v-if="item.category==='Depresija'" src="../../assets/depression.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Anksioznost'" src="../../assets/anxiety.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Mentalno zdravlje'" src="../../assets/counseling.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Testing'" src="../../assets/psychology.png" class="category-link-image"/>
+            <!-- <img v-if="item.category==='Depresija'" src="../../assets/thinking.png" class="category-link-image"/> -->
+            <img v-else-if="item.category==='Stres'" src="../../assets/stress.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Testna testna'" src="../../assets/sad.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Lorem ipsum'" src="../../assets/mood.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Test dva'" src="../../assets/intensive.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Test tri'" src="../../assets/idea.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Test4'" src="../../assets/affection.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Test5'" src="../../assets/health.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Test6'" src="../../assets/healthcare.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Tedtd'" src="../../assets/health.png" class="category-link-image"/>
+            <!-- <img v-if="item.category==='Test6'" src="../../assets/affection.png" class="category-link-image"/> -->
+            <img v-else src="../../assets/selfcare.png" class="category-link-image"/>
+            <p id="category-name">{{item.category}}</p>
+          </a>
+        </div>
         <div class="post-flex">
-          <div v-for="item in items" :key="item.id" class="posts">
+          <div v-for="item in filteredItems" :key="item.id" class="posts">
             <post-card :items="item"/>
           </div>
         </div>
       </div>
     </div>
-    <no-results v-if="items.length===0 && loading===false"></no-results>
+    <no-results v-if="filteredItems.length===0 && loading===false"></no-results>
     <div class="loader-wrapper" v-if="loading===true">
      <img src="../../assets/2.gif" alt="Loading posts"/>
     </div>
@@ -29,8 +55,29 @@ export default {
 
   data: () => ({
     items: [],
+    category: [],
     loading: false,
+    search: '',
+    filteredItems: []
   }),
+
+
+  methods: {
+
+		filterCategory(e) {
+      e.preventDefault();
+      const links = Array.from(document.getElementsByClassName("category-wrap"))
+        links.forEach(link => {
+        link.firstChild.classList.remove("active-category")
+      })
+      e.currentTarget.firstChild.classList.add("active-category")
+      let filtered  = this.items.filter(item => (item.category.category === e.currentTarget.lastChild.innerHTML))
+      this.filteredItems = filtered
+      if(e.currentTarget.lastChild.innerHTML === 'Sve kategorije') {
+        this.filteredItems = this.items
+      }
+		}
+	}, 
  
   mounted(){
     this.loading = true
@@ -46,27 +93,99 @@ export default {
       requests.getPostList()
       .then(response => {
         this.items = response.data;
+        this.filteredItems = response.data
       }).catch(error => {
         console.log(error.response)
       })
       .finally(() => (this.loading = false))
     }
+
+    requests.getCategoryList()
+    .then(response => {
+      this.category = response.data;
+    }).catch(error => {
+      console.log(error.response)
+    });
+
   },
 }
 </script>
 
 <style>
 
+.search-field {
+  display: block;
+  border-radius: 1rem;
+  border:0; 
+  outline:0;
+  padding: 1rem;
+  resize: none;
+  margin: 1.5rem 0;
+  width: 100%;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(1rem);
+}
+
+.category-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  row-gap: .5rem;
+  column-gap: .5rem;
+  padding: 2rem 0 3rem 0;
+}
+
+.category-flex a {
+  text-decoration: none;
+  color: var(--black);
+}
+
+.category-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 6rem;
+  text-align: center;
+}
+
+#category-name {
+  margin: .5rem 0;
+  font-weight: 300;
+  font-size: .9rem;
+  line-height: 1rem;
+  transition: all .5s ease-in-out;
+}
+
+.category-link-image {
+  width: 5rem;
+  height: 5rem;
+  padding: .9rem;
+  background: rgb(224, 218, 218);
+  box-shadow: 2px 2px 2px rgb(224, 218, 218), 2px 2px 2px #fff;
+  box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1), inset 0px -2px 5px #fff;
+  border-radius: 50%;
+  transition: all .5s linear;
+}
+
+.category-wrap:hover .category-link-image, .active-category {
+  background: var(--yellow);
+  box-shadow: inset 0.1rem 0.1rem 0.4rem #f7e6c6, inset -0.2rem -0.1rem 0.3rem #f4cb82;
+  border-radius: 15%;
+}
+
+.category-wrap:hover #category-name {
+  font-weight: 500;
+}
+
 .loader-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -75%);
+  text-align: center;
+  margin-top: 5rem;
 }
 
 .loader-wrapper img {
   opacity: 0.5;
-  width: 100%
+  width: 50%
 }
 
 .post-container {
@@ -251,9 +370,19 @@ export default {
   }
 }
 
+@media (max-width: 400px) {
+  .category-wrap {
+    width: 29%;
+  }
+}
+
 @media (max-width: 300px) {
   .post-img img {
     height: 40vw;
+  }
+
+  .category-wrap {
+    width: 45%;
   }
 }
 
@@ -261,6 +390,7 @@ export default {
   .loader-wrapper {
     transform: translate(-50%, -150%);
   }
+
 }
 
 </style>
