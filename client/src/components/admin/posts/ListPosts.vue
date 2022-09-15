@@ -112,7 +112,7 @@ export default {
   }),
   methods: {
     showPost(id) {
-      this.$router.push({ path: `/post/${id}`, params: { id: id } });
+      this.$router.push({ path: `/post/show/${id}`, params: { id: id } });
     },
     editPost(id) {
       this.$router.push({ path: `/post/${id}/edit`, params: { id: id } });

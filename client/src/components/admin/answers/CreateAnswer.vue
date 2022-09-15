@@ -151,7 +151,7 @@ export default {
       this.comment = []
       requests.getPost(this.posts)
       .then(response => {
-        response.data.comments.forEach(element => {
+        response.data.Comments.forEach(element => {
          
               this.comment.push(element)
         });
@@ -174,7 +174,7 @@ export default {
       this.post = []
       requests.getComment(this.comments)
       .then(response => {  
-            this.post.push(response.data.post)
+            this.post.push(response.data.Post)
       }).catch(error => {
         console.log(error.response)
       });

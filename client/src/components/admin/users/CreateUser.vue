@@ -44,19 +44,19 @@
             >
             </v-text-field>
 
-             <v-text-field
-             filled 
-             shaped 
-                                        label="Potvrdite lozinku"
-                                        v-model="rePassword"
-                                        required
-                                        :rules="[passwordConfirmationRule]"
-                                        :error-messages="errorPassword"
-                                        :append-icon="showRePass ? 'mdi-eye' : 'mdi-eye-off'"
-                                        @click:append="showRePass = !showRePass"
-                                        :type="showRePass ? 'text' : 'password'"
-                                    >
-                                    </v-text-field>
+            <v-text-field
+              filled 
+              shaped 
+              label="Potvrdite lozinku"
+              v-model="rePassword"
+              required
+              :rules="[passwordConfirmationRule]"
+              :error-messages="errorPassword"
+              :append-icon="showRePass ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="showRePass = !showRePass"
+              :type="showRePass ? 'text' : 'password'"
+            >
+            </v-text-field>
             
           
               <v-autocomplete 

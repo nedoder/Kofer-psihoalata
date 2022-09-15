@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config.js");
-const db = require("../models");
-const Comment = db.comments;
-const Activity = db.activity;
-const Op = db.Sequelize.Op;
+const {Comment,Activity} = require("../models");
+// const Comment = db.comments;
+// const Activity = db.activity;
+// const Op = db.Sequelize.Op;
 // Create and Save a new comment
 exports.create = (req, res) => {
 
@@ -51,7 +51,7 @@ exports.findAll = (req, res) => {
 
 
     Comment.findAll({
-            include: ['post', 'answers'],
+            include: [{all:true}],
             order: [
                 ["updatedAt", "desc"]
             ],
@@ -71,7 +71,7 @@ exports.findAll = (req, res) => {
 // Find a single comment with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
-    Comment.findByPk(id, { include: ['post', 'answers'] })
+    Comment.findByPk(id, { include: [{all:true}] })
         .then(data => {
             if (data) {
                 res.send(data);

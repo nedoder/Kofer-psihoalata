@@ -1,10 +1,10 @@
-const db = require("../models");
+const { User, Activity }  = require("../models");
 const bcrypt = require('bcrypt')
 var jwt = require("jsonwebtoken");
 const config = require("../config/auth.config");
-const User = db.users;
-const Activity = db.activity;
-const Op = db.Sequelize.Op;
+// const User = db.Users;
+// const Activity = db.activity;
+// const Op = User.Sequelize.Op;
 
 // Create and Save a new user
 exports.create = (req, res) => {
@@ -54,7 +54,6 @@ exports.create = (req, res) => {
                         message: err.message || "Some error occurred while creating activity."
                     });
                 });
-            res.send(data);
         })
         .catch(err => {
             res.status(500).send({
@@ -65,13 +64,13 @@ exports.create = (req, res) => {
 };
 // Retrieve all users from the database.
 exports.findAll = (req, res) => {
-    const query = req.query.username;
-    var condition = query ? {
-        username: {
-            [Op.like]: `%${query}%`
-        }
-    } : null;
-    User.findAll({ where: condition })
+    // const query = req.query.username;
+    // var condition = query ? {
+    //     username: {
+    //         [Op.like]: `%${query}%`
+    //     }
+    // } : null;
+    User.findAll()
         .then(data => {
             res.send(data);
         })

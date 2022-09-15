@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config.js");
-const db = require("../models");
-const Answer = db.answers;
-const Activity = db.activity;
-const Op = db.Sequelize.Op;
+const {Answer,Activity} = require("../models");
+// const Answer = db.answers;
+// const Activity = db.activity;
+// const Op = db.Sequelize.Op;
 // Create and Save a new answer
 exports.create = (req, res) => {
 
@@ -40,17 +40,17 @@ exports.create = (req, res) => {
 };
 // Retrieve all answers from the database.
 exports.findAll = (req, res) => {
-    const query = req.query.answer;
-    var condition = query ? {
-        answer: {
-            [Op.like]: `%${query}%`
-        }
-    } : null;
+    // const query = req.query.answer;
+    // var condition = query ? {
+    //     answer: {
+    //         [Op.like]: `%${query}%`
+    //     }
+    // } : null;
 
 
 
     Answer.findAll({
-            include: [{ model: db.comments, as: 'comment', include: [{ model: db.posts, as: 'post' }] }],
+            include: [{all:true, include: [{all:true}]}],
             order: [
                 ["updatedAt", "desc"]
             ],

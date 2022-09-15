@@ -8,7 +8,7 @@
 						<font-awesome-icon icon="house-chimney-window" />
 						<span class="menu-name">Početna</span>
 					</router-link>
-					<router-link tag="li" class="menu-link" class-active="is-active" @click.native="toTop" to="/#about-us" exact>
+					<router-link tag="li" class="menu-link" class-active="is-active" to="/#about-us" exact>
 						<font-awesome-icon icon="user" />
 						<span class="menu-name">O nama</span>
 					</router-link>
@@ -119,7 +119,7 @@ export default {
 
 .menu-link:hover {
 	position: relative;
-	color: var(--light-pink);
+	color: var(--pink);
 	transition: all 0.35s ease;
 	cursor: pointer;
 }
@@ -144,7 +144,7 @@ export default {
 
 .exact-active {
 	position: relative;
-	color: var(--light-pink);
+	color: var(--pink);
 	transition: all 0.35s ease;
 }
 
@@ -186,11 +186,11 @@ export default {
 		height: 2px;
 		border: none;
 		outline: none;
-		background: var(--light-pink);
+		background: var(--pink);
 	}
 
 	.menu-link:hover {
-		color: var(--light-pink);
+		color: var(--pink);
 		transition: all 0.35s ease;
 	}
 		

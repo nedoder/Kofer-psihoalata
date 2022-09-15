@@ -5,11 +5,14 @@
         <h3>Postovi</h3>
         <!-- <input name="search" v-model='search' placeholder="Pretraga" type="text" autocomplete="off" class="search-field"> -->
         <div class="category-flex">
-          <a href="#" class="category-wrap" aria-label="All posts" @click="filterCategory">
+          <router-link tag="a"  :to="{path: 'education'}" exact class="category-wrap" aria-label="All posts" @click.native="filterCategory">
+          <!-- <a href="#" class="category-wrap" aria-label="All posts" @click="filterCategory"> -->
             <img src="../../assets/thinking.png" class="category-link-image active-category"/>
             <p id="category-name">Sve kategorije</p>
-          </a>
-          <a v-for="item in category" :key="item.id" href="#" class="category-wrap" aria-label="Category" @click="filterCategory">
+          <!-- </a> -->
+          </router-link>
+          <router-link tag="a" v-for="item in category" :key="item.id" :to="{path: 'education?category=' + item.id}" exact class="category-wrap" aria-label="Category" @click.native="filterCategory">
+          <!-- <a v-for="item in category" :key="item.id" href="#" class="category-wrap" aria-label="Category" @click="filterCategory"> -->
             <img v-if="item.category==='Depresija'" src="../../assets/depression.png" class="category-link-image"/>
             <img v-else-if="item.category==='Anksioznost'" src="../../assets/anxiety.png" class="category-link-image"/>
             <img v-else-if="item.category==='Mentalno zdravlje'" src="../../assets/counseling.png" class="category-link-image"/>
@@ -27,16 +30,17 @@
             <!-- <img v-if="item.category==='Test6'" src="../../assets/affection.png" class="category-link-image"/> -->
             <img v-else src="../../assets/selfcare.png" class="category-link-image"/>
             <p id="category-name">{{item.category}}</p>
-          </a>
+          <!-- </a> -->
+          </router-link>
         </div>
         <div class="post-flex">
-          <div v-for="item in filteredItems" :key="item.id" class="posts">
+          <div v-for="item in items" :key="item.id" class="posts">
             <post-card :items="item"/>
           </div>
         </div>
       </div>
     </div>
-    <no-results v-if="filteredItems.length===0 && loading===false"></no-results>
+    <no-results v-if="items.length===0 && loading===false"></no-results>
     <div class="loader-wrapper" v-if="loading===true">
      <img src="../../assets/2.gif" alt="Loading posts"/>
     </div>
@@ -64,17 +68,26 @@ export default {
 
   methods: {
 
-		filterCategory(e) {
-      e.preventDefault();
-      const links = Array.from(document.getElementsByClassName("category-wrap"))
-        links.forEach(link => {
-        link.firstChild.classList.remove("active-category")
-      })
-      e.currentTarget.firstChild.classList.add("active-category")
-      let filtered  = this.items.filter(item => (item.category.category === e.currentTarget.lastChild.innerHTML))
-      this.filteredItems = filtered
-      if(e.currentTarget.lastChild.innerHTML === 'Sve kategorije') {
-        this.filteredItems = this.items
+		filterCategory() {
+      const element = Array.from(document.querySelectorAll(".category-wrap")).pop();
+      element.scrollIntoView();
+      this.loading = true
+      if(this.$route.query.category) {
+        requests.getPostsList(this.$route.query.category)
+        .then(response => {
+          this.items = response.data;
+        }).catch(error => {
+          console.log(error.response)
+        })
+        .finally(() => (this.loading = false))
+      } else {
+        requests.getPostList()
+        .then(response => {
+          this.items = response.data;
+        }).catch(error => {
+          console.log(error.response)
+        })
+        .finally(() => (this.loading = false))
       }
 		}
 	}, 
@@ -168,7 +181,7 @@ export default {
   transition: all .5s linear;
 }
 
-.category-wrap:hover .category-link-image, .active-category {
+.category-wrap:hover .category-link-image, .exact-active img {
   background: var(--yellow);
   box-shadow: inset 0.1rem 0.1rem 0.4rem #f7e6c6, inset -0.2rem -0.1rem 0.3rem #f4cb82;
   border-radius: 15%;

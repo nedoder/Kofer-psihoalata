@@ -89,4 +89,16 @@
     }
 }
 
+@media (max-width: 500px) {
+    .partner-logo {
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 350px) {
+    .partner-logo {
+        justify-content: center;
+    }
+}
+
 </style>

@@ -1,21 +1,21 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-//import Home, Login, Error and Layout 
+//import Home, Login, Error, Layout and Activity log
 import HomeView from "../components/admin/HomeView"
 import LogInView from "../components/admin/LoginView"
 import AdminLayout from "../components/admin/AdminLayout"
 import ErrorView from "../components/admin/ErrorView"
-import HomePage from "../components/home/HomePage"
 import ActivityLog from "../components/admin/ActivityLog"
-import NotFound from "../components/home/NotFound"
 
-
+//import Home, Support, Education, Contactm JoinUs, PostDetails and NotFound
+import HomePage from "../components/home/HomePage"
 import SupportPage from "../components/home/SupportPage"
 import EducationPage from "../components/home/EducationPage"
 import ContactPage from "../components/home/ContactPage"
 import JoinUs from "../components/home/JoinUs"
 import PostDetails from "../components/home/PostDetails"
+import NotFound from "../components/home/NotFound"
 
 // import components for blogs
 import ListPosts from "../components/admin/posts/ListPosts"
@@ -47,6 +47,12 @@ import ListCategory from "../components/admin/category/ListCategories"
 import CreateCategory from "../components/admin/category/CreateCategory"
 import EditCategory from "../components/admin/category/EditCategory"
 
+
+
+//import components for institution
+import ListInstitution from "../components/admin/institution/ListInstitutions"
+import CreateInstitution from "../components/admin/institution/CreateInstitution"
+import EditInstitution from "../components/admin/institution/EditInstitution"
 
 
 Vue.use(VueRouter);
@@ -116,7 +122,7 @@ const routes = [{
                 component: CreatePost,
             },
             {
-                path: "/post/:id",
+                path: "/post/show/:id",
                 component: ShowPost,
             },
             {
@@ -172,6 +178,18 @@ const routes = [{
                 component: EditCategory,
             },
             {
+                path: "/create/institution",
+                component: CreateInstitution,
+            },
+            {
+                path: "/institutions",
+                component: ListInstitution,
+            },
+            {
+                path: "/institution/:id/edit",
+                component: EditInstitution,
+            },
+            {
                 path: "/create/user",
                 component: CreateUser,
             },
@@ -216,7 +234,12 @@ const router = new VueRouter({
       },
 });
 
+
 export default router
+
+// router.beforeEach(() => { 
+//     window.scrollTo(0,0);
+// })
 
 // router.beforeEach((to, from, next) => {
 //   if (localStorage.getItem('token')) {

@@ -1,19 +1,20 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config.js");
-const {Category,Activity} = require("../models");
-// const Category = db.category;
+const {Institution, Activity} = require("../models");
+// const Institution = db.institution;
 // const Activity = db.activity;
-const models = require("../models");
-const Op = models.Sequelize.Op;
-const fs = require("fs");
-// Create and Save a new category
+// const Op = db.Sequelize.Op;
+// Create and save a new institution
 exports.create = (req, res) => {
 
 
-    // Create category
-    const category = {
-        category: req.body.category,
-        image: req.file.filename,
+    // Create an institution
+    const institution = {
+        name: req.body.name,
+        mail: req.body.mail,
+        location: req.body.location,
+        phone: req.body.phone,
+        profession: req.body.profession
     };
 
     let token = req.headers["authorization"];
@@ -28,82 +29,79 @@ exports.create = (req, res) => {
         author = decoded.name + " " + decoded.lname;
     });
 
-
-    // Save category in the database
-    Category.create(category)
+    // Save institution in the database
+    Institution.create(institution)
         .then(data => {
-            Activity.create({ "activity": `Korisnik ${author} je kreirao kategoriju ${req.body.category}` })
+            Activity.create({ "activity": `Korisnik ${author} je kreirao instituciju ${req.body.name}` })
                 .then(data => {
-                    res.status(200);
+                    res.status(200).send(`Institution is sucessfully created.`); 
                 })
                 .catch(err => {
                     res.status(500).send({
-                        message: err.message || "Some error occurred while creating activity."
+                        message: err.message || "Some error occurred while creating institution."
                     });
                 });
-            res.send(`Category is sucessfully created.`);
+            
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the category."
+                message: err.message || "Some error occurred while creating the institution."
             });
         });
 
 };
-// Retrieve all categories from the database.
+
+// Retrieve all institutions from the database.
 exports.findAll = (req, res) => {
-    const query = req.query.category;
-    var condition = query ? {
-        category: {
-            [Op.like]: `%${query}%`
-        }
-    } : null;
-    Category.findAll({ where: condition })
+    
+    Institution.findAll({
+            order: [
+                ["createdAt", "desc"]
+            ],
+        })
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while retrieving categories."
+                message: err.message || "Some error occurred while retrieving institutions."
             });
         });
 
 };
-// Find a single category with an id
+// Find a single institution with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
-    Category.findByPk(id)
+    Institution.findByPk(id)
         .then(data => {
             if (data) {
                 res.send(data);
             } else {
                 res.status(404).send({
-                    message: `Cannot find category with id=${id}.`
+                    message: `Cannot find institution with id=${id}.`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error retrieving category with id=" + id
+                message: "Error retrieving institution with id=" + id
             });
         });
 
 };
-// Update a category by the id in the request
+
+// Update an institution by the id in the request
 exports.update = async(req, res) => {
     const id = req.params.id;
 
-    var imagePath = null
-        // Edit a category
-    let image = { image: req.file ? req.file.filename : '' }
-
-    let newCategory = {
-        category: req.body.category,
+    let newInstitution = {
+        name: req.body.name,
+        mail: req.body.mail,
+        location: req.body.location,
+        phone: req.body.phone,
+        profession: req.body.profession
     };
 
-    if (image.image !== '') {
-        Object.assign(newCategory, image);
-    }
 
     let token = req.headers["authorization"];
     let author = ''
@@ -117,24 +115,22 @@ exports.update = async(req, res) => {
         author = decoded.name + " " + decoded.lname;
     });
 
-    await Category.findByPk(id)
+
+    await Institution.findByPk(id)
         .then(response => {
-            if (response.image) {
-                imagePath = './uploads/' + response.image;
-            }
-            console.log(response)
+           console.log(response)
         })
         .catch(err => {
             console.log(err)
         });
 
-    Category.update(newCategory, {
+        Institution.update(newInstitution, {
             where: { id: id }
         })
         .then(num => {
             if (num == 1) {
 
-                Activity.create({ "activity": `Korisnik ${author} je izmijenio kategoriju ${req.body.category}` })
+                Activity.create({ "activity": `Korisnik ${author} je izmijenio instituciju ${req.body.name}` })
                     .then(data => {
                         res.status(200);
                     })
@@ -143,17 +139,12 @@ exports.update = async(req, res) => {
                             message: err.message || "Some error occurred while creating activity."
                         });
                     });
-
-                if (newCategory.image) {
-                    fs.unlinkSync(imagePath)
-                }
-
                 res.send({
-                    message: "Category was updated successfully."
+                    message: "Comment was updated successfully."
                 });
             } else {
                 res.send({
-                    message: `Cannot update category with id=${id}. Maybe category was not found or req.body is empty!`
+                    message: `Cannot update comment with id=${id}. Maybe comment was not found or req.body is empty!`
                 });
             }
         })
@@ -164,7 +155,7 @@ exports.update = async(req, res) => {
         });
 
 };
-// Delete a category with the specified id in the request
+// Delete an institution with the specified id in the request
 exports.delete = async(req, res) => {
     const id = req.params.id;
 
@@ -180,22 +171,23 @@ exports.delete = async(req, res) => {
         author = decoded.name + " " + decoded.lname;
     });
 
-    let category = ''
+    let institution = ''
 
-    await Category.findByPk(id)
+    await Institution.findByPk(id)
         .then(response => {
-            category = response.category
+            institution = response.name;
+            console.log(institution)
         })
         .catch(err => {
             console.log(err)
         });
-    Category.destroy({
+        Institution.destroy({
             where: { id: id }
         })
         .then(num => {
             if (num == 1) {
 
-                Activity.create({ "activity": `Korisnik ${author} je izbrisao kategoriju ${category}` })
+                Activity.create({ "activity": `Korisnik ${author} je izbrisao instituciju ${institution}` })
                     .then(data => {
                         res.status(200);
                     })
@@ -206,32 +198,32 @@ exports.delete = async(req, res) => {
                     });
 
                 res.send({
-                    message: "Category was deleted successfully!"
+                    message: "Institution was deleted successfully!"
                 });
             } else {
                 res.send({
-                    message: `Cannot delete category with id=${id}. Maybe category was not found!`
+                    message: `Cannot delete institution with id=${id}. Maybe institution was not found!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete category with id=" + id
+                message: "Could not delete institution with id=" + id
             });
         });
 };
-// Delete all categories from the database.
+// Delete all institutions from the database.
 exports.deleteAll = (req, res) => {
-    Category.destroy({
+    Institution.destroy({
             where: {},
             truncate: false
         })
         .then(nums => {
-            res.send({ message: `${nums} category were deleted successfully!` });
+            res.send({ message: `${nums} institutions were deleted successfully!` });
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while removing all categories."
+                message: err.message || "Some error occurred while removing all institutions."
             });
         });
 };

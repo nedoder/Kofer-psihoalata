@@ -2,7 +2,7 @@
     <div class="comments">
       <div class="single-comment" :id="items.id">
         <div class="comment-wrap">
-          <img src="../../assets/comment.png" alt="Comment image"/>
+          <img src="../../assets/comment4.png" alt="Comment image"/>
         </div>
         <div class="comment-footer">
           <p class="comment-message">{{items.comment}}</p>

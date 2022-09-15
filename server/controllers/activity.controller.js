@@ -1,6 +1,6 @@
-const db = require("../models");
-const Activity = db.activity;
-const Op = db.Sequelize.Op;
+const {Activity} = require("../models");
+// const Activity = db.activity;
+// const Op = db.Sequelize.Op;
 
 
 // Create and Save a new activity

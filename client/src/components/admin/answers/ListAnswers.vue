@@ -95,8 +95,8 @@ export default {
     headers: [
       { text: "Odgovor", value: "answer", sortable: true },
       { text: "Autor", value: "author", sortable: true },
-      { text: "Post", value: "comment.post.title", sortable: true },
-       { text: "Komentar", value: "comment.comment", sortable: true },
+      { text: "Post", value: "Comment.Post.title", sortable: true },
+       { text: "Komentar", value: "Comment.comment", sortable: true },
        { text: "Odobren", value: "approved", sortable: true },
        {text: "Kreiran", value: "createdAt", sortable: true},
         {text: "Poslednje izmjene", value: "updatedAt", sortable: true},

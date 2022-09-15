@@ -96,9 +96,9 @@ export default {
     search: '',
     headers: [
       { text: "Korisničko ime", value: "username", sortable: true },
-       { text: "Ime", value: "firstName", sortable: true },
-        { text: "Prezime", value: "lastName", sortable: true },
-         { text: "Privilegija", value: "role", sortable: true },
+      { text: "Ime", value: "firstName", sortable: true },
+      { text: "Prezime", value: "lastName", sortable: true },
+      { text: "Privilegija", value: "role", sortable: true },
       { text: "Izmijeni", value: "edit", sortable: false },
       { text: "Obriši", value: "delete", sortable: false },
     ],

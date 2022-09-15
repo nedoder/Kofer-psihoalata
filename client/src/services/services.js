@@ -2,6 +2,7 @@ import axios from "axios";
 
 const apiClient = axios.create({
     baseURL: `https://koferpsihoalata.me/`,
+    // baseURL: "http://localhost:3000/",
     withCredentials: false, //true
     headers: {
         Accept: "application/json",
@@ -92,6 +93,21 @@ const requests = {
     },
     deleteCategory(id) {
         return apiClient.delete(`api/category/${id}`);
+    },
+    getInstitutionList() {
+        return apiClient.get("api/institution");
+    },
+    getInstitution(id) {
+        return apiClient.get(`api/institution/${id}`);
+    },
+    newInstitution(data) {
+        return apiClient.post("api/institution", data);
+    },
+    editInstitution(id, data) {
+        return apiClient.patch(`api/institution/${id}`, data);
+    },
+    deleteInstitution(id) {
+        return apiClient.delete(`api/institution/${id}`);
     },
     getUserList() {
         return apiClient.get("api/user");

@@ -169,6 +169,7 @@ export default {
       { title: 'Komentari', icon: 'mdi-comment-question', href: '/comments' },
       { title: 'Odgovori', icon: 'mdi-comment-processing', href: '/answers' },
       { title: 'Kategorije', icon: 'mdi-group', href: '/category' },
+      { title: 'Institucije', icon: 'mdi-office-building', href: '/institutions' },
       { title: 'Aktivnosti', icon: 'mdi-clipboard-text-clock-outline', href: '/activity' },
       
     ],
@@ -177,6 +178,7 @@ export default {
       { title: 'Komentari', icon: 'mdi-comment-question', href: '/create/comment' },
       { title: 'Odgovori', icon: 'mdi-comment-processing', href: '/create/answer' },
       { title: 'Kategorije', icon: 'mdi-group', href: '/create/category' },
+      { title: 'Institucije', icon: 'mdi-office-building', href: '/create/institution' },
      
       
     ],

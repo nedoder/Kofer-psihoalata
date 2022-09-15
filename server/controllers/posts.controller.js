@@ -1,10 +1,11 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config.js");
 const fs = require("fs");
-const db = require("../models");
-const Post = db.posts;
-const Activity = db.activity;
-const Op = db.Sequelize.Op;
+const {Post, Activity} = require("../models");
+// const Post = db.posts;
+// const Activity = db.activity;
+const models = require('../models/');
+const { Op } = models.Sequelize;
 // Create and Save a new category
 exports.create = (req, res) => {
 
@@ -74,7 +75,7 @@ exports.findAll = (req, res) => {
 
     Post.findAll({
         
-            include: ['category', 'user', { model: db.comments, as: 'comments', include: [{ model: db.answers, as: 'answers' }] }],
+            include: [{all:true}],
             where: condition,
             order: [
                 ["updatedAt", "desc"]
@@ -97,7 +98,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
     Post.findByPk(id, {
-            include: ['category', 'user', { model: db.comments, as: 'comments', include: [{ model: db.answers, as: 'answers' }] }],
+            include: [{all:true}],
         })
         .then(data => {
             if (data) {

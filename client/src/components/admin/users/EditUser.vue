@@ -60,7 +60,7 @@
             >
             </v-text-field>
 
-<v-alert type="error" v-if="error">
+            <v-alert type="error" v-if="error">
              {{error}}
             </v-alert>
             <v-btn @click="onSubmit" :disabled="!isValid" color="primary">Izmijeni</v-btn>

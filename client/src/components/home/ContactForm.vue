@@ -69,10 +69,10 @@ export default {
       } 
     },
     onSubmit() {
+      window.scrollTo(0,0);
       if(this.email !== '' || this.contact.email === '') {
           this.errorMsg = true
       } else {
-        window.scrollTo(0,0);
         this.loading = true
         requests.sendMessage({
           "message": "Email: " + this.contact.email + "\n\n" + "Poruka: " +  this.contact.message, 
@@ -121,6 +121,10 @@ export default {
 
 .success-message img {
   max-height: 75vh;
+}
+
+.contact {
+  padding: 4rem 0;
 }
 .contact-us {
   display: flex;
@@ -235,8 +239,12 @@ export default {
     font-size: 2rem;
   }
 
-  .success-message img {
-    width: 50%;
+}
+
+
+@media (max-width: 600px) {
+  .contact {
+    padding: 0;
   }
 }
 

@@ -47,6 +47,7 @@ require("./routes/posts.routes")(app);
 require("./routes/users.routes")(app);
 require("./routes/activity.routes")(app);
 require("./routes/email.routes")(app);
+require("./routes/institutions.routes")(app);
 
 
 app.use(express.static("uploads"))
@@ -68,7 +69,7 @@ const db = require("./models");
 //         console.log(err);
 //     });
 
-db.sequelize.sync();
+// db.sequelize.sync();
 
 
 app.get("/", (req, res) => {
@@ -86,9 +87,13 @@ var connection = mysql.createConnection({
     user: process.env.USER,
     port: process.env.PORTDB,
     password: process.env.PASSWORD,
+    // host: "localhost",
+    // user: "root",
+    // port: 3306,
+    // password: "root",
 });
 
-
+ 
 
 connection.connect(function(err) {
     if (err) throw err;
@@ -99,7 +104,6 @@ connection.query('CREATE DATABASE IF NOT EXISTS senadbul_kofer', function(err, r
     if (err) throw err;
     console.log("Database created!");
 })
-
 
 
 module.exports = connection;
