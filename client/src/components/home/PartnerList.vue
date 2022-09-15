@@ -47,6 +47,7 @@
     font-family: 'Ribeye Marrow', cursive;
     font-size: 3rem;
     color: var(--light-black);
+    margin: 2rem 0;
 }
 
 .partner-list {

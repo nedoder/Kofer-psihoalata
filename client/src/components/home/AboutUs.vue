@@ -26,10 +26,12 @@
     padding: 0 calc(5% + 1rem);
     padding-top: 5rem;
 }
+
 #about-us h3 {
     font-family: 'Ribeye Marrow', cursive;
     font-size: 3rem;
     color: var(--light-black);
+    margin: 2rem 0;
 }
 
 .about-us {

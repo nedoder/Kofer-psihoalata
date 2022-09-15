@@ -74,7 +74,7 @@ export default {
 	width: 100%;
 	height: auto;
 	z-index: 100;
-	padding: 1rem 0;
+	padding: .5rem 0;
 }
 
 .navbar {

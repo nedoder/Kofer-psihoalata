@@ -38,7 +38,7 @@ export default {
 			if(window.top.scrollY !== 0) {
           icon.style.display = "none"
 			} else {
-          icon.style.display = "none"
+          icon.style.display = "block"
 			}
 		}
 	}, 
@@ -313,6 +313,10 @@ export default {
 
   .hero h2 {
     font-size: 2rem;
+  }
+
+  .icon {
+    top: 83vh;
   }
 }
 
