@@ -14,7 +14,7 @@
 </template>
 
 <script>
-
+import requests from '../../services/services'
 import HeaderComponent from './HeaderComponent.vue';
 import FooterComponent from './FooterComponent.vue';
 import SupportCard from './SupporCard.vue';
@@ -25,44 +25,16 @@ export default {
       HeaderComponent, SupportCard, FooterComponent
   },
   data: () => ({
-    items: [
-        {
-        "name": "Centar za mentalno zdravlje", 
-        "mail": "#", 
-        "location": "Trg Nikole Kovačevića 6, Podgorica", 
-        "proffesion": "Dom zdravlja", 
-        "phone" : "067-074-135"
-        },
-        {
-        "name": "Centar za mentalno zdravlje", 
-        "mail": "cmzkotor@t-com.me", 
-        "location": "Dobrota, Kotor", 
-        "proffesion": "Dom zdravlja", 
-        "phone" : "032-334-542"
-        },
-        {
-        "name": "ZU Specijalna bolnica za psihijatriju 'Dobrota'", 
-        "mail": "psihijatrija.kotor@t-com.me", 
-        "location": "Jadranska 118, Kotor", 
-        "proffesion": "Psihijatrija", 
-        "phone" : "032-330-920"
-        },
-        {
-        "name": "Klinika za psihijatriju", 
-        "mail": "aleksandraraznatovic@kccg.me", 
-        "location": "Ljubljanska bb, Podgorica", 
-        "proffesion": "Psihijatrija", 
-        "phone" : "020-412-269"
-        },
-        {
-        "name": "KCCG - Odjeljenje za psihoze", 
-        "mail": "aleksandar.babovic@kccg.me", 
-        "location": "Ljubljanska bb, Podgorica", 
-        "proffesion": "Psihijatrija", 
-        "phone" : "020-412-269"
-        },
-    ],
-  })
+    items: [],
+  }),
+  mounted(){
+    requests.getInstitutionList()
+    .then(response => {
+      this.items = response.data;
+    }).catch(error => {
+      console.log(error.response)
+    });
+  },
  
 }
 </script>
@@ -137,7 +109,7 @@ export default {
 
 .single-institution-header svg {
     color: var(--pink);
-    color: green;
+    /* color: green; */
     padding: 0 .5rem;
     font-size: 1.5rem;
 }
@@ -157,7 +129,7 @@ export default {
     width: 50%;
     color: var(--white);
     background: var(--pink);
-    background: green;
+    /* background: green; */
     cursor: pointer;
  }
 
@@ -168,7 +140,7 @@ export default {
 .single-institution-footer a:last-child {
     background-color: darkgrey;
     color: var(--white);
-    background: red;
+    /* background: red; */
 }
 .single-institution-footer a:last-child:hover{
     background-color: grey;

@@ -2,14 +2,14 @@
     <div class="comments">
       <div class="single-comment" :id="items.id">
         <div class="comment-wrap">
-          <img src="../../assets/comment4.png" alt="Comment image"/>
+          <img src="../../assets/user.png" alt="Comment image"/>
         </div>
         <div class="comment-footer">
           <p class="comment-message">{{items.comment}}</p>
           <div class="comment-reply">
            <p class="comment-author"><span>Autor: </span>{{items.author}} <span> &comma; </span> {{new Date(items.createdAt).toUTCString().slice(5,-4)}}</p>
            <font-awesome-icon icon="reply" @click="replyComment"/>
-           <p v-if="items.answers.length !==0" class="answer-length" @click="showAnswer">Prikaži {{items.answers.length}} odgovora  <font-awesome-icon icon="chevron-down"/></p>
+           <p v-if="items.Answers.length !==0" class="answer-length" @click="showAnswer">Prikaži {{items.Answers.length}} odgovora  <font-awesome-icon icon="chevron-down"/></p>
         </div>
         </div>
       </div>
@@ -21,7 +21,7 @@
         <p v-if="errorMsg===true" class="comment-failed">Morate unijeti poruku.</p>
         <button class="reply-button comment-btn"  @click="onSubmit">Pošalji</button>
       </div>
-      <div class="answer-box" v-for="item in items.answers" :key="item.id">
+      <div class="answer-box" v-for="item in items.Answers" :key="item.id">
         <answer-component :items="item"/>
       </div>
     </div>

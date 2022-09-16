@@ -16,17 +16,17 @@
             <img v-if="item.category==='Depresija'" src="../../assets/depression.png" class="category-link-image"/>
             <img v-else-if="item.category==='Anksioznost'" src="../../assets/anxiety.png" class="category-link-image"/>
             <img v-else-if="item.category==='Mentalno zdravlje'" src="../../assets/counseling.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Testing'" src="../../assets/psychology.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Test'" src="../../assets/psychology.png" class="category-link-image"/>
             <!-- <img v-if="item.category==='Depresija'" src="../../assets/thinking.png" class="category-link-image"/> -->
             <img v-else-if="item.category==='Stres'" src="../../assets/stress.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Testna testna'" src="../../assets/sad.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Test2'" src="../../assets/sad.png" class="category-link-image"/>
             <img v-else-if="item.category==='Lorem ipsum'" src="../../assets/mood.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Test dva'" src="../../assets/intensive.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Test tri'" src="../../assets/idea.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Test4'" src="../../assets/affection.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Test5'" src="../../assets/health.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Test6'" src="../../assets/healthcare.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Tedtd'" src="../../assets/health.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Test3'" src="../../assets/intensive.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Test4'" src="../../assets/idea.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Test5'" src="../../assets/affection.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Test9'" src="../../assets/health.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Test10'" src="../../assets/healthcare.png" class="category-link-image"/>
+            <img v-else-if="item.category==='Test8'" src="../../assets/health.png" class="category-link-image"/>
             <!-- <img v-if="item.category==='Test6'" src="../../assets/affection.png" class="category-link-image"/> -->
             <img v-else src="../../assets/selfcare.png" class="category-link-image"/>
             <p id="category-name">{{item.category}}</p>
@@ -98,6 +98,7 @@ export default {
       requests.getPostsList(this.$route.query.category)
       .then(response => {
         this.items = response.data;
+        console.log(response.data)
       }).catch(error => {
         console.log(error.response)
       })
@@ -106,6 +107,7 @@ export default {
       requests.getPostList()
       .then(response => {
         this.items = response.data;
+        console.log(response.data)
         this.filteredItems = response.data
       }).catch(error => {
         console.log(error.response)

@@ -13,9 +13,9 @@
     </div>
   
     <div class="post-info">
-      <span class="post-category"> {{items.category.category}}</span>
+      <span class="post-category"> {{items.Category.category}}</span>
       <h5 class="post-title">{{items.title}}</h5>
-      <span class="post-by">kreirao/la <a href="#" class="post-author" title="author">{{items.user.username}}</a></span>
+      <span class="post-by">kreirao/la <a href="#" class="post-author" title="author">{{items.User.username}}</a></span>
     </div>
   </router-link>
 </template>

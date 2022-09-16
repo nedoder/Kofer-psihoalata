@@ -7,13 +7,13 @@
             <div class="single-post-image">
                 <img :src="$imagePath + item.image" alt="Post image"/>
             </div>
-            <p class="single-post-category">{{item.category.category}}</p>
-            <p class="single-post-author">Kreirao/la <span class="post-username">{{item.user.username}}</span> <span>|</span> Datum objave: {{new Date(item.createdAt).toLocaleString('en-us',{month:'long', day: 'numeric', year:'numeric'})}}</p>
+            <p class="single-post-category">{{item.Category.category}}</p>
+            <p class="single-post-author">Kreirao/la <span class="post-username">{{item.User.username}}</span> <span>|</span> Datum objave: {{new Date(item.createdAt).toLocaleString('en-us',{month:'long', day: 'numeric', year:'numeric'})}}</p>
             <div  class="single-post-content" id="post-content" v-html=item.content>
             </div>
         </div>
         <div class="comment-box">
-            <h4>Komentari ({{item.comments.length}})</h4>
+            <h4>Komentari ({{item.Comments.length}})</h4>
             <div class="comment-form">
                 <input required name="name" v-model="comment" placeholder="Ime (opciono)" type="text" autocomplete="off" class="name">
                 <textarea name="message" v-model="message" rows="4" placeholder="Poruka" class="message"></textarea>
@@ -22,7 +22,7 @@
                 <p v-if="errorMsg===true" class="comment-failed">Morate unijeti poruku.</p>
                 <button class="button"  @click="submitComment">Pošalji</button>
             </div>
-            <div class="comment-list" v-for="comment in item.comments" :key="comment.id">
+            <div class="comment-list" v-for="comment in item.Comments" :key="comment.id">
                 <comment-component :items="comment"/>
             </div>
         </div>
@@ -44,10 +44,10 @@ export default {
     data: () => ({
      item: {
         date: '',
-        category: '',
-        comments: [],
-        answers: [],
-        user: '',
+        Category: '',
+        Comments: [],
+        Answers: [],
+        User: '',
         title: '',
         image: '',
         id: ''
@@ -96,11 +96,12 @@ export default {
         requests.getPost(this.$route.params.id)
         .then(response => {
             this.item = response.data
-            this.item.comments = this.item.comments.filter(item => {
+            console.log(this.item)
+            this.item.Comments = this.item.Comments.filter(item => {
                 return item.approved === true
             })
-            this.item.comments.forEach(comment => {
-                comment.answers = comment.answers.filter(item => {
+            this.item.Comments.forEach(comment => {
+                comment.Answers = comment.Answers.filter(item => {
                     return item.approved === true
                 })
             })

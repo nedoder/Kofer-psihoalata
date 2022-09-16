@@ -1,7 +1,7 @@
 <template>
     <div class="single-answer">
       <div class="comment-wrap">
-        <img src="../../assets/answer.png" alt="Answer image"/>
+        <img src="../../assets/user.png" alt="Answer image"/>
       </div>
       <div class="answer-footer">
         <p class="answer-message">{{items.answer}}</p>

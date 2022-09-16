@@ -75,7 +75,7 @@ exports.findAll = (req, res) => {
 
     Post.findAll({
         
-            include: [{all:true}],
+            include: [{all:true, include: [{all:true}]}],
             where: condition,
             order: [
                 ["updatedAt", "desc"]
@@ -98,7 +98,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
     Post.findByPk(id, {
-            include: [{all:true}],
+            include: [{all:true, include: [{all:true}]}],
         })
         .then(data => {
             if (data) {
