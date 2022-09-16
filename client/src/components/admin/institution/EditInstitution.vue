@@ -36,7 +36,9 @@
                 filled 
                 shaped 
                 v-model="currentInstitution.phone"
-                :rules="[v => v.length > 1 || 'Morate unijeti kontakt']"
+                hint="Kontakt unijeti u formi +38220123456"
+                persistent-hint
+                :rules="[...validatePhone]"
                 label="Kontakt"
               >
               </v-text-field>
@@ -70,7 +72,8 @@
       currentInstitution: null,
       isValid:true,
       isUpdating: false,
-      error: ''
+      error: '',
+      validatePhone: [ v => !!v || 'Morate unijeti kontakt', v => /^[+][0-9]{11}$/.test(v) || "Broj nije validan"]
     }),
   
     watch: {

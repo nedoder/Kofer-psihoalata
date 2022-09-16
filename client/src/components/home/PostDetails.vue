@@ -2,7 +2,7 @@
     <div class="single-post">
         <header-component/>
        
-        <div class="post-details">
+        <div class="post-details" v-if="loading===false">
             <h3>{{item.title}}</h3>
             <div class="single-post-image">
                 <img :src="$imagePath + item.image" alt="Post image"/>
@@ -12,10 +12,10 @@
             <div  class="single-post-content" id="post-content" v-html=item.content>
             </div>
         </div>
-        <div class="comment-box">
+        <div class="comment-box" v-if="loading===false">
             <h4>Komentari ({{item.Comments.length}})</h4>
             <div class="comment-form">
-                <input required name="name" v-model="comment" placeholder="Ime (opciono)" type="text" autocomplete="off" class="name">
+                <input name="name" v-model="commentname" placeholder="Ime (opciono)" type="text" autocomplete="off" class="name">
                 <textarea name="message" v-model="message" rows="4" placeholder="Poruka" class="message"></textarea>
                 <p v-if="success===true" class="comment-success">Vaš komentar se prvo šalje timu na odobrenje. Kofer psihoalata zadržava pravo da obriše neprimjereni dio ili cijeli komentar, bez najave i objašnjenja.</p>
                 <p v-if="failed===true" class="comment-failed">Došlo je do greške. Molimo pokušajte ponovo.</p>
@@ -25,6 +25,9 @@
             <div class="comment-list" v-for="comment in item.Comments" :key="comment.id">
                 <comment-component :items="comment"/>
             </div>
+        </div>
+        <div class="loading-post" v-if="loading===true">
+            <img src="../../assets/post-load.gif" alt="Loading post"/>
         </div>
         <footer-component/>
     </div>
@@ -52,11 +55,12 @@ export default {
         image: '',
         id: ''
      },
-     comment: '',
+     commentname: '',
      message: '',
      success: false,
      failed: false,
-     errorMsg: false
+     errorMsg: false,
+     loading: false
     }),
 
     methods: {
@@ -68,14 +72,16 @@ export default {
                 e.target.classList.add('btn-fill');
                 e.target.classList.add('btn-load');
                 requests.newComment({
-                    "comment" : this.comment,
-                    "author" : this.message,
+                    "comment" : this.message,
+                    "author" : this.commentname==="" ? "Anoniman" : this.commentname,
                     "postId" : this.item.id,
                     "approved" : false
                 })
                 .then(response => {
                     e.target.classList.remove('btn-load');
                     e.target.classList.remove('btn-fill');
+                    this.message = ""
+                    this.commentname = "" 
                     this.success = true
                     this.failed = false
                     console.log(response)
@@ -93,6 +99,7 @@ export default {
     },
     
     mounted() {
+        this.loading = true
         requests.getPost(this.$route.params.id)
         .then(response => {
             this.item = response.data
@@ -110,12 +117,24 @@ export default {
         .catch(error => {
             console.log(error.response)
         }) 
+        .finally(() => (this.loading = false))
     }
      
 }
 </script>
 
 <style>
+
+.loading-post {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.loading-post img {
+  width: 30%;
+  padding: 2rem 0;
+  opacity: .5;
+}
 
 .single-post {
     width: 100%;
@@ -330,6 +349,18 @@ export default {
         max-width: 100%;
 } 
 
+@media (max-width: 768px) {
+    .loading-post img {
+      width: 50%;
+    }
+}
+
+@media (max-width: 600px) {
+    .loading-post img {
+      width: 70%;
+    }
+}
+
 @media (max-width: 450px) {
     .single-comment, .single-answer, .comment-reply {
         flex-direction: column;
@@ -343,6 +374,17 @@ export default {
     .answer-length svg {
         padding: 0;
     }
+}
+
+@media (max-height: 400px) {
+    .loading-post  {
+        margin-top: 0;
+    }
+
+    .loading-post img {
+        padding: 0;
+    }
+
 }
 
 }

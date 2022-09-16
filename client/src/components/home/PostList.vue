@@ -42,7 +42,7 @@
     </div>
     <no-results v-if="items.length===0 && loading===false"></no-results>
     <div class="loader-wrapper" v-if="loading===true">
-     <img src="../../assets/2.gif" alt="Loading posts"/>
+     <img src="../../assets/loading.gif" alt="Loading posts"/>
     </div>
   </div>
 </template>
@@ -199,8 +199,9 @@ export default {
 }
 
 .loader-wrapper img {
-  opacity: 0.5;
-  width: 50%
+  width: 30%;
+  padding: 2rem 0;
+  opacity: .5;
 }
 
 .post-container {
@@ -373,6 +374,10 @@ export default {
   .post-img img {
     height: 18vw;
   }
+
+  .loader-wrapper img {
+    width: 50%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -382,6 +387,10 @@ export default {
 
   .post-img img {
     height: 35vw;
+  }
+
+  .loader-wrapper img {
+    width: 70%;
   }
 }
 
@@ -403,7 +412,11 @@ export default {
 
 @media (max-height: 400px) {
   .loader-wrapper {
-    transform: translate(-50%, -150%);
+    margin-top: 0;
+  }
+
+  .loader-wrapper img{
+    padding: 0;
   }
 
 }

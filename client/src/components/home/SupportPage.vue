@@ -1,13 +1,16 @@
 <template>
     <div>
         <header-component/>
-        <div class="support-page">
+        <div class="support-page" v-if="loading===false">
             <h3>Institucije</h3>
             <div class="support-wrap">
                 <div v-for="item in items" :key="item.id"  class="support-card">
                     <support-card :items="item"/>
                 </div>
             </div>
+        </div>
+        <div class="loading-support" v-if="loading===true">
+            <img src="../../assets/loading.gif" alt="Loading cards"/>
         </div>
         <footer-component/>
     </div>
@@ -26,14 +29,17 @@ export default {
   },
   data: () => ({
     items: [],
+    loading: false
   }),
   mounted(){
+    this.loading = true
     requests.getInstitutionList()
     .then(response => {
       this.items = response.data;
     }).catch(error => {
       console.log(error.response)
-    });
+    })
+    .finally(() => (this.loading = false))
   },
  
 }
@@ -41,6 +47,17 @@ export default {
 
 
 <style>
+
+.loading-support {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.loading-support img {
+  width: 30%;
+  padding: 2rem 0;
+  opacity: .5;
+}
 
 .support-page {
     width: 90%;
@@ -156,11 +173,29 @@ export default {
     .support-card { 
         width: calc(50% - 1rem);
     }
+
+    .loading-support img {
+        width: 50%;
+    }
 }
 
 @media (max-width: 600px) {
     .support-card { 
         width: 100%
     }
+    .loading-support img { 
+        width: 70%;
+    }
+}
+
+@media (max-height: 400px) {
+    .loading-support {
+        margin-top: 0;
+    }
+
+    .loading-support img {
+        padding: 0;
+    }
+
 }
 </style>

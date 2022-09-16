@@ -7,7 +7,7 @@
                 <p><font-awesome-icon  icon = 'location-dot'/>{{items.location}}</p>
             </div>
          <div class="single-institution-footer">
-            <a :href="'callto: ' + items.phone" aria-label="Phone"><font-awesome-icon  icon = 'phone'/></a>
+            <a :href="'tel: ' + items.phone" aria-label="Phone"><font-awesome-icon  icon = 'phone'/></a>
             <a :href="'mailto: ' + items.mail" aria-label="Mail"><font-awesome-icon  icon = 'envelope'/></a>
          </div>
          

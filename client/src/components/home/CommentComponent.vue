@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="reply-form" v-if="reply===true">
-        <input required name="reply-name" v-model="replyname" placeholder="Ime (opciono)" type="text" autocomplete="off" class="reply-name">
+        <input name="reply-name" v-model="replyname" placeholder="Ime (opciono)" type="text" autocomplete="off" class="reply-name">
         <textarea name="reply-message" v-model="replymessage" rows="4" placeholder="Poruka" class="reply-message"></textarea>
         <p v-if="success===true" class="comment-success">Vaš komentar se prvo šalje timu na odobrenje. Kofer psihoalata zadržava pravo da obriše neprimjereni dio ili cijeli komentar, bez najave i objašnjenja.</p>
         <p v-if="failed===true" class="comment-failed">Došlo je do greške. Molimo pokušajte ponovo.</p>
@@ -62,13 +62,15 @@
           e.target.classList.add('btn-fill');
           requests.newAnswer({
             "commentId" : this.items.id,
-            "author" : this.replyname,
+            "author" : this.replyname === "" ? "Anoniman" : this.replyname,
             "answer" : this.replymessage,
             "approved" : false
           })
           .then(response => {
             e.target.classList.remove('btn-load');
             e.target.classList.remove('btn-fill');
+            this.replyname = ""
+            this.replymessage = ""
             this.success = true
             this.failed = false
             console.log(response)
