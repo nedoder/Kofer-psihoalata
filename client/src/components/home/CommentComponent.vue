@@ -47,8 +47,9 @@
         this.reply = !this.reply
       },
 
-      showAnswer() {
-        const reply = Array.from(document.getElementsByClassName("answer-box"));
+      showAnswer(e) {
+        const currentComment = e.target.parentNode.parentNode.parentNode.parentNode
+        const reply = Array.from(currentComment.querySelectorAll(".answer-box"));
         reply.forEach(answer => {
           answer.classList.toggle("answer-visible")
         })

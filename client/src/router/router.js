@@ -223,15 +223,15 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
     routes,
     linkExactActiveClass: "exact-active",
-    scrollBehavior (to) {
+    scrollBehavior(to) {
         if (to.hash) {
-          return {
-            selector: to.hash,
-            behavior: 'smooth'
-          };
+            return {
+                selector: to.hash,
+                behavior: 'smooth'
+            };
         }
-        return { x: 0, y: 0 };  // Go to the top of the page if no hash
-      },
+        return { x: 0, y: 0 }; // Go to the top of the page if no hash
+    },
 });
 
 
