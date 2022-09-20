@@ -9,7 +9,7 @@
                 </div>
             </div>
         </div>
-        <div class="pagination-wrap">
+        <div class="pagination-wrap" v-if="loading===false && totalPages>1">
             <ul class="pagination">
                  <li v-for="pageNumber in totalPages" :key="pageNumber">
                     <a href="#" @click="loadInstitutions" :class="{ activePagination : active_el == pageNumber }">{{ pageNumber }}</a>

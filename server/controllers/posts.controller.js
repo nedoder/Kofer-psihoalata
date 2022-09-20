@@ -71,6 +71,7 @@ exports.findAll = (req, res) => {
         order: [
             ["updatedAt", "desc"]
         ],
+        distinct:true,
         limit: limit,
         offset: parseInt(page * limit),
     })

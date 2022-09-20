@@ -40,7 +40,7 @@
         </div>
       </div>
     </div>
-    <div class="pagination-wrap">
+    <div class="pagination-wrap" v-if="loading===false && totalPages>1">
       <ul class="pagination">
            <li v-for="pageNumber in totalPages" :key="pageNumber">
               <a href="#" @click="loadPosts" :class="{ activePagination : active_el == pageNumber }">{{ pageNumber }}</a>
@@ -88,7 +88,7 @@ export default {
       if(this.$route.query.category) {
         requests.getPostsList(this.$route.query.category, e.currentTarget.innerHTML)
         .then(response => {
-          this.items = response.data;
+          this.items = response.data.rows;
           console.log(response.data)
         }).catch(error => {
           console.log(error.response)
@@ -97,7 +97,7 @@ export default {
       } else {
         requests.getPostList(e.currentTarget.innerHTML)
         .then(response => {
-          this.items = response.data;
+          this.items = response.data.rows;
           console.log(response.data)
           this.filteredItems = response.data
         }).catch(error => {
@@ -112,17 +112,19 @@ export default {
       element.scrollIntoView();
       this.loading = true
       if(this.$route.query.category) {
-        requests.getPostsList(this.$route.query.category)
+        requests.getPostsList(this.$route.query.category, this.currentPage)
         .then(response => {
-          this.items = response.data;
+          this.items = response.data.rows;
+          this.resultCount = response.data.count
         }).catch(error => {
           console.log(error.response)
         })
         .finally(() => (this.loading = false))
       } else {
-        requests.getPostList()
+        requests.getPostList(this.currentPage)
         .then(response => {
-          this.items = response.data;
+          this.items = response.data.rows;
+          this.resultCount = response.data.count;
         }).catch(error => {
           console.log(error.response)
         })

@@ -8,23 +8,17 @@
 
       <v-spacer></v-spacer>
 
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Pretraga"
-        single-line
-        hide-details
-      >
-      </v-text-field>
-
     </v-card-title>
     
     <v-card-text>
       <v-data-table
       :headers="headers"
       :items="items"
-      :search="search"
-      :items-per-page="5"
+      :footer-props="{
+        'items-per-page-options': [20,]
+      }"
+      :options.sync="options"
+      :server-items-length="totalNumberOfItems"
       dense
       class="elevation-1"
       >
@@ -101,6 +95,11 @@ export default {
   data: () => ({
     items: [],
     dialog: false,
+    totalNumberOfItems: 0,
+    options: {
+      page: 1,
+      itemsPerPage: 20
+    },
     headers: [
       { text: "Slika", value: "image", type: "image", sortable: false },
       { text: "Naslov", value: "title" , align: "title", sortable: true },
@@ -112,8 +111,17 @@ export default {
       { text: "Izmijeni", value: "edit", sortable: false },
       { text: "Obriši", value: "delete", sortable: false },
     ],
-    search: '',
   }),
+
+  watch: {
+    options: {
+      handler () {
+        this.getDataFromApi()
+      },
+      deep: true,
+    },
+  },
+
   methods: {
     showPost(id) {
       this.$router.push({ path: `/post/show/${id}`, params: { id: id } });
@@ -134,13 +142,45 @@ export default {
      deleteItem(id) {
       this.id = id
       this.dialog = true
+    },
+
+    getDataFromApi () {
+      requests.getPostList(this.options.page)
+      .then(response => {
+        this.items = response.data.rows;
+        this.totalNumberOfItems = response.data.count
+        this.items.forEach(item => {
+        item.createdAt = new Date(item.createdAt).toLocaleString()
+        item.updatedAt = new Date(item.updatedAt).toLocaleString()
+        if(item.userId !== null) {
+          requests.getUser(item.userId)
+          .then(response => {
+          item.userId = response.data.username;
+          }).catch(error => {
+            console.log(error.response)
+          })
+        }
+
+        if(item.categoryId !== null) {
+          requests.getCategory(item.categoryId)
+          .then(response => {
+          item.categoryId = response.data.category;
+          }).catch(error => {
+            console.log(error.response)
+          })
+        }
+      })
+      }).catch(error => {
+        console.log(error.response)
+      });
     }
   }, 
   
   mounted(){
-    requests.getPostList()
+    requests.getPostList(this.options.page)
     .then(response => {
-      this.items = response.data;
+      this.items = response.data.rows;
+      this.totalNumberOfItems = response.data.count
       this.items.forEach(item => {
         item.createdAt = new Date(item.createdAt).toLocaleString()
         item.updatedAt = new Date(item.updatedAt).toLocaleString()
