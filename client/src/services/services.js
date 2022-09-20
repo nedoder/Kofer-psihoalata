@@ -31,14 +31,14 @@ const requests = {
     logIn(data) {
         return apiClient.post("api/user/login", data);
     },
-    getPostsList(cat) {
-        return apiClient.get(`api/post?category=${cat}`);
+    getPostsList(cat,page) {
+        return apiClient.get(`api/post?category=${cat}&page=${page}`);
     },
-    getPostList() {
-        return apiClient.get("api/post");
+    getPostList(page) {
+        return apiClient.get(`api/post?page=${page}`);
     },
     getPost(id) {
-        return apiClient.get(`api/post/${id}`);
+        return apiClient.get(`api/post/find/${id}`);
     },
     newPost(data) {
         return apiClient.post("api/post", data);
@@ -98,7 +98,7 @@ const requests = {
         return apiClient.get(`api/institution?page=${page}`);
     },
     getInstitution(id) {
-        return apiClient.get(`api/institution/${id}`);
+        return apiClient.get(`api/institution/find/${id}`);
     },
     newInstitution(data) {
         return apiClient.post("api/institution", data);

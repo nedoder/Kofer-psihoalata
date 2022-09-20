@@ -40,6 +40,13 @@
         </div>
       </div>
     </div>
+    <div class="pagination-wrap">
+      <ul class="pagination">
+           <li v-for="pageNumber in totalPages" :key="pageNumber">
+              <a href="#" @click="loadPosts" :class="{ activePagination : active_el == pageNumber }">{{ pageNumber }}</a>
+          </li>
+      </ul>
+    </div>
     <no-results v-if="items.length===0 && loading===false"></no-results>
     <div class="loader-wrapper" v-if="loading===true">
      <img src="../../assets/loading.gif" alt="Loading posts"/>
@@ -62,11 +69,43 @@ export default {
     category: [],
     loading: false,
     search: '',
-    filteredItems: []
+    filteredItems: [],
+    currentPage: 1,
+    itemsPerPage: 20,
+    resultCount: 0,
+    active_el: 1
   }),
-
-
+  computed: {
+    totalPages: function() {
+      return Math.ceil(this.resultCount / this.itemsPerPage)
+    }
+  },
   methods: {
+
+    loadPosts(e) {
+      this.loading = true
+      this.active_el = e.currentTarget.innerHTML
+      if(this.$route.query.category) {
+        requests.getPostsList(this.$route.query.category, e.currentTarget.innerHTML)
+        .then(response => {
+          this.items = response.data;
+          console.log(response.data)
+        }).catch(error => {
+          console.log(error.response)
+        })
+        .finally(() => (this.loading = false))
+      } else {
+        requests.getPostList(e.currentTarget.innerHTML)
+        .then(response => {
+          this.items = response.data;
+          console.log(response.data)
+          this.filteredItems = response.data
+        }).catch(error => {
+          console.log(error.response)
+        })
+        .finally(() => (this.loading = false))
+      }
+    },
 
 		filterCategory() {
       const element = Array.from(document.querySelectorAll(".category-wrap")).pop();
@@ -95,20 +134,22 @@ export default {
   mounted(){
     this.loading = true
     if(this.$route.query.category) {
-      requests.getPostsList(this.$route.query.category)
+      requests.getPostsList(this.$route.query.category, this.currentPage)
       .then(response => {
-        this.items = response.data;
+        this.items = response.data.rows;
+        this.resultCount = response.data.count
         console.log(response.data)
       }).catch(error => {
         console.log(error.response)
       })
       .finally(() => (this.loading = false))
     } else {
-      requests.getPostList()
+      requests.getPostList(this.currentPage)
       .then(response => {
-        this.items = response.data;
+        this.items = response.data.rows;
+        this.resultCount = response.data.count
         console.log(response.data)
-        this.filteredItems = response.data
+        this.filteredItems = response.data.rows
       }).catch(error => {
         console.log(error.response)
       })

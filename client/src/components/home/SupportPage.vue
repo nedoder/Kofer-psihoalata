@@ -9,6 +9,13 @@
                 </div>
             </div>
         </div>
+        <div class="pagination-wrap">
+            <ul class="pagination">
+                 <li v-for="pageNumber in totalPages" :key="pageNumber">
+                    <a href="#" @click="loadInstitutions" :class="{ activePagination : active_el == pageNumber }">{{ pageNumber }}</a>
+                </li>
+            </ul>
+        </div>
         <div class="loading-support" v-if="loading===true">
             <img src="../../assets/loading.gif" alt="Loading cards"/>
         </div>
@@ -23,30 +30,86 @@ import FooterComponent from './FooterComponent.vue';
 import SupportCard from './SupporCard.vue';
 
 export default {
-  name: 'SupportPage',
-  components: {
-      HeaderComponent, SupportCard, FooterComponent
-  },
-  data: () => ({
-    items: [],
-    loading: false
-  }),
-  mounted(){
-    this.loading = true
-    requests.getInstitutionList(1)
-    .then(response => {
-      this.items = response.data;
-    }).catch(error => {
-      console.log(error.response)
-    })
-    .finally(() => (this.loading = false))
-  },
+    name: 'SupportPage',
+    components: {
+        HeaderComponent, SupportCard, FooterComponent
+    },
+    data: () => ({
+      items: [],
+      loading: false,
+      currentPage: 1,
+      itemsPerPage: 20,
+      resultCount: 0,
+      active_el: 1
+    }),
+    computed: {
+        totalPages: function() {
+          return Math.ceil(this.resultCount / this.itemsPerPage)
+        }
+    },
+    methods: {
+        loadInstitutions(e) {
+            this.loading = true
+            this.active_el = e.currentTarget.innerHTML
+            requests.getInstitutionList(e.currentTarget.innerHTML)
+            .then(response => {
+              this.items = response.data.rows;
+              this.resultCount = response.data.count
+              console.log(response.data)
+            }).catch(error => {
+              console.log(error.response)
+            })
+            .finally(() => (this.loading = false))
+        }
+    },
+    mounted(){
+      this.loading = true
+      requests.getInstitutionList(this.currentPage)
+      .then(response => {
+        this.items = response.data.rows;
+        this.resultCount = response.data.count
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error.response)
+      })
+      .finally(() => (this.loading = false))
+    },
  
 }
 </script>
 
 
 <style>
+
+.pagination-wrap {
+    width: 90%;
+    padding: 0 1rem;
+    margin: 1rem auto;
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
+}
+
+.pagination a {
+    padding: 1rem;
+    clip-path: circle();
+    text-decoration: none;
+    color: var(--black)
+}
+
+.activePagination {
+    background: var(--yellow);
+    color: var(--white) !important;
+    font-weight: 700;
+}
+
 
 /* LOADER */
 .loading-support {

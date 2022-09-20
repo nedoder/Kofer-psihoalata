@@ -6,9 +6,9 @@ module.exports = app => {
     // Create a new post
     router.post("/", authorize.verifyToken, upload.single("image"), posts.create);
     // Retrieve all posts
-    router.get("/", posts.findAll);
+    router.get("/:page?", posts.findAll);
     // Retrieve a single post with id
-    router.get("/:id", posts.findOne);
+    router.get("/find/:id", posts.findOne);
     // Update a post with id
     router.patch("/:id", authorize.verifyToken, upload.single("image"), posts.update);
     // Delete a posts with id

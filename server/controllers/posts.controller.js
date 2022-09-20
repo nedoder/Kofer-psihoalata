@@ -55,6 +55,9 @@ exports.create = (req, res) => {
 // Retrieve all posts from the database.
 exports.findAll = (req, res) => {
 
+    let page = parseInt(req.query.page) - 1
+    let limit = 20
+
     const query = req.query.category;
     var condition = query ? {
         categoryId: {
@@ -62,23 +65,14 @@ exports.findAll = (req, res) => {
         }
     } : null;
 
-    // let page = ''
-    // let limit = 20
-    // let offset = parseInt(page * limit)
-    // if (req.query.page === undefined) {
-    //     page = 1000000000000000
-    // } else {
-    //     page = parseInt(req.query.page) - 1
-    // }
-
-    Post.findAll({
+    Post.findAndCountAll({
         include: [{all:true, include: [{all:true}]}],
         where: condition,
         order: [
             ["updatedAt", "desc"]
         ],
-        // limit: limit,
-        // offset: offset
+        limit: limit,
+        offset: parseInt(page * limit),
     })
     .then(data => {
         res.send(data);
