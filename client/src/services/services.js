@@ -94,8 +94,8 @@ const requests = {
     deleteCategory(id) {
         return apiClient.delete(`api/category/${id}`);
     },
-    getInstitutionList() {
-        return apiClient.get("api/institution");
+    getInstitutionList(page) {
+        return apiClient.get(`api/institution?page=${page}`);
     },
     getInstitution(id) {
         return apiClient.get(`api/institution/${id}`);

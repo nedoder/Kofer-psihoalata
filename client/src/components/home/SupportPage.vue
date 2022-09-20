@@ -33,7 +33,7 @@ export default {
   }),
   mounted(){
     this.loading = true
-    requests.getInstitutionList()
+    requests.getInstitutionList(1)
     .then(response => {
       this.items = response.data;
     }).catch(error => {
@@ -48,6 +48,7 @@ export default {
 
 <style>
 
+/* LOADER */
 .loading-support {
   text-align: center;
   margin-top: 5rem;
@@ -59,6 +60,7 @@ export default {
   opacity: .5;
 }
 
+/* PAGE */
 .support-page {
     width: 90%;
     margin: 0 auto;
@@ -74,6 +76,7 @@ export default {
     text-align: left;
 }
 
+/* CARDS */
 .support-wrap {
     display: flex;
     flex-direction: row;
@@ -126,7 +129,6 @@ export default {
 
 .single-institution-header svg {
     color: var(--pink);
-    /* color: green; */
     padding: 0 .5rem;
     font-size: 1.5rem;
 }
@@ -146,7 +148,6 @@ export default {
     width: 50%;
     color: var(--white);
     background: var(--pink);
-    /* background: green; */
     cursor: pointer;
  }
 
@@ -157,7 +158,6 @@ export default {
 .single-institution-footer a:last-child {
     background-color: darkgrey;
     color: var(--white);
-    /* background: red; */
 }
 .single-institution-footer a:last-child:hover{
     background-color: grey;

@@ -1,14 +1,12 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config.js");
-const {Category,Activity} = require("../models");
-// const Category = db.category;
-// const Activity = db.activity;
+const { Category,Activity } = require("../models");
 const models = require("../models");
 const Op = models.Sequelize.Op;
 const fs = require("fs");
+
 // Create and Save a new category
 exports.create = (req, res) => {
-
 
     // Create category
     const category = {
@@ -28,28 +26,28 @@ exports.create = (req, res) => {
         author = decoded.name + " " + decoded.lname;
     });
 
-
     // Save category in the database
     Category.create(category)
+    .then(data => {
+        Activity.create({ "activity": `Korisnik ${author} je kreirao kategoriju ${req.body.category}` })
         .then(data => {
-            Activity.create({ "activity": `Korisnik ${author} je kreirao kategoriju ${req.body.category}` })
-                .then(data => {
-                    res.status(200);
-                })
-                .catch(err => {
-                    res.status(500).send({
-                        message: err.message || "Some error occurred while creating activity."
-                    });
-                });
-            res.send(`Category is sucessfully created.`);
+            res.status(200);
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the category."
+                message: err.message || "Some error occurred while creating activity."
             });
         });
+        res.send(`Category is sucessfully created.`);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while creating the category."
+        });
+    });
 
 };
+
 // Retrieve all categories from the database.
 exports.findAll = (req, res) => {
     const query = req.query.category;
@@ -59,42 +57,45 @@ exports.findAll = (req, res) => {
         }
     } : null;
     Category.findAll({ where: condition })
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while retrieving categories."
-            });
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving categories."
         });
+    });
 
 };
+
 // Find a single category with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
     Category.findByPk(id)
-        .then(data => {
-            if (data) {
-                res.send(data);
-            } else {
-                res.status(404).send({
-                    message: `Cannot find category with id=${id}.`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: "Error retrieving category with id=" + id
+    .then(data => {
+        if (data) {
+            res.send(data);
+        } else {
+            res.status(404).send({
+                message: `Cannot find category with id=${id}.`
             });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Error retrieving category with id=" + id
         });
+    });
 
 };
+
 // Update a category by the id in the request
 exports.update = async(req, res) => {
+
     const id = req.params.id;
 
     var imagePath = null
-        // Edit a category
+    // Edit a category
     let image = { image: req.file ? req.file.filename : '' }
 
     let newCategory = {
@@ -118,54 +119,53 @@ exports.update = async(req, res) => {
     });
 
     await Category.findByPk(id)
-        .then(response => {
-            if (response.image) {
-                imagePath = './uploads/' + response.image;
-            }
-            console.log(response)
-        })
-        .catch(err => {
-            console.log(err)
-        });
+    .then(response => {
+        if (response.image) {
+            imagePath = './uploads/' + response.image;
+        }
+        console.log(response)
+    })
+    .catch(err => {
+        console.log(err)
+    });
 
     Category.update(newCategory, {
-            where: { id: id }
-        })
-        .then(num => {
-            if (num == 1) {
-
-                Activity.create({ "activity": `Korisnik ${author} je izmijenio kategoriju ${req.body.category}` })
-                    .then(data => {
-                        res.status(200);
-                    })
-                    .catch(err => {
-                        res.status(500).send({
-                            message: err.message || "Some error occurred while creating activity."
-                        });
-                    });
-
-                if (newCategory.image) {
-                    fs.unlinkSync(imagePath)
-                }
-
-                res.send({
-                    message: "Category was updated successfully."
+        where: { id: id }
+    })
+    .then(num => {
+        if (num == 1) {
+            Activity.create({ "activity": `Korisnik ${author} je izmijenio kategoriju ${req.body.category}` })
+            .then(data => {
+                res.status(200);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred while creating activity."
                 });
-            } else {
-                res.send({
-                    message: `Cannot update category with id=${id}. Maybe category was not found or req.body is empty!`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.errors[0].message
             });
+            if (newCategory.image) {
+                fs.unlinkSync(imagePath)
+            }
+            res.send({
+                message: "Category was updated successfully."
+            });
+        } else {
+            res.send({
+                message: `Cannot update category with id=${id}. Maybe category was not found or req.body is empty!`
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.errors[0].message
         });
+    });
 
 };
+
 // Delete a category with the specified id in the request
 exports.delete = async(req, res) => {
+
     const id = req.params.id;
 
     let token = req.headers["authorization"];
@@ -183,55 +183,55 @@ exports.delete = async(req, res) => {
     let category = ''
 
     await Category.findByPk(id)
-        .then(response => {
-            category = response.category
-        })
-        .catch(err => {
-            console.log(err)
-        });
+    .then(response => {
+        category = response.category
+    })
+    .catch(err => {
+        console.log(err)
+    });
+
     Category.destroy({
-            where: { id: id }
-        })
-        .then(num => {
-            if (num == 1) {
-
-                Activity.create({ "activity": `Korisnik ${author} je izbrisao kategoriju ${category}` })
-                    .then(data => {
-                        res.status(200);
-                    })
-                    .catch(err => {
-                        res.status(500).send({
-                            message: err.message || "Some error occurred while creating activity."
-                        });
-                    });
-
-                res.send({
-                    message: "Category was deleted successfully!"
+        where: { id: id }
+    })
+    .then(num => {
+        if (num == 1) {
+            Activity.create({ "activity": `Korisnik ${author} je izbrisao kategoriju ${category}` })
+            .then(data => {
+                res.status(200);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred while creating activity."
                 });
-            } else {
-                res.send({
-                    message: `Cannot delete category with id=${id}. Maybe category was not found!`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: "Could not delete category with id=" + id
             });
+            res.send({
+                message: "Category was deleted successfully!"
+            });
+        } else {
+            res.send({
+                message: `Cannot delete category with id=${id}. Maybe category was not found!`
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Could not delete category with id=" + id
         });
+    });
 };
+
 // Delete all categories from the database.
 exports.deleteAll = (req, res) => {
     Category.destroy({
-            where: {},
-            truncate: false
-        })
-        .then(nums => {
-            res.send({ message: `${nums} category were deleted successfully!` });
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while removing all categories."
-            });
+        where: {},
+        truncate: false
+    })
+    .then(nums => {
+        res.send({ message: `${nums} category were deleted successfully!` });
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while removing all categories."
         });
+    });
 };

@@ -42,12 +42,10 @@
                                             large
                                             type="submit"
                                             text
-                                            rounded
-                                            
-                                            >
-                                            Prijavi se
-                                        </v-btn
-                                    >
+                                            rounded 
+                                        >
+                                        Prijavi se
+                                        </v-btn>
                                     </div>
                                 </v-form>
                             </v-card-text>

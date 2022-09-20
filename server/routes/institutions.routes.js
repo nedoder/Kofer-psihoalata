@@ -5,7 +5,7 @@ module.exports = app => {
     // Create a new institution
     router.post("/", authorize.verifyToken, institutions.create);
     // Retrieve all institutions
-    router.get("/", institutions.findAll);
+    router.get("/page?", institutions.findAll);
     // Retrieve a single institution with id
     router.get("/:id", institutions.findOne);
     // Update an institution with id
@@ -14,5 +14,6 @@ module.exports = app => {
     router.delete("/:id", authorize.verifyToken, institutions.delete);
     // Delete all institutions
     router.delete("/", authorize.verifyToken, institutions.deleteAll);
+    
     app.use('/api/institution', router);
 };

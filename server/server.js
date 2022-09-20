@@ -23,7 +23,6 @@ global.__basedir = __dirname;
 
 
 var corsOptions = {
-    // origin: "https://koferpsihoalata.me"
     origin: "*"
 };
 
@@ -56,21 +55,6 @@ app.use(express.static("uploads"))
 
 const db = require("./models");
 
-// db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
-//     .then(function() {
-//         return db.sequelize.sync({ force: true });
-//     })
-//     .then(function() {
-//         return db.sequelize.query('SET FOREIGN_KEY_CHECKS = 1')
-//     })
-//     .then(function() {
-//         console.log('Database synchronised.');
-//     }, function(err) {
-//         console.log(err);
-//     });
-
-// db.sequelize.sync();
-
 
 app.get("/", (req, res) => {
     res.json({ message: "Kofer psihoalata" });
@@ -94,7 +78,6 @@ var connection = mysql.createConnection({
 });
 
  
-
 connection.connect(function(err) {
     if (err) throw err;
     console.log("Connected to the database!");

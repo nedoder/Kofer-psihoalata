@@ -25,13 +25,11 @@ import EditPost from "../components/admin/posts/EditPost"
 
 //import components for comments
 import ListComments from "../components/admin/comments/ListComments"
-import ShowComment from "../components/admin/comments/ShowComment"
 import CreateComment from "../components/admin/comments/CreateComment"
 import EditComment from "../components/admin/comments/EditComment"
 
 //import components for comment answers
 import ListAnswers from "../components/admin/answers/ListAnswers"
-import ShowAnswer from "../components/admin/answers/ShowAnswer"
 import CreateAnswer from "../components/admin/answers/CreateAnswer"
 import EditAnswer from "../components/admin/answers/EditAnswer"
 
@@ -58,9 +56,10 @@ import EditInstitution from "../components/admin/institution/EditInstitution"
 Vue.use(VueRouter);
 
 
-// adding routes, every route as a child of admin layout
+// adding routes
 
-const routes = [{
+const routes = [
+    {
         path: "/login",
         name: "login",
         component: LogInView,
@@ -138,10 +137,6 @@ const routes = [{
                 component: CreateComment,
             },
             {
-                path: "/comment/:id",
-                component: ShowComment,
-            },
-            {
                 path: "/comment/:id/edit",
                 component: EditComment,
             },
@@ -152,10 +147,6 @@ const routes = [{
             {
                 path: "/create/answer",
                 component: CreateAnswer,
-            },
-            {
-                path: "/answer/:id",
-                component: ShowAnswer,
             },
             {
                 path: "/answer/:id/edit",

@@ -22,9 +22,10 @@
                 <p v-if="errorMsg===true" class="comment-failed">Morate unijeti poruku.</p>
                 <button class="button"  @click="submitComment">Pošalji</button>
             </div>
-            <div class="comment-list" v-for="comment in item.Comments" :key="comment.id">
+            <div class="comment-list" v-for="comment in commentsLoaded" :key="comment.id">
                 <comment-component :items="comment"/>
             </div>
+            <button @click="loadMore" class="load-more" v-if="this.item.Comments.length > this.length">Prikaži više</button>
         </div>
         <div class="loading-post" v-if="loading===true">
             <img src="../../assets/post-load.gif" alt="Loading post"/>
@@ -53,8 +54,9 @@ export default {
         User: '',
         title: '',
         image: '',
-        id: ''
+        id: '',
      },
+     length: 5,
      commentname: '',
      message: '',
      success: false,
@@ -63,8 +65,23 @@ export default {
      loading: false
     }),
 
+    computed: {
+        commentsLoaded() {
+            return this.item.Comments.slice(0, this.length);
+        },
+    },
+
     methods: {
 
+        loadMore(e) {
+            if (this.length > this.item.Comments.length) {
+                return
+            }
+            if (this.length === this.item.Comments.length -1) {
+                e.target.style.display = "none";
+            }
+            this.length = this.length + 1;
+        },
         submitComment(e) {
             if(this.message === '') {
                 this.errorMsg = true
@@ -81,7 +98,7 @@ export default {
                     e.target.classList.remove('btn-load');
                     e.target.classList.remove('btn-fill');
                     this.message = ""
-                    this.commentname = "" 
+                    this.commentname = ""
                     this.success = true
                     this.failed = false
                     console.log(response)
@@ -125,6 +142,14 @@ export default {
 
 <style>
 
+.load-more, .load-answers {
+    display: block;
+    margin: 0 auto;
+    font-size: .9rem;
+    color: var(--light-black);
+    text-align: center;
+    padding: 1rem 0;
+}
 .loading-post {
   text-align: center;
   margin-top: 5rem;
@@ -214,7 +239,7 @@ export default {
     padding-top: .5rem;
 }
 
-.answer-box {
+.answer-box, .answer-wrap {
     display: none;
 }
 

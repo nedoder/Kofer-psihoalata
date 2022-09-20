@@ -1,7 +1,6 @@
 <template>
   <v-card>
     <v-card-title>
-
       <h1 class="display-1">
         Lista odgovora
       </h1>
@@ -35,14 +34,14 @@
         <template v-slot:[`item.delete`]="{ item }" >  
           <template>
             <div class="text-center">
-                <template>
-                  <v-btn
-                    icon
-                    @click="deleteItem(item.id)"
-                  >
-                    <v-icon small color="red">mdi-delete</v-icon>
-                  </v-btn>
-                </template>
+              <template>
+                <v-btn
+                  icon
+                  @click="deleteItem(item.id)"
+                >
+                  <v-icon small color="red">mdi-delete</v-icon>
+                </v-btn>
+              </template>
             </div>
           </template>
         </template>
@@ -96,10 +95,10 @@ export default {
       { text: "Odgovor", value: "answer", sortable: true },
       { text: "Autor", value: "author", sortable: true },
       { text: "Post", value: "Comment.Post.title", sortable: true },
-       { text: "Komentar", value: "Comment.comment", sortable: true },
-       { text: "Odobren", value: "approved", sortable: true },
-       {text: "Kreiran", value: "createdAt", sortable: true},
-        {text: "Poslednje izmjene", value: "updatedAt", sortable: true},
+      { text: "Komentar", value: "Comment.comment", sortable: true },
+      { text: "Odobren", value: "approved", sortable: true },
+      { text: "Kreiran", value: "createdAt", sortable: true},
+      { text: "Poslednje izmjene", value: "updatedAt", sortable: true},
       { text: "Izmijeni", value: "edit", sortable: false },
       { text: "Obriši", value: "delete", sortable: false },
     ],

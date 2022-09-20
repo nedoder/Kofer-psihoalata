@@ -1,9 +1,8 @@
 <template>
   <v-form v-model="isValid" class="row text-center justify-center align-center fill-height">
-      <v-col sm="6">
-        <v-card  tile >
-
-            <v-card-title>Kreiranje odgovora</v-card-title>
+    <v-col sm="6">
+      <v-card tile>
+        <v-card-title>Kreiranje odgovora</v-card-title>
           <v-card-text>
 
             <v-textarea
@@ -14,7 +13,7 @@
               :rules="[v => v.length > 1 || 'Morate unijeti odgovor']"
             ></v-textarea>
 
-    <v-autocomplete
+            <v-autocomplete
               filled
               shaped
               :items="post"
@@ -25,13 +24,13 @@
               chips
               deletable-chips
               label="Post"
-               @change="displayComment"
+              @change="displayComment"
               :error-messages='matchPostError()'
             >
             
               <template v-slot:selection="data">
                 <v-chip
-                class="short"
+                  class="short"
                   v-bind="data.attrs"
                   :input-value="data.selected"
                   close
@@ -41,9 +40,10 @@
                   <v-avatar left>
                     <v-img :src="$imagePath + data.item.image"></v-img>
                   </v-avatar>
-                    <span> {{ data.item.title }} </span> 
+                  <span> {{ data.item.title }} </span> 
                 </v-chip>
               </template>
+
               <template v-slot:item="data">
                 <template>
                   <v-list-item-avatar>
@@ -68,25 +68,25 @@
               chips
               deletable-chips
               label="Komentar"
-               @change="displayPost"
+              @change="displayPost"
               :error-messages='matchCommentError()'
             >
 
-            <template v-slot:selection="data">
+              <template v-slot:selection="data">
                 <v-chip
-                    class="short"
+                  class="short"
                   v-bind="data.attrs"
                   :input-value="data.selected"
                   close
                   @click="data.select"
                   @click:close="[removeComment(), displayPosts()]"
                 >
-                     <span> {{ data.item.comment }} </span>
+                  <span> {{ data.item.comment }} </span>
                 </v-chip>
               </template>
+
               <template v-slot:item="data">
                 <template>
-                  
                   <v-list-item-content>
                     <v-list-item-title v-html="data.item.comment"></v-list-item-title>
                   </v-list-item-content>
@@ -95,7 +95,6 @@
 
             </v-autocomplete>
 
-          
             <v-alert type="error" v-if="error">
              {{error}}
             </v-alert>
@@ -103,8 +102,8 @@
             <v-btn @click="onSubmit" :disabled="!isValid" color="primary">Kreiraj</v-btn>
             
           </v-card-text>
-        </v-card>
-      </v-col>
+      </v-card>
+    </v-col>
   </v-form >
 </template>
 
@@ -152,39 +151,38 @@ export default {
       requests.getPost(this.posts)
       .then(response => {
         response.data.Comments.forEach(element => {
-         
-              this.comment.push(element)
+          this.comment.push(element)
         });
       }).catch(error => {
         console.log(error.response)
       });
     },
 
-     displayComments() {
+    displayComments() {
       this.comment = []
       requests.getCommentsList()
       .then(response => { 
-          this.comment = response.data
+        this.comment = response.data
       }).catch(error => {
         console.log(error.response)
       });
     },
 
-     displayPost() {
+    displayPost() {
       this.post = []
       requests.getComment(this.comments)
       .then(response => {  
-            this.post.push(response.data.Post)
+        this.post.push(response.data.Post)
       }).catch(error => {
         console.log(error.response)
       });
     },
 
-     displayPosts() {
+    displayPosts() {
       this.post = []
       requests.getPostsList()
       .then(response => {  
-            this.post = response.data
+        this.post = response.data
       }).catch(error => {
         console.log(error.response)
       });
@@ -217,7 +215,7 @@ export default {
       console.log(error.response)
     });
 
-     requests.getPostList()
+    requests.getPostList()
     .then(response => {
       this.post = response.data;
     }).catch(error => {
@@ -248,4 +246,5 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 </style>

@@ -21,9 +21,13 @@
         <p v-if="errorMsg===true" class="comment-failed">Morate unijeti poruku.</p>
         <button class="reply-button comment-btn"  @click="onSubmit">Pošalji</button>
       </div>
-      <div class="answer-box" v-for="item in items.Answers" :key="item.id">
-        <answer-component :items="item"/>
+      <div class="answer-wrap">
+       <div class="answer-box" v-for="item in answersLoaded" :key="item.id">
+         <answer-component :items="item"/>
+       </div>
+        <button v-if="this.items.Answers.length > this.length" @click="loadAnswers" class="load-answers">Prikaži više</button>
       </div>
+      
     </div>
   </template>
   
@@ -40,16 +44,44 @@
       reply: false,
       success: false,
       failed: false,
-      errorMsg: false
+      errorMsg: false,
+      length: 5
     }),
+
+    computed: {
+        answersLoaded() {
+            return this.items.Answers.slice(0, this.length);
+        },
+    },
+
     methods: {
+
+      loadAnswers(e) {
+        const currentComment = e.target.parentNode.parentNode
+        const reply = Array.from(currentComment.querySelectorAll(".answer-box"));
+        reply.forEach(answer => {
+          answer.classList.add("answer-visible")
+        })
+            if (this.length >= this.items.Answers.length) {
+                e.target.style.display = "none";
+                return
+            }
+            this.length = this.length + 1;
+        },
+
       replyComment() {
         this.reply = !this.reply
       },
 
       showAnswer(e) {
         const currentComment = e.target.parentNode.parentNode.parentNode.parentNode
+        const replyWrap = Array.from(currentComment.querySelectorAll(".answer-wrap"));
         const reply = Array.from(currentComment.querySelectorAll(".answer-box"));
+        const load = Array.from(currentComment.querySelectorAll(".answer-wrap > button"))[0];
+        console.log(load)
+        replyWrap.forEach(answer => {
+          answer.classList.toggle("answer-visible")
+        })
         reply.forEach(answer => {
           answer.classList.toggle("answer-visible")
         })

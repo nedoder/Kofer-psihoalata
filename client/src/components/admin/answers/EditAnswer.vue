@@ -1,38 +1,35 @@
 <template>
   <v-form v-if="currentAnswer" v-model="isValid" class="row text-center justify-center align-center fill-height">
-      <v-col sm="6">
-        <v-card tile>
+    <v-col sm="6">
+      <v-card tile>
+        <v-card-title>Izmjena odgovora</v-card-title>
+        <v-card-text>
+          <v-textarea 
+            filled 
+            shaped 
+            v-model="currentAnswer.answer" 
+            :rules="[v => v.length > 1 || 'Morate unijeti odgovor']"
+            label="Odgovor" 
+          >
+          </v-textarea>
 
-            <v-card-title>Izmjena odgovora</v-card-title>
-          <v-card-text>
+          <v-checkbox 
+            label="Prikaži na stranici" 
+            v-model="currentAnswer.approved"
+          >
+          </v-checkbox>
 
-            <v-textarea 
-              filled 
-              shaped 
-              v-model="currentAnswer.answer" 
-              :rules="[v => v.length > 1 || 'Morate unijeti odgovor']"
-              label="Odgovor" 
-            >
-            </v-textarea>
-
-             <v-checkbox 
-              label="Prikaži na stranici" 
-              v-model="currentAnswer.approved"
-            >
-            </v-checkbox>
-
-            <v-btn @click="onSubmit" :disabled="!isValid" color="primary">Izmijeni</v-btn>
+          <v-btn @click="onSubmit" :disabled="!isValid" color="primary">Izmijeni</v-btn>
             
-          </v-card-text>
-        </v-card>
-      </v-col>
+        </v-card-text>
+      </v-card>
+    </v-col>
   </v-form >
 </template>
 
 <script>
 import requests from "../../../services/services"
 export default {
- 
   data: () => ({
     currentAnswer: null,
     isValid:true,
@@ -74,7 +71,6 @@ export default {
 </script>
 
 <style scoped>
-
 .row .fill-height {
     height: 80vh !important;
     align-items: center !important;

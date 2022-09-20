@@ -30,25 +30,28 @@
       >
 
        <template v-slot:[`item.image`]="{ item }">
-              <img :src="$imagePath + item.image" style="width: 50px; height: 50px; border-radius:50%" />
-          </template>   
+          <img :src="$imagePath + item.image" style="width: 50px; height: 50px; border-radius:50%" />
+        </template>   
+
         <template v-slot:[`item.edit`]="{ item }" > 
           <v-icon small color="blue" class="mr-2" @click="editCategory(item.id)">mdi-pencil</v-icon>
         </template>
+
         <template v-slot:[`item.delete`]="{ item }" >  
           <template>
             <div class="text-center">
-                <template>
-                  <v-btn
-                    icon
-                    @click="deleteItem(item.id)"
-                  >
-                    <v-icon small color="red">mdi-delete</v-icon>
-                  </v-btn>
-                </template>
+              <template>
+                <v-btn
+                  icon
+                  @click="deleteItem(item.id)"
+                >
+                  <v-icon small color="red">mdi-delete</v-icon>
+                </v-btn>
+              </template>
             </div>
           </template>
         </template>
+
       </v-data-table>
 
       <v-dialog
@@ -83,6 +86,7 @@
               Obriši
             </v-btn>
           </v-card-actions>
+
         </v-card>
       </v-dialog>
     </v-card-text>
@@ -96,7 +100,7 @@ export default {
     items: [],
     dialog: false,
     headers: [
-       { text: "Slika", value: "image", type: "image", sortable: false },
+      { text: "Slika", value: "image", type: "image", sortable: false },
       { text: "Kategorija", value: "category", sortable: true },
       { text: "Izmijeni", value: "edit", sortable: false },
       { text: "Obriši", value: "delete", sortable: false },

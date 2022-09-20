@@ -49,12 +49,10 @@
     color: var(--light-black);
     margin: 2rem 0;
 }
-
 .partner-list {
     width: 100%;
     padding: 0 calc(5% + 1rem);
 }
-
 .partners {
     margin: 4rem 0;
     display: flex;
@@ -63,11 +61,9 @@
     align-items: center;
     text-align: justify;
 }
-
 .partner-text, .partner-logo {
     width: 100%;
 }
-
 .partner-logo {
     display: flex;
     flex-direction: row;
@@ -78,7 +74,6 @@
     column-gap: 1rem;
     padding: 2rem 0;
 }
-
 .partner-logo img {
     width: 8rem;
 }

@@ -5,7 +5,7 @@
         <v-card tile>
           <v-card-text>
 
-             <img 
+            <img 
               height="100px"
               width="100px" 
               v-if="url" 
@@ -59,8 +59,8 @@ export default {
     currentCategory: null,
     isValid:true,
     isUpdating: false,
-     url: null,
-     image: null
+    url: null,
+    image: null
   }),
   watch: {
     isUpdating (val) {
@@ -86,6 +86,7 @@ export default {
         console.log(e);
       });
     },
+
     getCategories(id) {
       requests.getCategory(id)
       .then((response) => {
@@ -113,7 +114,6 @@ export default {
   },
 }
 </script>
-
 
 <style scoped>
 .quillWrapper {

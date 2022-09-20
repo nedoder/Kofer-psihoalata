@@ -1,31 +1,30 @@
 <template>
   <v-form v-if="currentComment" v-model="isValid" class="row text-center justify-center align-center fill-height">
-      <v-col sm="6">
-        <v-card tile>
+    <v-col sm="6">
+      <v-card tile>
 
-            <v-card-title>Izmjena komentara</v-card-title>
-          <v-card-text>
+        <v-card-title>Izmjena komentara</v-card-title>
+        <v-card-text>
+          <v-textarea 
+            filled 
+            shaped 
+            v-model="currentComment.comment" 
+            :rules="[v => v.length > 1 || 'Morate unijeti komentar']"
+            label="Komentar" 
+          >
+          </v-textarea>
 
-            <v-textarea 
-              filled 
-              shaped 
-              v-model="currentComment.comment" 
-              :rules="[v => v.length > 1 || 'Morate unijeti komentar']"
-              label="Komentar" 
-            >
-            </v-textarea>
+          <v-checkbox 
+            label="Prikaži na stranici" 
+            v-model="currentComment.approved"
+          >
+          </v-checkbox>
 
-             <v-checkbox 
-              label="Prikaži na stranici" 
-              v-model="currentComment.approved"
-            >
-            </v-checkbox>
-
-            <v-btn @click="onSubmit" :disabled="!isValid" color="primary">Izmijeni</v-btn>
+          <v-btn @click="onSubmit" :disabled="!isValid" color="primary">Izmijeni</v-btn>
             
-          </v-card-text>
-        </v-card>
-      </v-col>
+        </v-card-text>
+      </v-card>
+    </v-col>
   </v-form >
 </template>
 
@@ -74,7 +73,6 @@ export default {
 </script>
 
 <style scoped>
-
 .row .fill-height {
     height: 80vh !important;
     align-items: center !important;

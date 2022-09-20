@@ -1,7 +1,7 @@
 <template>
     <v-container>         
         <div class="row text-center justify-center align-center"> 
-            <div >
+            <div>
                 <img
                     src="../../assets/notfound.png"
                     alt="Not found"

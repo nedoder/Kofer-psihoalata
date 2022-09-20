@@ -28,29 +28,33 @@
       dense
       class="elevation-1"
       >
-          <template v-slot:[`item.image`]="{ item }">
-              <img :src="$imagePath + item.image" style="width: 50px; height: 50px; border-radius:50%" />
-          </template>
-          <template v-slot:[`item.show`]="{ item }" > 
+        <template v-slot:[`item.image`]="{ item }">
+            <img :src="$imagePath + item.image" style="width: 50px; height: 50px; border-radius:50%" />
+        </template>
+
+        <template v-slot:[`item.show`]="{ item }" > 
           <v-icon small color="green" class="mr-2" @click="showPost(item.id)">mdi-eye</v-icon>
         </template>
+
         <template v-slot:[`item.edit`]="{ item }" > 
           <v-icon small color="blue" class="mr-2" @click="editPost(item.id)">mdi-pencil</v-icon>
         </template>
+
         <template v-slot:[`item.delete`]="{ item }" >  
           <template>
             <div class="text-center">
-                <template>
-                  <v-btn
-                    icon
-                    @click="deleteItem(item.id)"
-                  >
-                    <v-icon small color="red">mdi-delete</v-icon>
-                  </v-btn>
-                </template>
+              <template>
+                <v-btn
+                  icon
+                  @click="deleteItem(item.id)"
+                >
+                  <v-icon small color="red">mdi-delete</v-icon>
+                </v-btn>
+              </template>
             </div>
           </template>
         </template>
+
       </v-data-table>
 
       <v-dialog
@@ -102,8 +106,8 @@ export default {
       { text: "Naslov", value: "title" , align: "title", sortable: true },
       { text: "Autor", value: "userId", sortable: true },
       { text: "Kategorija", value: "categoryId", sortable: true },
-        {text: "Kreiran", value: "createdAt", sortable: true},
-        {text: "Poslednje izmjene", value: "updatedAt", sortable: true},
+      { text: "Kreiran", value: "createdAt", sortable: true},
+      { text: "Poslednje izmjene", value: "updatedAt", sortable: true},
       { text: "Detalji", value: "show", sortable: false },
       { text: "Izmijeni", value: "edit", sortable: false },
       { text: "Obriši", value: "delete", sortable: false },

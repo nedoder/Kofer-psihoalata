@@ -148,20 +148,6 @@ export default {
         this.url = null
       }
     },
-    // remove (item) {
-    //   let categories = []
-    //   this.currentBaner.category.forEach(cat => {
-    //     if(cat.id) {
-    //       categories.push(this.category.id)
-    //     }
-    //     else {
-    //       categories.push(this.category)
-    //     }
-        
-    //   })
-    //     const index = categories.indexOf(item.id)
-    //     if (index >= 0) this.currentBaner.categoryId.splice(index, 1)
-    // },
     matchError() {  
      return ( this.currentPost.categoryId === null) ? "Morate odabrati kategoriju" : ""
     },

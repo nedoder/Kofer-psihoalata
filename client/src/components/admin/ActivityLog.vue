@@ -1,15 +1,10 @@
 <template>
   <v-card>
     <v-card-title>
-
       <h1 class="display-1">
         Lista aktivnosti
       </h1>
-
       <v-spacer></v-spacer>
-
-     
-
     </v-card-title>
     
     <v-card-text>
@@ -24,7 +19,6 @@
       dense
       class="elevation-1"
       >
-    
       </v-data-table>
     </v-card-text>
   </v-card>
@@ -42,8 +36,8 @@ export default {
       itemsPerPage: 20
     },
     headers: [
-      { text: "Aktivnost", value: "activity" ,  sortable: true },
-      {text: "Kreiran", value: "createdAt", sortable: true},
+      { text: "Aktivnost", value: "activity" , sortable: true },
+      { text: "Kreiran", value: "createdAt", sortable: true},
     ],
   }),
  
@@ -58,16 +52,16 @@ export default {
   methods: {
     getDataFromApi () {
       requests.getActivityList(this.options.page)
-    .then(response => {
-      this.items = response.data.rows;
-      this.totalNumberOfItems = response.data.count
-      this.items.forEach(item => {
-        item.createdAt = new Date(item.createdAt).toLocaleString()
-        item.updatedAt = new Date(item.updatedAt).toLocaleString()
-      })
-    }).catch(error => {
-      console.log(error.response)
-    })    
+      .then(response => {
+        this.items = response.data.rows;
+        this.totalNumberOfItems = response.data.count
+        this.items.forEach(item => {
+          item.createdAt = new Date(item.createdAt).toLocaleString()
+          item.updatedAt = new Date(item.updatedAt).toLocaleString()
+        })
+      }).catch(error => {
+        console.log(error.response)
+      })    
     }
   },
   
@@ -87,9 +81,7 @@ export default {
 }
 </script>
 
-
 <style>
-
 .v-data-footer {
   justify-content: end;
 }

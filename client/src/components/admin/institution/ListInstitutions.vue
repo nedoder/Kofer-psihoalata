@@ -8,15 +8,6 @@
   
        <v-spacer></v-spacer>
   
-        <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          label="Pretraga"
-          single-line
-          hide-details
-        >
-        </v-text-field>
-  
   
       </v-card-title>
       
@@ -24,7 +15,11 @@
         <v-data-table
         :headers="headers"
         :items="items"
-        :search="search"
+        :footer-props="{
+          'items-per-page-options': [20,]
+        }"
+        :options.sync="options"
+        :server-items-length="totalNumberOfItems"
         dense
         class="elevation-1"
         >
@@ -93,7 +88,11 @@
     data: () => ({
       items: [],
       dialog: false,
-      search: '',
+      totalNumberOfItems: 0,
+      options: {
+        page: 1,
+        itemsPerPage: 20
+      },
       headers: [
         { text: "Naziv", value: "name", sortable: true },
         { text: "Zanimanje", value: "profession", sortable: true },
@@ -104,6 +103,15 @@
         { text: "Obriši", value: "delete", sortable: false },
       ],
     }),
+
+    watch: {
+      options: {
+        handler () {
+          this.getDataFromApi()
+        },
+        deep: true,
+      },
+    },
     methods: {
       editInstitution(id) {
         this.$router.push({ path: `/institution/${id}/edit`, params: { id: id } });
@@ -121,13 +129,31 @@
       deleteItem(id) {
         this.id = id
         this.dialog = true
-      }
+      },
+      getDataFromApi () {
+        requests.getInstitutionList(this.options.page)
+      .then(response => {
+        this.items = response.data.rows;
+        this.totalNumberOfItems = response.data.count
+        this.items.forEach(item => {
+        item.createdAt = new Date(item.createdAt).toLocaleString()
+        item.updatedAt = new Date(item.updatedAt).toLocaleString()
+      })
+      }).catch(error => {
+        console.log(error.response)
+      });
+    }
     }, 
     
     mounted(){
-      requests.getInstitutionList()
+      requests.getInstitutionList(this.options.page)
       .then(response => {
-        this.items = response.data;
+        this.items = response.data.rows;
+        this.totalNumberOfItems = response.data.count
+        this.items.forEach(item => {
+        item.createdAt = new Date(item.createdAt).toLocaleString()
+        item.updatedAt = new Date(item.updatedAt).toLocaleString()
+      })
       }).catch(error => {
         console.log(error.response)
       });

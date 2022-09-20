@@ -3,7 +3,7 @@
       <v-col sm="6">
         <v-card  tile >
 
-            <v-card-title>Kreiranje korisnika</v-card-title>
+          <v-card-title>Kreiranje korisnika</v-card-title>
           <v-card-text>
 
             <v-text-field
@@ -31,16 +31,16 @@
             ></v-text-field>
 
             <v-text-field 
-             filled 
-             shaped 
-             v-model="password" 
-             label="Lozinka" 
-             required
-             :error-messages="errorPassword"
-             :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-             @click:append="showPass = !showPass"
-             :type="showPass ? 'text' : 'password'"
-             :rules="[v => v.length > 0 || 'Morate unijeti lozinku']"
+              filled 
+              shaped 
+              v-model="password" 
+              label="Lozinka" 
+              required
+              :error-messages="errorPassword"
+              :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="showPass = !showPass"
+              :type="showPass ? 'text' : 'password'"
+              :rules="[v => v.length > 0 || 'Morate unijeti lozinku']"
             >
             </v-text-field>
 
@@ -59,7 +59,7 @@
             </v-text-field>
             
           
-              <v-autocomplete 
+            <v-autocomplete 
               filled
               shaped
               v-bind:items = roles
@@ -99,16 +99,18 @@ export default {
     username: '',
     password: '',
     isUpdating: false,
-     rePassword: null,
+    rePassword: null,
     error: '',
     roles: [{"role" : "Adinistrator", "id" : 1}, {"role" : "Moderator", "id" : 0}],
     role: null
   }),
+
   computed: {
-        passwordConfirmationRule() {
-          return () => (this.password === this.rePassword) || 'Lozinke se ne poklapaju'
-        }
-    },
+    passwordConfirmationRule() {
+      return () => (this.password === this.rePassword) || 'Lozinke se ne poklapaju'
+    }
+  },
+
   watch: {
     isUpdating (val) {
       if (val) {
@@ -116,6 +118,7 @@ export default {
       }
     },
   },
+
   methods: {
     onSubmit() {
       requests.newUser({
@@ -130,7 +133,7 @@ export default {
         this.$router.push({ path: `/users/` });
       })
       .catch(error => {
-        this.error = error.response.data.message
+        this.error = error
         console.log(error.message)
       })
     },

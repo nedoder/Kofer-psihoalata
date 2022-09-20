@@ -15,5 +15,6 @@ module.exports = app => {
     router.delete("/:id", authorize.verifyToken, posts.delete);
     // Delete all posts
     router.delete("/", authorize.verifyToken, posts.deleteAll);
+    
     app.use('/api/post', router);
 }

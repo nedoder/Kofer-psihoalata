@@ -2,11 +2,11 @@
   <v-card>
     <v-card-title>
 
-     <h1 class="display-1">
+      <h1 class="display-1">
         Lista usera
       </h1>
 
-     <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
 
       <v-text-field
         v-model="search"
@@ -29,27 +29,28 @@
       class="elevation-1"
       >
 
-       <template v-slot:[`item.edit`]="{ item }" > 
+        <template v-slot:[`item.edit`]="{ item }" > 
           <v-icon small color="blue" class="mr-2" @click="editUser(item.id)">mdi-pencil</v-icon>
         </template>
+
         <template v-slot:[`item.delete`]="{ item }" >  
           <template>
             <div class="text-center">
-                <template>
-                  <v-btn
-                    icon
-                    @click="deleteItem(item.id)"
-                  >
-                    <v-icon small color="red">mdi-delete</v-icon>
-                  </v-btn>
-                </template>
+              <template>
+                <v-btn
+                  icon
+                  @click="deleteItem(item.id)"
+                >
+                  <v-icon small color="red">mdi-delete</v-icon>
+                </v-btn>
+              </template>
             </div>
           </template>
         </template>
       
       </v-data-table>
 
-   <v-dialog
+      <v-dialog
         v-model="dialog"
         width="500"
       >
@@ -107,7 +108,7 @@ export default {
     editUser(id) {
       this.$router.push({ path: `/users/${id}/edit`, params: { id: id } });
     },
-    deleteUser(id) {
+    deleteUsers(id) {
       requests.deleteUser(id)
       .then(response => {
         console.log(response)

@@ -1,66 +1,66 @@
 <template>
   <v-form v-model="isValid" class="row text-center justify-center align-center fill-height">
-      <v-col sm="6">
-        <v-card  tile>
+    <v-col sm="6">
+      <v-card  tile>
 
-          <v-card-title>Kreiranje posta</v-card-title>
+        <v-card-title>Kreiranje posta</v-card-title>
 
-          <v-card-text>
+        <v-card-text>
 
-            <v-text-field 
-              filled 
-              shaped 
-              v-model="title" 
-              label="Naslov" 
-               :rules="[v => v.length > 1 || 'Morate unijeti naziv']"
-            >
-            </v-text-field>
+          <v-text-field 
+            filled 
+            shaped 
+            v-model="title" 
+            label="Naslov" 
+             :rules="[v => v.length > 1 || 'Morate unijeti naziv']"
+          >
+          </v-text-field>
 
-             <img 
-              height="100px"
-              width="100px" 
-              v-if="url" 
-              :src="url"
-            />
+          <img 
+            height="100px"
+            width="100px" 
+            v-if="url" 
+            :src="url"
+          />
 
-            <v-file-input 
-              filled 
-              shaped 
-              chips
-              prepend-icon="" 
-              append-icon="mdi-camera" 
-              v-model="image" 
-              label="Slika" 
-              :rules="[v => !!v || 'Slika je obavezna']" 
-              accept="image/*" 
-              required 
-              @change="onFileChange"
-            >
-            </v-file-input>
+          <v-file-input 
+            filled 
+            shaped 
+            chips
+            prepend-icon="" 
+            append-icon="mdi-camera" 
+            v-model="image" 
+            label="Slika" 
+            :rules="[v => !!v || 'Slika je obavezna']" 
+            accept="image/*" 
+            required 
+            @change="onFileChange"
+          >
+          </v-file-input>
 
 
-            <vue-editor v-model="content" output-format="html" :editorToolbar="customToolbar"/>
+          <vue-editor v-model="content" output-format="html" :editorToolbar="customToolbar"/>
 
-            <v-autocomplete 
-              filled
-              shaped
-              v-bind:items = category
-              v-model="categories"
-              item-text = category
-              item-value = id
-              :disabled="isUpdating"
-              chips
-              deletable-chips
-              label="Kategorija"
-              :error-messages='matchError()'
-            >
-            </v-autocomplete>
+          <v-autocomplete 
+            filled
+            shaped
+            v-bind:items = category
+            v-model="categories"
+            item-text = category
+            item-value = id
+            :disabled="isUpdating"
+            chips
+            deletable-chips
+            label="Kategorija"
+            :error-messages='matchError()'
+          >
+          </v-autocomplete>
 
-            <v-btn @click="onSubmit" :disabled="!isValid" color="primary">Kreiraj</v-btn>
+          <v-btn @click="onSubmit" :disabled="!isValid" color="primary">Kreiraj</v-btn>
             
-          </v-card-text>
-        </v-card>
-      </v-col>
+        </v-card-text>
+      </v-card>
+    </v-col>
   </v-form >
 </template>
 
@@ -154,7 +154,6 @@ export default {
 .quillWrapper {
   margin-bottom: 10px;
 }
-
 .row .fill-height {
     /* height: 50vh !important; */
     align-items: center !important;

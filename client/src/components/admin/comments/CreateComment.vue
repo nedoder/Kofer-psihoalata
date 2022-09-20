@@ -1,86 +1,70 @@
 <template>
   <v-form v-model="isValid" class="row text-center justify-center align-center fill-height">
-      <v-col sm="6">
-        <v-card  tile >
+    <v-col sm="6">
+      <v-card tile>
+        <v-card-title>Kreiranje komentara</v-card-title>
+        <v-card-text>
+          <v-textarea
+            filled 
+            shaped 
+            label="Komentar"
+            v-model="comment"
+            :rules="[v => v.length > 1 || 'Morate unijeti komentar']"
+          >
+          </v-textarea>
 
-            <v-card-title>Kreiranje komentara</v-card-title>
-          <v-card-text>
-
-            <v-textarea
-              filled 
-              shaped 
-              label="Komentar"
-              v-model="comment"
-              :rules="[v => v.length > 1 || 'Morate unijeti komentar']"
-            ></v-textarea>
-
-            <!-- <v-autocomplete 
-              filled
-              shaped
-              v-bind:items = post
-              v-model="posts"
-              item-text = title
-              item-value = id
-              :disabled="isUpdating"
-              chips
-              deletable-chips
-              label="Post"
-              :error-messages='matchError()'
-            >
-            </v-autocomplete> -->
-
-            <v-autocomplete
-              filled
-              shaped
-              :items="post"
-              :disabled="isUpdating"
-              item-text="title"
-              item-value="id"
-              v-model="posts"
-              chips
-              deletable-chips
-              label="Post"
-              :error-messages='matchError()'
-            >
+          <v-autocomplete
+            filled
+            shaped
+            :items="post"
+            :disabled="isUpdating"
+            item-text="title"
+            item-value="id"
+            v-model="posts"
+            chips
+            deletable-chips
+            label="Post"
+            :error-messages='matchError()'
+          >
             
-              <template v-slot:selection="data">
-                <v-chip
-                 class="short"
-                  v-bind="data.attrs"
-                  :input-value="data.selected"
-                  close
-                  @click="data.select"
-                  @click:close="remove()"
-                >
-                  <v-avatar left>
-                    <v-img :src="$imagePath + data.item.image"></v-img>
-                  </v-avatar>
-                   <span> {{ data.item.title }} </span>
-                     
-                </v-chip>
+            <template v-slot:selection="data">
+              <v-chip
+                class="short"
+                v-bind="data.attrs"
+                :input-value="data.selected"
+                close
+                @click="data.select"
+                @click:close="remove()"
+              >
+                <v-avatar left>
+                  <v-img :src="$imagePath + data.item.image"></v-img>
+                </v-avatar>
+                <span> {{ data.item.title }} </span>     
+              </v-chip>
+            </template>
+
+            <template v-slot:item="data">
+              <template>
+                <v-list-item-avatar>
+                  <v-img :src="$imagePath + data.item.image "/>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title v-html="data.item.title"></v-list-item-title>
+                </v-list-item-content>
               </template>
-              <template v-slot:item="data">
-                <template>
-                  <v-list-item-avatar>
-                    <v-img :src="$imagePath + data.item.image "/>
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <v-list-item-title v-html="data.item.title"></v-list-item-title>
-                  </v-list-item-content>
-                </template>
-              </template>
+            </template>
               
-            </v-autocomplete>
+          </v-autocomplete>
 
-            <v-alert type="error" v-if="error">
-             {{error}}
-            </v-alert>
+          <v-alert type="error" v-if="error">
+           {{error}}
+          </v-alert>
             
-            <v-btn @click="onSubmit" :disabled="!isValid" color="primary">Kreiraj</v-btn>
+          <v-btn @click="onSubmit" :disabled="!isValid" color="primary">Kreiraj</v-btn>
             
-          </v-card-text>
-        </v-card>
-      </v-col>
+        </v-card-text>
+      </v-card>
+    </v-col>
   </v-form >
 </template>
 
@@ -129,10 +113,9 @@ export default {
       return (this.posts.length === 0) ? "Morate odabrati post" : ""
     },
    
-   
   },
 
-   mounted() {
+  mounted() {
     requests.getPostList()
     .then(response => {
       this.post = response.data;
@@ -154,11 +137,9 @@ export default {
     height: 80vh !important;
     align-items: center !important;
 }
-
 .short {
     width: 100px;
 }
-
 .short span {
     white-space: nowrap;
     overflow: hidden;

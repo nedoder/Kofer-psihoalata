@@ -2,11 +2,8 @@ const { User, Activity }  = require("../models");
 const bcrypt = require('bcrypt')
 var jwt = require("jsonwebtoken");
 const config = require("../config/auth.config");
-// const User = db.Users;
-// const Activity = db.activity;
-// const Op = User.Sequelize.Op;
 
-// Create and Save a new user
+// Create and Save new user
 exports.create = (req, res) => {
 
     if (!req.body.password) {
@@ -15,6 +12,7 @@ exports.create = (req, res) => {
         });
         return;
     }
+
     // Create a user
     const user = {
         firstName: req.body.firstName,
@@ -44,65 +42,67 @@ exports.create = (req, res) => {
 
     // Save user in the database
     User.create(user)
+    .then(data => {
+        Activity.create({ "activity": `Korisnik ${author} je kreirao usera ${req.body.username}` })
         .then(data => {
-            Activity.create({ "activity": `Korisnik ${author} je kreirao usera ${req.body.username}` })
-                .then(data => {
-                    res.status(200);
-                })
-                .catch(err => {
-                    res.status(500).send({
-                        message: err.message || "Some error occurred while creating activity."
-                    });
-                });
+            res.status(200) 
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the user."
+                message: err.message || "Some error occurred while creating activity."
             });
         });
+        res.send(`User is sucessfully created.`);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while creating the user."
+        });
+    });
 
 };
+
 // Retrieve all users from the database.
 exports.findAll = (req, res) => {
-    // const query = req.query.username;
-    // var condition = query ? {
-    //     username: {
-    //         [Op.like]: `%${query}%`
-    //     }
-    // } : null;
+    
     User.findAll()
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while retrieving users."
-            });
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving users."
         });
+    });
 
 };
+
 // Find a single user with an id
 exports.findOne = (req, res) => {
+
     const id = req.params.id;
+
     User.findByPk(id)
-        .then(data => {
-            if (data) {
-                res.send(data);
-            } else {
-                res.status(404).send({
-                    message: `Cannot find user with id=${id}.`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: "Error retrieving user with id=" + id
+    .then(data => {
+        if (data) {
+            res.send(data);
+        } else {
+            res.status(404).send({
+                message: `Cannot find user with id=${id}.`
             });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Error retrieving user with id=" + id
         });
+    });
 
 };
+
 // Update user by the id in the request
 exports.update = async(req, res) => {
+
     const id = req.params.id;
 
     let token = req.headers["authorization"];
@@ -140,45 +140,45 @@ exports.update = async(req, res) => {
 
 
     await User.findByPk(id)
-        .then(response => {})
-        .catch(err => {
-            console.log(err)
-        });
+    .then(response => {})
+    .catch(err => {
+        console.log(err)
+    });
 
     User.update(user, {
-            where: { id: id }
-        })
-        .then(num => {
-            if (num == 1) {
-
-                Activity.create({ "activity": `Korisnik ${author} je izmijenio usera ${req.body.username}` })
-                    .then(data => {
-                        res.status(200);
-                    })
-                    .catch(err => {
-                        res.status(500).send({
-                            message: err.message || "Some error occurred while creating activity."
-                        });
-                    });
-
-                res.send({
-                    message: "User was updated successfully."
+        where: { id: id }
+    })
+    .then(num => {
+        if (num == 1) {
+            Activity.create({ "activity": `Korisnik ${author} je izmijenio usera ${req.body.username}` })
+            .then(data => {
+                res.status(200);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred while creating activity."
                 });
-            } else {
-                res.send({
-                    message: `Cannot update user with id=${id}. Maybe user was not found or req.body is empty!`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.errors[0].message
             });
+            res.send({
+                message: "User was updated successfully."
+            });
+        } else {
+            res.send({
+                message: `Cannot update user with id=${id}. Maybe user was not found or req.body is empty!`
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.errors[0].message
         });
+    });
 
 };
+
 // Delete user with the specified id in the request
 exports.delete = async(req, res) => {
+
     const id = req.params.id;
 
     let token = req.headers["authorization"];
@@ -196,94 +196,92 @@ exports.delete = async(req, res) => {
     let username = ''
 
     await User.findByPk(id)
-        .then(response => {
-            username = response.username
-        })
-        .catch(err => {
-            console.log(err)
-        });
+    .then(response => {
+        username = response.username
+    })
+    .catch(err => {
+        console.log(err)
+    });
+
     User.destroy({
-            where: { id: id }
-        })
-        .then(num => {
-            if (num == 1) {
-
-                Activity.create({ "activity": `Korisnik ${author} je izbrsao usera ${username}` })
-                    .then(data => {
-                        res.status(200);
-                    })
-                    .catch(err => {
-                        res.status(500).send({
-                            message: err.message || "Some error occurred while creating activity."
-                        });
-                    });
-
-                res.send({
-                    message: "User was deleted successfully!"
+        where: { id: id }
+    })
+    .then(num => {
+        if (num == 1) {
+            Activity.create({ "activity": `Korisnik ${author} je izbrsao usera ${username}` })
+            .then(data => {
+                res.status(200);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred while creating activity."
                 });
-            } else {
-                res.send({
-                    message: `Cannot delete user with id=${id}. Maybe user was not found!`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: "Could not delete user with id=" + id
             });
+            res.send({
+                message: "User was deleted successfully!"
+            });
+        } else {
+            res.send({
+                message: `Cannot delete user with id=${id}. Maybe user was not found!`
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Could not delete user with id=" + id
         });
+    });
 };
+
 // Delete all users from the database.
 exports.deleteAll = (req, res) => {
     User.destroy({
-            where: {},
-            truncate: false
-        })
-        .then(nums => {
-            res.send({ message: `${nums} users were deleted successfully!` });
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while removing all users."
-            });
+        where: {},
+        truncate: false
+    })
+    .then(nums => {
+        res.send({ message: `${nums} users were deleted successfully!` });
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while removing all users."
         });
+    });
 };
 
 //login
 exports.login = (req, res) => {
     User.findOne({
-            where: {
-                username: req.body.username
-            }
-        })
-        .then(user => {
-            if (!user) {
-                return res.status(404).send({ message: "User Not found." });
-            }
-            var passwordIsValid = bcrypt.compareSync(
-                req.body.password,
-                user.password
-            );
-            if (!passwordIsValid) {
-                return res.status(401).send({
-                    accessToken: null,
-                    message: "Invalid Password!"
-                });
-            }
-            var token = jwt.sign({ id: user.id, role: user.role, name: user.firstName, lname: user.lastName }, config.secret, {
-                expiresIn: 86400 // 24 hours
+        where: {
+            username: req.body.username
+        }
+    })
+    .then(user => {
+        if (!user) {
+            return res.status(404).send({ message: "User Not found." });
+        }
+        var passwordIsValid = bcrypt.compareSync(
+            req.body.password,
+            user.password
+        );
+        if (!passwordIsValid) {
+            return res.status(401).send({
+                accessToken: null,
+                message: "Invalid Password!"
             });
-
-            res.status(200).send({
-                id: user.id,
-                username: user.username,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                token: token
-            });
-
-        })
-        .catch(err => {
-            res.status(500).send({ message: err.message });
+        }
+        var token = jwt.sign({ id: user.id, role: user.role, name: user.firstName, lname: user.lastName }, config.secret, {
+            expiresIn: 86400 // 24 hours
         });
+        res.status(200).send({
+            id: user.id,
+            username: user.username,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            token: token
+        });
+    })
+    .catch(err => {
+        res.status(500).send({ message: err.message });
+    });
 };

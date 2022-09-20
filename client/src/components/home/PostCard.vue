@@ -5,9 +5,10 @@
         <font-awesome-icon icon="calendar"/>
         <span class="post-date">{{new Date(items.createdAt).toISOString().slice(0,10)}}</span>
       </div>
-
     </div>
+    
     <span class="shape"></span>
+
     <div class="post-img">
      <img :src="$imagePath + items.image" alt="Post image"/>
     </div>
