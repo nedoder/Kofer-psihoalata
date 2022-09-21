@@ -142,6 +142,10 @@ export default {
   margin: 0 1.5rem;
 }
 
+.slick-slider {
+  user-select: none;
+}
+
 .slick-track {
   height: 12.5rem;
 }

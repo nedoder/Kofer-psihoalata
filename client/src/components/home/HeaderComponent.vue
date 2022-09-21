@@ -13,15 +13,15 @@
 						<span class="menu-name">O nama</span>
 					</router-link>
 					<router-link tag="li" class="menu-link" class-active="is-active" @click.native="toTop" to="/education" exact>
-						<font-awesome-icon icon="book" />
+						<font-awesome-icon icon="file-pen" />
 						<span class="menu-name">Edukacija</span>
 					</router-link>
 					<router-link tag="li" class="menu-link" class-active="is-active" @click.native="toTop" to="/support" exact>
-						<font-awesome-icon icon="headset" />
+						<font-awesome-icon icon="laptop-medical" />
 						<span class="menu-name">Podrška</span>
 					</router-link>
 					<router-link tag="li" class="menu-link" class-active="is-active" @click.native="toTop" to="/contact" exact>
-						<font-awesome-icon icon="square-envelope" />
+						<font-awesome-icon icon="envelope-open" />
 						<span class="menu-name">Kontakt</span>
 					</router-link>
 				</ul>
@@ -119,7 +119,7 @@ export default {
 
 .menu-link:hover {
 	position: relative;
-	color: var(--pink);
+	color: var(--dark-pink);
 	transition: all 0.35s ease;
 	cursor: pointer;
 }
@@ -144,7 +144,7 @@ export default {
 
 .exact-active {
 	position: relative;
-	color: var(--pink);
+	color: var(--dark-pink);
 	transition: all 0.35s ease;
 }
 
@@ -186,11 +186,11 @@ export default {
 		height: 2px;
 		border: none;
 		outline: none;
-		background: var(--pink);
+		background: var(--dark-pink);
 	}
 
 	.menu-link:hover {
-		color: var(--pink);
+		color: var(--dark-pink);
 		transition: all 0.35s ease;
 	}
 		

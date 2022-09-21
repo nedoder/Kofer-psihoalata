@@ -25,6 +25,7 @@ export default {
   --violet: #7e7e92;
   --pink: #D499AE;
   --light-pink: #c57d96;
+  --dark-pink: #AD5270;
   --dark-violet: #A497A6;
   --light-black: #444;
   --yellow: #f4cb82;
