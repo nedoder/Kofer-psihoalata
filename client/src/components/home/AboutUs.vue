@@ -96,23 +96,23 @@
 
 .about-toggle {
     display: block;
-    border: 2px solid var(--pink);
-    color: var(--pink);
+    border: 1px solid var(--dark-pink);
+    color: var(--dark-pink);
     text-align: center;
     margin: 0 auto;
-    width: 11rem;
+    width: 10rem;
     position: relative;
     border-radius: 1rem;
-    padding: .8rem 1.2rem;
+    padding: .5rem 0;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
-    backdrop-filter: blur(.5rem);
+    backdrop-filter: blur(1rem);
     transition: all .5s ease;
 }
 
 .more-about a {
     text-decoration: underline;
-    color: var(--pink)
+    color: var(--dark-pink)
 }
 .about-toggle:hover {
     transform: scale(0.97);
