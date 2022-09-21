@@ -25,6 +25,7 @@
       :headers="headers"
       :items="items"
       :search="search"
+      :items-per-page="20"
       dense
       class="elevation-1"
       >
