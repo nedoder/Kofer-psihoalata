@@ -4,7 +4,7 @@
 			<a href="/" class="brand" aria-label="Logo"><img src="../../assets/logo.png" alt="Logo"/></a>
 			<div class="menu" id="menu">
 				<ul class="menu-list">
-					<router-link tag="li" class="menu-link" class-active="is-active" @click.native="toTop" to="/" exact>
+					<router-link tag="li" class="menu-link" class-active="is-active" @click="toTop" to="/" exact>
 						<font-awesome-icon icon="house-chimney-window" />
 						<span class="menu-name">Početna</span>
 					</router-link>
@@ -12,15 +12,15 @@
 						<font-awesome-icon icon="user" />
 						<span class="menu-name">O nama</span>
 					</router-link>
-					<router-link tag="li" class="menu-link" class-active="is-active" @click.native="toTop" to="/education" exact>
+					<router-link tag="li" class="menu-link" class-active="is-active" @click="toTop" to="/education" exact>
 						<font-awesome-icon icon="file-pen" />
 						<span class="menu-name">Edukacija</span>
 					</router-link>
-					<router-link tag="li" class="menu-link" class-active="is-active" @click.native="toTop" to="/support" exact>
+					<router-link tag="li" class="menu-link" class-active="is-active" @click="toTop" to="/support" exact>
 						<font-awesome-icon icon="laptop-medical" />
 						<span class="menu-name">Podrška</span>
 					</router-link>
-					<router-link tag="li" class="menu-link" class-active="is-active" @click.native="toTop" to="/contact" exact>
+					<router-link tag="li" class="menu-link" class-active="is-active" @click="toTop" to="/contact" exact>
 						<font-awesome-icon icon="envelope-open" />
 						<span class="menu-name">Kontakt</span>
 					</router-link>

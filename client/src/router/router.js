@@ -2,55 +2,87 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 //import Home, Login, Error, Layout and Activity log
-import HomeView from "../components/admin/HomeView"
-import LogInView from "../components/admin/LoginView"
-import AdminLayout from "../components/admin/AdminLayout"
-import ErrorView from "../components/admin/ErrorView"
-import ActivityLog from "../components/admin/ActivityLog"
+const HomeView = () =>
+    import ('../components/admin/HomeView')
+const LogInView = () =>
+    import ("../components/admin/LoginView")
+const AdminLayout = () =>
+    import ("../components/admin/AdminLayout")
+const ErrorView = () =>
+    import ("../components/admin/ErrorView")
+const ActivityLog = () =>
+    import ("../components/admin/ActivityLog")
 
 //import Home, Support, Education, Contactm JoinUs, PostDetails and NotFound
-import HomePage from "../components/home/HomePage"
-import SupportPage from "../components/home/SupportPage"
-import EducationPage from "../components/home/EducationPage"
-import ContactPage from "../components/home/ContactPage"
-import JoinUs from "../components/home/JoinUs"
-import PostDetails from "../components/home/PostDetails"
-import NotFound from "../components/home/NotFound"
+const HomePage = () =>
+    import ("../components/home/HomePage")
+const SupportPage = () =>
+    import ("../components/home/SupportPage")
+const EducationPage = () =>
+    import ("../components/home/EducationPage")
+const ContactPage = () =>
+    import ("../components/home/ContactPage")
+const JoinUs = () =>
+    import ("../components/home/JoinUs")
+const PostDetails = () =>
+    import ("../components/home/PostDetails")
+const NotFound = () =>
+    import ("../components/home/NotFound")
 
 // import components for blogs
-import ListPosts from "../components/admin/posts/ListPosts"
-import ShowPost from "../components/admin/posts/ShowPost"
-import CreatePost from "../components/admin/posts/CreatePost"
-import EditPost from "../components/admin/posts/EditPost"
+const ListPosts = () =>
+    import ("../components/admin/posts/ListPosts")
+const ShowPost = () =>
+    import ("../components/admin/posts/ShowPost")
+const CreatePost = () =>
+    import ("../components/admin/posts/CreatePost")
+const EditPost = () =>
+    import ("../components/admin/posts/EditPost")
 
 //import components for comments
-import ListComments from "../components/admin/comments/ListComments"
-import CreateComment from "../components/admin/comments/CreateComment"
-import EditComment from "../components/admin/comments/EditComment"
+const ListComments = () =>
+    import ("../components/admin/comments/ListComments")
+const CreateComment = () =>
+    import ("../components/admin/comments/CreateComment")
+const EditComment = () =>
+    import ("../components/admin/comments/EditComment")
 
 //import components for comment answers
-import ListAnswers from "../components/admin/answers/ListAnswers"
-import CreateAnswer from "../components/admin/answers/CreateAnswer"
-import EditAnswer from "../components/admin/answers/EditAnswer"
+const ListAnswers = () =>
+    import ("../components/admin/answers/ListAnswers")
+const CreateAnswer = () =>
+    import ("../components/admin/answers/CreateAnswer")
+const EditAnswer = () =>
+    import ("../components/admin/answers/EditAnswer")
 
 
 //import components for users
-import ListUsers from "../components/admin/users/ListUsers"
-import CreateUser from "../components/admin/users/CreateUser"
-import EditUser from "../components/admin/users/EditUser"
-import AdminEdit from "../components/admin/users/AdminEdit"
+const ListUsers = () =>
+    import ("../components/admin/users/ListUsers")
+const CreateUser = () =>
+    import ("../components/admin/users/CreateUser")
+const EditUser = () =>
+    import ("../components/admin/users/EditUser")
+const AdminEdit = () =>
+    import ("../components/admin/users/AdminEdit")
 
 //import components for categories
-import ListCategory from "../components/admin/category/ListCategories"
-import CreateCategory from "../components/admin/category/CreateCategory"
-import EditCategory from "../components/admin/category/EditCategory"
+const ListCategory = () =>
+    import ("../components/admin/category/ListCategories")
+const CreateCategory = () =>
+    import ("../components/admin/category/CreateCategory")
+const EditCategory = () =>
+    import ("../components/admin/category/EditCategory")
 
 
 
 //import components for institution
-import ListInstitution from "../components/admin/institution/ListInstitutions"
-import CreateInstitution from "../components/admin/institution/CreateInstitution"
-import EditInstitution from "../components/admin/institution/EditInstitution"
+const ListInstitution = () =>
+    import ("../components/admin/institution/ListInstitutions")
+const CreateInstitution = () =>
+    import ("../components/admin/institution/CreateInstitution")
+const EditInstitution = () =>
+    import ("../components/admin/institution/EditInstitution")
 
 
 Vue.use(VueRouter);
@@ -58,8 +90,7 @@ Vue.use(VueRouter);
 
 // adding routes
 
-const routes = [
-    {
+const routes = [{
         path: "/login",
         name: "login",
         component: LogInView,
@@ -75,7 +106,7 @@ const routes = [
     {
         path: "/support",
         name: "SupportPage",
-        component: SupportPage,
+        component: SupportPage
     },
     {
         path: "/education",
