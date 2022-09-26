@@ -209,3 +209,8 @@ export default {
 }
 </script>
 
+<style>
+.v-data-footer {
+  justify-content: flex-end !important;
+}
+</style>

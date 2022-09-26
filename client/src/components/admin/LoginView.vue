@@ -75,10 +75,8 @@ export default {
             requests.logIn(this.form)
             .then(response => {
                 window.localStorage.setItem("token", response.data.token);
-                let token  = JSON.parse(atob(localStorage.getItem('token').split('.')[1]));
                 this.loading = true
-                this.$router.push({ path: "/dashboard/" });    window.location.reload()
-                console.log(token)
+                this.$router.push({ path: "/dashboard/" });    
             })
             .catch(error => {
                 console.log(error)

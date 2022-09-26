@@ -1,5 +1,6 @@
 <template>
   <router-view></router-view>
+  
 </template>
 
 <script>
@@ -58,6 +59,8 @@ html {
 	box-sizing: inherit;
 	scroll-behavior: smooth;
   position: relative;
+  background-image: url("../../client/src/assets/hero.png");
+  background-size: 0;
   
 }
 
