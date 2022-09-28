@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="hero-right">
-        <img src="../../assets/hero.png" alt="Hero image">
+        <img src="../../assets/hero.webp" alt="Hero image">
       </div>
     </div>
     <div class="icon" id="icon">

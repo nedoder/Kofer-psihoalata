@@ -4,7 +4,7 @@
         <div class="not-found">
             <h3>Stranica nije pronađena...</h3>
             <div class="notfound-img">
-                <img src="../../assets/notfound.png" alt="Page not found"/>
+                <img src="../../assets/notfound.webp" alt="Page not found"/>
             </div>
         </div>   
         <footer-component/>

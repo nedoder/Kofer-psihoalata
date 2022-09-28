@@ -49,7 +49,7 @@
     </div>
     <no-results v-if="items.length===0 && loading===false"></no-results>
     <div class="loader-wrapper" v-if="loading===true">
-     <img src="../../assets/loading.gif" alt="Loading posts"/>
+     <img src="../../assets/loading.webp" alt="Loading posts"/>
     </div>
   </div>
 </template>

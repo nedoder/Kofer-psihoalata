@@ -28,7 +28,7 @@
             <button @click="loadMore" class="load-more" v-if="this.item.Comments.length > this.length">Prikaži više</button>
         </div>
         <div class="loading-post" v-if="loading===true">
-            <img src="../../assets/post-load.gif" alt="Loading post"/>
+            <img src="../../assets/post-load.webp" alt="Loading post"/>
         </div>
         <footer-component/>
     </div>

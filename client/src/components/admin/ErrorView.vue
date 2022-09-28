@@ -3,7 +3,7 @@
         <div class="row text-center justify-center align-center"> 
             <div>
                 <img
-                    src="../../assets/notfound.png"
+                    src="../../assets/notfound.webp"
                     alt="Not found"
                     display="block"
                     margin="auto"

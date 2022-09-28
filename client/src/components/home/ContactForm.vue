@@ -9,7 +9,7 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus est vitae dolorem sint cumque, quibusdam aut repellendus adipisci animi aliquam.</p>
       </div>
       <div class="contact-image">
-        <img src="../../assets/message.png" alt="Envelope"/>
+        <img src="../../assets/message.webp" alt="Envelope"/>
       </div>
       <div class="form">
         <input required name="name" v-model='contact.name' placeholder="Ime" type="text" autocomplete="off" class="contact-name">
@@ -25,11 +25,11 @@
     </div>
     <div class="success-message" v-if="success===true">
       <h3>Poruka poslata</h3>
-      <img src="../../assets/success.png" alt="Success message"/>
+      <img src="../../assets/success.webp" alt="Success message"/>
     </div>
     <div class="success-message" v-if="failed===true">
       <h3>Došlo je do greške. Molimo pokušajte ponovo.</h3>
-      <img src="../../assets/success.png" alt="Error message"/>
+      <img src="../../assets/success.webp" alt="Error message"/>
     </div>
   </div>
 </template>

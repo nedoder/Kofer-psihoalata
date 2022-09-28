@@ -17,7 +17,7 @@
       <div class="join-info">
         <h3>Postani volonter</h3>
         <div class="join-img">
-          <img src="../../assets/message.png" alt="Mail envelope" />
+          <img src="../../assets/message.webp" alt="Mail envelope" />
         </div>
         <img src="../../assets/klupko logo.png" class="join-klupko" alt="Logo klupko"/>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio saepe error alias, odit ullam consectetur harum excepturi aperiam a ipsa soluta est esse atque repellendus recusandae exercitationem autem necessitatibus fugit earum! Harum molestias ipsam voluptatibus eos sit sunt incidunt deleniti delectus consequatur, minus id laborum mollitia facere porro rem minima! Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus est vitae dolorem sint cumque, quibusdam aut repellendus adipisci animi aliquam.</p>
@@ -55,11 +55,11 @@
     </div>
     <div class="success-message" v-if="success===true">
       <h3>Uspješna prijava</h3>
-      <img src="../../assets/success.png" alt="Success message"/>
+      <img src="../../assets/success.webp" alt="Success message"/>
     </div>
     <div class="success-message" v-if="failed===true">
       <h3>Došlo je do greške. Molimo pokušajte ponovo.</h3>
-      <img src="../../assets/success.png" alt="Error message"/>
+      <img src="../../assets/success.webp" alt="Error message"/>
     </div>
     <footer-component/>
   </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="hero" id="home">
     <div class="hero-middle">
-      <img src="../../assets/underconstruction1.png" alt="Under construction">
+      <img src="../../assets/underconstruction.webp" alt="Under construction">
     </div>
   </div>
 </template>

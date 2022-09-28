@@ -59,7 +59,7 @@ html {
 	box-sizing: inherit;
 	scroll-behavior: smooth;
   position: relative;
-  background-image: url("../../client/src/assets/hero.png");
+  background-image: url("../../client/src/assets/hero.webp");
   background-size: 0;
   
 }

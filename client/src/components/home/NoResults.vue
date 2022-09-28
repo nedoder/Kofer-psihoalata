@@ -2,7 +2,7 @@
     <div class="no-results">
         <h3>Nema rezultata za ovu kategoriju...</h3>
         <div class="no-results-img">
-            <img src="../../assets/noposts.png" alt="No results"/>
+            <img src="../../assets/noposts.webp" alt="No results"/>
         </div>
     </div>   
 </template>

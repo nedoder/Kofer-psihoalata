@@ -66,7 +66,7 @@
                 <button @click=toggleMore class="about-toggle">Prikaži više</button>
             </div>
             <div class="about-image">
-               <img src="../../assets/about.png" alt="About us"/>
+               <img src="../../assets/about.webp" alt="About us"/>
             </div>
         </div>
     </div>

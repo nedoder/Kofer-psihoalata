@@ -17,7 +17,7 @@
             </ul>
         </div>
         <div class="loading-support" v-if="loading===true">
-            <img src="../../assets/loading.gif" alt="Loading cards"/>
+            <img src="../../assets/loading.webp" alt="Loading cards"/>
         </div>
         <footer-component/>
     </div>

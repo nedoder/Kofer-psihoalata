@@ -3,8 +3,13 @@ module.exports = defineConfig({
   transpileDependencies: [
     'vuetify'
   ],
-  chainWebpack: (config) => {
-    config.plugins.delete("prefetch")
-  }  
+  configureWebpack: {
+    optimization: {
+      splitChunks: {
+        minSize: 10000,
+        maxSize: 200000,
+      },
+    },
+  },
 })
 
