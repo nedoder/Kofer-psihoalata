@@ -1,7 +1,6 @@
 <template>
     <div class="single-post">
         <header-component/>
-       
         <div class="post-details" v-if="loading===false">
             <h3>{{item.title}}</h3>
             <div class="single-post-image">
@@ -9,8 +8,7 @@
             </div>
             <p class="single-post-category">{{item.Category.category}}</p>
             <p class="single-post-author">Kreirao/la <span class="post-username">{{item.User.username}}</span> <span>|</span> Datum objave: {{new Date(item.createdAt).toLocaleString('en-us',{month:'long', day: 'numeric', year:'numeric'})}}</p>
-            <div  class="single-post-content" id="post-content" v-html=item.content>
-            </div>
+            <div  class="single-post-content" id="post-content" v-html=item.content></div>
         </div>
         <div class="comment-box" v-if="loading===false">
             <h4>Komentari ({{item.Comments.length}})</h4>
@@ -72,7 +70,6 @@ export default {
     },
 
     methods: {
-
         loadMore(e) {
             if (this.length > this.item.Comments.length) {
                 return
@@ -141,7 +138,6 @@ export default {
 </script>
 
 <style>
-
 .load-more, .load-answers {
     display: block;
     margin: 0 auto;
@@ -291,7 +287,6 @@ export default {
     color: var(--black);
 }
 
-
 .single-post-image img {
     border-radius: 1rem;
     margin: 2rem 0;
@@ -333,7 +328,6 @@ export default {
     max-width: 50%;
 } 
 
-
 .comment-success {
   color: green;
   text-align: left;
@@ -372,7 +366,8 @@ export default {
 @media (max-width: 992px) {
     .single-post-content p > img, .single-post-image img {
         max-width: 100%;
-} 
+    }
+}    
 
 @media (max-width: 768px) {
     .loading-post img {
@@ -412,7 +407,6 @@ export default {
 
 }
 
-}
 </style>
     
         

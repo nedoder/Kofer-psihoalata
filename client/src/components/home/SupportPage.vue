@@ -27,7 +27,7 @@
 import requests from '../../services/services'
 import HeaderComponent from './HeaderComponent.vue';
 import FooterComponent from './FooterComponent.vue';
-import SupportCard from './SupporCard.vue';
+import SupportCard from './SupportCard.vue';
 
 export default {
     name: 'SupportPage',
@@ -78,9 +78,8 @@ export default {
 }
 </script>
 
-
 <style>
-
+/* PAGINATION */
 .pagination-wrap {
     width: 90%;
     padding: 0 1rem;

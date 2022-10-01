@@ -26,7 +26,6 @@ export default {
 </script>
 
 <style scoped>
-
 .not-found {
     width: 90%;
     margin: 0 auto;

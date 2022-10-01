@@ -10,7 +10,6 @@
                     object-fit="fill"
                     width="55%"
                 />
-
                 <div>
                     <span>Stranica nije pronađena...</span>
                 </div>

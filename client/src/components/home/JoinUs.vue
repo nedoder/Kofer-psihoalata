@@ -146,7 +146,6 @@ export default {
 body, html {
   overflow: hidden;
 }
-
 .loading-mail, .success-message {
   width: 90%;
   margin: 0 auto;
@@ -154,14 +153,12 @@ body, html {
   padding: 1rem;
   padding-top: 6rem;
 }
-
 .success-message h3 {
   font-family: 'Ribeye Marrow', cursive;
   font-size: 3rem;
   margin: 1rem 0;
   color: var(--light-black);
 }
-
 .success-message img {
   max-height: 75vh;
 }
@@ -174,44 +171,38 @@ body, html {
   overflow: hidden;
   position: relative;
 }
-
 .join-klupko {
   float: left;
   height: 7rem;
 }
+/* BACKGROUND SHAPES */
 .shape-blob{
   z-index: -1;
 }
-
 .shape-blob.seven{
 	left: 5%;
 	top: 80%;
 	transform: rotate(-180deg);
 	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
 }
-
 .shape-blob.eight{
 	left: 80%;
 	top: 65%;
 	transform: rotate(-180deg);
 	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
 }
-
 .shape-blob.nine{
 	left: 10%;
 	top: 30%;
 	transform: rotate(-180deg);
 	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
 }
-
-
 .shape-blob.ten{
 	left: 30%;
 	top: 10%;
 	transform: rotate(-180deg);
 	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
 }
-
 .join-us {
   width: 90%;
   margin: 0 auto;
@@ -219,24 +210,20 @@ body, html {
   padding: 0 1rem;
   overflow: hidden;
 }
-
 .join-info h3  {
   font-family: 'Ribeye Marrow', cursive;
   font-size: 2rem;
   color: var(--light-black);
   padding: 3rem 0;
 }
-
 .join-info {
   margin: 1rem 0;
 }
-
 .join-info a {
   text-decoration: underline;
   text-transform: uppercase;
   color: var(--light-black);
 }
-
 .join-section {
   display: flex;
   flex-direction: row;
@@ -244,7 +231,6 @@ body, html {
   justify-content: center;
   overflow: hidden;
 }
-
 .join-img {
   position: absolute;
   width: 100%;
@@ -267,7 +253,6 @@ body, html {
   padding: 1rem 0;
   margin: .5rem auto;
 }
-
 .join-form input, .join-form textarea {
   padding: 1rem;
   border: none;
@@ -282,11 +267,9 @@ body, html {
   max-height: 20rem;
   
 }
-
 .join-form input:placeholder-shown {
   text-overflow: ellipsis;
 }
-
 .join-form input:focus, .join-form textarea:focus {
   box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1), inset 0px -2px 5px rgba(255, 255, 255, 0.5);
 }
@@ -298,40 +281,30 @@ body, html {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2), inset -2px -2px 5px rgba(255, 255, 255, 0.5);
   transition: all .3s linear;
 }
-
 .join-form button:hover  {
   cursor: pointer;
   letter-spacing: 5px;
   color: var(--white);
 }
 
-
 @media (max-width: 768px) {
-
   .join-info p {
     text-align: justify;
   }
-
   .join-img img{
     margin: 6rem auto;
   }
-
   .join-info h3, .success-message h3 {
     font-size: 2rem;
   }
-
-
 }
 
 @media (max-width: 400px) {
   .join-img {
     transform: translateY(0%) rotate(0deg);
   }
-
   .join-img img {
     width: 70%;
   }
-
 }
-
 </style>

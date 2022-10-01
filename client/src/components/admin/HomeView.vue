@@ -21,9 +21,9 @@ export default {
 </script>
 
 <style scoped>
- >>> .v-dialog {
-    overflow-y: visible;
-  }
+.v-dialog {
+  overflow-y: visible;
+}
 .v-dialog:not(.v-dialog--fullscreen) {
   max-height: 100% !important;
 }

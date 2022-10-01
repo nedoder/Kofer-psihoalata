@@ -87,10 +87,9 @@ const EditInstitution = () =>
 
 Vue.use(VueRouter);
 
-
 // adding routes
-
-const routes = [{
+const routes = [
+    {
         path: "/login",
         name: "login",
         component: LogInView,
@@ -131,6 +130,7 @@ const routes = [{
     {
         path: "*",
         component: NotFound,
+        name: "NotFound",
         meta: {
             title: "NotFound"
         },
@@ -259,27 +259,17 @@ const router = new VueRouter({
 
 export default router
 
-// router.beforeEach(() => { 
-//     window.scrollTo(0,0);
-// })
-
-// router.beforeEach((to, from, next) => {
-//   if (localStorage.getItem('token')) {
-//     var expired = JSON.parse(atob(localStorage.getItem('token').split('.')[1]));
-//     var time = (Date.now() < expired.exp * 1000)
-//   }
-//     // If logged in, or going to the Login page.
-//     if (time || to.name === 'login') {
-//       if(to.name==="password" || to.name==="login") {
-//         next()
-//       }
-//       else {
-//         next({name: 'login'})
-//       }
-//       // Continue to page.
-
-//     } else {
-//       // Not logged in, redirect to login.
-//       next({name: 'login'})
-//     }
-// });
+router.beforeEach((to, from, next) => {
+  if (localStorage.getItem('token')) {
+    var expired = JSON.parse(atob(localStorage.getItem('token').split('.')[1]));
+    var time = (Date.now() < expired.exp * 1000)
+  }
+    // If logged in, or going to the Login page.
+    if (time || to.name === 'login' || to.name === 'HomePage' || to.name === 'SupportPage' || to.name === 'EducationPage' || to.name === 'JoinUs' || to.name === 'ContactPage' || to.name === 'PostDetails' || to.name === 'NotFound') {
+      // Continue to page.
+      next()
+    } else {
+      // Not logged in, redirect to login.
+      next({name: 'login'})
+    }
+});

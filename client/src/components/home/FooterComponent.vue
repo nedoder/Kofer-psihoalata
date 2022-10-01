@@ -75,7 +75,6 @@
     border-top-left-radius: 3rem;
     border-top-right-radius: 3rem;
 }
-
 .footer-container {
     margin: 0;
     display: flex;
@@ -87,48 +86,38 @@
     column-gap: 1.5rem;
     padding: 2rem 0;
 }
-
 .gmail svg {
     padding: 0 .5rem 0 0;
     height: 1.5rem;
     color: var(--black);
 }
-
 .footer-brand {
     width: 100%;
 }
-
 .partner-logo, .quick-links {
     width: calc(33% - 1rem);
 }
-
 .partner-logo, .quick-links {
     display: flex;
     flex-direction: column;
     row-gap: .5rem;
 }
-
 .quick-links a {
     text-decoration: none;
     color: var(--black);
 }
-
 .partner-logo {
     align-items: flex-end;
 }
-
 .first-partner {
     align-items: center;
 }
-
 .quick-links a {
     padding: .5rem 0;
 }
-
 .footer-brand img {
     height: 4rem;
 }
-
 .partner-logo img {
     width: 8rem;
 }
@@ -136,7 +125,6 @@
     padding: 0 1em 0 0;
     height: 2rem;
 }
-
 .facebook svg {
     color: #4267B2;
 }
@@ -146,21 +134,16 @@
 .tiktok svg {
     color: #000000;
 }
-
 .gmail svg {
     color: var(--green);
 }
-
-
 .footer-brand a, .social-icons a, .copyrights a {
     text-decoration: none;
     color: var(--black);
 }
-
 .social-icons {
     text-align: left;
 }
-
 .copyrights, .social-icons {
     width: 100%;
     text-align: center;
@@ -177,7 +160,6 @@
         flex-direction: column;
         text-align: center;
     }
-
     .footer-brand, .social-icons, .partner-logo, .quick-links {
         width: 100%;
         text-align: center;

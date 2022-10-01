@@ -88,7 +88,6 @@ export default {
 </script>
 
 <style>
-
 /* CATEGORY SLIDER SECTION */
 .category {
   display: flex;
@@ -138,6 +137,7 @@ export default {
   flex-direction: row;
 }
 
+/* SLIDER  */
 .slick-slide.slick-active {
   margin: 0 1.5rem;
 }
@@ -182,6 +182,7 @@ export default {
   overflow: visible !important;
 }
 
+/* CATEGORY CARDS */
 .category-card:nth-child(2n) {
   box-shadow: var(--category-shadow-inset);
 }
@@ -227,7 +228,6 @@ export default {
 
 
 @media (max-width: 768px) {
-
   .category-list h3 {
     font-size: 2rem;
   }
@@ -242,7 +242,6 @@ export default {
 }
 
 @media (max-width: 600px) {
-
   .slick-track {
     height: 150px;
   }
@@ -253,7 +252,6 @@ export default {
 }
 
 @media (max-width: 500px) {
-
   .single-category {
     height: 13rem;
   }

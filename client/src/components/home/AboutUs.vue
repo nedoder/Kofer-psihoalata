@@ -93,7 +93,6 @@
 </script>
 
 <style scoped>
-
 .about-toggle {
     display: block;
     border: 1px solid var(--dark-pink);
@@ -109,7 +108,6 @@
     backdrop-filter: blur(1rem);
     transition: all .5s ease;
 }
-
 .more-about a {
     text-decoration: underline;
     color: var(--dark-pink)
@@ -130,7 +128,6 @@
     color: var(--light-black);
     margin: 2rem 0;
 }
-
 .about-us {
     margin: 4rem 0;
     display: flex;
@@ -139,16 +136,13 @@
     align-items: center;
 }
 
-
 @media (max-width: 768px) {
     .about-image {
         display: none;
     }
-
     #about-us h3 {
         font-size: 2.5rem;
     }
-
     .about-text {
         text-align: justify;
     }

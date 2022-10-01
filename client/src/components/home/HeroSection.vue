@@ -274,23 +274,19 @@ export default {
 }
 
 /* MEDIA QUERIES */
-
 @media (max-width: 1200px) {
-
   .hero h2 {
     font-size: 4.5rem;
   }
 }
 
 @media (max-width: 992px) {
-
   .hero h2 {
     font-size: 4rem;
   }
 }
 
 @media (max-width: 768px) {
- 
   .hero-right {
     display: none;
   }
@@ -306,7 +302,6 @@ export default {
 }
 
 @media (max-width: 400px) {
-
   .hero-buttons {
     flex-direction: column;
   }

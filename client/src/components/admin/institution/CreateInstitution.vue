@@ -3,7 +3,7 @@
         <v-col sm="6">
           <v-card  tile >
   
-              <v-card-title>Kreiranje institucije</v-card-title>
+            <v-card-title>Kreiranje institucije</v-card-title>
             <v-card-text>
   
               <v-text-field

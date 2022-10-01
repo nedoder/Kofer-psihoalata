@@ -42,7 +42,6 @@
 </script>
 
 <style scoped>
-
 .partner-list h3 {
     font-family: 'Ribeye Marrow', cursive;
     font-size: 3rem;

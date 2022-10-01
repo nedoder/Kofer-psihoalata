@@ -132,7 +132,6 @@ export default {
 </script>
 
 <style scoped>
-
 .row .fill-height {
     height: 80vh !important;
     align-items: center !important;

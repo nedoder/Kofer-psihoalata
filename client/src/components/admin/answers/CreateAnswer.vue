@@ -231,16 +231,13 @@ export default {
 </script>
 
 <style scoped>
-
 .row .fill-height {
     height: 80vh !important;
     align-items: center !important;
 }
-
 .short {
     width: 100px;
 }
-
 .short span {
     white-space: nowrap;
     overflow: hidden;

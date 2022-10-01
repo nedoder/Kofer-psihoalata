@@ -1,8 +1,5 @@
 <template>
   <div class="contact">
-    <!-- <div>
-      <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width: 100%;" viewBox="0 0 1440 320"><path fill="#F4CB82" fill-opacity="1" d="M0,192L720,32L1440,64L1440,320L720,320L0,320Z"></path></svg>
-    </div> -->
     <div class=contact-us v-if="loading===false && success===false && failed===false">
       <div class="contact-info">
         <h3>Lorem ipsum dolor sit amet consectetur.</h3>
@@ -71,7 +68,7 @@ export default {
     onSubmit() {
       window.scrollTo(0,0);
       if(this.email !== '' || this.contact.email === '') {
-          this.errorMsg = true
+        this.errorMsg = true
       } else {
         this.loading = true
         requests.sendMessage({
@@ -99,7 +96,6 @@ export default {
 
 	
 <style scoped>
-
 .email-validate {
   color: red;
   font-size: .9rem;
@@ -111,18 +107,15 @@ export default {
   padding: 1rem;
   padding-top: 6rem;
 }
-
 .success-message h3 {
   font-family: 'Ribeye Marrow', cursive;
   font-size: 3rem;
   margin: 1rem 0;
   color: var(--light-black);
 }
-
 .success-message img {
   max-height: 75vh;
 }
-
 .contact {
   padding: 4rem 0;
 }
@@ -138,7 +131,6 @@ export default {
   padding: 1rem calc(5% + 1rem);
   margin-top: 7rem;
 }
-
 .contact-name, .contact-email, .contact-message {
   display: block;
   border-radius: 1rem;
@@ -151,11 +143,9 @@ export default {
   box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1), inset 0px -2px 5px rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(1rem);
 }
-
 .contact-name:focus, .contact-email:focus, .contact-message:focus {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
 }
-
 .button {
   width: 100%;
   background: var(--black);
@@ -168,12 +158,10 @@ export default {
   box-shadow: inset 0.1rem 0.1rem 0.4rem rgb(196, 194, 194), inset -0.2rem -0.1rem 0.3rem #000;
   transition: all .5s ease;
 }
-
 .button:hover {
   cursor: pointer;
   letter-spacing: .5rem;
 }
-
 .contact-info h3 {
   font-family: 'Ribeye Marrow', cursive;
   font-size: 3rem;
@@ -181,12 +169,10 @@ export default {
   line-height: 3rem;
   padding: 1rem 0;
 }
-
 .contact-info {
   width: 39%;
   z-index: 1;
 }
-
 .form {
   width: 49%;
 }
@@ -195,13 +181,11 @@ export default {
   padding: 1rem;
   z-index: -1;
 }
-
 .contact-image img {
   width: 10vh;
   height: 10vh;
   transform: translateY(125%) rotate(-23deg);
 }
-
 .contact svg {
   position:absolute;
   height: 25rem;
@@ -224,23 +208,19 @@ export default {
   .contact-info, .contact-form, .form {
     width: 100%;
   }
-
   .contact-image {
     position:absolute;
   }
-
   .contact-image img {
     height: 20vh;
     width: 20vh;
     transform: rotate(-23deg);
   }
-
   .contact-info h3, .success-message h3 {
     font-size: 2rem;
   }
 
 }
-
 
 @media (max-width: 600px) {
   .contact {

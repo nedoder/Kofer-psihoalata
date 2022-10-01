@@ -7,7 +7,7 @@
         <p class="answer-message">{{items.answer}}</p>
         <div class="answer-reply">
          <p class="answer-author"><span>Autor: </span>{{items.author}} <span> &comma; </span> {{new Date(items.createdAt).toUTCString().slice(5,-4)}}</p>
-      </div>
+        </div>
       </div>
     </div>
 </template>

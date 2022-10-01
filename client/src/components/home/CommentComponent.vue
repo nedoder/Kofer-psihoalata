@@ -10,7 +10,7 @@
            <p class="comment-author"><span>Autor: </span>{{items.author}} <span> &comma; </span> {{new Date(items.createdAt).toUTCString().slice(5,-4)}}</p>
            <font-awesome-icon icon="reply" @click="replyComment"/>
            <p v-if="items.Answers.length !==0" class="answer-length" @click="showAnswer">Prikaži {{items.Answers.length}} odgovora  <font-awesome-icon icon="chevron-down"/></p>
-        </div>
+          </div>
         </div>
       </div>
       <div class="reply-form" v-if="reply===true">
@@ -22,12 +22,11 @@
         <button class="reply-button comment-btn"  @click="onSubmit">Pošalji</button>
       </div>
       <div class="answer-wrap">
-       <div class="answer-box" v-for="item in answersLoaded" :key="item.id">
-         <answer-component :items="item"/>
-       </div>
+        <div class="answer-box" v-for="item in answersLoaded" :key="item.id">
+          <answer-component :items="item"/>
+        </div>
         <button v-if="this.items.Answers.length > this.length" @click="loadAnswers" class="load-answers">Prikaži više</button>
       </div>
-      
     </div>
   </template>
   
@@ -55,7 +54,6 @@
     },
 
     methods: {
-
       loadAnswers(e) {
         const currentComment = e.target.parentNode.parentNode
         const reply = Array.from(currentComment.querySelectorAll(".answer-box"));

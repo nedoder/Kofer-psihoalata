@@ -3,21 +3,16 @@
     <div class="post-container">
       <div class="post-list"  v-if="loading===false">
         <h3>Postovi</h3>
-        <!-- <input name="search" v-model='search' placeholder="Pretraga" type="text" autocomplete="off" class="search-field"> -->
         <div class="category-flex">
-          <router-link tag="a"  :to="{path: 'education'}" exact class="category-wrap" aria-label="All posts" @click.native="filterCategory">
-          <!-- <a href="#" class="category-wrap" aria-label="All posts" @click="filterCategory"> -->
+          <router-link :to="{path: 'education'}" exact class="category-wrap" aria-label="All posts" @click.native="filterCategory">
             <img src="../../assets/thinking.png" class="category-link-image active-category"/>
             <p id="category-name">Sve kategorije</p>
-          <!-- </a> -->
           </router-link>
-          <router-link tag="a" v-for="item in category" :key="item.id" :to="{path: 'education?category=' + item.id}" exact class="category-wrap" aria-label="Category" @click.native="filterCategory">
-          <!-- <a v-for="item in category" :key="item.id" href="#" class="category-wrap" aria-label="Category" @click="filterCategory"> -->
+          <router-link v-for="item in category" :key="item.id" :to="{path: 'education?category=' + item.id}" exact class="category-wrap" aria-label="Category" @click.native="filterCategory">
             <img v-if="item.category==='Depresija'" src="../../assets/depression.png" class="category-link-image"/>
             <img v-else-if="item.category==='Anksioznost'" src="../../assets/anxiety.png" class="category-link-image"/>
             <img v-else-if="item.category==='Mentalno zdravlje'" src="../../assets/counseling.png" class="category-link-image"/>
             <img v-else-if="item.category==='Test'" src="../../assets/psychology.png" class="category-link-image"/>
-            <!-- <img v-if="item.category==='Depresija'" src="../../assets/thinking.png" class="category-link-image"/> -->
             <img v-else-if="item.category==='Stres'" src="../../assets/stress.png" class="category-link-image"/>
             <img v-else-if="item.category==='Test2'" src="../../assets/sad.png" class="category-link-image"/>
             <img v-else-if="item.category==='Lorem ipsum'" src="../../assets/mood.png" class="category-link-image"/>
@@ -27,10 +22,8 @@
             <img v-else-if="item.category==='Test9'" src="../../assets/health.png" class="category-link-image"/>
             <img v-else-if="item.category==='Test10'" src="../../assets/healthcare.png" class="category-link-image"/>
             <img v-else-if="item.category==='Test8'" src="../../assets/health.png" class="category-link-image"/>
-            <!-- <img v-if="item.category==='Test6'" src="../../assets/affection.png" class="category-link-image"/> -->
             <img v-else src="../../assets/selfcare.png" class="category-link-image"/>
             <p id="category-name">{{item.category}}</p>
-          <!-- </a> -->
           </router-link>
         </div>
         <div class="post-flex">
@@ -170,20 +163,7 @@ export default {
 </script>
 
 <style>
-
-.search-field {
-  display: block;
-  border-radius: 1rem;
-  border:0; 
-  outline:0;
-  padding: 1rem;
-  resize: none;
-  margin: 1.5rem 0;
-  width: 100%;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(1rem);
-}
-
+/* CATEGORY FILTER */
 .category-flex {
   display: flex;
   flex-direction: row;
@@ -236,6 +216,7 @@ export default {
   font-weight: 500;
 }
 
+/* LOADER */
 .loader-wrapper {
   text-align: center;
   margin-top: 5rem;
@@ -246,7 +227,7 @@ export default {
   padding: 2rem 0;
   opacity: .5;
 }
-
+/* POST LIST */
 .post-container {
   width: 100%;
   position: relative;
@@ -402,8 +383,6 @@ export default {
     height: 12vw;
   }
 }
-
-
 
 @media (max-width: 768px) {
   .posts {

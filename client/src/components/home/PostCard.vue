@@ -1,5 +1,5 @@
 <template>
-  <router-link tag="a"  :to="{path: 'post/' + items.id}" exact class="post">
+  <router-link :to="{path: 'post/' + items.id}" exact class="post">
     <div class="post-info-hover">
       <div class="post-date-info">
         <font-awesome-icon icon="calendar"/>
@@ -10,7 +10,7 @@
     <span class="shape"></span>
 
     <div class="post-img">
-     <img :src="$imagePath + items.image" alt="Post image"/>
+      <img :src="$imagePath + items.image" alt="Post image"/>
     </div>
   
     <div class="post-info">
