@@ -179,7 +179,6 @@ export default {
 .contact-image {
   width: 9%;
   padding: 1rem;
-  z-index: -1;
 }
 .contact-image img {
   width: 10vh;

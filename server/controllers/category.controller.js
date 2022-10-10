@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const sharp = require('sharp');
 const config = require("../config/auth.config.js");
 const { Category,Activity } = require("../models");
 const models = require("../models");
@@ -25,6 +26,15 @@ exports.create = (req, res) => {
         }
         author = decoded.name + " " + decoded.lname;
     });
+
+    const formattedFileName = req.file.filename
+    try {
+        sharp(req.file.buffer)
+        .webp({ quality: 70 })
+        .toFile('./uploads/'+ formattedFileName); //upload to /upload folde
+    } catch (error) {
+        console.log(error);
+    }
 
     // Save category in the database
     Category.create(category)

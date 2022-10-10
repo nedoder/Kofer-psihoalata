@@ -237,7 +237,6 @@ body, html {
   right: -70%;
   top: 15%;
   transform: rotate(23deg);
-  z-index: -1;
 }
 .join-form {
   width: 100%;
