@@ -31,7 +31,7 @@ exports.create = (req, res) => {
     try {
         sharp(req.file.buffer)
         .webp({ quality: 70 })
-        .toFile('./uploads/'+ formattedFileName); //upload to /upload folde
+        .toFile('./uploads/'+ formattedFileName); //upload to /upload folder
     } catch (error) {
         console.log(error);
     }

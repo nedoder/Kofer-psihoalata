@@ -1,31 +1,34 @@
 <template>
   <div>
-    <header-component/>
+    <!-- <header-component/>
     <hero-section/>
     <about-us/>
     <category-list/>
     <partner-list/>
-    <footer-component/>
+    <footer-component/> -->
     <!-- <under-construction/> -->
+    <coming-soon/>
   </div>
 </template>
 
 <script>
 
 // import UnderConstruction from './UnderConstruction.vue'
-import HeaderComponent from './HeaderComponent.vue';
-import HeroSection from './HeroSection.vue';
-import AboutUs from './AboutUs.vue';
-import CategoryList from './CategoryList.vue';
-import PartnerList from './PartnerList.vue'
-import FooterComponent from './FooterComponent.vue';
+import ComingSoon from '../home/ComingSoon.vue'
+// import HeaderComponent from './HeaderComponent.vue';
+// import HeroSection from './HeroSection.vue';
+// import AboutUs from './AboutUs.vue';
+// import CategoryList from './CategoryList.vue';
+// import PartnerList from './PartnerList.vue'
+// import FooterComponent from './FooterComponent.vue';
 
 
 export default {
   name: 'HomePage',
   components: {
-      HeaderComponent, HeroSection, AboutUs, CategoryList, PartnerList, FooterComponent
+      // HeaderComponent, HeroSection, AboutUs, CategoryList, PartnerList, FooterComponent
       // UnderConstruction
+      ComingSoon
   },
 
 }

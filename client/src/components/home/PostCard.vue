@@ -2,7 +2,7 @@
   <router-link :to="{path: 'post/' + items.id}" exact class="post">
     <div class="post-info-hover">
       <div class="post-date-info">
-        <font-awesome-icon icon="calendar"/>
+        <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(2 2)"><path d="m2.5.5h12c1.1045695 0 2 .8954305 2 2v12c0 1.1045695-.8954305 2-2 2h-12c-1.1045695 0-2-.8954305-2-2v-12c0-1.1045695.8954305-2 2-2z"/><path d="m.5 4.5h16"/></g></svg>
         <span class="post-date">{{new Date(items.createdAt).toISOString().slice(0,10)}}</span>
       </div>
     </div>

@@ -5,23 +5,23 @@
         <h3>Postovi</h3>
         <div class="category-flex">
           <router-link :to="{path: 'education'}" exact class="category-wrap" aria-label="All posts" @click.native="filterCategory">
-            <img src="../../assets/thinking.png" class="category-link-image active-category"/>
+            <img src="../../assets/thinking.png" class="category-link-image active-category" alt="category"/>
             <p id="category-name">Sve kategorije</p>
           </router-link>
           <router-link v-for="item in category" :key="item.id" :to="{path: 'education?category=' + item.id}" exact class="category-wrap" aria-label="Category" @click.native="filterCategory">
-            <img v-if="item.category==='Depresija'" src="../../assets/depression.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Anksioznost'" src="../../assets/anxiety.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Mentalno zdravlje'" src="../../assets/counseling.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Test'" src="../../assets/psychology.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Stres'" src="../../assets/stress.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Test2'" src="../../assets/sad.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Lorem ipsum'" src="../../assets/mood.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Test3'" src="../../assets/intensive.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Test4'" src="../../assets/idea.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Test5'" src="../../assets/affection.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Test9'" src="../../assets/health.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Test10'" src="../../assets/healthcare.png" class="category-link-image"/>
-            <img v-else-if="item.category==='Test8'" src="../../assets/health.png" class="category-link-image"/>
+            <img v-if="item.category==='Depresija'" src="../../assets/depression.png" class="category-link-image" alt="category"/>
+            <img v-else-if="item.category==='Anksioznost'" src="../../assets/anxiety.png" class="category-link-image" alt="category"/>
+            <img v-else-if="item.category==='Mentalno zdravlje'" src="../../assets/counseling.png" class="category-link-image" alt="category"/>
+            <img v-else-if="item.category==='Test'" src="../../assets/psychology.png" class="category-link-image" alt="category"/>
+            <img v-else-if="item.category==='Stres'" src="../../assets/stress.png" class="category-link-image" alt="category"/>
+            <img v-else-if="item.category==='Test2'" src="../../assets/sad.png" class="category-link-image" alt="category"/>
+            <img v-else-if="item.category==='Lorem ipsum'" src="../../assets/mood.png" class="category-link-image" alt="category"/>
+            <img v-else-if="item.category==='Test3'" src="../../assets/intensive.png" class="category-link-image" alt="category"/>
+            <img v-else-if="item.category==='Test4'" src="../../assets/idea.png" class="category-link-image" alt="category"/>
+            <img v-else-if="item.category==='Test5'" src="../../assets/affection.png" class="category-link-image" alt="category"/>
+            <img v-else-if="item.category==='Test9'" src="../../assets/health.png" class="category-link-image" alt="category"/>
+            <img v-else-if="item.category==='Test10'" src="../../assets/healthcare.png" class="category-link-image" alt="category"/>
+            <img v-else-if="item.category==='Test8'" src="../../assets/health.png" class="category-link-image" alt="category"/>
             <img v-else src="../../assets/selfcare.png" class="category-link-image"/>
             <p id="category-name">{{item.category}}</p>
           </router-link>

@@ -8,8 +8,10 @@
           <p class="comment-message">{{items.comment}}</p>
           <div class="comment-reply">
            <p class="comment-author"><span>Autor: </span>{{items.author}} <span> &comma; </span> {{new Date(items.createdAt).toUTCString().slice(5,-4)}}</p>
-           <font-awesome-icon icon="reply" @click="replyComment"/>
-           <p v-if="items.Answers.length !==0" class="answer-length" @click="showAnswer">Prikaži {{items.Answers.length}} odgovora  <font-awesome-icon icon="chevron-down"/></p>
+           <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><path d="m5.66116524 3.36827202c5.18469776-.47094658 8.51890836 1.5289737 9.99999996 6-2.8248102-3.14044041-6.34158528-3.71816233-9.99999996-2v2.99999998l-5-4.99999998 5-5z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(2.839 4.132)" @click="replyComment"/></svg>
+           <p v-if="items.Answers.length !==0" class="answer-length" @click="showAnswer">Prikaži {{items.Answers.length}} odgovora 
+           <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><path d="m8.5.5-4 4-4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(6 8)"/></svg>
+          </p>
           </div>
         </div>
       </div>
