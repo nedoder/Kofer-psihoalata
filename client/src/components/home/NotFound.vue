@@ -38,16 +38,8 @@ export default {
     max-height: 75vh;
 }
 
-.not-found  h3 {
-  font-family: 'Ribeye Marrow', cursive;
-  font-size: 3rem;
+.not-found h3 {
   margin: 1rem 0;
-  color: var(--light-black);
 }
 
-@media (max-width: 768px) {
-    .not-found  h3 {
-        font-size: 2rem;
-    }
-}
 </style>

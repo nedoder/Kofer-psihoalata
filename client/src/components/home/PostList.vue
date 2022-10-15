@@ -1,32 +1,53 @@
 <template>
   <div>
     <div class="post-container">
-      <div class="post-list"  v-if="loading===false">
-        <h3>Postovi</h3>
-        <div class="category-flex">
-          <router-link :to="{path: 'education'}" exact class="category-wrap" aria-label="All posts" @click.native="filterCategory">
-            <img src="../../assets/thinking.png" class="category-link-image active-category" alt="category"/>
-            <p id="category-name">Sve kategorije</p>
-          </router-link>
-          <router-link v-for="item in category" :key="item.id" :to="{path: 'education?category=' + item.id}" exact class="category-wrap" aria-label="Category" @click.native="filterCategory">
-            <img v-if="item.category==='Depresija'" src="../../assets/depression.png" class="category-link-image" alt="category"/>
-            <img v-else-if="item.category==='Anksioznost'" src="../../assets/anxiety.png" class="category-link-image" alt="category"/>
-            <img v-else-if="item.category==='Mentalno zdravlje'" src="../../assets/counseling.png" class="category-link-image" alt="category"/>
-            <img v-else-if="item.category==='Test'" src="../../assets/psychology.png" class="category-link-image" alt="category"/>
-            <img v-else-if="item.category==='Stres'" src="../../assets/stress.png" class="category-link-image" alt="category"/>
-            <img v-else-if="item.category==='Test2'" src="../../assets/sad.png" class="category-link-image" alt="category"/>
-            <img v-else-if="item.category==='Lorem ipsum'" src="../../assets/mood.png" class="category-link-image" alt="category"/>
-            <img v-else-if="item.category==='Test3'" src="../../assets/intensive.png" class="category-link-image" alt="category"/>
-            <img v-else-if="item.category==='Test4'" src="../../assets/idea.png" class="category-link-image" alt="category"/>
-            <img v-else-if="item.category==='Test5'" src="../../assets/affection.png" class="category-link-image" alt="category"/>
-            <img v-else-if="item.category==='Test9'" src="../../assets/health.png" class="category-link-image" alt="category"/>
-            <img v-else-if="item.category==='Test10'" src="../../assets/healthcare.png" class="category-link-image" alt="category"/>
-            <img v-else-if="item.category==='Test8'" src="../../assets/health.png" class="category-link-image" alt="category"/>
-            <img v-else src="../../assets/selfcare.png" class="category-link-image"/>
-            <p id="category-name">{{item.category}}</p>
-          </router-link>
+      <div class="post-list">
+        <h3>Kategorije</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, suscipit quidem. Esse, ex! Possimus harum adipisci molestiae corrupti, ipsum inventore veritatis porro dolorem odio ut? Temporibus, natus? Nihil laboriosam minus, odit deleniti repellendus voluptate ducimus veritatis, saepe in, eveniet nam placeat dignissimos. Ipsa, repudiandae doloribus aliquam aspernatur soluta rem non.</p>
+        <div  class="category-filter">
+          <input name="search" v-model='search' placeholder="Pretraži po naslovu" type="text" autocomplete="off" class="search-field"/>
+           <ul id="listnav" class="category-letter">
+            <li class="letterFilter"><a href="?letter=a">A</a></li>
+            <li class="letterFilter"><a href="?letter=b">B</a></li>
+            <li class="letterFilter"><a href="?letter=c">C</a></li>
+            <li class="letterFilter"><a href="?letter=č">Č</a></li>
+            <li class="letterFilter"><a href="?letter=ć">Ć</a></li>
+            <li class="letterFilter"><a href="?letter=d">D</a></li>
+            <li class="letterFilter"><a href="?letter=đ">Dž</a></li>
+            <li class="letterFilter"><a href="?letter=đ">Đ</a></li>
+            <li class="letterFilter"><a href="?letter=e">E</a></li>
+            <li class="letterFilter"><a href="?letter=f">F</a></li>
+            <li class="letterFilter"><a href="?letter=g">G</a></li>
+            <li class="letterFilter"><a href="?letter=h">H</a></li>
+            <li class="letterFilter"><a href="?letter=i">I</a></li>
+            <li class="letterFilter"><a href="?letter=j">J</a></li>
+            <li class="letterFilter"><a href="?letter=k">K</a></li>
+            <li class="letterFilter"><a href="?letter=l">L</a></li>
+            <li class="letterFilter"><a href="?letter=l">Lj</a></li>
+            <li class="letterFilter"><a href="?letter=m">M</a></li>
+            <li class="letterFilter"><a href="?letter=n">N</a></li>
+            <li class="letterFilter"><a href="?letter=n">Nj</a></li>
+            <li class="letterFilter"><a href="?letter=o">O</a></li>
+            <li class="letterFilter"><a href="?letter=p">P</a></li>
+            <li class="letterFilter"><a href="?letter=r">R</a></li>
+            <li class="letterFilter"><a href="?letter=s">S</a></li>
+            <li class="letterFilter"><a href="?letter=š">Š</a></li>
+            <li class="letterFilter"><a href="?letter=t">T</a></li>
+            <li class="letterFilter"><a href="?letter=u">U</a></li>
+            <li class="letterFilter"><a href="?letter=v">V</a></li>
+            <li class="letterFilter"><a href="?letter=z">Z</a></li>
+            <li class="letterFilter"><a href="?letter=ž">Ž</a></li>
+          </ul> 
         </div>
-        <div class="post-flex">
+        <div>
+          <ul class="category-chips">
+            <li class="category-chip"><a href="">Anksioznost</a></li>
+            <li class="category-chip"><a href="">Aooo</a></li>
+            <li class="category-chip"><a href="">Aoooo2</a></li>
+          </ul>
+        </div>
+       
+        <div class="post-flex" v-if="loading===false">
           <div v-for="item in items" :key="item.id" class="posts">
             <post-card :items="item"/>
           </div>
@@ -163,68 +184,79 @@ export default {
 </script>
 
 <style>
-/* CATEGORY FILTER */
-.category-flex {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  row-gap: .5rem;
-  column-gap: .5rem;
-  padding: 2rem 0 3rem 0;
-}
 
-.category-flex a {
-  text-decoration: none;
-  color: var(--black);
-}
+.category-letter, .category-chips {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    list-style: none;
+    padding: 3rem 0 1rem 0;
+    position: relative;
+  }
 
-.category-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 6rem;
-  text-align: center;
-}
+  .category-chips {
+    padding: 0;
+  }
 
-#category-name {
-  margin: .5rem 0;
-  font-weight: 300;
-  font-size: .9rem;
-  line-height: 1rem;
-  transition: all .5s ease-in-out;
-}
+  .category-letter a {
+    text-decoration: none;
+    color: var(--black);
+    font-weight: 600;
+  }
 
-.category-link-image {
-  width: 5rem;
-  height: 5rem;
-  padding: .9rem;
-  background: rgb(224, 218, 218);
-  box-shadow: 2px 2px 2px rgb(224, 218, 218), 2px 2px 2px #fff;
-  box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1), inset 0px -2px 5px #fff;
-  border-radius: 50%;
-  transition: all .5s linear;
-}
+  .category-letter li {
+    border-radius: .5rem;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
+    font-size: .8rem;
+    padding: 1rem;
+    margin: .3rem .6rem .3rem 0;
+  }
 
-.category-wrap:hover .category-link-image, .exact-active img {
-  background: var(--yellow);
-  box-shadow: inset 0.1rem 0.1rem 0.4rem #f7e6c6, inset -0.2rem -0.1rem 0.3rem #f4cb82;
-  border-radius: 15%;
-}
+  .category-letter li:first-child a {
+    color: var(--green);
+  }
 
-.category-wrap:hover #category-name {
-  font-weight: 500;
+  .category-letter li:hover {
+    background: var(--green);
+    color: var(--white);
+  }
+
+  .category-list li:last-child {
+    border-right: 0;
+  }
+
+  .category-chip {
+    padding: .5rem 1rem;
+    background: var(--green);
+    border-radius: 1rem;
+    margin: 1rem 1rem 2rem 0;
+  }
+
+  .category-chip a {
+    color: var(--white);
+    text-decoration: none;
+  }
+.search-field {
+  display: block;
+  border-radius: 1rem;
+  border:0; 
+  outline:0;
+  padding: 1rem;
+  resize: none;
+  margin-bottom: 3rem;
+  width: 100%;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(1rem);
 }
 
 /* LOADER */
 .loader-wrapper {
   text-align: center;
-  margin-top: 5rem;
 }
 
 .loader-wrapper img {
   width: 30%;
-  padding: 2rem 0;
   opacity: .5;
 }
 /* POST LIST */
@@ -233,20 +265,13 @@ export default {
   position: relative;
 }
 
-.post-list h3 {
-  font-family: 'Ribeye Marrow', cursive;
-  font-size: 3rem;
-  margin: 2rem 0;
-  color: var(--light-black);
-}
-
 .post-list p {
-  margin: 1rem 0;
+  margin: 1rem 0 0 0;
 }
 
 .post-list {
   width: 90%;
-  padding: 5rem 1rem;
+  padding: 5rem 1rem 1rem 1rem;
   margin: 0 auto;
   overflow: hidden;
   
@@ -263,7 +288,7 @@ export default {
 }
 
 .posts {
-  width: calc(25% - 1.5rem);
+  width: calc(20% - 1.5rem);
   display: flex;
   display: -webkit-flex;
   justify-content: flex-start;
@@ -273,7 +298,7 @@ export default {
 .post {
   width: 100%;
   transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
-  background: #f5f5f5;
+  background: var(--grey);
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
@@ -312,7 +337,7 @@ export default {
   padding-bottom: .5rem;
 }
 .post-author {
-  color: var(--light-pink) !important;
+  color: var(--violet) !important;
 }
 
 .post-img {
@@ -334,6 +359,7 @@ export default {
     -webkit-box-orient: vertical;
     overflow: hidden;
     font-size: 1.2rem;
+    font-family: 'Montserrat Alternates', sans-serif;
 }
 
 .post .shape {
@@ -350,7 +376,7 @@ export default {
 }
 
 .posts:nth-child(2n) .shape  {
-  background:  var(--light-pink);
+  background:  var(--green);
 }
 
 .post:hover {
@@ -374,6 +400,12 @@ export default {
   width: 80%;
 }
 
+@media (max-width: 2000px) {
+    .posts { 
+        width: calc(25% - 1.5rem);
+    }
+}
+
 @media (max-width: 992px) {
   .posts {
     width: calc(33.3% - 1.5rem);
@@ -387,10 +419,6 @@ export default {
 @media (max-width: 768px) {
   .posts {
     width: calc(50% - 1.5rem);
-  }
-
-  .post-list h3 {
-    font-size: 2rem;
   }
 
   .post-img img {

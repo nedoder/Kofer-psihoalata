@@ -1,17 +1,26 @@
 const jwt = require("jsonwebtoken");
-const config = require("../config/auth.config.js");
+const sharp = require('sharp');
+const path = require('path');
 const fs = require("fs");
+const config = require("../config/auth.config.js");
 const { Post, Activity } = require("../models");
 const models = require('../models/');
 const { Op } = models.Sequelize;
 
 // Create and Save new post
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
 
+    const formattedFileName = "resized" + req.file.filename;
+    await sharp(req.file.path)
+	.toFormat('webp')
+    .webp({ quality: 70, force: true })
+    .toFile(
+        path.resolve('./uploads/'+ formattedFileName)
+    )
     // Create a post
     const post = {
         title: req.body.title,
-        image: req.file.filename,
+        image: formattedFileName,
         content: req.body.content,
         categoryId: req.body.categoryId,
         userId: req.body.userId
@@ -29,6 +38,7 @@ exports.create = (req, res) => {
         author = decoded.name + " " + decoded.lname;
     });
 
+    fs.unlinkSync(req.file.path)
 
     // Save post in the database
     Post.create(post)
@@ -141,6 +151,15 @@ exports.update = async(req, res) => {
     };
 
     if (image.image !== '') {
+        const formattedFileName = "resized" + req.file.filename;
+        await sharp(req.file.path)
+	    .toFormat('webp')
+        .webp({ quality: 70, force: true })
+        .toFile(
+            path.resolve('./uploads/'+ formattedFileName)
+        )
+        image.image = formattedFileName
+        fs.unlinkSync(req.file.path)
         Object.assign(newPost, image);
     }
 
@@ -191,8 +210,8 @@ exports.update = async(req, res) => {
 // Delete a post with the specified id in the request
 exports.delete = async(req, res) => {
 
+    var imagePath = null
     const id = req.params.id;
-
     let post = ''
 
     let token = req.headers["authorization"];
@@ -209,6 +228,9 @@ exports.delete = async(req, res) => {
 
     await Post.findByPk(id)
     .then(response => {
+        if (response.image) {
+            imagePath = './uploads/' + response.image;
+        }
         post = response.title
     })
     .catch(err => {
@@ -229,6 +251,7 @@ exports.delete = async(req, res) => {
                     message: err.message || "Some error occurred while creating activity."
                 });
             });
+            fs.unlinkSync(imagePath)
             res.send({
                 message: "Post was deleted successfully!"
             });

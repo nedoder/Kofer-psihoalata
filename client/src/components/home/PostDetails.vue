@@ -168,12 +168,6 @@ export default {
     padding: 0 1rem;
 }
 
-.post-details h3, .comment-box h4  {
-    font-family: 'Ribeye Marrow', cursive;
-    font-size: 2rem;
-    color: var(--light-black);
-}
-
 .comment-form, .reply-form {
     text-align: center;
     margin: 1rem 0;
@@ -244,8 +238,8 @@ export default {
 }
 
 .answer-length svg {
-    padding-top: .5rem;
     font-size: .7rem !important;
+    margin: -.4rem 0;
 }
 
 .answer-length:hover {
@@ -305,7 +299,7 @@ export default {
 }
 
 .post-username {
-    color: var(--pink);
+    color: var(--violet);
 }
 
 .single-post-content {
@@ -313,13 +307,19 @@ export default {
     overflow: hidden;
 }
 
-.single-post-content p, .single-post-content blockquote, .single-post-content strong, .single-post-content u, .single-post-content s, .single-post-content em, .single-post-content hr, .single-post-content h2, .single-post-content ol, .single-post-content ul, .single-post-content h3, .single-post-content h4, .single-post-content h5, .single-post-content h6, .single-post-content a {
+/* .single-post-content p, .single-post-content blockquote, .single-post-content strong, .single-post-content u, .single-post-content s, .single-post-content em, .single-post-content hr, .single-post-content h2, .single-post-content ol, .single-post-content ul, .single-post-content h3, .single-post-content h4, .single-post-content h5, .single-post-content h6, .single-post-content a {
     display: contents;
 }
   
 .single-post-content p:after, .single-post-content blockquote::after, .single-post-content strong::after, .single-post-content s::after, .single-post-content u::after, .single-post-content em::after, .single-post-content hr::after, .single-post-content h2::after, .single-post-content ol::after, .single-post-content ul::after, .single-post-content h3::after, .single-post-content h4::after, .single-post-content h5::after, .single-post-content h6::after, .single-post-content a::after {
     content: "\A";
     white-space:pre;
+}*/
+
+.single-post-content h1, .single-post-content h2, .single-post-content h3, 
+.single-post-content h4, .single-post-content h5, .single-post-content h6 {
+    font-size: 1rem;
+    line-height: 2rem;
 }
 
 .single-post-content p > img {
@@ -329,14 +329,14 @@ export default {
 } 
 
 .comment-success {
-  color: green;
+  color: var(--green);
   text-align: left;
   font-size: .9rem;
   padding: 1rem 0;
 }
 
 .comment-failed {
-  color: red;
+  color: var(--red);
   text-align: left;
   font-size: .9rem;
   padding: 1rem 0;

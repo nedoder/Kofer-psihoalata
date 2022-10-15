@@ -10,46 +10,13 @@
         <div class="shape-blob five"></div>
         <div class="shape-blob six"></div>
         <div class="hero-image">
-            <h2>Coming soon!</h2>
-            <img src="../../assets/coming-soon.png" alt="Coming soon image">
+            <h3>Coming soon!</h3>
+            <img src="../../assets/coming-soon.webp" alt="Coming soon image">
         </div>
       </div>
     </div>
 </template>
-  
-<!-- <style scoped>
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;  
- 
-  z-index: 1;
-}
 
-.hero-middle {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.hero-middle img{
-  width: 80%;
-  height: auto;
-}
-
-@media (min-width: 120px) {
-  .hero-middle img{
-    width: 60%;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-middle img{
-    width: 100%;
-  }
-}
-  </style>  -->
 <style scoped>
 .hero {
   width: 100%;
@@ -76,8 +43,8 @@
     padding-top: 5rem;
 }
 
-.hero-image h2 {
-    padding: 2rem 0;
+.hero-image h3 {
+  padding: 2rem 0;
 }
 
 .logo {
@@ -173,58 +140,19 @@
 }
 
 
-.hero h2 {
-  font-family: 'Ribeye Marrow', cursive;
-  font-size: 4rem;
+.hero h3 {
 	letter-spacing: 0.1rem;
 	font-weight: 900;
-	color: #444;
 	line-height: 3rem;
 	position: relative;
-	text-shadow: .2rem .2rem 1rem rgba(0,0,0,.15);
 }
 
 /* MEDIA QUERIES */
-@media (max-width: 1200px) {
-  .hero h2 {
-    font-size: 4.5rem;
-  }
-}
-
-@media (max-width: 992px) {
-  .hero h2 {
-    font-size: 4rem;
-  }
-}
 
 @media (max-width: 768px) {
 
   .shape-blob.three, .shape-blob.five, .shape-blob.six {
     display: none;
-  }
-  
-  .hero h2 {
-    font-size: 3rem;
-  }
-
-}
-
-@media (max-width: 400px) {
-  .hero h2 {
-    font-size: 2rem;
-  }
-
-}
-
-@media (max-width: 300px) {
-  .hero h2 {
-    line-height: 2.5rem;
-  }
-}
-
-@media (max-height: 600px) {
-  .hero h2 {
-    font-size: 1.5rem;
   }
 
 }

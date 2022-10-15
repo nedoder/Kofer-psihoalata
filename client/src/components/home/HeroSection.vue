@@ -66,54 +66,43 @@ export default {
 	height: 10rem;
 	width: 10rem;
 	border-radius: 30% 50% 20% 40%;
-  animation: transform 20s ease-in-out infinite both alternate, movement_one 40s ease-in-out infinite both;
 	opacity:.5;
 	position: absolute;
 	right: 0%;
 	bottom: 10%;
   z-index: 0;
+  transform: rotate(-180deg);
+	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
 }
 
 .shape-blob.one{
 	left: -5%;
 	top: 50%;
-	transform: rotate(-180deg);
-	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
 }
 
 .shape-blob.two{
 	left: 15%;
 	top: -50px;
-	transform: rotate(-180deg);
-	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
 }
 
 .shape-blob.three{
 	right: 10%;
 	top: -50px;
-	transform: rotate(-180deg);
-	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
 }
 
 .shape-blob.four{
 	left: 20%;
 	bottom: -5%;
-	transform: rotate(-180deg);
-	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
 }
 
 .shape-blob.five{
 	left: 30%;
 	bottom: 30%;
-	transform: rotate(-180deg);
-	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
 }
 
 .shape-blob.six{
 	left: 60%;
 	bottom: 60%;
-	transform: rotate(-180deg);
-	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
 }
 
 /* BACKGROUND SHAPES ANIMATION */
@@ -127,14 +116,6 @@ export default {
   80% { border-radius: 40% 60% 42% 58% / 41% 51% 49% 59%; } 
 }
 
-
-@keyframes movement_one
-{
-  0%,
-  100% { transform: none; }
-  50% { transform: translate(50%, 20%) rotateY(10deg) scale(1.2); }
-}
-
 @keyframes movement_two
 {
   0%,
@@ -144,15 +125,11 @@ export default {
 
 
 .hero h2 {
-  font-family: 'Ribeye Marrow', cursive;
-  font-family: 'Spicy Rice', sans-serif;
-  font-size: 4rem;
+  font-size: 3rem;
 	letter-spacing: 0.1rem;
-	font-weight: 900;
-	color: #444;
-	line-height: 3rem;
+  color: var(--violet);
+	line-height: 5rem;
 	position: relative;
-	text-shadow: .2rem .2rem 1rem rgba(0,0,0,.15);
 }
 
 .hero-buttons {
@@ -165,29 +142,63 @@ export default {
 }
 
 .hero-buttons a {
-  color: black;
+  color: var(--black);
   width: 11rem;
   position: relative;
   border-radius: 1rem;
-  padding: .8rem 1.2rem;
-  box-shadow:  .1rem .1rem .6rem var(--light-grey), .1rem -.1rem .3rem var(--violet);
+  padding: .8rem .2rem;
+  /* box-shadow:  .1rem .1rem .6rem var(--light-grey), .1rem -.1rem .3rem var(--violet); */
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   backdrop-filter: blur(.5rem);
   transition: all .5s ease;
-  
+
+  border: 4px solid transparent;
+  border-image: var(--gradient);
+  border-image-slice: 1;
+  transition: all .2s cubic-bezier(.86,0,.07,1);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  color: var(--violet);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: .75rem;
+}
+
+@keyframes animation {
+  20% {
+    clip-path: polygon(1% 1%, 100% 0, 100% 100%, 0 100%)
+  }
+    
+  40% {
+    clip-path: polygon(0 0, 95% 1%, 100% 100%, 0 100%)
+  }
+    
+  60% {
+    clip-path: polygon(0 0, 100% 0, 95% 95%, 0 100%)
+  }
+    
+  80% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 1% 95%)
+  }
+    
+  from, to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
+  }
+   
 }
 
 .hero-buttons a:hover {
-  box-shadow:  .2rem .2rem .6rem var(--light-grey), .1rem .2rem .4rem var(--violet);
-  transform: scale(0.97);
+  /* box-shadow:  .2rem .2rem .6rem var(--light-grey), .1rem .2rem .4rem var(--violet); */
+  /* transform: scale(0.97); */
+  animation: animation .5s ease-in-out .2s;
+  letter-spacing: .1rem;
 }
 
-.hero-left a:first-child {
+/* .hero-left a:first-child {
   color: var(--white);
-  background: var(--pink);
-  text-shadow: 0 1.5px 3px var(--black)
-}
+  background: var(--green);
+  text-shadow: 0 1.5px 3px var(--black);
+} */
 
 .hero-left p {
   padding: 20px 0;
@@ -208,16 +219,20 @@ export default {
   background: transparent;
   position: absolute;
   top: 85vh;
-  
 }
 
 .icon svg {
   font-size: 3.5rem;
-  color: var(--dark-violet);
+  color: var(--violet);
   padding: 5px;
   cursor: pointer;
   animation: scrollDown 1.2s ease infinite;
-  
+  width: 5rem;
+  height: 5rem;
+}
+
+.hero-right img {
+  padding-left: 3rem;
 }
 
 @-webkit-keyframes scrollDown {
@@ -275,17 +290,6 @@ export default {
 }
 
 /* MEDIA QUERIES */
-@media (max-width: 1200px) {
-  .hero h2 {
-    font-size: 4.5rem;
-  }
-}
-
-@media (max-width: 992px) {
-  .hero h2 {
-    font-size: 4rem;
-  }
-}
 
 @media (max-width: 768px) {
   .hero-right {
@@ -308,7 +312,8 @@ export default {
   }
 
   .hero h2 {
-    font-size: 2rem;
+    font-size: 1.7rem;
+    line-height: 3rem;
   }
 
   .icon {
@@ -321,15 +326,12 @@ export default {
     font-size: .7rem;
   }
 
-  .hero h2 {
-    line-height: 2.5rem;
-  }
 }
 
 
 @media (max-height: 600px) {
   .hero h2 {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
   }
 
   .hero-left p {

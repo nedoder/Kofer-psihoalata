@@ -1,5 +1,5 @@
 <template>
-  <router-link tabindex="-1" :to="{path: 'education?category=' + items.id}" exact>
+  <router-link tabindex="-1" :to="{path: 'categories?category=' + items.id}" exact>
     <div class="single-category">
       <div class="image-wrap">
         <img :src="$imagePath + items.image" alt="Category image"/>

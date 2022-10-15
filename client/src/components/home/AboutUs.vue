@@ -93,10 +93,10 @@
 </script>
 
 <style scoped>
+
+/* SHOW MORE BUTTON */
 .about-toggle {
     display: block;
-    border: 1px solid var(--dark-pink);
-    color: var(--dark-pink);
     text-align: center;
     margin: 0 auto;
     width: 10rem;
@@ -110,22 +110,19 @@
 }
 .more-about a {
     text-decoration: underline;
-    color: var(--dark-pink)
 }
 .about-toggle:hover {
     transform: scale(0.97);
 }
+
 /* ABOUT US SECTION */
 #about-us {
     width: 100%;
     padding: 0 calc(5% + 1rem);
-    padding-top: 5rem;
+    padding-top: 2rem;
 }
 
 #about-us h3 {
-    font-family: 'Ribeye Marrow', cursive;
-    font-size: 3rem;
-    color: var(--light-black);
     margin: 2rem 0;
 }
 .about-us {
@@ -139,9 +136,6 @@
 @media (max-width: 768px) {
     .about-image {
         display: none;
-    }
-    #about-us h3 {
-        font-size: 2.5rem;
     }
     .about-text {
         text-align: justify;

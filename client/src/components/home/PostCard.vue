@@ -31,6 +31,6 @@ export default {
 <style scoped>
   a {
     text-decoration: none;
-    color: #000;
+    color: var(--black);
   }
 </style>
