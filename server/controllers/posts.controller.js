@@ -68,15 +68,59 @@ exports.findAll = (req, res) => {
     let page = parseInt(req.query.page) - 1
     let limit = 20
 
-    const query = req.query.category;
-    var condition = query ? {
-        categoryId: {
-            [Op.like]: `%${query}%`
+    var condition = null
+    const categoryQuery = req.query.category;
+    const letterQuery = req.query.letter;
+    const titleQuery = req.query.title
+
+    if(titleQuery) {
+        condition = {
+            title: {
+                [Op.like]: `%${titleQuery}%`
+            }
         }
-    } : null;
+    } else if (letterQuery) {
+        condition = {
+            '$Category.category$': {
+                [Op.like]: letterQuery + "%"
+            }
+        }
+    } else if(categoryQuery) {
+        condition = {
+            categoryId: {
+                [Op.like]: `%${categoryQuery}%`
+            }
+        }
+    } else {
+        condition  = null;
+    }
 
     Post.findAndCountAll({
-        include: [{all:true, include: [{all:true}]}],
+        // include: [{all:true, include: [{all:true}]}],
+        include: [{
+            model: models.Category,
+            as: 'Category',
+            include: [{
+                model: models.Post,
+                required: true,
+                as: 'Posts',
+            }]
+          },
+        {
+            model: models.User,
+            as: 'User',
+        },{
+            model: models.Comment,
+            as: 'Comments',
+            include: [{
+                model: models.Answer,
+                as: 'Answers',
+            },
+            {
+                model: models.Post,
+                as: 'Post',
+            }]
+        }],
         where: condition,
         order: [
             ["updatedAt", "desc"]
