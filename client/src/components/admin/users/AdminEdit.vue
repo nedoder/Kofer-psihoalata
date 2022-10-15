@@ -27,7 +27,7 @@
               filled 
               shaped 
               v-model="currentUser.username" 
-              :rules="[v => v.length > 1 || 'Morate unijeti username']"
+              :rules="[v => v.length > 0 || 'Morate unijeti korisničko ime', uniqueUsername]"
               label="Korisničko ime" 
             >
             </v-text-field>
@@ -104,6 +104,8 @@ export default {
     rePassword: '',
     error: '',
     roles: [{"role" : "Adinistrator", "id" : 1}, {"role" : "Moderator", "id" : 0}],
+    items: [],
+    users: []
   }),
 
   computed: {
@@ -113,6 +115,9 @@ export default {
 
     cannotEmpty() {
       return () => (this.newpassword !== '' || this.rePassword !== '') || 'Morate unijeti lozinku'
+    },
+    uniqueUsername() {
+      return () => (this.users.includes(this.currentUser.username) === false) || 'Korisničko ime već postoji'
     }
   },
 
@@ -168,6 +173,19 @@ export default {
   },
   mounted() {
     this.getUsers(this.$route.params.id)
+    requests.getUserList()
+    .then(response => {
+      this.items = response.data
+      this.items.forEach(item => {
+        if(item.username !== this.currentUser.username) {
+          this.users.push(item.username)
+        } 
+      })
+    })
+    .catch(error => {
+      this.error = error
+      console.log(error.message)
+    })
   },
 }
 </script>

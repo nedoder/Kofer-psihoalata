@@ -28,7 +28,7 @@
               label="Korisničko ime"
               v-model="username"
               required
-              :rules="[v => v.length > 0 || 'Morate unijeti korisničko ime']"
+              :rules="[v => v.length > 0 || 'Morate unijeti korisničko ime', uniqueUsername]"
             ></v-text-field>
 
             <v-text-field 
@@ -104,6 +104,7 @@ export default {
     error: '',
     roles: [{"role" : "Adinistrator", "id" : 1}, {"role" : "Moderator", "id" : 0}],
     role: null,
+    items: [],
     users: []
   }),
 
@@ -111,9 +112,9 @@ export default {
     passwordConfirmationRule() {
       return () => (this.password === this.rePassword) || 'Lozinke se ne poklapaju'
     },
-    // uniqueUsername() {
-    //   return () => (this.items.forEach(item => {{}})) || 'Lozinke se ne poklapaju'
-    // }
+    uniqueUsername() {
+      return () => (this.users.includes(this.username) === false) || 'Korisničko ime već postoji'
+    }
   },
 
   watch: {
@@ -156,6 +157,9 @@ export default {
     requests.getUserList()
     .then(response => {
       this.items = response.data
+      this.items.forEach(item => {
+        this.users.push(item.username)
+      })
     })
     .catch(error => {
       this.error = error

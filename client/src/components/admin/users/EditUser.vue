@@ -27,7 +27,7 @@
               filled 
               shaped 
               v-model="currentUser.username" 
-              :rules="[v => v.length > 1 || 'Morate unijeti korisničko ime']"
+              :rules="[v => v.length > 0 || 'Morate unijeti korisničko ime', uniqueUsername]"
               label="Korisničko ime" 
             >
             </v-text-field>
@@ -79,6 +79,7 @@ export default {
  
   data: () => ({
     currentUser: null,
+    currentUsername: null,
     isValid:true,
     isUpdating: false,
     showPass: false,
@@ -86,7 +87,9 @@ export default {
     errorPassword: '',
     newpassword: '',
     rePassword: '',
-    error: ''
+    error: '',
+    items: [],
+    users: []
   }),
 
   computed: {
@@ -96,6 +99,9 @@ export default {
 
     cannotEmpty() {
       return () => (this.newpassword !== '' || this.rePassword !== '') || 'Morate unijeti lozinku'
+    },
+    uniqueUsername() {
+      return () => (this.users.includes(this.currentUser.username) === false) || 'Korisničko ime već postoji'
     }
   },
 
@@ -134,6 +140,7 @@ export default {
       requests.getUser(id)
       .then((response) => {
         this.currentUser = response.data;
+        this.currentUsername = response.data.username;
       })
       .catch((e) => {
         console.log(e);
@@ -142,6 +149,19 @@ export default {
   },
   mounted() {
     this.getUsers(this.$route.params.id)
+    requests.getUserList()
+    .then(response => {
+      this.items = response.data
+      this.items.forEach(item => {
+        if(item.username !== this.currentUser.username) {
+          this.users.push(item.username)
+        } 
+      })
+    })
+    .catch(error => {
+      this.error = error
+      console.log(error.message)
+    })
   },
 }
 </script>
