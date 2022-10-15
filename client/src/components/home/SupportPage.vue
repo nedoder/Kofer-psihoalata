@@ -2,7 +2,8 @@
     <div>
         <header-component/>
         <div class="support-page" v-if="loading===false">
-            <h3>Institucije</h3>
+            <!-- <h3>Podrška</h3>
+            <p class="support-intro">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, suscipit quidem. Esse, ex! Possimus harum adipisci molestiae corrupti, ipsum inventore veritatis porro dolorem odio ut? Temporibus, natus? Nihil laboriosam minus, odit deleniti repellendus voluptate ducimus veritatis, saepe in, eveniet nam placeat dignissimos. Ipsa, repudiandae doloribus aliquam aspernatur soluta rem non.</p> -->
             <div class="support-wrap">
                 <div v-for="item in items" :key="item.id"  class="support-card">
                     <support-card :items="item"/>
@@ -130,13 +131,6 @@ export default {
     padding: 1rem;
     padding-top: 6rem;
 }
-.support-page h3  {
-    font-family: 'Ribeye Marrow', cursive;
-    font-size: 2rem;
-    margin: 2rem 0;
-    color: var(--light-black);
-    text-align: left;
-}
 
 /* CARDS */
 .support-wrap {
@@ -146,11 +140,12 @@ export default {
     justify-content: flex-start;
     row-gap: 1rem;
     column-gap: 1rem;
+    margin-top: 2rem;
 }
 .support-card { 
     display: flex;
     flex-direction: row;
-    width: calc(25% - 1rem);
+    width: calc(20% - 1rem);
     text-align: center;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
     border-radius: 1rem;
@@ -190,8 +185,7 @@ export default {
 }
 
 .single-institution-header svg {
-    color: var(--pink);
-    padding: 0 .5rem;
+    color: var(--violet);
     font-size: 1.5rem;
 }
 
@@ -209,20 +203,24 @@ export default {
     align-items: center;
     width: 50%;
     color: var(--white);
-    background: var(--pink);
+    background: var(--violet);
     cursor: pointer;
+    transition: width .5s ease;
  }
 
 .single-institution-footer a:hover{
-    background: var(--light-pink);
+    width: 200%;
 }
 
 .single-institution-footer a:last-child {
-    background-color: darkgrey;
+    background: var(--green);
     color: var(--white);
 }
-.single-institution-footer a:last-child:hover{
-    background-color: grey;
+
+@media (max-width: 1600px) {
+    .support-card { 
+        width: calc(25% - 1rem);
+    }
 }
 
 @media (max-width: 992px) {

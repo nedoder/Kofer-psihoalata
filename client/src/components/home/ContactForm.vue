@@ -97,7 +97,7 @@ export default {
 	
 <style scoped>
 .email-validate {
-  color: red;
+  color: var(--red);
   font-size: .9rem;
 }
 .loading-mail, .success-message {
@@ -108,10 +108,7 @@ export default {
   padding-top: 6rem;
 }
 .success-message h3 {
-  font-family: 'Ribeye Marrow', cursive;
-  font-size: 3rem;
   margin: 1rem 0;
-  color: var(--light-black);
 }
 .success-message img {
   max-height: 75vh;
@@ -163,9 +160,6 @@ export default {
   letter-spacing: .5rem;
 }
 .contact-info h3 {
-  font-family: 'Ribeye Marrow', cursive;
-  font-size: 3rem;
-  color: var(--light-black);
   line-height: 3rem;
   padding: 1rem 0;
 }
@@ -192,13 +186,6 @@ export default {
   z-index: -1;
 }
 
-@media (max-width: 820px) {
-  .contact-info h3 {
-    font-size: 2.5rem;
-  }
-
-}
-
 @media (max-width: 768px) {
   .contact-us {
     flex-direction: column;
@@ -214,9 +201,6 @@ export default {
     height: 20vh;
     width: 20vh;
     transform: rotate(-23deg);
-  }
-  .contact-info h3, .success-message h3 {
-    font-size: 2rem;
   }
 
 }

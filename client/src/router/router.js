@@ -108,7 +108,7 @@ const routes = [
         component: SupportPage
     },
     {
-        path: "/education",
+        path: "/categories",
         name: "EducationPage",
         component: EducationPage,
     },

@@ -2,7 +2,6 @@
   <div class="category-container">
     <div class="category-list">
       <h3>Kategorije</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, vel.</p>
       <VueSlickCarousel ref="carousel" v-bind="slickOptions" v-if="items.length > 0">
         <div v-for="item in items" :key="item.id"  class="category-card">
           <category-card :items="item" />
@@ -25,7 +24,7 @@ export default {
   data: () => ({
     items: [],
     slickOptions: {
-      "arrows" : true,
+      "arrows" : false,
       "dots": true,
       "edgeFriction": 0.35,
       "focusOnSelect": true,
@@ -102,15 +101,16 @@ export default {
 }
 
 .category-container {
-  width: 100%;
+  width: 95%;
   position: relative;
+  border-radius: 3rem;
+  background: var(--green);
+  margin: 0 auto;
 }
 
 .category-list h3 {
-  font-family: 'Ribeye Marrow', cursive;
-  font-size: 3rem;
-  margin: 2rem 0;
-  color: var(--light-black);
+  margin: 2rem 0 5rem 0;
+  text-align: center;
 }
 
 .category-list p {
@@ -118,12 +118,11 @@ export default {
 }
 
 .category-list {
-  width: 90%;
+  width: 95%;
   padding: 2rem 1rem;
-  background: var(--pink);
-  border-radius: 3rem;
   margin: 0 auto;
   overflow: hidden;
+  margin-top: 2rem;
 }
 
 .category-card {
@@ -228,9 +227,6 @@ export default {
 
 
 @media (max-width: 768px) {
-  .category-list h3 {
-    font-size: 2rem;
-  }
   .card-footer {
     padding: 0;
   }

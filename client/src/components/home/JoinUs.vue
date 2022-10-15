@@ -1,10 +1,6 @@
 <template>
   <div class="join">
     <div class="shape-blob"></div>
-    <div class="shape-blob one"></div>
-    <div class="shape-blob two"></div>
-    <div class="shape-blob three"></div>
-    <div class="shape-blob five"></div>
     <div class="shape-blob six"></div>
     <div class="shape-blob seven"></div>
     <div class="shape-blob eight"></div>
@@ -154,10 +150,7 @@ body, html {
   padding-top: 6rem;
 }
 .success-message h3 {
-  font-family: 'Ribeye Marrow', cursive;
-  font-size: 3rem;
   margin: 1rem 0;
-  color: var(--light-black);
 }
 .success-message img {
   max-height: 75vh;
@@ -175,33 +168,60 @@ body, html {
   float: left;
   height: 7rem;
 }
+
 /* BACKGROUND SHAPES */
 .shape-blob{
-  z-index: -1;
+  background: var(--gradient);
+	height: 10rem;
+	width: 10rem;
+	border-radius: 30% 50% 20% 40%;
+  transform: rotate(-180deg);
+  animation: transform 20s ease-in-out infinite both alternate, movement_one 40s ease-in-out infinite both;
+	opacity:.5;
+	position: absolute;
+	right: 0%;
+	bottom: 10%;
+  left: 75%;
+	top: 20%;
+}
+
+@keyframes transform
+{
+  0%,
+  100% { border-radius: 33% 67% 70% 30% / 30% 30% 70% 70%; } 
+  20% { border-radius: 37% 63% 51% 49% / 37% 65% 35% 63%; } 
+  40% { border-radius: 36% 64% 64% 36% / 64% 48% 52% 36%; } 
+  60% { border-radius: 37% 63% 51% 49% / 30% 30% 70% 70%; } 
+  80% { border-radius: 40% 60% 42% 58% / 41% 51% 49% 59%; } 
+}
+
+@keyframes movement_one
+{
+  0%,
+  100% { transform: none; }
+  50% { transform: translate(50%, 20%) rotateY(10deg) scale(1.2); }
+}
+
+
+.shape-blob.six{
+	left: 5%;
+	top: 50%;
 }
 .shape-blob.seven{
 	left: 5%;
-	top: 80%;
-	transform: rotate(-180deg);
-	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
+	top: 63%;
 }
 .shape-blob.eight{
 	left: 80%;
-	top: 65%;
-	transform: rotate(-180deg);
-	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
+	top: 59%;
 }
 .shape-blob.nine{
 	left: 10%;
 	top: 30%;
-	transform: rotate(-180deg);
-	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
 }
 .shape-blob.ten{
-	left: 30%;
-	top: 10%;
-	transform: rotate(-180deg);
-	animation: transform 30s ease-in-out infinite both alternate, movement_two 60s ease-in-out infinite both;
+	left: 0%;
+	top: -1%;
 }
 .join-us {
   width: 90%;
@@ -211,9 +231,6 @@ body, html {
   overflow: hidden;
 }
 .join-info h3  {
-  font-family: 'Ribeye Marrow', cursive;
-  font-size: 2rem;
-  color: var(--light-black);
   padding: 3rem 0;
 }
 .join-info {
@@ -235,7 +252,7 @@ body, html {
   position: absolute;
   width: 100%;
   right: -70%;
-  top: 15%;
+  top: 40%;
   transform: rotate(23deg);
 }
 .join-form {
@@ -275,7 +292,7 @@ body, html {
 .join-form button {
   padding: .5rem 2rem;
   border-radius: 1.5rem;
-  background: #F4CB82;
+  background: var(--yellow);
   margin: 1rem auto;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2), inset -2px -2px 5px rgba(255, 255, 255, 0.5);
   transition: all .3s linear;
@@ -292,9 +309,6 @@ body, html {
   }
   .join-img img{
     margin: 6rem auto;
-  }
-  .join-info h3, .success-message h3 {
-    font-size: 2rem;
   }
 }
 

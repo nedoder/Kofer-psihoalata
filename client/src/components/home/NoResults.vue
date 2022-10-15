@@ -25,10 +25,9 @@
 }
 
 .no-results h3 {
-    font-family: 'Ribeye Marrow', cursive;
-    font-size: 1.5rem;
     margin: 2rem 0;
-    color: var(--light-black);
+    text-align: center;
+    font-size: 1.5rem;
 }
 
 .no-results-img img {

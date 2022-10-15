@@ -43,9 +43,6 @@
 
 <style scoped>
 .partner-list h3 {
-    font-family: 'Ribeye Marrow', cursive;
-    font-size: 3rem;
-    color: var(--light-black);
     margin: 2rem 0;
 }
 .partner-list {
@@ -75,12 +72,6 @@
 }
 .partner-logo img {
     width: 8rem;
-}
-
-@media (max-width: 768px) {
-    .partner-list h3 {
-        font-size: 2rem;
-    }
 }
 
 @media (max-width: 500px) {

@@ -1,18 +1,26 @@
 const jwt = require("jsonwebtoken");
 const sharp = require('sharp');
+const path = require('path');
+const fs = require("fs");
 const config = require("../config/auth.config.js");
 const { Category,Activity } = require("../models");
 const models = require("../models");
 const Op = models.Sequelize.Op;
-const fs = require("fs");
 
 // Create and Save a new category
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
 
+	const formattedFileName = "resized" + req.file.filename;
+    await sharp(req.file.path)
+	.toFormat('webp')
+    .webp({ quality: 70, force: true })
+    .toFile(
+        path.resolve('./uploads/'+ formattedFileName)
+    )
     // Create category
     const category = {
         category: req.body.category,
-        image: req.file.filename,
+        image: formattedFileName,
     };
 
     let token = req.headers["authorization"];
@@ -27,14 +35,7 @@ exports.create = (req, res) => {
         author = decoded.name + " " + decoded.lname;
     });
 
-    const formattedFileName = req.file.filename
-    try {
-        sharp(req.file.buffer)
-        .webp({ quality: 70 })
-        .toFile('./uploads/'+ formattedFileName); //upload to /upload folder
-    } catch (error) {
-        console.log(error);
-    }
+	fs.unlinkSync(req.file.path)
 
     // Save category in the database
     Category.create(category)
@@ -113,6 +114,15 @@ exports.update = async(req, res) => {
     };
 
     if (image.image !== '') {
+        const formattedFileName = "resized" + req.file.filename;
+        await sharp(req.file.path)
+	    .toFormat('webp')
+        .webp({ quality: 70, force: true })
+        .toFile(
+            path.resolve('./uploads/'+ formattedFileName)
+        )
+        image.image = formattedFileName
+        fs.unlinkSync(req.file.path)
         Object.assign(newCategory, image);
     }
 
@@ -176,6 +186,7 @@ exports.update = async(req, res) => {
 // Delete a category with the specified id in the request
 exports.delete = async(req, res) => {
 
+    var imagePath = null
     const id = req.params.id;
 
     let token = req.headers["authorization"];
@@ -194,6 +205,9 @@ exports.delete = async(req, res) => {
 
     await Category.findByPk(id)
     .then(response => {
+        if (response.image) {
+            imagePath = './uploads/' + response.image;
+        }
         category = response.category
     })
     .catch(err => {
@@ -214,6 +228,7 @@ exports.delete = async(req, res) => {
                     message: err.message || "Some error occurred while creating activity."
                 });
             });
+            fs.unlinkSync(imagePath)
             res.send({
                 message: "Category was deleted successfully!"
             });

@@ -1,46 +1,73 @@
 <template>
     <footer class="footer" id="contact">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <a href="/" class="brand-image" aria-label="Logo"><img src="../../assets/footerlogo.png" alt="Logo"/></a>
-            </div>
+        <div  class="partners">
+            <VueSlickCarousel ref="carousel" v-bind="slickOptions">
+                <div class="partners-item">
+                    <a href="https://facebook.com/nvoportret" aria-label="NVO Portret" tabindex="-1">
+                        <img src="../../assets/portret logo.png" alt="NVO Portret logo"/>
+                    </a>
+                </div>
+                <div class="partners-item">
+                    <a href="https://www.faktcg.org/" aria-label="Fakt" tabindex="-1">
+                        <img src="../../assets/fakt logo.png" alt="Fakt logo"/>
+                    </a>
+                </div>
+                <div class="partners-item">
+                    <a href="https://www.aktivnazona.me/" aria-label="NVO Aktivna zona" tabindex="-1">
+                        <img src="../../assets/aktivna zona logo.png" alt="NVO Aktivna zona logo" />
+                    </a> 
+                </div> 
+                <div class="partners-item">
+                    <a href="http://www.zracaknade.co.me/" aria-label="NVO zračak nade" tabindex="-1">
+                        <img src="../../assets/NVO zracak nade logo.png" alt="NVO zračak nade logo"/>
+                    </a>
+                </div>
+                <div class="partners-item">
+                    <a href="https://www.gov.me/mju" aria-label="Ministarstvo javne uprave" tabindex="-1">
+                        <img src="../../assets/MJU logo.png" alt="Ministarstvo javne uprave logo"/>
+                    </a>
+                </div>
+                <div class="partners-item">
+                    <a href="https://www.eeas.europa.eu/" aria-label="EU" tabindex="-1">
+                        <img src="../../assets/eu logo.png" alt="EU logo"/>
+                    </a>
+                </div>
+                <div class="partners-item">
+                    <a href="https://www.instagram.com/klupko.volonteri/" aria-label="Klupko" tabindex="-1">
+                        <img src="../../assets/klupko logo.png" alt="Klupko logo"/>
+                    </a>
+                </div>
+                <div class="partners-item">
+                    <a href="https://instagram.com/mentalno.dobro?igshid=YmMyMTA2M2Y=" aria-label="Mentalno dobro" tabindex="-1">
+                        <img src="../../assets/mentalno-dobro-logo.png" alt="Mentalno dobro logo"/>
+                    </a>
+                </div>
+                <div class="partners-item">
+                    <a href="https://www.faktcg.org/odgovorno-i-solidarno-gradjani-preuzimaju-inicijativu-konkurs-za-podrsku-projektima/" aria-label="Odgovorno solidarno" tabindex="-1">
+                        <img src="../../assets/odgovorno solidarno logo.png" alt="Odgovorno solidarno logo"/>
+                    </a>
+                </div>
+            </VueSlickCarousel>
+        </div>
+        <div class="footer-wrapper">
             <div class="quick-links">
+                <p>Pretraga sajta</p>
                 <a href="/" aria-label="Home">Početna</a>
                 <a href="/#about-us" aria-label="About us">O nama</a>
                 <a href="/education" aria-label="Blog">Edukacija</a>
                 <a href="/support" aria-label="Support">Podrška</a>
+            </div>
+            <div class="footer-contact">
+                <p>Postani dio tima</p>
                 <a href="/join-us" aria-label="Join us">Postani volonter</a>
                 <a href="https://www.patreon.com/" aria-label="Patreon">Podrži nas</a>
+                <a href="/contact" aria-label="Contact">Piši nam</a>
             </div>
-            <div class="partner-logo first-partner">
-                <a href="https://facebook.com/nvoportret" aria-label="NVO Portret">
-                    <img src="../../assets/portret logo.png" alt="NVO Portret logo"/>
-                </a>
-                <a href="https://www.instagram.com/klupko.volonteri/" aria-label="Klupko">
-                    <img src="../../assets/klupko logo.png" alt="Klupko logo"/>
-                </a>
-                <a href="https://www.faktcg.org/odgovorno-i-solidarno-gradjani-preuzimaju-inicijativu-konkurs-za-podrsku-projektima/" aria-label="Odgovorno solidarno">
-                    <img src="../../assets/odgovorno solidarno logo.png" alt="Odgovorno solidarno logo"/>
-                </a>
-                <a href="https://www.aktivnazona.me/" aria-label="NVO Aktivna zona">
-                    <img src="../../assets/aktivna zona logo.png" alt="NVO Aktivna zona logo"/>
-                </a>  
-            </div>
-            <div class="partner-logo">
-                <a href="https://www.eeas.europa.eu/" aria-label="EU">
-                    <img src="../../assets/eu logo.png" alt="EU logo"/>
-                </a>
-                <a href="https://www.faktcg.org/" aria-label="Fakt">
-                    <img src="../../assets/fakt logo.png" alt="Fakt logo"/>
-                </a>
-                <a href="http://www.zracaknade.co.me/" aria-label="NVO zračak nade">
-                    <img src="../../assets/NVO zracak nade logo.png" alt="NVO zračak nade logo"/>
-                </a>
-                <a href="https://www.gov.me/mju" aria-label="Ministarstvo javne uprave">
-                    <img src="../../assets/MJU logo.png" alt="Ministarstvo javne uprave logo"/>
-                </a>
-            </div>
-            <div class="social-icons">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <a href="/" class="brand-image" aria-label="Logo"><img src="../../assets/footerlogo.png" alt="Logo"/></a>
+                </div>
+                <div class="social-icons">
                     <a href="https://www.facebook.com/" class="facebook" aria-label="Facebook">
                         <svg height="512px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x38_3-facebook"><g><g><path d="M434.949,16.75H77.045c-32.893,0-59.648,26.831-59.648,59.812v358.871     c0,32.985,26.756,59.816,59.648,59.816h357.904c32.898,0,59.654-26.831,59.654-59.816V76.563     C494.604,43.581,467.848,16.75,434.949,16.75L434.949,16.75z M434.949,16.75" style="fill:#1B80E4;"/><path d="M420.039,256h-74.564v-59.813c0-16.51,13.365-14.951,29.824-14.951h29.83v-74.768h-59.654     c-49.42,0-89.473,40.162-89.473,89.719V256h-59.65v74.766h59.65V495.25h89.473V330.766h44.738L420.039,256z M420.039,256" style="fill:#FCFCFC;"/></g></g></g><g id="Layer_1"/></svg>
                     </a>
@@ -53,89 +80,168 @@
                     <a href="mailto: koferpsihoalata@gmail.me" class="gmail" aria-label="Gmail">
                         <svg enable-background="new 0 0 24 24" id="Layer_1" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M22,3H2C0.8974609,3,0,3.8969727,0,5v14c0,1.1030273,0.8974609,2,2,2h20c1.1025391,0,2-0.8969727,2-2V5   C24,3.8969727,23.1025391,3,22,3z" fill="#F2F2F2"/><path d="M3,21h19c1.1025391,0,2-0.8969727,2-2V5.1254902L3,21z" fill="#F5F5F5"/><linearGradient gradientUnits="userSpaceOnUse" id="SVGID_1_" x1="7.9155107" x2="19.1802444" y1="10.4586535" y2="15.7114859"><stop offset="0" style="stop-color:#FFFFFF;stop-opacity:0.2"/><stop offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/></linearGradient><polygon fill="url(#SVGID_1_)" points="3,21 3.3306885,21 24,5.3754883 24,5.1254883  "/><path d="M0,5.1176472V19c0,1.1030273,0.8974609,2,2,2h1V7.3350368   C1.319519,6.0929713,0.9091797,5.7896442,0,5.1176472z" fill="#D32F2F"/><path d="M21,7.3434954V21h1c1.1025391,0,2-0.8969727,2-2V5.1254902L21,7.3434954z" fill="#D32F2F"/><linearGradient gradientUnits="userSpaceOnUse" id="SVGID_2_" x1="18.8903751" x2="26.6321716" y1="9.4531202" y2="17.1949158"><stop offset="0" style="stop-color:#000000;stop-opacity:0.1"/><stop offset="1" style="stop-color:#000000;stop-opacity:0"/></linearGradient><path d="M21,7.3434954V21h1c1.1025391,0,2-0.8969727,2-2V5.1254902L21,7.3434954z" fill="url(#SVGID_2_)"/><polygon fill="#F5F5F5" points="21.499939,3 2.500061,3 12,10.3125  "/><path d="M24,5.1304321V5c0-1.1030273-0.8974609-2-2-2h-0.500061L12,10.3125L2.500061,3H2   C0.8974609,3,0,3.8969727,0,5v0.1304932l12,9.0661459L24,5.1304321z" fill="#D32F2F"/><linearGradient gradientUnits="userSpaceOnUse" id="SVGID_3_" x1="1.5279056" x2="21.46105" y1="1.2802522" y2="10.5752296"><stop offset="0" style="stop-color:#FFFFFF;stop-opacity:0.1"/><stop offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/></linearGradient><path d="M24,5.1304321V5c0-1.1030273-0.8974609-2-2-2h-0.500061L12,10.3125L2.500061,3H2   C0.8974609,3,0,3.8969727,0,5v0.1304932l12,9.0661459L24,5.1304321z" fill="url(#SVGID_3_)"/><path d="M12,13.9465942L0.0112305,4.8889771C0.0090942,4.9264526,0,4.9619751,0,5v0.1304932l12,9.0661011   l12-9.0661621V5c0-0.0380249-0.0090942-0.0735474-0.0112305-0.111084L12,13.9465942z" opacity="0.1"/><path d="M22,20.75H2c-1.1025391,0-2-0.8969727-2-2V19c0,1.1030273,0.8974609,2,2,2h20c1.1025391,0,2-0.8969727,2-2   v-0.25C24,19.8530273,23.1025391,20.75,22,20.75z" opacity="0.1"/><linearGradient gradientUnits="userSpaceOnUse" id="SVGID_4_" x1="23.7147064" x2="23.9944" y1="4.1656036" y2="4.4452972"><stop offset="0" style="stop-color:#000000;stop-opacity:0.1"/><stop offset="1" style="stop-color:#000000;stop-opacity:0"/></linearGradient><path d="M23.7775879,4.1027222L23.7775879,4.1027222   c0.0650024,0.1281738,0.1158447,0.2643433,0.1539307,0.4054565C23.8951416,4.3657837,23.8427124,4.2310791,23.7775879,4.1027222z" fill="url(#SVGID_4_)"/><linearGradient gradientUnits="userSpaceOnUse" id="SVGID_5_" x1="23.8411255" x2="24.1003418" y1="4.6404419" y2="4.8996582"><stop offset="0" style="stop-color:#000000;stop-opacity:0.1"/><stop offset="1" style="stop-color:#000000;stop-opacity:0"/></linearGradient><path d="M23.9414673,4.5401001C23.9785767,4.6875,24,4.8408813,24,5   C24,4.8410645,23.9766235,4.6884155,23.9414673,4.5401001z" fill="url(#SVGID_5_)"/><linearGradient gradientUnits="userSpaceOnUse" id="SVGID_6_" x1="6.5011444" x2="25.3809357" y1="-0.4336395" y2="18.4461517"><stop offset="0" style="stop-color:#000000;stop-opacity:0.1"/><stop offset="1" style="stop-color:#000000;stop-opacity:0"/></linearGradient><path d="M0.5337524,5.5337524L16,21h6c1.1025391,0,2-0.8969727,2-2V5.1304321l-12,9.0661621   L0.5337524,5.5337524z" fill="url(#SVGID_6_)"/><path d="M22,3H2C0.8974609,3,0,3.8969727,0,5v0.25c0-1.1030273,0.8974609-2,2-2h20   c1.1025391,0,2,0.8969727,2,2V5C24,3.8969727,23.1025391,3,22,3z" fill="#FFFFFF" opacity="0.2"/><linearGradient gradientUnits="userSpaceOnUse" id="SVGID_7_" x1="-0.7076151" x2="24.7076149" y1="6.0743418" y2="17.9256592"><stop offset="0" style="stop-color:#FFFFFF;stop-opacity:0.1"/><stop offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/></linearGradient><path d="M22,3H2C0.8974609,3,0,3.8969727,0,5v14c0,1.1030273,0.8974609,2,2,2h20   c1.1025391,0,2-0.8969727,2-2V5C24,3.8969727,23.1025391,3,22,3z" fill="url(#SVGID_7_)"/></g><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/></svg>
                     </a>
+                </div>
+                <p class="copyrights">&copy; Kofer psihoalata. All rights reserved. Powered by <a href="https://www.linkedin.com/in/tanjadoderovic/">nedoder</a></p>
             </div>
-            <p class="copyrights">&copy; Kofer psihoalata. All rights reserved. Powered by <a href="https://www.linkedin.com/in/tanjadoderovic/">nedoder</a></p>
         </div>
     </footer>  
 </template>
     
 
 <script>   
-    export default {
-        name: 'FooterComponent',
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+export default {
+    name: 'FooterComponent',
+    components: { VueSlickCarousel },
+    data: () => ({
+        slickOptions: {
+      "arrows" : false,
+      "dots": false,
+      "edgeFriction": 0.35,
+      "focusOnSelect": true,
+      "infinite": true,
+      "speed": 500,
+      "slidesToShow": 6,
+      "slidesToScroll": 1,
+      "swipeToSlide": true,
+      "touchThreshold": 5,
+      "centerMode": true,
+      "centerPadding": "20px",
+      "autoplay": true,
+      "autoplaySpeed": 2000,
+      "cssEase": "linear",
+      "responsive": [
+        {
+          "breakpoint": 1200,
+          "settings": {
+            "slidesToShow": 4,
+            "slidesToScroll": 1,
+          }
+        },
+        {
+          "breakpoint": 768,
+          "settings": {
+            "slidesToShow": 3,
+            "slidesToScroll": 1,
+            "initialSlide": 0
+          }
+        },
+        {
+         "breakpoint": 600,
+         "settings": {
+           "slidesToShow": 2,
+           "dots": false,
+           "slidesToScroll": 1
+         },
+
+        },
+        {   
+          "breakpoint": 400,
+          "settings": {
+            "slidesToShow": 1,
+            "dots": false,
+            "slidesToScroll": 1
+          }
+        }
+      ]
     }
+    })
+}
 </script>
 
 <style scoped>   
 .footer {
     width: 100%;
-    background: var(--yellow);
     padding: 0 calc(5% + 1rem);
     padding-top: 4rem;
     border-top-left-radius: 3rem;
     border-top-right-radius: 3rem;
+    background: var(--grey);
+    margin-top: 2rem;
+    overflow: hidden;
 }
-.footer-container {
-    margin: 0;
+
+.partners {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  background: var(--grey);
+  height: 100px;
+}
+
+.partners-item {
+  background: var(--grey);
+}
+
+.partners-item img {
+  display: block;
+  max-width: 100%;
+  width: 200px;
+  height: 100px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.partners-item a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.footer-wrapper {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
+    padding: 4rem 0;
+}
+.footer-container, .quick-links, .footer-contact {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
     row-gap: 1rem;
     column-gap: 1.5rem;
     padding: 2rem 0;
+    width: 33%;
 }
 .gmail svg {
     padding: 0 .5rem 0 0;
     height: 1.5rem;
     color: var(--black);
 }
-.footer-brand {
-    width: 100%;
-}
-.partner-logo, .quick-links {
-    width: calc(33% - 1rem);
-}
-.partner-logo, .quick-links {
-    display: flex;
+.quick-links, .footer-contact {
     flex-direction: column;
-    row-gap: .5rem;
+    align-items: flex-start;
 }
-.quick-links a {
-    text-decoration: none;
-    color: var(--black);
-}
-.partner-logo {
-    align-items: flex-end;
-}
-.first-partner {
-    align-items: center;
-}
-.quick-links a {
+.quick-links a, .footer-contact a {
+    text-decoration: underline;
+    color: var(--green);
     padding: .5rem 0;
+    font-weight: 600;
+}
+
+.footer-contact p, .quick-links p {
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Poland', sans-serif;
+}
+
+.slick-slider {
+    height: 100px;
 }
 .footer-brand img {
     height: 4rem;
 }
-.partner-logo img {
-    width: 8rem;
-}
+
 .social-icons svg {
     padding: 0 1em 0 0;
     height: 2rem;
-}
-.facebook svg {
-    color: #4267B2;
-}
-.instagram svg {
-    color: #d6249f ;
-}
-.tiktok svg {
-    color: #000000;
-}
-.gmail svg {
-    color: var(--green);
 }
 .footer-brand a, .social-icons a, .copyrights a {
     text-decoration: none;
@@ -146,7 +252,11 @@
 }
 .copyrights, .social-icons {
     width: 100%;
-    text-align: center;
+    text-align: left;
+}
+
+.copyrights a:hover {
+    color: var(--red);
 }
 
 @media (max-width: 820px) {
@@ -160,12 +270,16 @@
         flex-direction: column;
         text-align: center;
     }
-    .footer-brand, .social-icons, .partner-logo, .quick-links {
+
+    .footer-brand, .social-icons, .partner-logo, .quick-links, .footer-contact, .footer-container {
         width: 100%;
         text-align: center;
         align-items: center;
     }
 
+    .copyrights {
+        text-align: center;
+    }
     .partner-logo img {
         margin: 0 auto;
     }

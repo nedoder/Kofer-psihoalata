@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
 import router from "./router/router";
-import vuetify from './plugins/vuetify'
+import vuetify from './plugins/vuetify';
 
 Vue.prototype.$imagePath = 'https://koferpsihoalata.me/'
 Vue.config.productionTip = false
