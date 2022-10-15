@@ -96,7 +96,6 @@ exports.findAll = (req, res) => {
     }
 
     Post.findAndCountAll({
-        // include: [{all:true, include: [{all:true}]}],
         include: [{
             model: models.Category,
             as: 'Category',

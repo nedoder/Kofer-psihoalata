@@ -42,6 +42,12 @@ const requests = {
     getPostList(page) {
         return apiClient.get(`api/post?page=${page}`);
     },
+    getPostsByLetter(letter,page) {
+        return apiClient.get(`api/post?letter=${letter}&page=${page}`);
+    },
+    getPostsByTitle(title,page) {
+        return apiClient.get(`api/post?title=${title}&page=${page}`);
+    },
     getPost(id) {
         return apiClient.get(`api/post/find/${id}`);
     },
@@ -86,6 +92,9 @@ const requests = {
     },
     getCategoryList() {
         return apiClient.get("api/category");
+    },
+    getCategoryLetter(category) {
+        return apiClient.get(`api/category?category=${category}`);
     },
     getCategory(id) {
         return apiClient.get(`api/category/${id}`);

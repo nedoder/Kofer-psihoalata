@@ -64,7 +64,7 @@ exports.findAll = (req, res) => {
     const query = req.query.category;
     var condition = query ? {
         category: {
-            [Op.like]: `%${query}%`
+            [Op.like]: `${query}%`
         }
     } : null;
     Category.findAll({ where: condition })

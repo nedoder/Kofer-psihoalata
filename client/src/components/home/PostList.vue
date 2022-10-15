@@ -5,45 +5,47 @@
         <h3>Kategorije</h3>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, suscipit quidem. Esse, ex! Possimus harum adipisci molestiae corrupti, ipsum inventore veritatis porro dolorem odio ut? Temporibus, natus? Nihil laboriosam minus, odit deleniti repellendus voluptate ducimus veritatis, saepe in, eveniet nam placeat dignissimos. Ipsa, repudiandae doloribus aliquam aspernatur soluta rem non.</p>
         <div  class="category-filter">
-          <input name="search" v-model='search' placeholder="Pretraži po naslovu" type="text" autocomplete="off" class="search-field"/>
+          <div class="search-box">
+            <input name="search" v-model="search" placeholder="Pretraži po naslovu" type="text" autocomplete="off" class="search-field"/>
+            <button class="title-search" @click="filterTitle(search)">Pretraži</button>
+          </div>
            <ul id="listnav" class="category-letter">
-            <li class="letterFilter"><a href="?letter=a">A</a></li>
-            <li class="letterFilter"><a href="?letter=b">B</a></li>
-            <li class="letterFilter"><a href="?letter=c">C</a></li>
-            <li class="letterFilter"><a href="?letter=č">Č</a></li>
-            <li class="letterFilter"><a href="?letter=ć">Ć</a></li>
-            <li class="letterFilter"><a href="?letter=d">D</a></li>
-            <li class="letterFilter"><a href="?letter=đ">Dž</a></li>
-            <li class="letterFilter"><a href="?letter=đ">Đ</a></li>
-            <li class="letterFilter"><a href="?letter=e">E</a></li>
-            <li class="letterFilter"><a href="?letter=f">F</a></li>
-            <li class="letterFilter"><a href="?letter=g">G</a></li>
-            <li class="letterFilter"><a href="?letter=h">H</a></li>
-            <li class="letterFilter"><a href="?letter=i">I</a></li>
-            <li class="letterFilter"><a href="?letter=j">J</a></li>
-            <li class="letterFilter"><a href="?letter=k">K</a></li>
-            <li class="letterFilter"><a href="?letter=l">L</a></li>
-            <li class="letterFilter"><a href="?letter=l">Lj</a></li>
-            <li class="letterFilter"><a href="?letter=m">M</a></li>
-            <li class="letterFilter"><a href="?letter=n">N</a></li>
-            <li class="letterFilter"><a href="?letter=n">Nj</a></li>
-            <li class="letterFilter"><a href="?letter=o">O</a></li>
-            <li class="letterFilter"><a href="?letter=p">P</a></li>
-            <li class="letterFilter"><a href="?letter=r">R</a></li>
-            <li class="letterFilter"><a href="?letter=s">S</a></li>
-            <li class="letterFilter"><a href="?letter=š">Š</a></li>
-            <li class="letterFilter"><a href="?letter=t">T</a></li>
-            <li class="letterFilter"><a href="?letter=u">U</a></li>
-            <li class="letterFilter"><a href="?letter=v">V</a></li>
-            <li class="letterFilter"><a href="?letter=z">Z</a></li>
-            <li class="letterFilter"><a href="?letter=ž">Ž</a></li>
+            <li class="letter-filter" @click="filterLetter('A')">A</li>
+            <li class="letter-filter" @click="filterLetter('B')">B</li>
+            <li class="letter-filter" @click="filterLetter('C')">C</li>
+            <li class="letter-filter" @click="filterLetter('Č')">Č</li>
+            <li class="letter-filter" @click="filterLetter('Ć')">Ć</li>
+            <li class="letter-filter" @click="filterLetter('D')">D</li>
+            <li class="letter-filter" @click="filterLetter('D')">D</li>
+            <li class="letter-filter" @click="filterLetter('Đ')">Đ</li>
+            <li class="letter-filter" @click="filterLetter('E')">E</li>
+            <li class="letter-filter" @click="filterLetter('F')">F</li>
+            <li class="letter-filter" @click="filterLetter('G')">G</li>
+            <li class="letter-filter" @click="filterLetter('H')">H</li>
+            <li class="letter-filter" @click="filterLetter('I')">I</li>
+            <li class="letter-filter" @click="filterLetter('J')">J</li>
+            <li class="letter-filter" @click="filterLetter('K')">K</li>
+            <li class="letter-filter" @click="filterLetter('L')">L</li>
+            <li class="letter-filter" @click="filterLetter('L')">L</li>
+            <li class="letter-filter" @click="filterLetter('M')">M</li>
+            <li class="letter-filter" @click="filterLetter('N')">N</li>
+            <li class="letter-filter" @click="filterLetter('N')">N</li>
+            <li class="letter-filter" @click="filterLetter('O')">O</li>
+            <li class="letter-filter" @click="filterLetter('P')">P</li>
+            <li class="letter-filter" @click="filterLetter('R')">R</li>
+            <li class="letter-filter" @click="filterLetter('S')">S</li>
+            <li class="letter-filter" @click="filterLetter('Š')">Š</li>
+            <li class="letter-filter" @click="filterLetter('T')">T</li>
+            <li class="letter-filter" @click="filterLetter('U')">U</li>
+            <li class="letter-filter" @click="filterLetter('V')">V</li>
+            <li class="letter-filter" @click="filterLetter('Z')">Z</li>
+            <li class="letter-filter" @click="filterLetter('Ž')">Ž</li>
+            <li class="letter-filter" @click="filterAllLetters()">SVI</li>
           </ul> 
         </div>
-        <div>
+        <div v-if="category.length > 0">
           <ul class="category-chips">
-            <li class="category-chip"><a href="">Anksioznost</a></li>
-            <li class="category-chip"><a href="">Aooo</a></li>
-            <li class="category-chip"><a href="">Aoooo2</a></li>
+            <li class="category-chip" v-for="item in category" :key="item.id" @click="filterCategory(item.id)">{{item.category}}</li>
           </ul>
         </div>
        
@@ -121,12 +123,9 @@ export default {
       }
     },
 
-		filterCategory() {
-      const element = Array.from(document.querySelectorAll(".category-wrap")).pop();
-      element.scrollIntoView();
+		filterCategory(id) {
       this.loading = true
-      if(this.$route.query.category) {
-        requests.getPostsList(this.$route.query.category, this.currentPage)
+        requests.getPostsList(id, this.currentPage)
         .then(response => {
           this.items = response.data.rows;
           this.resultCount = response.data.count
@@ -134,17 +133,57 @@ export default {
           console.log(error.response)
         })
         .finally(() => (this.loading = false))
-      } else {
-        requests.getPostList(this.currentPage)
-        .then(response => {
-          this.items = response.data.rows;
-          this.resultCount = response.data.count;
-        }).catch(error => {
-          console.log(error.response)
-        })
-        .finally(() => (this.loading = false))
-      }
-		}
+		},
+
+    filterLetter(letter) {
+      this.loading = true
+      requests.getPostsByLetter(letter, this.currentPage)
+      .then(response => {
+        this.items = response.data.rows;
+        this.resultCount = response.data.count
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error.response)
+      })
+      .finally(() => (this.loading = false))
+
+      requests.getCategoryLetter(letter)
+      .then(response => {
+        this.category = response.data;
+      }).catch(error => {
+        console.log(error.response)
+      });
+    },
+
+    filterTitle(title) {
+      this.loading = true
+      requests.getPostsByTitle(title, this.currentPage)
+      .then(response => {
+        this.items = response.data.rows;
+        this.resultCount = response.data.count
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error.response)
+      })
+      .finally(() => (this.loading = false))
+    },
+
+    getAllPosts() {
+      requests.getPostList(this.currentPage)
+      .then(response => {
+        this.items = response.data.rows;
+        this.resultCount = response.data.count
+        console.log(response.data)
+        this.filteredItems = response.data.rows
+      }).catch(error => {
+        console.log(error.response)
+      })
+      .finally(() => (this.loading = false))
+    },
+
+    filterAllLetters() {
+      this.getAllPosts()
+    }
 	}, 
  
   mounted(){
@@ -160,24 +199,8 @@ export default {
       })
       .finally(() => (this.loading = false))
     } else {
-      requests.getPostList(this.currentPage)
-      .then(response => {
-        this.items = response.data.rows;
-        this.resultCount = response.data.count
-        console.log(response.data)
-        this.filteredItems = response.data.rows
-      }).catch(error => {
-        console.log(error.response)
-      })
-      .finally(() => (this.loading = false))
+      this.getAllPosts()
     }
-
-    requests.getCategoryList()
-    .then(response => {
-      this.category = response.data;
-    }).catch(error => {
-      console.log(error.response)
-    });
 
   },
 }
@@ -186,68 +209,67 @@ export default {
 <style>
 
 .category-letter, .category-chips {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
-    list-style: none;
-    padding: 3rem 0 1rem 0;
-    position: relative;
-  }
-
-  .category-chips {
-    padding: 0;
-  }
-
-  .category-letter a {
-    text-decoration: none;
-    color: var(--black);
-    font-weight: 600;
-  }
-
-  .category-letter li {
-    border-radius: .5rem;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
-    font-size: .8rem;
-    padding: 1rem;
-    margin: .3rem .6rem .3rem 0;
-  }
-
-  .category-letter li:first-child a {
-    color: var(--green);
-  }
-
-  .category-letter li:hover {
-    background: var(--green);
-    color: var(--white);
-  }
-
-  .category-list li:last-child {
-    border-right: 0;
-  }
-
-  .category-chip {
-    padding: .5rem 1rem;
-    background: var(--green);
-    border-radius: 1rem;
-    margin: 1rem 1rem 2rem 0;
-  }
-
-  .category-chip a {
-    color: var(--white);
-    text-decoration: none;
-  }
-.search-field {
-  display: block;
-  border-radius: 1rem;
-  border:0; 
-  outline:0;
-  padding: 1rem;
-  resize: none;
-  margin-bottom: 3rem;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  list-style: none;
+  padding: 1rem 0;
+  position: relative;
+}
+
+.category-chips {
+  padding: 0;
+}
+
+.category-letter li {
+  border-radius: .5rem;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
+  font-size: .8rem;
+  padding: 1rem;
+  margin: .3rem .6rem .3rem 0;
+}
+
+.category-letter li:hover {
+  background: var(--green);
+  color: var(--white);
+}
+
+
+
+.category-chip {
+  padding: .5rem 1rem;
+  background: var(--green);
+  color: var(--white);
+  border-radius: 1rem;
+  margin: 1rem 1rem 2rem 0;
+}
+
+.category-chip a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.search-box {
+  display: flex;
+  flex-direction: row;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(1rem);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.search-field {
+  display: block;
+  
+  border:0; 
+  outline:0;
+ 
+  resize: none;
+  
+  width: 100%;
+  flex-grow: 2;
 }
 
 /* LOADER */

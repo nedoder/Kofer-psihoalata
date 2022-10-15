@@ -18,16 +18,13 @@
 .no-results {
   width: 90%;
   text-align: center;
-  position: relative;
   margin: 0 auto;
-  top: -7rem;
-  padding: 1rem;
 }
 
 .no-results h3 {
-    margin: 2rem 0;
     text-align: center;
     font-size: 1.5rem;
+    padding: 2rem 0;
 }
 
 .no-results-img img {
