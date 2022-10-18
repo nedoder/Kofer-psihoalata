@@ -109,9 +109,15 @@ export default {
 }
 .success-message h3 {
   margin: 1rem 0;
+  text-align: center;
 }
 .success-message img {
   max-height: 75vh;
+}
+
+.comment-failed {
+  color:var(--red);
+  padding: 1rem 0;
 }
 .contact {
   padding: 4rem 0;
@@ -137,11 +143,11 @@ export default {
   resize: none;
   margin: 1.5rem 0;
   width: 100%;
-  box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1), inset 0px -2px 5px rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(1rem);
 }
 .contact-name:focus, .contact-email:focus, .contact-message:focus {
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1), inset 0px -2px 5px rgba(255, 255, 255, 0.5);
 }
 .button {
   width: 100%;

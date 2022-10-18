@@ -5,7 +5,9 @@ module.exports = app => {
     var router = require("express").Router();
     // Create a new post
     router.post("/", authorize.verifyToken, upload.single("image"), posts.create);
-    // Retrieve all posts
+    // Retrieve all posts 
+    router.get("/all", posts.findAllPosts);
+    // Retrieve all posts paginated
     router.get("/:page?", posts.findAll);
     // Retrieve a single post with id
     router.get("/find/:id", posts.findOne);

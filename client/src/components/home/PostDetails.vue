@@ -15,9 +15,9 @@
             <div class="comment-form">
                 <input name="name" v-model="commentname" placeholder="Ime (opciono)" type="text" autocomplete="off" class="name">
                 <textarea name="message" v-model="message" rows="4" placeholder="Poruka" class="message"></textarea>
-                <p v-if="success===true" class="comment-success">Vaš komentar se prvo šalje timu na odobrenje. Kofer psihoalata zadržava pravo da obriše neprimjereni dio ili cijeli komentar, bez najave i objašnjenja.</p>
+                <p v-if="success===true && errorMsg===false" class="comment-success">Vaš komentar se prvo šalje timu na odobrenje. Kofer psihoalata zadržava pravo da obriše neprimjereni dio ili cijeli komentar, bez najave i objašnjenja.</p>
                 <p v-if="failed===true" class="comment-failed">Došlo je do greške. Molimo pokušajte ponovo.</p>
-                <p v-if="errorMsg===true" class="comment-failed">Morate unijeti poruku.</p>
+                <p v-if="errorMsg===true && success===false" class="comment-failed">Morate unijeti poruku.</p>
                 <button class="button"  @click="submitComment">Pošalji</button>
             </div>
             <div class="comment-list" v-for="comment in commentsLoaded" :key="comment.id">
@@ -74,10 +74,10 @@ export default {
             if (this.length > this.item.Comments.length) {
                 return
             }
-            if (this.length === this.item.Comments.length -1) {
+            if (this.length === this.item.Comments.length - 1) {
                 e.target.style.display = "none";
             }
-            this.length = this.length + 1;
+            this.length = this.length + 5;
         },
         submitComment(e) {
             if(this.message === '') {
@@ -98,6 +98,7 @@ export default {
                     this.commentname = ""
                     this.success = true
                     this.failed = false
+                    this.errorMsg = false
                     console.log(response)
                 })
                 .catch(error => {
@@ -117,7 +118,6 @@ export default {
         requests.getPost(this.$route.params.id)
         .then(response => {
             this.item = response.data
-            console.log(this.item)
             this.item.Comments = this.item.Comments.filter(item => {
                 return item.approved === true
             })
@@ -126,7 +126,6 @@ export default {
                     return item.approved === true
                 })
             })
-            console.log(response.data)
         })
         .catch(error => {
             console.log(error.response)
@@ -229,7 +228,7 @@ export default {
     padding-top: .5rem;
 }
 
-.answer-box, .answer-wrap {
+.answer-wrap {
     display: none;
 }
 
@@ -385,10 +384,6 @@ export default {
     .single-comment, .single-answer, .comment-reply {
         flex-direction: column;
         align-items: flex-end;
-    }
-
-    .comment-reply svg {
-        padding: .5rem 0;
     }
 
     .answer-length svg {

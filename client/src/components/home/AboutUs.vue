@@ -66,7 +66,8 @@
                 <button @click=toggleMore class="about-toggle">Prikaži više</button>
             </div>
             <div class="about-image">
-               <img src="../../assets/about.webp" alt="About us"/>
+               <img src="../../assets/about.webp" class="about-desktop" alt="About us"/>
+               <img src="../../assets/about-mobile.webp" class="about-mobile" alt="About us">
             </div>
         </div>
     </div>
@@ -132,6 +133,20 @@
     justify-content: flex-start;
     align-items: center;
 }
+
+
+@media (min-width: 1200px) {
+  img.about-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  img.about-desktop {
+    display: none;
+  }
+}
+
 
 @media (max-width: 768px) {
     .about-image {

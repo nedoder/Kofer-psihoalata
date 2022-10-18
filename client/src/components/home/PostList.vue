@@ -6,7 +6,7 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, suscipit quidem. Esse, ex! Possimus harum adipisci molestiae corrupti, ipsum inventore veritatis porro dolorem odio ut? Temporibus, natus? Nihil laboriosam minus, odit deleniti repellendus voluptate ducimus veritatis, saepe in, eveniet nam placeat dignissimos. Ipsa, repudiandae doloribus aliquam aspernatur soluta rem non.</p>
         <div  class="category-filter">
           <div class="search-box">
-            <input name="search" v-model="search" placeholder="Pretraži po naslovu" type="text" autocomplete="off" class="search-field"/>
+            <input name="search" v-model="search" placeholder="Pretraži po naslovu" type="text" autocomplete="off" class="search-field" @keyup.enter="filterTitle(search)" @focus="clearCategories()"/>
             <button class="title-search" @click="filterTitle(search)">Pretraži</button>
           </div>
            <ul id="listnav" class="category-letter">
@@ -16,8 +16,8 @@
             <li class="letter-filter" @click="filterLetter('Č')">Č</li>
             <li class="letter-filter" @click="filterLetter('Ć')">Ć</li>
             <li class="letter-filter" @click="filterLetter('D')">D</li>
-            <li class="letter-filter" @click="filterLetter('D')">D</li>
             <li class="letter-filter" @click="filterLetter('Đ')">Đ</li>
+            <li class="letter-filter" @click="filterLetter('Dž')">Dž</li>
             <li class="letter-filter" @click="filterLetter('E')">E</li>
             <li class="letter-filter" @click="filterLetter('F')">F</li>
             <li class="letter-filter" @click="filterLetter('G')">G</li>
@@ -26,10 +26,10 @@
             <li class="letter-filter" @click="filterLetter('J')">J</li>
             <li class="letter-filter" @click="filterLetter('K')">K</li>
             <li class="letter-filter" @click="filterLetter('L')">L</li>
-            <li class="letter-filter" @click="filterLetter('L')">L</li>
+            <li class="letter-filter" @click="filterLetter('Lj')">Lj</li>
             <li class="letter-filter" @click="filterLetter('M')">M</li>
             <li class="letter-filter" @click="filterLetter('N')">N</li>
-            <li class="letter-filter" @click="filterLetter('N')">N</li>
+            <li class="letter-filter" @click="filterLetter('Nj')">Nj</li>
             <li class="letter-filter" @click="filterLetter('O')">O</li>
             <li class="letter-filter" @click="filterLetter('P')">P</li>
             <li class="letter-filter" @click="filterLetter('R')">R</li>
@@ -40,7 +40,7 @@
             <li class="letter-filter" @click="filterLetter('V')">V</li>
             <li class="letter-filter" @click="filterLetter('Z')">Z</li>
             <li class="letter-filter" @click="filterLetter('Ž')">Ž</li>
-            <li class="letter-filter" @click="filterAllLetters()">SVI</li>
+            <li class="letter-filter" @click="filterAllLetters()" ref="post-results">SVI</li>
           </ul> 
         </div>
         <div v-if="category.length > 0">
@@ -53,6 +53,7 @@
           <div v-for="item in items" :key="item.id" class="posts">
             <post-card :items="item"/>
           </div>
+          <no-results v-if="items.length===0 && loading===false"></no-results>
         </div>
       </div>
     </div>
@@ -63,7 +64,6 @@
           </li>
       </ul>
     </div>
-    <no-results v-if="items.length===0 && loading===false"></no-results>
     <div class="loader-wrapper" v-if="loading===true">
      <img src="../../assets/loading.webp" alt="Loading posts"/>
     </div>
@@ -137,11 +137,11 @@ export default {
 
     filterLetter(letter) {
       this.loading = true
+      this.$refs["post-results"].scrollIntoView({ behavior: "smooth" })
       requests.getPostsByLetter(letter, this.currentPage)
       .then(response => {
         this.items = response.data.rows;
         this.resultCount = response.data.count
-        console.log(response.data)
       }).catch(error => {
         console.log(error.response)
       })
@@ -157,11 +157,11 @@ export default {
 
     filterTitle(title) {
       this.loading = true
+      this.$refs["post-results"].scrollIntoView({ behavior: "smooth" })
       requests.getPostsByTitle(title, this.currentPage)
       .then(response => {
         this.items = response.data.rows;
         this.resultCount = response.data.count
-        console.log(response.data)
       }).catch(error => {
         console.log(error.response)
       })
@@ -169,12 +169,13 @@ export default {
     },
 
     getAllPosts() {
+      this.$refs["post-results"].scrollIntoView({ behavior: "smooth" })
       requests.getPostList(this.currentPage)
       .then(response => {
         this.items = response.data.rows;
         this.resultCount = response.data.count
-        console.log(response.data)
         this.filteredItems = response.data.rows
+        console.log(response.data)
       }).catch(error => {
         console.log(error.response)
       })
@@ -182,7 +183,12 @@ export default {
     },
 
     filterAllLetters() {
+      this.category = []
       this.getAllPosts()
+    },
+
+    clearCategories() {
+      this.category = []
     }
 	}, 
  
@@ -193,7 +199,6 @@ export default {
       .then(response => {
         this.items = response.data.rows;
         this.resultCount = response.data.count
-        console.log(response.data)
       }).catch(error => {
         console.log(error.response)
       })
@@ -207,6 +212,35 @@ export default {
 </script>
 
 <style>
+/* PAGINATION */
+.pagination-wrap {
+    width: 90%;
+    padding: 0 1rem;
+    margin: 1rem auto;
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
+}
+
+.pagination a {
+    padding: 1rem;
+    clip-path: circle();
+    text-decoration: none;
+    color: var(--black)
+}
+
+.activePagination {
+    background: var(--yellow);
+    color: var(--white) !important;
+    font-weight: 700;
+}
 
 .category-letter, .category-chips {
   width: 100%;
@@ -228,21 +262,28 @@ export default {
   font-size: .8rem;
   padding: 1rem;
   margin: .3rem .6rem .3rem 0;
+  text-align: center;
+  width: calc(3% - .6rem);
+  height: 3rem;
 }
 
 .category-letter li:hover {
-  background: var(--green);
-  color: var(--white);
+  box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1), inset 0px -2px 5px rgba(255, 255, 255, 0.5);
 }
-
-
 
 .category-chip {
   padding: .5rem 1rem;
-  background: var(--green);
-  color: var(--white);
+  background: var(--yellow);
+  color: var(--black);
   border-radius: 1rem;
-  margin: 1rem 1rem 2rem 0;
+  margin: 1rem 1rem 0 0;
+  transition: all .5s ease;
+  text-transform: uppercase;
+}
+
+.category-chip:hover {
+  letter-spacing: .2rem;
+  color: var(--white);
 }
 
 .category-chip a {
@@ -260,6 +301,22 @@ export default {
   margin: 1rem 0;
 }
 
+.search-box:hover {
+  box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1), inset 0px -2px 5px rgba(255, 255, 255, 0.5);
+}
+
+.title-search {
+  padding: .4rem 1rem;
+  background: var(--yellow);
+  color: var(--black);
+  border-radius: .7rem;
+  transition: all .5s ease;
+}
+
+.title-search:hover {
+  letter-spacing: .2rem;
+  color: var(--white);
+}
 .search-field {
   display: block;
   
@@ -307,6 +364,7 @@ export default {
   flex-wrap: wrap;
   row-gap: 2rem;
   column-gap: 2rem;
+  margin-top: 2rem;
 }
 
 .posts {
@@ -359,11 +417,12 @@ export default {
   padding-bottom: .5rem;
 }
 .post-author {
-  color: var(--violet) !important;
+  color: var(--dark-violet) !important;
 }
 
 .post-img {
   z-index: 1;
+  height: 9vw;
 }
 
 .post-info {
@@ -423,18 +482,33 @@ export default {
 }
 
 @media (max-width: 2000px) {
-    .posts { 
-        width: calc(25% - 1.5rem);
-    }
+  .posts { 
+      width: calc(25% - 1.5rem);
+  }
+  .category-letter li {
+    width: calc(5% - .6rem);
+  }
+}
+
+@media (max-width: 1600px) {
+  .category-letter li {
+    width: calc(8% - .6rem);
+  }
 }
 
 @media (max-width: 992px) {
   .posts {
     width: calc(33.3% - 1.5rem);
   }
-
+  .post-img {
+    height: 12vw;
+  }
   .post-img img {
     height: 12vw;
+  }
+
+  .category-letter li {
+    width: calc(10% - .6rem);
   }
 }
 
@@ -443,6 +517,9 @@ export default {
     width: calc(50% - 1.5rem);
   }
 
+  .post-img {
+    height: 18vw;
+  } 
   .post-img img {
     height: 18vw;
   }
@@ -450,11 +527,19 @@ export default {
   .loader-wrapper img {
     width: 50%;
   }
+
+  .category-letter li {
+    width: calc(10% - .6rem);
+  }
 }
 
 @media (max-width: 600px) {
   .posts {
     width: 100%;
+  }
+
+  .post-img {
+    height: 35vw;
   }
 
   .post-img img {
@@ -464,21 +549,43 @@ export default {
   .loader-wrapper img {
     width: 70%;
   }
+
+  .category-letter li {
+    width: calc(16.6% - .6rem);
+  }
+}
+
+@media (max-width: 500px) {
+  .category-letter li {
+    width: calc(20% - .6rem);
+  }
 }
 
 @media (max-width: 400px) {
   .category-wrap {
     width: 29%;
   }
+
+  .category-letter li {
+    width: calc(25% - .6rem);
+  }
 }
 
 @media (max-width: 300px) {
+
+  .post-img {
+    height: 40vw;
+  }
   .post-img img {
     height: 40vw;
   }
 
   .category-wrap {
     width: 45%;
+  }
+
+  .category-letter li {
+    width: calc(33% - .6rem);
   }
 }
 

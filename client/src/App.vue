@@ -41,7 +41,9 @@ export default {
   --yellow: #E9B44C;
   --green: #50A2A7;
   --dark-green: #397B7E;
+  --footer-green: #38777B;
   --violet: #9A7197;
+  --dark-violet: #896285;
   --red: #9B2915;
   --beige: #E4D6A7;
   --gradient: linear-gradient(90deg, rgba(245,192,183,1) 0%, rgba(172,213,215,1) 100%);
@@ -55,6 +57,7 @@ export default {
 @font-face {
   font-family: "Poland";
   src: local("Poland"),   url(./assets/fonts/PolandCanIntoBigWritingsOutline.otf) format("truetype");
+  font-display: swap;
 }
 
 html {

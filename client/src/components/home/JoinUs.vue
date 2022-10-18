@@ -17,12 +17,12 @@
         </div>
         <img src="../../assets/klupko logo.png" class="join-klupko" alt="Logo klupko"/>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio saepe error alias, odit ullam consectetur harum excepturi aperiam a ipsa soluta est esse atque repellendus recusandae exercitationem autem necessitatibus fugit earum! Harum molestias ipsam voluptatibus eos sit sunt incidunt deleniti delectus consequatur, minus id laborum mollitia facere porro rem minima! Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus est vitae dolorem sint cumque, quibusdam aut repellendus adipisci animi aliquam.</p>
-        <p>Ugovor o volontiranju možete preuzeti <a href="#">ovdje</a>.</p>
+        <p>Ugovor o volontiranju možete preuzeti <a href="/files/ugovor-o-volontiranju.pdf" download>ovdje</a>.</p>
       </div>
       
       <div class="join-section">
         <div class="join-form">
-          <h5>OCD "PORTRET"</h5>
+          <h4>OCD "PORTRET"</h4>
           <p>PRIJAVA ZA VOLONTIRANJE</p>
           <p>Klub mladih volontera "Klupko"</p>
           <input required name="join-place" v-model='contact.place' placeholder="Mjesto i datum" type="text" class="join-place">
@@ -151,6 +151,7 @@ body, html {
 }
 .success-message h3 {
   margin: 1rem 0;
+  text-align: center;
 }
 .success-message img {
   max-height: 75vh;
@@ -268,6 +269,11 @@ body, html {
   flex-direction: column;
   padding: 1rem 0;
   margin: .5rem auto;
+  text-align: center;
+}
+
+.join-form h4 {
+  font-size: 1rem;
 }
 .join-form input, .join-form textarea {
   padding: 1rem;

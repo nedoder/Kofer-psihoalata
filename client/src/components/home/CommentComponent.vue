@@ -8,7 +8,7 @@
           <p class="comment-message">{{items.comment}}</p>
           <div class="comment-reply">
            <p class="comment-author"><span>Autor: </span>{{items.author}} <span> &comma; </span> {{new Date(items.createdAt).toUTCString().slice(5,-4)}}</p>
-           <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><path d="m5.66116524 3.36827202c5.18469776-.47094658 8.51890836 1.5289737 9.99999996 6-2.8248102-3.14044041-6.34158528-3.71816233-9.99999996-2v2.99999998l-5-4.99999998 5-5z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(2.839 4.132)" @click="replyComment"/></svg>
+           <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg" @click="replyComment"><path d="m5.66116524 3.36827202c5.18469776-.47094658 8.51890836 1.5289737 9.99999996 6-2.8248102-3.14044041-6.34158528-3.71816233-9.99999996-2v2.99999998l-5-4.99999998 5-5z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(2.839 4.132)"/></svg>
            <p v-if="items.Answers.length !==0" class="answer-length" @click="showAnswer">Prikaži {{items.Answers.length}} odgovora 
            <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><path d="m8.5.5-4 4-4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(6 8)"/></svg>
           </p>
@@ -18,9 +18,9 @@
       <div class="reply-form" v-if="reply===true">
         <input name="reply-name" v-model="replyname" placeholder="Ime (opciono)" type="text" autocomplete="off" class="reply-name">
         <textarea name="reply-message" v-model="replymessage" rows="4" placeholder="Poruka" class="reply-message"></textarea>
-        <p v-if="success===true" class="comment-success">Vaš komentar se prvo šalje timu na odobrenje. Kofer psihoalata zadržava pravo da obriše neprimjereni dio ili cijeli komentar, bez najave i objašnjenja.</p>
+        <p v-if="success===true && errorMsg===false" class="comment-success">Vaš komentar se prvo šalje timu na odobrenje. Kofer psihoalata zadržava pravo da obriše neprimjereni dio ili cijeli komentar, bez najave i objašnjenja.</p>
         <p v-if="failed===true" class="comment-failed">Došlo je do greške. Molimo pokušajte ponovo.</p>
-        <p v-if="errorMsg===true" class="comment-failed">Morate unijeti poruku.</p>
+        <p v-if="errorMsg===true && success===false" class="comment-failed">Morate unijeti poruku.</p>
         <button class="reply-button comment-btn"  @click="onSubmit">Pošalji</button>
       </div>
       <div class="answer-wrap">
@@ -57,17 +57,14 @@
 
     methods: {
       loadAnswers(e) {
-        const currentComment = e.target.parentNode.parentNode
-        const reply = Array.from(currentComment.querySelectorAll(".answer-box"));
-        reply.forEach(answer => {
-          answer.classList.add("answer-visible")
-        })
-            if (this.length >= this.items.Answers.length) {
-                e.target.style.display = "none";
-                return
-            }
-            this.length = this.length + 1;
-        },
+        if (this.length > this.items.Answers.length) {
+            return
+        }
+        if (this.length === this.items.Answers.length - 1) {
+           e.target.style.display = "none";
+        }
+        this.length = this.length + 5;
+      },
 
       replyComment() {
         this.reply = !this.reply
@@ -76,13 +73,7 @@
       showAnswer(e) {
         const currentComment = e.target.parentNode.parentNode.parentNode.parentNode
         const replyWrap = Array.from(currentComment.querySelectorAll(".answer-wrap"));
-        const reply = Array.from(currentComment.querySelectorAll(".answer-box"));
-        const load = Array.from(currentComment.querySelectorAll(".answer-wrap > button"))[0];
-        console.log(load)
         replyWrap.forEach(answer => {
-          answer.classList.toggle("answer-visible")
-        })
-        reply.forEach(answer => {
           answer.classList.toggle("answer-visible")
         })
       },
@@ -105,6 +96,7 @@
             this.replyname = ""
             this.replymessage = ""
             this.success = true
+            this.errorMsg = false
             this.failed = false
             console.log(response)
           })

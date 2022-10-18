@@ -39,6 +39,9 @@ const requests = {
     getPostsList(cat,page) {
         return apiClient.get(`api/post?category=${cat}&page=${page}`);
     },
+    getPostsAll() {
+        return apiClient.get("api/post/all");
+    },
     getPostList(page) {
         return apiClient.get(`api/post?page=${page}`);
     },

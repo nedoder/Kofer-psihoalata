@@ -13,14 +13,15 @@
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus, at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos eius necessitatibus at perferendis magnam eligendi temporibus quod exercitationem quibusdam voluptas?</p>
         <div class="hero-buttons">
           <a href="/join-us" aria-label="Join us">Postani volonter</a>
-           <a href="https://www.patreon.com/" aria-label="Patreon">Podrži nas</a>
+           <a href="https://www.patreon.com/nvoportret" aria-label="Patreon">Podrži nas</a>
         </div>
       </div>
       <div class="hero-right">
-        <img src="../../assets/hero.webp" alt="Hero image">
+        <img src="../../assets/hero.webp" class="hero-desktop" alt="Hero image">
+        <img src="../../assets/hero-mobile.webp" class="hero-mobile" alt="Hero image">
       </div>
     </div>
-    <div class="icon" id="icon">
+    <div class="icon" id="icon" v-if="visible">
       <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><path d="m8.5.5-4 4-4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(6 8)"/></svg>
     </div>
   </div>
@@ -29,16 +30,18 @@
 <script>
 export default {
   name: 'HeroSection',
+  data: () => ({
+    visible: true,
+  }),
   created: function() {
 		window.addEventListener('scroll',this.scrollFunction);
 	},
   methods: {
 		scrollFunction() {
-			const icon = document.getElementById("icon");
-			if(window.top.scrollY !== 0) {
-          icon.style.display = "none"
+			if(window.top.scrollY === 0) {
+        this.visible = true;
 			} else {
-          icon.style.display = "block"
+        this.visible = false;
 			}
 		}
 	}, 
@@ -158,7 +161,7 @@ export default {
   border-image-slice: 1;
   transition: all .2s cubic-bezier(.86,0,.07,1);
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  color: var(--violet);
+  color: var(--dark-violet);
   font-weight: 600;
   text-transform: uppercase;
   font-size: .75rem;
@@ -291,6 +294,18 @@ export default {
 
 /* MEDIA QUERIES */
 
+@media (min-width: 1200px) {
+  img.hero-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  img.hero-desktop {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-right {
     display: none;
@@ -306,9 +321,15 @@ export default {
 
 }
 
+@media (max-width: 500px) {
+  .hero-buttons a {
+    width: 9rem;
+  }
+}
+
 @media (max-width: 400px) {
-  .hero-buttons {
-    flex-direction: column;
+  .hero-buttons a {
+    width: 8.5rem;
   }
 
   .hero h2 {
@@ -318,6 +339,16 @@ export default {
 
   .icon {
     top: 83vh;
+  }
+}
+
+@media (max-width: 370px) {
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .hero-buttons a {
+    width: 11rem;
   }
 }
 

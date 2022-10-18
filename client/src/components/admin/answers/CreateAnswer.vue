@@ -215,7 +215,7 @@ export default {
       console.log(error.response)
     });
 
-    requests.getPostList()
+    requests.getPostsAll()
     .then(response => {
       this.post = response.data;
     }).catch(error => {

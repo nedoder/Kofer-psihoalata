@@ -116,9 +116,10 @@ export default {
   },
 
   mounted() {
-    requests.getPostList()
+    requests.getPostsAll()
     .then(response => {
       this.post = response.data;
+      console.log(response.data)
     }).catch(error => {
       console.log(error.response)
     });

@@ -197,7 +197,8 @@ export default {
 
 .image-wrap {
   width: 100%;
-  height: 100%;
+  height: 12rem;
+  padding: 1rem 0;
 }
 
 .single-category {
@@ -210,7 +211,7 @@ export default {
 .category-card img {
   object-fit: cover;
   padding: .5rem 0;
-  width: 100%;
+  width: 70%;
 }
 
 .card-footer {
@@ -223,6 +224,7 @@ export default {
   color: var(--black);
   font-weight: 500;
   font-size: 1rem;
+  text-transform: uppercase;
 }
 
 

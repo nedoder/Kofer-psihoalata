@@ -83,7 +83,7 @@ export default {
     isValid:true,
     isUpdating: false,
     customToolbar: [
-      [{ header: [false, 2, 3, 4, 5, 6] }],
+      [{ header: [false, 4, 5, 6] }],
       ["bold", "italic", "underline", "strike"], 
       [{ list: "ordered" }, { list: "bullet" }],
       [{ align: "" }, { align: "center" }, { align: "right"}, { align: "justify"}],

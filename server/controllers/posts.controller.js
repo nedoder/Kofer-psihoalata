@@ -63,6 +63,51 @@ exports.create = async (req, res) => {
 };
 
 // Retrieve all posts from the database.
+exports.findAllPosts = (req, res) => {
+
+   
+    Post.findAll({
+        include: [{
+            model: models.Category,
+            as: 'Category',
+            include: [{
+                model: models.Post,
+                required: true,
+                as: 'Posts',
+            }]
+          },
+        {
+            model: models.User,
+            as: 'User',
+        },{
+            model: models.Comment,
+            as: 'Comments',
+            include: [{
+                model: models.Answer,
+                as: 'Answers',
+            },
+            {
+                model: models.Post,
+                as: 'Post',
+            }]
+        }],
+        order: [
+            ["updatedAt", "desc"]
+        ],
+        distinct:true,
+    })
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving posts."
+        });
+    });
+
+};
+
+// Retrieve all posts from the database.
 exports.findAll = (req, res) => {
 
     let page = parseInt(req.query.page) - 1

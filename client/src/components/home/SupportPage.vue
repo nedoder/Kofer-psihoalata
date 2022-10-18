@@ -56,7 +56,6 @@ export default {
             .then(response => {
               this.items = response.data.rows;
               this.resultCount = response.data.count
-              console.log(response.data)
             }).catch(error => {
               console.log(error.response)
             })
@@ -69,7 +68,6 @@ export default {
       .then(response => {
         this.items = response.data.rows;
         this.resultCount = response.data.count
-        console.log(response.data)
       }).catch(error => {
         console.log(error.response)
       })
