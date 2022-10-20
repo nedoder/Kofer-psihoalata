@@ -1,7 +1,7 @@
 <template>
-  <v-form v-if="currentPost" v-model="isValid">
+  <v-form v-if="currentPost" v-model="isValid" class="row text-center justify-center align-center fill-height">
     <v-row justify="center">
-      <v-col sm="10">
+      <v-col sm="6">
         <v-card tile>
           <v-card-text>
 
@@ -43,7 +43,6 @@
             </v-file-input>
 
             <vue-editor v-model="currentPost.content" output-format="html" :editorToolbar="customToolbar"/>
-
 
             <v-autocomplete
               filled
@@ -163,6 +162,11 @@ export default {
 <style scoped>
 .quillWrapper {
   margin-bottom: 10px;
+}
+
+.row .fill-height {
+  height: 85vh !important;
+  align-items: center !important;
 }
 </style>
 

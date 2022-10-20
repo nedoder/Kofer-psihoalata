@@ -9,7 +9,7 @@
           <div class="comment-reply">
            <p class="comment-author"><span>Autor: </span>{{items.author}} <span> &comma; </span> {{new Date(items.createdAt).toUTCString().slice(5,-4)}}</p>
            <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg" @click="replyComment"><path d="m5.66116524 3.36827202c5.18469776-.47094658 8.51890836 1.5289737 9.99999996 6-2.8248102-3.14044041-6.34158528-3.71816233-9.99999996-2v2.99999998l-5-4.99999998 5-5z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(2.839 4.132)"/></svg>
-           <p v-if="items.Answers.length !==0" class="answer-length" @click="showAnswer">Prikaži {{items.Answers.length}} odgovora 
+           <p v-if="items.Answers.length !==0" class="answer-length" @click="show = !show">Prikaži {{items.Answers.length}} odgovora 
            <svg height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg"><path d="m8.5.5-4 4-4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(6 8)"/></svg>
           </p>
           </div>
@@ -23,12 +23,16 @@
         <p v-if="errorMsg===true && success===false" class="comment-failed">Morate unijeti poruku.</p>
         <button class="reply-button comment-btn"  @click="onSubmit">Pošalji</button>
       </div>
-      <div class="answer-wrap">
-        <div class="answer-box" v-for="item in answersLoaded" :key="item.id">
-          <answer-component :items="item"/>
-        </div>
+      <transition name="fade">
+      <div class="answer-wrap" v-if="show">
+        <transition-group name="fade">
+          <div class="answer-box" v-for="item in answersLoaded" :key="item.id">
+            <answer-component :items="item"/>
+          </div>
+        </transition-group>
         <button v-if="this.items.Answers.length > this.length" @click="loadAnswers" class="load-answers">Prikaži više</button>
       </div>
+    </transition>
     </div>
   </template>
   
@@ -46,7 +50,8 @@
       success: false,
       failed: false,
       errorMsg: false,
-      length: 5
+      length: 5,
+      show: false
     }),
 
     computed: {
@@ -68,14 +73,6 @@
 
       replyComment() {
         this.reply = !this.reply
-      },
-
-      showAnswer(e) {
-        const currentComment = e.target.parentNode.parentNode.parentNode.parentNode
-        const replyWrap = Array.from(currentComment.querySelectorAll(".answer-wrap"));
-        replyWrap.forEach(answer => {
-          answer.classList.toggle("answer-visible")
-        })
       },
 
       onSubmit(e) {
@@ -111,4 +108,5 @@
     }
   }
   </script>
+  
   

@@ -18,9 +18,7 @@ app.use(history({
 
 app.use(express.static(__dirname + '/dist', { maxAge: 31536000 }));
 
-
 global.__basedir = __dirname;
-
 
 var corsOptions = {
     origin: "*"
@@ -33,11 +31,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-
 // Json Body Middleware
 app.use(bodyParser.json());
-
-
 
 require("./routes/category.routes")(app);
 require("./routes/answers.routes")(app);
@@ -48,13 +43,9 @@ require("./routes/activity.routes")(app);
 require("./routes/email.routes")(app);
 require("./routes/institutions.routes")(app);
 
-
 app.use(express.static("uploads"))
 
-
-
 const db = require("./models");
-
 
 app.get("/", (req, res) => {
     res.json({ message: "Kofer psihoalata" });
@@ -71,13 +62,8 @@ var connection = mysql.createConnection({
     user: process.env.USER,
     port: process.env.PORTDB,
     password: process.env.PASSWORD,
-    // host: "localhost",
-    // user: "root",
-    // port: 3306,
-    // password: "root",
 });
 
- 
 connection.connect(function(err) {
     if (err) throw err;
     console.log("Connected to the database!");
@@ -87,6 +73,5 @@ connection.query('CREATE DATABASE IF NOT EXISTS senadbul_kofer', function(err, r
     if (err) throw err;
     console.log("Database created!");
 })
-
 
 module.exports = connection;

@@ -1,20 +1,20 @@
 <template>
-    <div class="hero" id="home">
-      <div class="hero-shapes" id="home">
-        <div class="logo"><img src="../../assets/logo.png" alt="Logo"/></div>
-        <div class="shape-blob"></div>
-        <div class="shape-blob one"></div>
-        <div class="shape-blob two"></div>
-        <div class="shape-blob three"></div>
-        <div class="shape-blob four"></div>
-        <div class="shape-blob five"></div>
-        <div class="shape-blob six"></div>
-        <div class="hero-image">
-            <h3>Coming soon!</h3>
-            <img src="../../assets/coming-soon.webp" alt="Coming soon image">
-        </div>
+  <div class="hero" id="home">
+    <div class="hero-shapes" id="home">
+      <div class="logo"><img src="../../assets/logo.png" alt="Logo"/></div>
+      <div class="shape-blob"></div>
+      <div class="shape-blob one"></div>
+      <div class="shape-blob two"></div>
+      <div class="shape-blob three"></div>
+      <div class="shape-blob four"></div>
+      <div class="shape-blob five"></div>
+      <div class="shape-blob six"></div>
+      <div class="hero-image">
+        <h3>Coming soon!</h3>
+        <img src="../../assets/coming-soon.webp" alt="Coming soon image">
       </div>
     </div>
+  </div>
 </template>
 
 <style scoped>
@@ -32,30 +32,36 @@
 }
 
 .hero-shapes {
-    width: 100%;
+  width: 100%;
 }
 
 .hero-image {
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-    z-index: 100;
-    padding-top: 5rem;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  z-index: 100;
+  padding-top: 5rem;
 }
 
 .hero-image h3 {
   padding: 2rem 0;
 }
 
+.hero h3 {
+	letter-spacing: 0.1rem;
+	font-weight: 900;
+	line-height: 3rem;
+	position: relative;
+}
 .logo {
-    position: absolute;
-    left: 0;
-    top: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .logo img {
-    height: 10rem;
-    padding: 1rem;
+  height: 10rem;
+  padding: 1rem;
 }
 /* BACKGROUND SHAPES */
 .shape-blob {
@@ -63,12 +69,12 @@
 	height: 10rem;
 	width: 10rem;
 	border-radius: 30% 50% 20% 40%;
-    animation: transform 20s ease-in-out infinite both alternate, movement_one 40s ease-in-out infinite both;
+  animation: transform 20s ease-in-out infinite both alternate, movement_one 40s ease-in-out infinite both;
 	opacity:.5;
 	position: absolute;
 	right: 0%;
 	bottom: 10%;
-    z-index: 0;
+  z-index: 0;
 }
 
 .shape-blob.one{
@@ -139,22 +145,12 @@
   50% { transform: translate(50%, 20%) rotate(-200deg) scale(1.2);}
 }
 
-
-.hero h3 {
-	letter-spacing: 0.1rem;
-	font-weight: 900;
-	line-height: 3rem;
-	position: relative;
-}
-
 /* MEDIA QUERIES */
 
 @media (max-width: 768px) {
-
   .shape-blob.three, .shape-blob.five, .shape-blob.six {
     display: none;
   }
-
 }
 
 </style>

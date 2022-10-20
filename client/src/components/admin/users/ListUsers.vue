@@ -17,7 +17,6 @@
       >
       </v-text-field>
 
-
     </v-card-title>
     
     <v-card-text>
@@ -157,7 +156,7 @@ export default {
 </script>
 
 <style scoped>
-   .v-dialog {
+  .v-dialog {
     overflow-x: hidden;
   }
 </style>

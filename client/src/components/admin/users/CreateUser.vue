@@ -1,89 +1,81 @@
 <template>
   <v-form v-model="isValid" class="row text-center justify-center align-center fill-height">
-      <v-col sm="6">
-        <v-card  tile >
-
-          <v-card-title>Kreiranje korisnika</v-card-title>
-          <v-card-text>
-
-            <v-text-field
-              filled 
-              shaped 
-              label="Ime"
-              v-model="name"
-              :rules="[v => v.length > 0 || 'Morate unijeti ime']"
-            ></v-text-field>
-
-            <v-text-field
-              filled 
-              shaped 
-              label="Prezime"
-              v-model="lastname"
-              :rules="[v => v.length > 0 || 'Morate unijeti prezime']"
-            ></v-text-field>
-
-            <v-text-field
-              filled 
-              shaped 
-              label="Korisničko ime"
-              v-model="username"
-              required
-              :rules="[v => v.length > 0 || 'Morate unijeti korisničko ime', uniqueUsername]"
-            ></v-text-field>
-
-            <v-text-field 
-              filled 
-              shaped 
-              v-model="password" 
-              label="Lozinka" 
-              required
-              :error-messages="errorPassword"
-              :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-              @click:append="showPass = !showPass"
-              :type="showPass ? 'text' : 'password'"
-              :rules="[v => v.length > 0 || 'Morate unijeti lozinku']"
-            >
-            </v-text-field>
-
-            <v-text-field
-              filled 
-              shaped 
-              label="Potvrdite lozinku"
-              v-model="rePassword"
-              required
-              :rules="[passwordConfirmationRule]"
-              :error-messages="errorPassword"
-              :append-icon="showRePass ? 'mdi-eye' : 'mdi-eye-off'"
-              @click:append="showRePass = !showRePass"
-              :type="showRePass ? 'text' : 'password'"
-            >
-            </v-text-field>
-            
+    <v-col sm="6">
+      <v-card tile>
+        <v-card-title>Kreiranje korisnika</v-card-title>
+        <v-card-text>
+          <v-text-field
+            filled 
+            shaped 
+            label="Ime"
+            v-model="name"
+            :rules="[v => v.length > 0 || 'Morate unijeti ime']"
+          ></v-text-field>
+          <v-text-field
+            filled 
+            shaped 
+            label="Prezime"
+            v-model="lastname"
+            :rules="[v => v.length > 0 || 'Morate unijeti prezime']"
+          ></v-text-field>
+          <v-text-field
+            filled 
+            shaped 
+            label="Korisničko ime"
+            v-model="username"
+            required
+            :rules="[v => v.length > 0 || 'Morate unijeti korisničko ime', uniqueUsername]"
+          ></v-text-field>
+          <v-text-field 
+            filled 
+            shaped 
+            v-model="password" 
+            label="Lozinka" 
+            required
+            :error-messages="errorPassword"
+            :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="showPass = !showPass"
+            :type="showPass ? 'text' : 'password'"
+            :rules="[v => v.length > 0 || 'Morate unijeti lozinku']"
+          >
+          </v-text-field>
+          <v-text-field
+            filled 
+            shaped 
+            label="Potvrdite lozinku"
+            v-model="rePassword"
+            required
+            :rules="[passwordConfirmationRule]"
+            :error-messages="errorPassword"
+            :append-icon="showRePass ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="showRePass = !showRePass"
+            :type="showRePass ? 'text' : 'password'"
+          >
+          </v-text-field>
           
-            <v-autocomplete 
-              filled
-              shaped
-              v-bind:items = roles
-              v-model="role"
-              item-text = role
-              item-value = id
-              :disabled="isUpdating"
-              chips
-              deletable-chips
-              label="Privilegije"
-              :error-messages='matchError()'
-            >
-            </v-autocomplete>
-
-            <v-alert type="error" v-if="error">
-             {{error}}
-            </v-alert>
-            
-            <v-btn @click="onSubmit" :disabled="!isValid" color="primary">Kreiraj</v-btn>
-            
-          </v-card-text>
-        </v-card>
-      </v-col>
+          <v-autocomplete 
+            filled
+            shaped
+            v-bind:items = roles
+            v-model="role"
+            item-text = role
+            item-value = id
+            :disabled="isUpdating"
+            chips
+            deletable-chips
+            label="Privilegije"
+            :error-messages='matchError()'
+          >
+          </v-autocomplete>
+          <v-alert type="error" v-if="error">
+           {{error}}
+          </v-alert>
+          
+          <v-btn @click="onSubmit" :disabled="!isValid" color="primary">Kreiraj</v-btn>
+          
+        </v-card-text>
+      </v-card>
+    </v-col>
   </v-form >
 </template>
 
@@ -168,4 +160,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.row .fill-height {
+    height: 85vh !important;
+    align-items: center !important;
+}
+</style>
 

@@ -59,13 +59,13 @@
     </div>
     <div class="pagination-wrap" v-if="loading===false && totalPages>1">
       <ul class="pagination">
-           <li v-for="pageNumber in totalPages" :key="pageNumber">
-              <a href="#" @click="loadPosts" :class="{ activePagination : active_el == pageNumber }">{{ pageNumber }}</a>
-          </li>
+        <li v-for="pageNumber in totalPages" :key="pageNumber">
+          <a href="#" @click="loadPosts" :class="{ activePagination : active_el == pageNumber }">{{ pageNumber }}</a>
+        </li>
       </ul>
     </div>
     <div class="loader-wrapper" v-if="loading===true">
-     <img src="../../assets/loading.webp" alt="Loading posts"/>
+      <img src="../../assets/loading.webp" alt="Loading posts"/>
     </div>
   </div>
 </template>
@@ -175,7 +175,6 @@ export default {
         this.items = response.data.rows;
         this.resultCount = response.data.count
         this.filteredItems = response.data.rows
-        console.log(response.data)
       }).catch(error => {
         console.log(error.response)
       })
@@ -214,48 +213,46 @@ export default {
 <style>
 /* PAGINATION */
 .pagination-wrap {
-    width: 90%;
-    padding: 0 1rem;
-    margin: 1rem auto;
+  width: 90%;
+  padding: 0 1rem;
+  margin: 1rem auto;
 }
 
 .pagination {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    border-radius: 1rem;
-    padding: 1rem;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
 }
 
 .pagination a {
-    padding: 1rem;
-    clip-path: circle();
-    text-decoration: none;
-    color: var(--black)
+  padding: 1rem;
+  clip-path: circle();
+  text-decoration: none;
+  color: var(--black)
 }
 
 .activePagination {
-    background: var(--yellow);
-    color: var(--white) !important;
-    font-weight: 700;
+  background: var(--yellow);
+  color: var(--white) !important;
+  font-weight: 700;
 }
 
+/* CATEGORY LETTER AND CHIP CONTAINER */
 .category-letter, .category-chips {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: flex-start;
   list-style: none;
   padding: 1rem 0;
   position: relative;
 }
 
-.category-chips {
-  padding: 0;
-}
-
+/* CATEGORY LETTERS */
 .category-letter li {
   border-radius: .5rem;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px -2px 5px rgba(255, 255, 255, 0.5);
@@ -269,6 +266,11 @@ export default {
 
 .category-letter li:hover {
   box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1), inset 0px -2px 5px rgba(255, 255, 255, 0.5);
+}
+
+/* CATEGORY CHIPS */
+.category-chips {
+  padding: 0;
 }
 
 .category-chip {
@@ -291,6 +293,7 @@ export default {
   text-decoration: none;
 }
 
+/* SEARCH FIELD */
 .search-box {
   display: flex;
   flex-direction: row;
@@ -317,14 +320,12 @@ export default {
   letter-spacing: .2rem;
   color: var(--white);
 }
+
 .search-field {
   display: block;
-  
   border:0; 
   outline:0;
- 
   resize: none;
-  
   width: 100%;
   flex-grow: 2;
 }
@@ -375,6 +376,7 @@ export default {
   -webkit-justify-content: flex-start;
 }
 
+/* POST CARD */
 .post {
   width: 100%;
   transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
@@ -430,17 +432,17 @@ export default {
 }
 
 .post-date {
-    font-size: .8rem;
-    padding-left: .2rem;
+  font-size: .8rem;
+  padding-left: .2rem;
 }
 
 .post-title {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    font-size: 1.2rem;
-    font-family: 'Montserrat Alternates', sans-serif;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 1.2rem;
+  font-family: 'Montserrat Alternates', sans-serif;
 }
 
 .post .shape {

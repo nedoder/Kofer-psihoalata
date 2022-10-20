@@ -42,7 +42,7 @@
         </v-card-text>
       </v-card>
     </v-col>
-  </v-form >
+  </v-form>
 </template>
 
 <script>

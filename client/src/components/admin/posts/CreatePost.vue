@@ -2,11 +2,8 @@
   <v-form v-model="isValid" class="row text-center justify-center align-center fill-height">
     <v-col sm="6">
       <v-card  tile>
-
         <v-card-title>Kreiranje posta</v-card-title>
-
         <v-card-text>
-
           <v-text-field 
             filled 
             shaped 
@@ -37,8 +34,7 @@
             @change="onFileChange"
           >
           </v-file-input>
-
-
+          
           <vue-editor v-model="content" output-format="html" :editorToolbar="customToolbar"/>
 
           <v-autocomplete 
@@ -155,7 +151,8 @@ export default {
   margin-bottom: 10px;
 }
 .row .fill-height {
-    /* height: 50vh !important; */
+    height: 85vh !important;
     align-items: center !important;
 }
+
 </style>

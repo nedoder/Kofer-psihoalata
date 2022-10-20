@@ -163,6 +163,7 @@ export default {
     overflow: hidden;
 }
 
+/* PARTNERS SLIDER */
 .partners {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -190,6 +191,7 @@ export default {
   height: 100%;
 }
 
+/* FOOTER ITEMS */
 .footer-wrapper {
     display: flex;
     flex-direction: row;
@@ -254,7 +256,9 @@ export default {
     width: 100%;
     text-align: left;
 }
-
+.copyrights a {
+    color: var(--violet);
+}
 .copyrights a:hover {
     color: var(--red);
 }

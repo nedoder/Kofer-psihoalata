@@ -40,6 +40,7 @@ export default {
 
 .not-found h3 {
   margin: 1rem 0;
+  text-align: center;
 }
 
 </style>

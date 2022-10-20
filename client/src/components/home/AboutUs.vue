@@ -149,11 +149,11 @@
 
 
 @media (max-width: 768px) {
-    .about-image {
-        display: none;
-    }
-    .about-text {
-        text-align: justify;
-    }
+  .about-image {
+      display: none;
+  }
+  .about-text {
+      text-align: justify;
+  }
 }
 </style>

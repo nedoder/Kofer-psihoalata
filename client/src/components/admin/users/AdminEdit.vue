@@ -1,7 +1,7 @@
 <template>
-  <v-form v-if="currentUser" v-model="isValid">
+  <v-form v-if="currentUser" v-model="isValid" class="row text-center justify-center align-center fill-height">
     <v-row justify="center">
-      <v-col sm="10">
+      <v-col sm="6">
         <v-card tile>
           <v-card-text>
 
@@ -159,6 +159,19 @@ export default {
       requests.getUser(id)
       .then((response) => {
         this.currentUser = response.data;
+        requests.getUserList()
+        .then(response => {
+          this.items = response.data
+          this.items.forEach(item => {
+            if(item.username !== this.currentUser.username) {
+              this.users.push(item.username)
+            } 
+          })
+        })
+        .catch(error => {
+          this.error = error
+          console.log(error.message)
+        })
       })
       .catch((e) => {
         console.log(e);
@@ -173,20 +186,13 @@ export default {
   },
   mounted() {
     this.getUsers(this.$route.params.id)
-    requests.getUserList()
-    .then(response => {
-      this.items = response.data
-      this.items.forEach(item => {
-        if(item.username !== this.currentUser.username) {
-          this.users.push(item.username)
-        } 
-      })
-    })
-    .catch(error => {
-      this.error = error
-      console.log(error.message)
-    })
   },
 }
 </script>
 
+<style scoped>
+.row .fill-height {
+  height: 85vh !important;
+  align-items: center !important;
+}
+</style>

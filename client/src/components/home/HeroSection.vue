@@ -126,7 +126,7 @@ export default {
   50% { transform: translate(50%, 20%) rotate(-200deg) scale(1.2);}
 }
 
-
+/* HERO COMPONENT */
 .hero h2 {
   font-size: 3rem;
 	letter-spacing: 0.1rem;
@@ -150,12 +150,10 @@ export default {
   position: relative;
   border-radius: 1rem;
   padding: .8rem .2rem;
-  /* box-shadow:  .1rem .1rem .6rem var(--light-grey), .1rem -.1rem .3rem var(--violet); */
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   backdrop-filter: blur(.5rem);
   transition: all .5s ease;
-
   border: 4px solid transparent;
   border-image: var(--gradient);
   border-image-slice: 1;
@@ -167,6 +165,7 @@ export default {
   font-size: .75rem;
 }
 
+/* HERO BUTTONS HOVER ANIMATION */
 @keyframes animation {
   20% {
     clip-path: polygon(1% 1%, 100% 0, 100% 100%, 0 100%)
@@ -191,17 +190,9 @@ export default {
 }
 
 .hero-buttons a:hover {
-  /* box-shadow:  .2rem .2rem .6rem var(--light-grey), .1rem .2rem .4rem var(--violet); */
-  /* transform: scale(0.97); */
   animation: animation .5s ease-in-out .2s;
   letter-spacing: .1rem;
 }
-
-/* .hero-left a:first-child {
-  color: var(--white);
-  background: var(--green);
-  text-shadow: 0 1.5px 3px var(--black);
-} */
 
 .hero-left p {
   padding: 20px 0;
@@ -211,6 +202,10 @@ export default {
 
 .hero-left, .hero-right {
   z-index: 200;
+}
+
+.hero-right img {
+  padding-left: 3rem;
 }
 
 /* SCROLL DOWN ICON */
@@ -234,10 +229,7 @@ export default {
   height: 5rem;
 }
 
-.hero-right img {
-  padding-left: 3rem;
-}
-
+/* SCROLL DOWN ANIMATION */
 @-webkit-keyframes scrollDown {
   0%,
   20%,

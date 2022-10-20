@@ -207,7 +207,7 @@ export default {
    
   },
 
-   mounted() {
+  mounted() {
     requests.getCommentsList()
     .then(response => {
       this.comment = response.data;

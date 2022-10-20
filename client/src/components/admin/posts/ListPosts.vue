@@ -23,7 +23,7 @@
       class="elevation-1"
       >
         <template v-slot:[`item.image`]="{ item }">
-            <img :src="$imagePath + item.image" style="width: 50px; height: 50px; border-radius:50%" />
+          <img :src="$imagePath + item.image" style="width: 50px; height: 50px; border-radius:50%" />
         </template>
 
         <template v-slot:[`item.show`]="{ item }" > 

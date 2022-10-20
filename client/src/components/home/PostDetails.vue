@@ -20,9 +20,11 @@
                 <p v-if="errorMsg===true && success===false" class="comment-failed">Morate unijeti poruku.</p>
                 <button class="button"  @click="submitComment">Pošalji</button>
             </div>
-            <div class="comment-list" v-for="comment in commentsLoaded" :key="comment.id">
-                <comment-component :items="comment"/>
-            </div>
+            <transition-group name="fade">
+                <div class="comment-list" v-for="comment in commentsLoaded" :key="comment.id">
+                    <comment-component :items="comment"/>
+                </div>
+            </transition-group>
             <button @click="loadMore" class="load-more" v-if="this.item.Comments.length > this.length">Prikaži više</button>
         </div>
         <div class="loading-post" v-if="loading===true">
@@ -137,6 +139,17 @@ export default {
 </script>
 
 <style>
+
+/* LOAD MORE TRANSITION */
+.fade-enter-active, .fade-leave-active {
+  transition: all .5s ease;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+  transform: translateX(4rem);
+}
+
+/* LOAD MORE BUTTON */
 .load-more, .load-answers {
     display: block;
     margin: 0 auto;
@@ -145,6 +158,8 @@ export default {
     text-align: center;
     padding: 1rem 0;
 }
+
+/* LOADER */
 .loading-post {
   text-align: center;
   margin-top: 5rem;
@@ -167,6 +182,7 @@ export default {
     padding: 0 1rem;
 }
 
+/* COMMENT AND ANSWER FORM */
 .comment-form, .reply-form {
     text-align: center;
     margin: 1rem 0;
@@ -207,6 +223,7 @@ export default {
   letter-spacing: .1rem;
 }
 
+/* COMMENT AND ANSWER CONTAINER */
 .single-comment, .single-answer {
     display: flex;
     flex-direction: row;
@@ -226,14 +243,6 @@ export default {
     width: 100%;
     font-size: .9rem;
     padding-top: .5rem;
-}
-
-.answer-wrap {
-    display: none;
-}
-
-.answer-visible {
-    display: block;
 }
 
 .answer-length svg {
@@ -280,12 +289,12 @@ export default {
     color: var(--black);
 }
 
+/* POST CONTAINER */
 .single-post-image img {
     border-radius: 1rem;
     margin: 2rem 0;
     max-width: 50%;
 }
-
 
 .single-post-category {
     text-transform: uppercase;
@@ -306,15 +315,6 @@ export default {
     overflow: hidden;
 }
 
-/* .single-post-content p, .single-post-content blockquote, .single-post-content strong, .single-post-content u, .single-post-content s, .single-post-content em, .single-post-content hr, .single-post-content h2, .single-post-content ol, .single-post-content ul, .single-post-content h3, .single-post-content h4, .single-post-content h5, .single-post-content h6, .single-post-content a {
-    display: contents;
-}
-  
-.single-post-content p:after, .single-post-content blockquote::after, .single-post-content strong::after, .single-post-content s::after, .single-post-content u::after, .single-post-content em::after, .single-post-content hr::after, .single-post-content h2::after, .single-post-content ol::after, .single-post-content ul::after, .single-post-content h3::after, .single-post-content h4::after, .single-post-content h5::after, .single-post-content h6::after, .single-post-content a::after {
-    content: "\A";
-    white-space:pre;
-}*/
-
 .single-post-content h1, .single-post-content h2, .single-post-content h3, 
 .single-post-content h4, .single-post-content h5, .single-post-content h6 {
     font-size: 1rem;
@@ -327,6 +327,7 @@ export default {
     max-width: 50%;
 } 
 
+/* SUCCESS AND FAIL MESSAGE FOR COMMENT AND ANSWER */
 .comment-success {
   color: var(--green);
   text-align: left;

@@ -96,10 +96,14 @@ export default {
 
 	
 <style scoped>
+
+/* EMAIL VALIDATION MESSAGE */
 .email-validate {
   color: var(--red);
   font-size: .9rem;
 }
+
+/* SUCCESS AND SENDING MESSAGE */
 .loading-mail, .success-message {
   width: 90%;
   margin: 0 auto;
@@ -115,10 +119,13 @@ export default {
   max-height: 75vh;
 }
 
+/* SENDING FAILED */
 .comment-failed {
   color:var(--red);
   padding: 1rem 0;
 }
+
+/* CONTACT FORM */
 .contact {
   padding: 4rem 0;
 }

@@ -2,8 +2,6 @@
     <div>
         <header-component/>
         <div class="support-page" v-if="loading===false">
-            <!-- <h3>Podrška</h3>
-            <p class="support-intro">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, suscipit quidem. Esse, ex! Possimus harum adipisci molestiae corrupti, ipsum inventore veritatis porro dolorem odio ut? Temporibus, natus? Nihil laboriosam minus, odit deleniti repellendus voluptate ducimus veritatis, saepe in, eveniet nam placeat dignissimos. Ipsa, repudiandae doloribus aliquam aspernatur soluta rem non.</p> -->
             <div class="support-wrap">
                 <div v-for="item in items" :key="item.id"  class="support-card">
                     <support-card :items="item"/>

@@ -15,7 +15,7 @@ import FooterComponent from './FooterComponent.vue';
 export default {
   name: 'ContactPage',
   components: {
-      HeaderComponent, ContactForm, FooterComponent
+    HeaderComponent, ContactForm, FooterComponent
   },
 }
 </script>

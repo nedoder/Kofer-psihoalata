@@ -119,7 +119,7 @@ export default {
         console.log(error.message)
       })
     },
-     deleteItem(id) {
+    deleteItem(id) {
       this.id = id
       this.dialog = true
     }

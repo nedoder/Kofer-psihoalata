@@ -142,6 +142,8 @@ export default {
 body, html {
   overflow: hidden;
 }
+
+/* LOADING AND SUCCESS MESSAGE */
 .loading-mail, .success-message {
   width: 90%;
   margin: 0 auto;
@@ -156,6 +158,8 @@ body, html {
 .success-message img {
   max-height: 75vh;
 }
+
+/* JOIN TEXT */
 .join {
   width: 100%;
   display: flex;
@@ -224,6 +228,8 @@ body, html {
 	left: 0%;
 	top: -1%;
 }
+
+/* JOIN SECTION */
 .join-us {
   width: 90%;
   margin: 0 auto;
@@ -256,6 +262,8 @@ body, html {
   top: 40%;
   transform: rotate(23deg);
 }
+
+/* JOIN FORM */
 .join-form {
   width: 100%;
   border-radius: 1.5rem;
