@@ -9,7 +9,8 @@ exports.create = (req, res) => {
         answer: req.body.answer,
         author: req.body.author,
         approved: req.body.approved,
-        commentId: req.body.commentId
+        commentId: req.body.commentId,
+        postId: req.body.postId
     };
 
     // Save answer in the database

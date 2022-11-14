@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     answer: DataTypes.STRING,
     author: DataTypes.STRING,
     approved: DataTypes.BOOLEAN,
-    commentId: DataTypes.INTEGER
+    commentId: DataTypes.INTEGER,
+    postId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Answer',

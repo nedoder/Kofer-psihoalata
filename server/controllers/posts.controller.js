@@ -322,6 +322,33 @@ exports.delete = async(req, res) => {
             imagePath = './uploads/' + response.image;
         }
         post = response.title
+
+        //deleting comments that belong to the post
+        Comment.destroy({
+            where: { postId: id }
+        })
+        .then(data => {
+            res.status(200);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while deleting comments."
+            });
+        });
+
+        //deleting answers that belong to the post
+        Answer.destroy({
+            where: { postId: id }
+        })
+        .then(data => {
+            res.status(200);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while deleting answers."
+            });
+        });
+
     })
     .catch(err => {
         console.log(err)
@@ -343,32 +370,6 @@ exports.delete = async(req, res) => {
                 });
             });
             fs.unlinkSync(imagePath)
-
-            //deleting comments that belong to the post
-            Comment.destroy({
-                where: { postId: id }
-            })
-            .then(data => {
-                res.status(200);
-            })
-            .catch(err => {
-                res.status(500).send({
-                    message: err.message || "Some error occurred while deleting comments."
-                });
-            });
-
-            //deleting answers that belong to the post
-            Answer.destroy({
-                where: { postId: id }
-            })
-            .then(data => {
-                res.status(200);
-            })
-            .catch(err => {
-                res.status(500).send({
-                    message: err.message || "Some error occurred while deleting answers."
-                });
-            });
 
             res.send({
                 message: "Post was deleted successfully!"

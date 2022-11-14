@@ -134,7 +134,8 @@ export default {
           "answer": this.answer,
           "commentId": this.comments,
           "approved" : true,
-          "author" : this.author
+          "author" : this.author,
+          "postId" : this.posts
       })
       .then(response => {
         console.log(response)

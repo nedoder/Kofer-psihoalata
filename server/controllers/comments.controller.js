@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config.js");
-const { Comment,Activity } = require("../models");
+const { Comment, Activity, Answer } = require("../models");
 
 exports.create = (req, res) => {
 
@@ -160,6 +160,19 @@ exports.delete = async(req, res) => {
     await Comment.findByPk(id)
     .then(response => {
         comment = response.comment
+
+        //deleting answers that belong to the comment
+        Answer.destroy({
+            where: { commentId: id }
+        })
+        .then(data => {
+            res.status(200);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while deleting comments."
+            });
+        });
     })
     .catch(err => {
         console.log(err)

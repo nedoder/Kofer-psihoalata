@@ -133,6 +133,7 @@ export default {
         item.createdAt = new Date(item.createdAt).toLocaleString()
         item.updatedAt = new Date(item.updatedAt).toLocaleString()
       })
+      console.log(this.items)
     }).catch(error => {
       console.log(error.response)
     });
