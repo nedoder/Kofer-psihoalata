@@ -3,7 +3,7 @@
     <div class="post-container">
       <div class="post-list">
         <h3>Kategorije</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, suscipit quidem. Esse, ex! Possimus harum adipisci molestiae corrupti, ipsum inventore veritatis porro dolorem odio ut? Temporibus, natus? Nihil laboriosam minus, odit deleniti repellendus voluptate ducimus veritatis, saepe in, eveniet nam placeat dignissimos. Ipsa, repudiandae doloribus aliquam aspernatur soluta rem non.</p>
+        <p>Kreirali smo abecedu mentalnog zdravlja sa ciljem da edukujemo i odgovorimo na pitanja mladih iz oblasti mentalnog zdravlja napravi rečenicu od ovoga</p>
         <div  class="category-filter">
           <div class="search-box">
             <input name="search" v-model="search" placeholder="Pretraži po naslovu" type="text" autocomplete="off" class="search-field" @keyup.enter="filterTitle(search)" @focus="clearCategories()"/>

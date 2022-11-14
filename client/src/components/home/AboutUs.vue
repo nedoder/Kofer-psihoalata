@@ -3,63 +3,67 @@
         <div class="about-us">
             <div class="about-text">
                 <h3>O nama</h3>
-                <p>Nevladina organizacija “PORTRET” iz Bara sprovodi projekat “KOFER PSIHO-ALATA” podržan kroz
-                    program “Odgovorno i solidarno: građani preuzimaju inicijativu, koji realizuje Fond za aktivno
-                    građanstvo iz Podgorice - fAKT, u partnerstvu sa nevladinim organizacijama Udruženje roditelja
-                    djece sa teškoćama u razvoju “Zračak nade” i Aktivna zona, uz finansijsku podršku Evropske unije i
-                    kofinansiranje Ministarstva javne uprave.
+                <p>
+                    <strong>ŠTA JE U KOFERU?</strong><br/>
+                    U Koferu se nalaze alati koji služe razvoju psihološke otpornost i lakšeg suočavanja sa izazovima
+                    odrastanja, koji često dovode do zavisnosti od telefona, manjkavosti ili gubitka socijalnih vještina u
+                    realnim kontaktima, poremećaja u ishrani, spavanju, raspoloženju, kao i do problema u komunikaciji,
+                    i prilagođavanju. Takođe, pad koncentracije, motivacije i volje u učenju, te gubitak organizacionih
+                    sposobnosti, dovode do ravnodušnosti, razočaranosti, bezvoljnosti i pasivnog stanja, pa čak i suicida.
+                    „Kofer psiho-alata“ je veoma praktičan kofer sa dvije pregrade za pakovanje. U prvoj se nalaze
+                    radionice, a u drugoj digitalna platforma.
+                    Radionice su prilika za upoznavanje sa načinima brige o mentalnom zdravlju i osnaženje za zdrav
+                    razvoj. Teme radionica su: <br/>
+                    <ul>
+                        <li>Psihološki autoportret</li>
+                        <li>Drveće mentalnog zdravlja</li>
+                        <li>Emocionica</li>
+                        <li>Ja i drugi</li>
+                    </ul>
+                    U drugoj pregradi „Kofera psiho-alata“ je virtuelni prostor u kojem se okupljaju mladi ljudi. U ovom
+                    virtuelnom prostoru je moguće pronaći ili kreirati alate za podršku, edukaciju, angažovanje i
+                    komunikaciju na relevantne teme koje se tiču mentalne higijene.
                 </p>
                 <br/>
                 <div class="more-about" v-if="more===true">
                     <p>
-                        “KOFER PSIHO - ALATA” je program podrške za prelazak u odraslo doba, namijenjen mladima (15 - 29
-                        godina) opštine Bar, a zbog svojih digitalnih karakteristika biće dostupan svim mladim stanovnicima
-                        Crne Gore. Ima za cilj stvaranje psihološke otpornosti u tranzitnom periodu adolescencije, razvijanje
-                        vještina neophodnih za zdrav razvoj u savremenom, postcovid dobu i budjenje aktivizma u oblasti
-                        mentalnog zdravlja. Zamišljen je kao dvopla ormni program: Prva pla orma predstavlja ciklus od
-                        pet psiholoških radionica u okviru kojih će mladi imati priliku da se upoznaju sa ličnim strategijama
-                        brige o mentalnom zdravlju i budu osnaženi za zdrav dalji razvoj. Druga platforma podrazumijeva
-                        kreiranje digitalnog prostora na domenu koferpsihoalata.me i ima za cilj da okuplja mlade u
-                        virtuelnom prostoru koji treba da posluži kao alat podrške, edukacije, angažovanja i komunikacije na
-                        relevantne teme u oblasti mentalne higijene. Ovaj virtuelni prostor će nuditi relevantne informacije iz
-                        oblasti mentalnog zdravlja, kroz kontakt i komunikaciju će uticati na suzbijanje stigme u vezi sa
-                        temama iz ove oblasti , podsticati mlade da se angažuju u vezi sa ovim temama čime će se na
-                        svojevrstan način njegovati ideja mentalnog zdravlja u zajednici. Svaki “alat” pojedinačno ima
-                        podciljeve. Podrška: virtuelni prostor ima za cilj da obezbijedi relevantne informacije u oblasti
-                        mentalnog zdravlja i higijene i da odgovori na brojna pitanja iz ove oblasti . Takođe, ima za cilj da
-                        predstavi relevantnu i provjerenu bazu podataka u vezi sa institucijama koje se bave mentalnim
-                        zdravljem, licenciranim psihoterapeutima, grupama podrške. Edukacija: virtuelni prostor ima za cilj
-                        da edukuje i odgovori na pitanja mladih iz oblasti mentalnog zdravlja i da pruži informacije i da
-                        kreira “abecedu mentalnog zdravlja”. Kroz “abecedu mentalnog zdravlja” na stručan i naučno
-                        relevantan način biće odgovoreno na brojna pitanja kao što su npr. Šta je mentalno zdravlje? Koja je
-                        razlika između psihologa, psihoterapeuta i psihijatra? Kada je potrebno da se javim za stručnu
-                        pomoć ? Šta je stigma? i slično. Angažovanje: virtuelni prostor ima za cilj da angažuje mlade ljude da
-                        izraze i podijele stavove o mentalnom zdravlju i higijeni na kreativan način. Ideja nam je da kroz
-                        eseje, pitanja, kreiranje video ili audio sadržaja oslušnemo šta je za mlade mentalno zdravlje, na koji
-                        način razmišljaju o mentalnom zdravlju u zajednici, kako njeguju mentalno zdravlje, koje probleme
-                        vide u zajednici vezano za temu mentalnog zdravlja i higijene. Komunikacija: virtuelni prostor ima za
-                        cilj da pokrene komunikaciju između mladih između sebe ali i mladih i stručne zajednice kroz formu
-                        foruma u kojem bi se diskutovalo o percepcijama problema sa kojima se mladi najčešće susreću u
-                        oblasti mentalnog zdravlja. Na taj način ojačavala bi se mreža podrške i razumijevanje tema od
-                        značaja iz oblasti mentalnog zdravlja, ne samo kroz saradnju sa stručnim licima - nego iz kroz peer
-                        komunikaciju.
+                        <strong>KOME TREBA OVAJ KOFER?</strong><br/>
+                        Kofer psiho-alata je namijenjen mladima od 15 do 29 godina. Bilo da su izazovi sa mentalnim
+                        zdravljem dio ličnog ili dio iskustva iz neposredne okoline, važno je i korisno razviti vještine koje služe
+                        kreiranju kvalitetnijeg i boljeg života, ili se mogu koristiti pri pružanju podrške drugima.
                     </p>
                     <br/>
                     <p>
-                        Ono što želimo da dostignemo je stvaranje adekvatnog sistema podrške za razvijanje psihološke
-                        otpornosti kod mladih kako bi kao kompetentni pojedinci (samosvjesni, inova +tivni, otvoreni,
-                        tolerantni, osnaženi, kreativni, produktivni) prelazili u odraslo doba, samim tim bili zdravi i
-                        perspektivni članovi zajednice.
+                        <strong>KAKO DA SE UKLjUČIŠ?</strong><br/>
+                        Kreiranje sadržaja: Bavljenje mentalnim zdravljem može da bude vrlo kreativno. U virtuelnom
+                        prostoru je moguće kreirati različite sadržaje: eseje, priče, video ili audio snimke na teme u vezi sa
+                        mentalnim zdravljem, bilo da se radi o mentalnoj njezi, podršci ili prepoznavanju izazova.
+                        Forum: Diskusija na forumu je važna, jer je dijeljenje mišljenja i iskustava jedan od najboljih načina
+                        da se doprinese razumjevanju, znanju, svijesti, prepoznavanju problema, i različitim pristupima u
+                        rešavanju izazova sa mentalnom higijenom i zdravljem. Komunikacija sa stručnjacima je jednako
+                        važna koliko i komunikacija sa vršnjacima, a forum pruža priliku za oboje.
                     </p>
                     <br/>
                     <p>
-                        Koordinatorka projekta je Olja Popović, digitalnu platformu će stvarati softwer developer Tatjana
+                        <strong>ZAŠTO SMO KREIRALI KOFER PSIHO-ALATA?</strong><br/>
+                        Istraživanja, napravljena u protekle tri godine, pokazala su da mladi ljudi predstavljaju ranjivu grupu,
+                        te da je 92,2 % od 200 mladih u Baru nezadovoljno svojim životima i prilikama u kojima se nalaze.
+                        Situacija izazvana virusom korona je potom doprinijela širenju opsega psihičkih bolesti, a posledično i
+                        većoj stopi suicida. Digitalne generacije imaju dodatne izazove u toj situaciji.
+                        S obzirom na takvo stanje, kreiran je “Kofer psiho-alata”, koji mladima pruža direktnu podršku u
+                        prevenciji, zaštiti i očuvanju mentalnog zdravlja, kao i razvoju psihološke otpornosti i adekvatnom
+                        prelasku u odraslo doba.
+                    </p>
+                    <br/>
+                    <p>
+                        <strong>KO SU KREATORI KOFERA PSIHO-ALATA?</strong><br/>
+                        Nevladina organizacija “Portret” iz Bara je okupila tim stručnjaka u cilju realizacije projekta “Kofer
+                        psiho alata” podržanog kroz program “Odgovorno i solidarno: građani preuzimaju inicijativu, koji
+                        realizuje Fond za aktivno građanstvo iz Podgorice - fAKT, u partnerstvu sa NVO Udruženje roditelja
+                        djece sa teškoćama u razvoju “Zračak nade” i Aktivna zona, uz finansijsku podršku Evropske unije i
+                        kofinansiranje Ministarstva javne uprave.
+                        Koordinatorka projekta je Olja Popović, digitalnu platformu će stvarati softver developer Tatjana
                         Doderović, a radionice će voditi Jovana Strugar i Branka Ćalasan, psihološkinje i psihoterapeutkinje.
-                        Mladi zainteresovani da pohađaju radionice i/ili učestvuju u kreiranju sadržaja digitalne platforme,
-                        se mogu prijaviti putem mail adrese <a href="mailto: nvoportret@gmail.com">nvoportret@gmail.com</a>.
-                    </p>
-                    <p>
-                        Projekat traje od maja 2022. do juna 2023.godine.
                     </p>
                     <br/>
                 </div>

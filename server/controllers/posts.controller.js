@@ -3,7 +3,7 @@ const sharp = require('sharp');
 const path = require('path');
 const fs = require("fs");
 const config = require("../config/auth.config.js");
-const { Post, Activity } = require("../models");
+const { Post, Activity, Comment, Answer } = require("../models");
 const models = require('../models/');
 const { Op } = models.Sequelize;
 
@@ -330,6 +330,7 @@ exports.delete = async(req, res) => {
     })
     .then(num => {
         if (num == 1) {
+            //creating activity 
             Activity.create({ "activity": `Korisnik ${author} je izbrisao post ${post}` })
             .then(data => {
                 res.status(200);
@@ -340,6 +341,33 @@ exports.delete = async(req, res) => {
                 });
             });
             fs.unlinkSync(imagePath)
+
+            //deleting comments that belong to the post
+            Comment.destroy({
+                where: { postId: id }
+            })
+            .then(data => {
+                res.status(200);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred while deleting comments."
+                });
+            });
+
+            //deleting answers that belong to the post
+            Answer.destroy({
+                where: { postId: id }
+            })
+            .then(data => {
+                res.status(200);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred while deleting answers."
+                });
+            });
+            
             res.send({
                 message: "Post was deleted successfully!"
             });

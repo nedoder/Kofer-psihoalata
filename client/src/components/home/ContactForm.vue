@@ -2,8 +2,8 @@
   <div class="contact">
     <div class=contact-us v-if="loading===false && success===false && failed===false">
       <div class="contact-info">
-        <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus est vitae dolorem sint cumque, quibusdam aut repellendus adipisci animi aliquam.</p>
+        <h3>Nemaš sve informacije?</h3>
+        <p>Pošalji nam poruku i naš tim će ti odgovoriti u najkraćem roku.</p>
       </div>
       <div class="contact-image">
         <img src="../../assets/message.webp" alt="Envelope"/>

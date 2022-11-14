@@ -16,7 +16,12 @@
           <img src="../../assets/message.webp" alt="Mail envelope" />
         </div>
         <img src="../../assets/klupko logo.png" class="join-klupko" alt="Logo klupko"/>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio saepe error alias, odit ullam consectetur harum excepturi aperiam a ipsa soluta est esse atque repellendus recusandae exercitationem autem necessitatibus fugit earum! Harum molestias ipsam voluptatibus eos sit sunt incidunt deleniti delectus consequatur, minus id laborum mollitia facere porro rem minima! Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus est vitae dolorem sint cumque, quibusdam aut repellendus adipisci animi aliquam.</p>
+        <p>Nevladina organizacija “PORTRET” iz Bara sprovodi projekat “KOFER PSIHO-ALATA” podržan kroz
+          program “Odgovorno i solidarno: građani preuzimaju inicijativu, koji realizuje Fond za aktivno
+          građanstvo iz Podgorice - fAKT, u partnerstvu sa nevladinim organizacijama Udruženje roditelja
+          djece sa teškoćama u razvoju “Zračak nade” i Aktivna zona, uz finansijsku podršku Evropske unije i
+          kofinansiranje Ministarstva javne uprave.
+        </p>
         <p>Ugovor o volontiranju možete preuzeti <a href="/files/ugovor-o-volontiranju.pdf" download>ovdje</a>.</p>
       </div>
       

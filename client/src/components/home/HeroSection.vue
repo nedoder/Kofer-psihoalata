@@ -9,8 +9,10 @@
       <div class="shape-blob five"></div>
       <div class="shape-blob six"></div>
       <div class="hero-left">
-        <h2>Lorem ipsum dolor sit amet.</h2>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus, at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos eius necessitatibus at perferendis magnam eligendi temporibus quod exercitationem quibusdam voluptas?</p>
+        <h2>Pakujemo kofere mentalnog zdravlja</h2>
+        <p>Ovaj portal ima za cilj da mladima približi teme mentalnog zdravlja, rabijamo stigme, činimo nešto, bla bla
+          na stručan i naučno relevantan način odgovori na brojna pitanja 
+        </p>
         <div class="hero-buttons">
           <a href="/join-us" aria-label="Join us">Postani volonter</a>
            <a href="https://www.patreon.com/nvoportret" aria-label="Patreon">Podrži nas</a>

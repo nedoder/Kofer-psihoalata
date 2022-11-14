@@ -66,6 +66,7 @@ html {
 	scroll-behavior: smooth;
   position: relative;
   background-image: url("../../client/src/assets/hero.webp");
+  background-image: url("../../client/src/assets/hero-mobile.webp");
   background-size: 0;
   
 }

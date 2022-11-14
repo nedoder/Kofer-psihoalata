@@ -257,7 +257,7 @@ export default {
     text-align: left;
 }
 .copyrights a {
-    color: var(--violet);
+    color: var(--dark-violet);
 }
 .copyrights a:hover {
     color: var(--red);
