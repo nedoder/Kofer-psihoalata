@@ -46,6 +46,7 @@ export default {
       requests.getPost(id)
       .then((response) => {
         this.currentPost = response.data;
+        console.log(this.currentPost)
         requests.getUser(this.currentPost.userId)
         .then(response => {
         this.currentPost.userId = response.data.username;

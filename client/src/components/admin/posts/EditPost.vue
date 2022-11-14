@@ -60,6 +60,12 @@
 
             </v-autocomplete>
 
+            <v-checkbox 
+              label="Prikaži na stranici" 
+              v-model="currentPost.showPost"
+            >
+            </v-checkbox>
+
             <v-btn @click="onSubmit" :disabled="!isValid" color="primary">Izmijeni</v-btn>
             
           </v-card-text>
@@ -109,6 +115,7 @@ export default {
       formData.append("title",  this.currentPost.title);
       formData.append("content",  this.currentPost.content);
       formData.append("categoryId", this.currentPost.categoryId)
+      formData.append("showPost", this.currentPost.showPost)
             
       requests.editPost(this.$route.params.id, formData)
       .then((response) => {

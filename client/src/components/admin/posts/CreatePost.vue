@@ -75,6 +75,7 @@ export default {
     category: [],
     image: null,
     url: "",
+    show: false,
     author: null,
     isValid:true,
     isUpdating: false,
@@ -107,6 +108,7 @@ export default {
       formData.append("title",  this.title);
       formData.append("content",  this.content);
       formData.append("userId",  this.author);
+      formData.append("showPost",  this.show);
       requests.newPost(formData)
       .then(response => {
         console.log(response)

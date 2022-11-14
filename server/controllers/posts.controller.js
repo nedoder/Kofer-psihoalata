@@ -23,7 +23,8 @@ exports.create = async (req, res) => {
         image: formattedFileName,
         content: req.body.content,
         categoryId: req.body.categoryId,
-        userId: req.body.userId
+        userId: req.body.userId,
+        showPost: req.body.showPost
     };
 
     let token = req.headers["authorization"];
@@ -235,7 +236,8 @@ exports.update = async(req, res) => {
         title: req.body.title,
         content: req.body.content,
         categoryId: req.body.categoryId,
-        userId: req.body.author
+        userId: req.body.author,
+        showPost: req.body.showPost
     };
 
     if (image.image !== '') {
@@ -367,7 +369,7 @@ exports.delete = async(req, res) => {
                     message: err.message || "Some error occurred while deleting answers."
                 });
             });
-            
+
             res.send({
                 message: "Post was deleted successfully!"
             });

@@ -5,15 +5,15 @@ module.exports = {
     await queryInterface.addColumn(
       'Posts', 'showPost', {
         type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
       }
     )
   },
 
   async down (queryInterface, Sequelize) {
     await queryInterface.removeColumn(
-      'Posts', 'showPost', {
-        type: Sequelize.BOOLEAN,
-      }
+      'Posts', 'showPost'
     )
   }
 };

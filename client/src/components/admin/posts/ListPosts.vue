@@ -105,6 +105,7 @@ export default {
       { text: "Naslov", value: "title" , align: "title", sortable: true },
       { text: "Autor", value: "userId", sortable: true },
       { text: "Kategorija", value: "categoryId", sortable: true },
+      { text: "Odobren", value: "showPost", sortable: true },
       { text: "Kreiran", value: "createdAt", sortable: true},
       { text: "Poslednje izmjene", value: "updatedAt", sortable: true},
       { text: "Detalji", value: "show", sortable: false },
