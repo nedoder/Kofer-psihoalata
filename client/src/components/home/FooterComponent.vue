@@ -60,7 +60,7 @@
             <div class="footer-contact">
                 <p>Postani dio tima</p>
                 <a href="/join-us" aria-label="Join us">Postani volonter</a>
-                <a href="https://www.patreon.com/" aria-label="Patreon">Podrži nas</a>
+                <a href="https://www.patreon.com/nvoportret" aria-label="Patreon">Podrži nas</a>
                 <a href="/contact" aria-label="Contact">Piši nam</a>
             </div>
             <div class="footer-container">

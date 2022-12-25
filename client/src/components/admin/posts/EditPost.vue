@@ -2,8 +2,8 @@
   <v-form v-if="currentPost" v-model="isValid" class="row text-center justify-center align-center fill-height">
     <v-row justify="center">
       <v-col sm="6">
-        <v-card tile>
-          <v-card-text>
+        <v-card tile class="mb-5 pb-5">
+          <v-card-text class="mb-5 pb-5">
 
             <v-text-field 
               filled 

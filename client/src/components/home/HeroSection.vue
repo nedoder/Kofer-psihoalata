@@ -9,9 +9,9 @@
       <div class="shape-blob five"></div>
       <div class="shape-blob six"></div>
       <div class="hero-left">
-        <h2>Pakujemo kofere mentalnog zdravlja</h2>
-        <p>Ovaj portal ima za cilj da mladima približi teme mentalnog zdravlja, rabijamo stigme, činimo nešto, bla bla
-          na stručan i naučno relevantan način odgovori na brojna pitanja 
+        <h2>Pakujemo kofer mentalnog zdravlja</h2>
+        <p>U njemu ćete pronaći alat podrške i edukacije za mlade, pregradu u kojoj oni mogu da se angažuju i komuniciraju o 
+          njima važnim temama u oblasti mentaln higijene, brižljivo složene relevantne informacije iz oblasti mentalnog zdravlja.
         </p>
         <div class="hero-buttons">
           <a href="/join-us" aria-label="Join us">Postani volonter</a>
@@ -197,7 +197,7 @@ export default {
 }
 
 .hero-left p {
-  padding: 20px 0;
+  padding: 0.5rem 0;
   color: var(--black);
   text-align: justify;
 }
@@ -300,11 +300,14 @@ export default {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .hero-right {
     display: none;
   }
+}
 
+
+@media (max-width: 768px) {
   .shape-blob.three, .shape-blob.five, .shape-blob.six {
     display: none;
   }
@@ -316,16 +319,23 @@ export default {
 }
 
 @media (max-width: 500px) {
+  .hero h2 {
+    font-size: 2.5rem;
+    line-height: 3.5rem;
+  }
   .hero-buttons a {
     width: 9rem;
   }
 }
 
-@media (max-width: 400px) {
-  .hero-buttons a {
-    width: 8.5rem;
+@media (max-width: 450px) {
+  .hero h2 {
+    font-size: 2rem;
+    line-height: 3rem;
   }
+}
 
+@media (max-width: 400px) {
   .hero h2 {
     font-size: 1.7rem;
     line-height: 3rem;
@@ -347,6 +357,10 @@ export default {
 }
 
 @media (max-width: 300px) {
+  .hero h2 {
+    font-size: 1.3rem;
+    line-height: 2rem;
+  }
   .hero p {
     font-size: .7rem;
   }

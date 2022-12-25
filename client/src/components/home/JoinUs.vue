@@ -16,11 +16,10 @@
           <img src="../../assets/message.webp" alt="Mail envelope" />
         </div>
         <img src="../../assets/klupko logo.png" class="join-klupko" alt="Logo klupko"/>
-        <p>Nevladina organizacija “PORTRET” iz Bara sprovodi projekat “KOFER PSIHO-ALATA” podržan kroz
-          program “Odgovorno i solidarno: građani preuzimaju inicijativu, koji realizuje Fond za aktivno
-          građanstvo iz Podgorice - fAKT, u partnerstvu sa nevladinim organizacijama Udruženje roditelja
-          djece sa teškoćama u razvoju “Zračak nade” i Aktivna zona, uz finansijsku podršku Evropske unije i
-          kofinansiranje Ministarstva javne uprave.
+        <p>Klub mladih volontera “Klupko” je osnovan 2019. godine uz podršku Fonda za aktivno građanstvo f-AKT iz Podgorice, kroz program 
+          "Za jači glas organizacija građanskog društva" koji je finansirala Ambasada SAD-a iz Podgorice. Volonteri osmišljavaju i realizuju
+          aktivnosti namijenjene mladima - projekcije filmova, panel diskusije, tematske večeri, edukacije, zabave i pomažu u sprovođenju 
+          humanitarnih i drugih akcija na nivou zajednice.
         </p>
         <p>Ugovor o volontiranju možete preuzeti <a href="/files/ugovor-o-volontiranju.pdf" download>ovdje</a>.</p>
       </div>

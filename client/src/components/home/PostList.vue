@@ -3,7 +3,12 @@
     <div class="post-container">
       <div class="post-list">
         <h3>Kategorije</h3>
-        <p>Kreirali smo abecedu mentalnog zdravlja sa ciljem da edukujemo i odgovorimo na pitanja mladih iz oblasti mentalnog zdravlja napravi rečenicu od ovoga</p>
+        <p>
+          Kreirali smo “abecedu mentalnog zdravlja” sa ciljem da edukujemo i na stručan i naučno
+          relevantan način odgovorimo na brojna pitanja kao što su npr. Šta je mentalno zdravlje? Koja je
+          razlika između psihologa, psihoterapeuta i psihijatra? Kada je potrebno da se javim za stručnu
+          pomoć? Šta je stigma? i slično.
+        </p>
         <div  class="category-filter">
           <div class="search-box">
             <input name="search" v-model="search" placeholder="Pretraži po naslovu" type="text" autocomplete="off" class="search-field" @keyup.enter="filterTitle(search)" @focus="clearCategories()"/>
@@ -105,7 +110,9 @@ export default {
         requests.getPostsList(this.$route.query.category, e.currentTarget.innerHTML)
         .then(response => {
           this.items = response.data.rows;
-          console.log(response.data)
+          this.items = this.items.filter(item => {
+            return item.showPost === true
+          })
         }).catch(error => {
           console.log(error.response)
         })
@@ -114,7 +121,9 @@ export default {
         requests.getPostList(e.currentTarget.innerHTML)
         .then(response => {
           this.items = response.data.rows;
-          console.log(response.data)
+          this.items = this.items.filter(item => {
+            return item.showPost === true
+          })
           this.filteredItems = response.data
         }).catch(error => {
           console.log(error.response)
@@ -129,6 +138,9 @@ export default {
         .then(response => {
           this.items = response.data.rows;
           this.resultCount = response.data.count
+          this.items = this.items.filter(item => {
+          return item.showPost === true
+        })
         }).catch(error => {
           console.log(error.response)
         })
@@ -142,6 +154,9 @@ export default {
       .then(response => {
         this.items = response.data.rows;
         this.resultCount = response.data.count
+        this.items = this.items.filter(item => {
+          return item.showPost === true
+        })
       }).catch(error => {
         console.log(error.response)
       })
@@ -162,6 +177,9 @@ export default {
       .then(response => {
         this.items = response.data.rows;
         this.resultCount = response.data.count
+        this.items = this.items.filter(item => {
+          return item.showPost === true
+        })
       }).catch(error => {
         console.log(error.response)
       })
@@ -175,6 +193,9 @@ export default {
         this.items = response.data.rows;
         this.resultCount = response.data.count
         this.filteredItems = response.data.rows
+        this.items = this.items.filter(item => {
+          return item.showPost === true
+        })
       }).catch(error => {
         console.log(error.response)
       })
@@ -198,6 +219,9 @@ export default {
       .then(response => {
         this.items = response.data.rows;
         this.resultCount = response.data.count
+        this.items = this.items.filter(item => {
+          return item.showPost === true
+        })
       }).catch(error => {
         console.log(error.response)
       })
@@ -369,7 +393,7 @@ export default {
 }
 
 .posts {
-  width: calc(20% - 1.5rem);
+  width: calc(20% - 1.6rem);
   display: flex;
   display: -webkit-flex;
   justify-content: flex-start;

@@ -4,17 +4,17 @@
             <div class="about-text">
                 <h3>O nama</h3>
                 <p>
-                    <strong>ŠTA JE U KOFERU?</strong><br/>
-                    U Koferu se nalaze alati koji služe razvoju psihološke otpornost i lakšeg suočavanja sa izazovima
+                    <strong>ŠTA JE U KOFERU?</strong><br/><br/>
+                    U Koferu se nalaze alati koji služe razvoju psihološke otpornosti i lakšeg suočavanja sa izazovima
                     odrastanja, koji često dovode do zavisnosti od telefona, manjkavosti ili gubitka socijalnih vještina u
                     realnim kontaktima, poremećaja u ishrani, spavanju, raspoloženju, kao i do problema u komunikaciji,
                     i prilagođavanju. Takođe, pad koncentracije, motivacije i volje u učenju, te gubitak organizacionih
-                    sposobnosti, dovode do ravnodušnosti, razočaranosti, bezvoljnosti i pasivnog stanja, pa čak i suicida.
+                    sposobnosti, dovode do ravnodušnosti, razočaranosti, bezvoljnosti i pasivnog stanja, pa čak i suicida.<br/>
                     „Kofer psiho-alata“ je veoma praktičan kofer sa dvije pregrade za pakovanje. U prvoj se nalaze
                     radionice, a u drugoj digitalna platforma.
                     Radionice su prilika za upoznavanje sa načinima brige o mentalnom zdravlju i osnaženje za zdrav
                     razvoj. Teme radionica su: <br/>
-                    <ul>
+                    <ul class="list">
                         <li>Psihološki autoportret</li>
                         <li>Drveće mentalnog zdravlja</li>
                         <li>Emocionica</li>
@@ -27,41 +27,41 @@
                 <br/>
                 <div class="more-about" v-if="more===true">
                     <p>
-                        <strong>KOME TREBA OVAJ KOFER?</strong><br/>
+                        <strong>KOME TREBA OVAJ KOFER?</strong><br/><br/>
                         Kofer psiho-alata je namijenjen mladima od 15 do 29 godina. Bilo da su izazovi sa mentalnim
                         zdravljem dio ličnog ili dio iskustva iz neposredne okoline, važno je i korisno razviti vještine koje služe
                         kreiranju kvalitetnijeg i boljeg života, ili se mogu koristiti pri pružanju podrške drugima.
                     </p>
                     <br/>
                     <p>
-                        <strong>KAKO DA SE UKLjUČIŠ?</strong><br/>
-                        Kreiranje sadržaja: Bavljenje mentalnim zdravljem može da bude vrlo kreativno. U virtuelnom
+                        <strong>KAKO DA SE UKLjUČIŠ?</strong><br/><br/>
+                        <strong>Kreiranje sadržaja:</strong> Bavljenje mentalnim zdravljem može da bude vrlo kreativno. U virtuelnom
                         prostoru je moguće kreirati različite sadržaje: eseje, priče, video ili audio snimke na teme u vezi sa
-                        mentalnim zdravljem, bilo da se radi o mentalnoj njezi, podršci ili prepoznavanju izazova.
-                        Forum: Diskusija na forumu je važna, jer je dijeljenje mišljenja i iskustava jedan od najboljih načina
+                        mentalnim zdravljem, bilo da se radi o mentalnoj njezi, podršci ili prepoznavanju izazova.<br/>
+                        <strong>Forum:</strong> Diskusija na forumu je važna, jer je dijeljenje mišljenja i iskustava jedan od najboljih načina
                         da se doprinese razumjevanju, znanju, svijesti, prepoznavanju problema, i različitim pristupima u
                         rešavanju izazova sa mentalnom higijenom i zdravljem. Komunikacija sa stručnjacima je jednako
                         važna koliko i komunikacija sa vršnjacima, a forum pruža priliku za oboje.
                     </p>
                     <br/>
                     <p>
-                        <strong>ZAŠTO SMO KREIRALI KOFER PSIHO-ALATA?</strong><br/>
+                        <strong>ZAŠTO SMO KREIRALI KOFER PSIHO-ALATA?</strong><br/><br/>
                         Istraživanja, napravljena u protekle tri godine, pokazala su da mladi ljudi predstavljaju ranjivu grupu,
                         te da je 92,2 % od 200 mladih u Baru nezadovoljno svojim životima i prilikama u kojima se nalaze.
                         Situacija izazvana virusom korona je potom doprinijela širenju opsega psihičkih bolesti, a posledično i
-                        većoj stopi suicida. Digitalne generacije imaju dodatne izazove u toj situaciji.
+                        većoj stopi suicida. Digitalne generacije imaju dodatne izazove u toj situaciji.<br/>
                         S obzirom na takvo stanje, kreiran je “Kofer psiho-alata”, koji mladima pruža direktnu podršku u
                         prevenciji, zaštiti i očuvanju mentalnog zdravlja, kao i razvoju psihološke otpornosti i adekvatnom
                         prelasku u odraslo doba.
                     </p>
                     <br/>
                     <p>
-                        <strong>KO SU KREATORI KOFERA PSIHO-ALATA?</strong><br/>
+                        <strong>KO SU KREATORI KOFERA PSIHO-ALATA?</strong><br/><br/>
                         Nevladina organizacija “Portret” iz Bara je okupila tim stručnjaka u cilju realizacije projekta “Kofer
                         psiho alata” podržanog kroz program “Odgovorno i solidarno: građani preuzimaju inicijativu, koji
                         realizuje Fond za aktivno građanstvo iz Podgorice - fAKT, u partnerstvu sa NVO Udruženje roditelja
                         djece sa teškoćama u razvoju “Zračak nade” i Aktivna zona, uz finansijsku podršku Evropske unije i
-                        kofinansiranje Ministarstva javne uprave.
+                        kofinansiranje Ministarstva javne uprave.<br/>
                         Koordinatorka projekta je Olja Popović, digitalnu platformu će stvarati softver developer Tatjana
                         Doderović, a radionice će voditi Jovana Strugar i Branka Ćalasan, psihološkinje i psihoterapeutkinje.
                     </p>
@@ -138,7 +138,14 @@
     align-items: center;
 }
 
-
+ul.list {
+    list-style: circle;
+    list-style-type: circle;
+}
+.list li {
+    list-style-type: circle;
+    margin: 0 2rem;
+}
 @media (min-width: 1200px) {
   img.about-mobile {
     display: none;
