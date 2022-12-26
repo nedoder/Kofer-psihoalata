@@ -318,6 +318,12 @@ export default {
 
 }
 
+@media (max-width: 600px) {
+  .hero-left p {
+    font-size: .8rem;
+  }
+}
+
 @media (max-width: 500px) {
   .hero h2 {
     font-size: 2.5rem;
@@ -361,7 +367,7 @@ export default {
     font-size: 1.3rem;
     line-height: 2rem;
   }
-  .hero p {
+  .hero-left p {
     font-size: .7rem;
   }
 
