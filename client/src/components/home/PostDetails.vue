@@ -321,10 +321,12 @@ export default {
     line-height: 2rem;
 }
 
-.single-post-content p > img {
+.single-post-content p > img,
+.single-post-content p > em > img {
     border-radius: 1rem;
     margin: 2rem 0;
-    max-width: 50%;
+    max-width: 100%;
+    height: auto;
 } 
 
 /* SUCCESS AND FAIL MESSAGE FOR COMMENT AND ANSWER */
