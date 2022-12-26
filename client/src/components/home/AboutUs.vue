@@ -5,23 +5,20 @@
                 <h3>O nama</h3>
                 <p>
                     <strong>ŠTA JE U KOFERU?</strong><br/><br/>
-                    U Koferu se nalaze alati koji služe razvoju psihološke otpornosti i lakšeg suočavanja sa izazovima
-                    odrastanja, koji često dovode do zavisnosti od telefona, manjkavosti ili gubitka socijalnih vještina u
-                    realnim kontaktima, poremećaja u ishrani, spavanju, raspoloženju, kao i do problema u komunikaciji,
-                    i prilagođavanju. Takođe, pad koncentracije, motivacije i volje u učenju, te gubitak organizacionih
-                    sposobnosti, dovode do ravnodušnosti, razočaranosti, bezvoljnosti i pasivnog stanja, pa čak i suicida.<br/>
-                    „Kofer psiho-alata“ je veoma praktičan kofer sa dvije pregrade za pakovanje. U prvoj se nalaze
-                    radionice, a u drugoj digitalna platforma.
-                    Radionice su prilika za upoznavanje sa načinima brige o mentalnom zdravlju i osnaženje za zdrav
-                    razvoj. Teme radionica su: <br/>
+                    U Koferu se nalaze alati za zaštitu mentalnog zdravlja mladih, koje je brojnim faktorima koje nosi savremeno doba,
+                    potencijalno ugroženo, kao i alati za unaprijedjenje mentalno-zdravstvene pismenosti mladih pojedinaca, grupa i zajednice u cjelini.
+                    Alati će poslužiti u razvoju psihološke otpornosti i lakšeg suočavanja sa izazovima odrastanja.<br/>
+                    „Kofer psiho-alata“ ima dvije pregrade za pakovanje. U prvoj se nalaze radionice, a u drugoj digitalna platforma koju smo kreirali.
+                    Ciklus od pet psiholoških radionica u okviru kojih će mladi imati priliku da se upoznaju sa ličnim strategijama brige 
+                    o mentalnom zdravlju i budu osnaženi za zdrav dalji razvoj su organizovani po sljedećim temama:<br/>
                     <ul class="list">
                         <li>Psihološki autoportret</li>
                         <li>Drveće mentalnog zdravlja</li>
                         <li>Emocionica</li>
                         <li>Ja i drugi</li>
                     </ul>
-                    U drugoj pregradi „Kofera psiho-alata“ je virtuelni prostor u kojem se okupljaju mladi ljudi. U ovom
-                    virtuelnom prostoru je moguće pronaći ili kreirati alate za podršku, edukaciju, angažovanje i
+                    U drugoj pregradi sa digitalnim sadržajem „Kofera psiho-alata“ se okupljaju mladi ljudi koji 
+                    mogu pronaći ili kreirati alate za podršku, edukaciju, angažovanje i
                     komunikaciju na relevantne teme koje se tiču mentalne higijene.
                 </p>
                 <br/>
@@ -38,10 +35,6 @@
                         <strong>Kreiranje sadržaja:</strong> Bavljenje mentalnim zdravljem može da bude vrlo kreativno. U virtuelnom
                         prostoru je moguće kreirati različite sadržaje: eseje, priče, video ili audio snimke na teme u vezi sa
                         mentalnim zdravljem, bilo da se radi o mentalnoj njezi, podršci ili prepoznavanju izazova.<br/>
-                        <strong>Forum:</strong> Diskusija na forumu je važna, jer je dijeljenje mišljenja i iskustava jedan od najboljih načina
-                        da se doprinese razumjevanju, znanju, svijesti, prepoznavanju problema, i različitim pristupima u
-                        rešavanju izazova sa mentalnom higijenom i zdravljem. Komunikacija sa stručnjacima je jednako
-                        važna koliko i komunikacija sa vršnjacima, a forum pruža priliku za oboje.
                     </p>
                     <br/>
                     <p>

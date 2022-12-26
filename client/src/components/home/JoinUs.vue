@@ -37,12 +37,12 @@
           <input required name="join-phone" v-model='contact.phone' placeholder="Broj telefona" type="tel" autocomplete="off" class="join-phone">
           
           <textarea required name="join-questionone" v-model="contact.questionone" rows="4" placeholder="Kako si saznao/la za klub mladih volontera 'Klupko'?" class="join-message"></textarea>
-          <textarea required name="join-questiontwo" v-model="contact.questiontwo" rows="4" placeholder="Koji su razlozi zbog kojih si odlučio-la da se prijaviš za volontiranje" class="join-message"></textarea>
+          <textarea required name="join-questiontwo" v-model="contact.questiontwo" rows="4" placeholder="Koji su razlozi zbog kojih si odlučio-la da se prijaviš za volontiranje?" class="join-message"></textarea>
           <textarea required name="join-questionthree" v-model='contact.questionthree' rows="4" placeholder="Da li si nekad bio/bila angažovan/a kao volonter?" class="join-message"></textarea>
           <textarea required name="join-questionfour" v-model="contact.questionfour" rows="4" placeholder="Ako je tvoj odgovor DA, u kojoj organizacji je bio tvoj angažman?" class="join-message"></textarea>
           <textarea required name="join-questionfive" v-model="contact.questionfive" rows="4" placeholder="Pokušaj da opišeš sebe kroz ono što voliš kod sebe" class="join-message"></textarea>
           <textarea required name="join-questionsix" v-model="contact.questionsix" rows="4" placeholder="Šta bi kod sebe voljeo/la da unaprijediš?" class="join-message"></textarea>
-          <textarea required name="join-questionseven" v-model="contact.questionseven" rows="4" placeholder="Šta očekuješ da ćeš dobiti od ovog projekta?" class="join-message"></textarea>
+          <textarea required name="join-questionseven" v-model="contact.questionseven" rows="4" placeholder="Šta očekuješ da ćeš dobiti od ovog angažmana?" class="join-message"></textarea>
           <textarea required name="join-questioneight" v-model="contact.questioneight" rows="4" placeholder="Na koje načine možeš/želiš doprinijeti razvoju Kluba mladih volontera?" class="join-message"></textarea>
           
           <button class="join-submit"  @click="onSubmit">Pošalji</button>

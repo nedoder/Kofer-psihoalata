@@ -11,7 +11,7 @@
       <div class="hero-left">
         <h2>Pakujemo kofer mentalnog zdravlja</h2>
         <p>U njemu ćete pronaći alat podrške i edukacije za mlade, pregradu u kojoj oni mogu da se angažuju i komuniciraju o 
-          njima važnim temama u oblasti mentaln higijene, brižljivo složene relevantne informacije iz oblasti mentalnog zdravlja.
+          njima važnim temama u oblasti mentalne higijene, brižljivo složene relevantne informacije iz oblasti mentalnog zdravlja.
         </p>
         <div class="hero-buttons">
           <a href="/join-us" aria-label="Join us">Postani volonter</a>
