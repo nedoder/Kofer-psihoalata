@@ -63,6 +63,13 @@ export default {
   overflow: hidden;
   position: relative;
   padding: 0 calc(5% + 1rem);
+  padding-top: 4rem;
+}
+
+.hero-left,
+.hero-right {
+  position: relative;
+  z-index: 1;
 }
 
 /* BACKGROUND SHAPES */
@@ -133,7 +140,6 @@ export default {
   font-size: 3rem;
 	letter-spacing: 0.1rem;
   color: var(--violet);
-	line-height: 5rem;
 	position: relative;
 }
 
@@ -202,9 +208,9 @@ export default {
   text-align: justify;
 }
 
-.hero-left, .hero-right {
+/* .hero-left, .hero-right {
   z-index: 200;
-}
+} */
 
 .hero-right img {
   padding-left: 3rem;

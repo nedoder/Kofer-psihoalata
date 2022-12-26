@@ -182,6 +182,10 @@ export default {
     padding: 0 1rem;
 }
 
+.post-details h3 {
+    padding: 0;
+}
+
 /* COMMENT AND ANSWER FORM */
 .comment-form, .reply-form {
     text-align: center;

@@ -122,6 +122,7 @@
 
 #about-us h3 {
     margin: 2rem 0;
+    padding: 0;
 }
 .about-us {
     margin: 4rem 0;

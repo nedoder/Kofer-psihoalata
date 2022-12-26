@@ -92,7 +92,7 @@ h1, h2, h3, h4, h5, h6 {
 h3 {
   font-size: 2rem;
   color: var(--light-black);
-  padding: 4rem 0 1rem 0;
+  padding: 2rem 0 1rem 0;
   text-align: left;
 }
 

@@ -101,6 +101,7 @@ export default {
 	border-top-right-radius: 1.5rem;
 	background: var(--white);
 	box-shadow: var(--shadow-medium);
+	z-index: 10;
 }
 
 .menu-list {
